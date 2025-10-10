@@ -8,3 +8,6 @@ Installiere Godot Engine und öffne es.
 
 ### Git good
 github.com/godotengine/godot-git-plugin/wiki/Git-plugin-v3
+
+## Ideenphase
+Wir haben uns Gedanken gemacht welche Elemente in unser Spiel einfließen können: [Dokument](https://docs.google.com/document/d/1tbJDoIl8Td4ONdNFHV6nYKuIKZrESmLNq2ERpz86UJI/edit?tab=t.0#heading=h.uuaadedxe2fx)
