@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpkw6p6jwdxlw"]
+
+[ext_resource type="Script" uid="uid://brdbqgmoxuone" path="res://scripts/main_menu_2.gd" id="1_2ue1o"]
+[ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="1_fnwlw"]
+[ext_resource type="AudioStream" uid="uid://c54sy8kqyaxk0" path="res://assets/music/MainMenuTheme2.wav" id="2_2ue1o"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ue1o")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Battle for Bachelor"
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Continue"
+flat = true
+
+[node name="NewGame" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "New Game"
+flat = true
+
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Options"
+flat = true
+
+[node name="Credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Credits"
+flat = true
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+flat = true
+
+[node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.963345, 0.51539916, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 11
+text = "ver 0.1"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Illustration" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("1_fnwlw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="MarginContainer"]
+stream = ExtResource("2_2ue1o")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://lloliascsxx0"]
+
+[ext_resource type="Script" uid="uid://bp4roocxhh0m6" path="res://scripts/options.gd" id="1_j6yq7"]
+[ext_resource type="Texture2D" uid="uid://dihbgyp6hdir3" path="res://assets/options menu/Gemini_Generated_Image_fqlhr1fqlhr1fqlh.png" id="2_ckjey"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_j6yq7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 500
+
+[node name="Background" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_ckjey")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Master"
+
+[node name="MasterVolume" type="HSlider" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+
+[node name="Mute" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Mute"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Music"
+
+[node name="MusicVolume" type="HSlider" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+value = -13.0
+
+[node name="Back" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "Back"
+flat = true
+
+[connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
