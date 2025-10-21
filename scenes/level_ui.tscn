@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://rkc21geb74i1"]
+
+[ext_resource type="Script" uid="uid://ciwcno1t7dw4d" path="res://scripts/level_ui.gd" id="1_exbfu"]
+
+[node name="LevelUI" type="CanvasLayer"]
+script = ExtResource("1_exbfu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="EnterLevelButton" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.70400786, 0.9168332, 0.9715262, 1)
+theme_override_colors/font_pressed_color = Color(0.11427544, 0.29684758, 0.23027517, 1)
+theme_override_colors/font_hover_color = Color(0.95686275, 0.91764706, 0.972549, 1)
+text = "Level betreten"

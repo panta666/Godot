@@ -11,6 +11,13 @@ func _ready() -> void:
 
 func _on_new_game_pressed() -> void:
 	print("Das Spiel soll starten. Gehe zur Hubworld.")
+	# Spielfortschritt zurücksetzen (für später, wenn wir Savegames haben)
+	global.game_first_loading = true
+	global.current_scene = "realworld_classroom_one"
+	global.transition_scene = false
+
+	# Szene wechseln
+	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
 
 
 func _on_options_pressed() -> void:
