@@ -20,3 +20,7 @@ Aktuell haben sich folgende Spezifizierungen ergeben. Diese können sich im Lauf
 - Dennis Hubworld Design
 - Sebastian W.: Enemy Design + Programmierung
 - Sebastian R.: Programmierung, Background musik, SFX Regler, options menu, persistierung, git gud
+<<<<<<< HEAD
+=======
+
+>>>>>>> 42deb8f (add readme)
