@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://brdbqgmoxuone" path="res://scripts/main_menu_2.gd" id="1_2ue1o"]
 [ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="1_fnwlw"]
-[ext_resource type="AudioStream" uid="uid://c54sy8kqyaxk0" path="res://assets/music/MainMenuTheme2.wav" id="2_2ue1o"]
+[ext_resource type="AudioStream" uid="uid://c54sy8kqyaxk0" path="res://assets/music/MainMenuTheme.wav" id="2_2ue1o"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
