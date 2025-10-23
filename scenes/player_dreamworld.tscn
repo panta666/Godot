@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=49 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scenes/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="Texture2D" uid="uid://xsrd2urdv8w6" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_000.png" id="1_tl0xp"]
@@ -33,6 +33,10 @@
 [ext_resource type="Texture2D" uid="uid://bqoikoiq2m7ca" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_001.png" id="30_kj80b"]
 [ext_resource type="Texture2D" uid="uid://c8kddkl1wn6ye" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_002.png" id="31_oyyjt"]
 [ext_resource type="Texture2D" uid="uid://btgvtc27brtkj" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_003.png" id="32_wd1bp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo2fe"]
+atlas = ExtResource("25_a5qtf")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_105pv"]
 atlas = ExtResource("12_sfij5")
@@ -129,6 +133,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fo2fe")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_105pv")
 }, {
 "duration": 1.0,
@@ -214,8 +226,8 @@ script = ExtResource("1_fo2fe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"idle"
-frame_progress = 0.9550792
+animation = &"fall"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
