@@ -14,7 +14,7 @@ Mit Github Actions kann entweder manuell oder automatisch beim pullen ein build 
 In unserem Fall werden wir erstmal manuell das build erstellen. Es kann zwischen Windows, Linux der beidem gewählt 
 werden.
 
-Es wird als erstes eine Ordnerstrukr erstellt:
+Es wird als erstes eine Ordnerstruktur erstellt:
 - .github/workflows
 - export/Linux
 - export/Windows
@@ -26,11 +26,16 @@ Im Ordner .github/workflows erstellen wir nun zwei Dateien:
 - build_debug.yml
 - build_release.yml
 
-Die beiden .yml Dateien sagen github welche Actions vorhanden sind und wie gebuat wird.
+Die beiden .yml Dateien sagen github welche Actions vorhanden sind und wie gebaut wird.
+
+Nachdem alles gepushed wurde, findet man im Repo unter Actions die Workflows "Debug build" und "Release Build". Hier kann
+man zwischen Windows, Linux und both wählen. Je nach Auswahl werden die gewählten Artefakte gebaut. Das triggern des
+Workflows kann mehrere Sekunden dauern. Die buildtime variiert je nach Größe des Projekts.
 
 ## Ideenphase
 Wir haben uns Gedanken gemacht welche Elemente in unser Spiel einfließen können: [Dokument](https://docs.google.com/document/d/1tbJDoIl8Td4ONdNFHV6nYKuIKZrESmLNq2ERpz86UJI/edit?tab=t.0#heading=h.uuaadedxe2fx)
-Konzept: Hubworld mit HSD Design. Einzelene Räume freischalten. Level als 2D Sidescroller/Platformer ala Deadcells wenn Player im jeweiligen Raum einschläft.
+Konzept: Hubworld mit HSD Design. Einzelene Räume freischalten. Level als 2D Sidescroller/Platformer ala Deadcells 
+wenn Player im jeweiligen Raum einschläft.
 
 ## Contibutors
 Aktuell haben sich folgende Spezifizierungen ergeben. Diese können sich im Laufe des Projekts noch ändern.
