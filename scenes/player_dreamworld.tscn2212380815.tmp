@@ -220,7 +220,7 @@ script = ExtResource("1_fo2fe")
 sprite_frames = SubResource("SpriteFrames_w3ag3")
 animation = &"duck"
 autoplay = "idle"
-frame_progress = 0.38364202
+frame_progress = 0.51555884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 12)
