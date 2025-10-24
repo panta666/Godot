@@ -21,6 +21,10 @@ var dash_timer = 0.0
 var is_dashing = false
 var dash_allowed: bool = true
 
+#Variablen für Crouching
+const CROUCH_SPEED:float = 100
+var is_crouching: bool = false
+
 func _physics_process(delta: float) -> void:
 	# Add gravity
 	if not is_on_floor():
@@ -60,35 +64,53 @@ func _physics_process(delta: float) -> void:
 			jump_count = 0
 	
 		# Movement
-		var direction := Input.get_axis("move_left", "move_right")
-		if direction:
-			velocity.x = direction * SPEED
-			last_facing_direction = direction
-			if is_on_floor() and player_sprite.animation != "run":
-				player_sprite.play("run")
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			if is_on_floor() and player_sprite.animation != "idle":
-				player_sprite.play("idle")
+		if not is_crouching:
+			var direction := Input.get_axis("move_left", "move_right")
+			if direction:
+				velocity.x = direction * SPEED
+				last_facing_direction = direction
+				if is_on_floor() and player_sprite.animation != "run":
+					player_sprite.play("run")
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				if is_on_floor() and player_sprite.animation != "idle":
+					player_sprite.play("idle")
 
-		
-	
 	#Handle-Dash
 	if Input.is_action_just_pressed("dash") and dash_timer <= 0:
 		if dash_allowed:
 			var direction = Input.get_axis("move_left", "move_right")
-			if direction == 0:
+			if direction == 0:	#Dash in Blickrichtung
 				direction = last_facing_direction
 			is_dashing = true
-			velocity.x = direction * DASH_SPEED
+			velocity.x = direction * DASH_SPEED	
 			dash_timer = DASH_DURATION
 	
 	#Dash Aktiv ?
 	if is_dashing:
-		dash_timer -= delta
+		dash_timer -= delta	#Dash Timer runterzählen
 		if dash_timer <= 0:
 			is_dashing = false
 	
+	#Handle Crouching
+	if Input.is_action_pressed("crouch") and is_on_floor():
+		if not is_dashing:
+			is_crouching = true
+			var direction := Input.get_axis("move_left", "move_right")
+			velocity.x = direction * CROUCH_SPEED
+			if direction == 0:
+				if player_sprite.animation != "duck":
+					player_sprite.play("duck")
+					print("duck")
+			else:
+				last_facing_direction = direction
+				if player_sprite.animation != "crouch":
+					player_sprite.play("crouch")
+					print("crouch")
+	else:
+		is_crouching = false
+		
+				
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
 	
