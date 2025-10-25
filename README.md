@@ -32,6 +32,9 @@ Nachdem alles gepushed wurde, findet man im Repo unter Actions die Workflows "De
 man zwischen Windows, Linux und both wählen. Je nach Auswahl werden die gewählten Artefakte gebaut. Das triggern des
 Workflows kann mehrere Sekunden dauern. Die buildtime variiert je nach Größe des Projekts.
 
+Nachdem der build abgeschlossen ist finden wir unter Actions -> Debug/Release build -> Building *** Version -> Atrifacts
+die Systembuilds welche man für den Workflow ausgewählt hat.
+
 ## Ideenphase
 Wir haben uns Gedanken gemacht welche Elemente in unser Spiel einfließen können: [Dokument](https://docs.google.com/document/d/1tbJDoIl8Td4ONdNFHV6nYKuIKZrESmLNq2ERpz86UJI/edit?tab=t.0#heading=h.uuaadedxe2fx)
 Konzept: Hubworld mit HSD Design. Einzelene Räume freischalten. Level als 2D Sidescroller/Platformer ala Deadcells 
