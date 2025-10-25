@@ -4,3 +4,5 @@
 .idea/
 .github/workflows/.idea/
 addons/godot-git-plugin/
+export/Linux/BattleForBachelor.*
+export/Windows/BattleForBachelor.*
