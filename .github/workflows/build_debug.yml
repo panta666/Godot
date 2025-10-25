@@ -17,7 +17,7 @@ env:
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
-  APPLICATION_NAME: BattleForBatchelor
+  APPLICATION_NAME: BattleForBachelor
 
 jobs:
   build:
@@ -27,7 +27,7 @@ jobs:
     steps:
       - name: Settings extra variables
         run: |
-          echo "DATE=$(date + '%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
 
       - name: Installing dependencies

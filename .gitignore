@@ -3,3 +3,4 @@
 /android/
 .idea/
 .github/workflows/.idea/
+addons/godot-git-plugin/
