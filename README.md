@@ -6,9 +6,6 @@ Besuche die [Godot Webseite](https://godotengine.org/download/) und lade die ric
 
 Installiere Godot Engine und öffne es.
 
-### Git good
-github.com/godotengine/godot-git-plugin/wiki/Git-plugin-v3
-
 ### Export
 Mit Github Actions kann entweder manuell oder automatisch beim pullen ein build erstellt werden.
 In unserem Fall werden wir erstmal manuell das build erstellen. Es kann zwischen Windows, Linux der beidem gewählt 
