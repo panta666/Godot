@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://d33q44hs8k4tn"]
+
+[node name="DeathCollider" type="Node2D"]

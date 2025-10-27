@@ -214,6 +214,7 @@ animations = [{
 radius = 9.055386
 
 [node name="Player_Dreamworld" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_fo2fe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
