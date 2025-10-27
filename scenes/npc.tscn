@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpw2kucamlx24"]
+
+[ext_resource type="Script" uid="uid://bsufyyswxm6md" path="res://scripts/npc.gd" id="1_nh2m4"]
+[ext_resource type="Script" uid="uid://h2tcli0pemif" path="res://scripts/interactable.gd" id="2_abqhh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vdml"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh2m4"]
+
+[node name="NPC" type="CharacterBody2D"]
+z_index = 2
+y_sort_enabled = true
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_nh2m4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_7vdml")
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("2_abqhh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+scale = Vector2(4.852579, 4.852579)
+shape = SubResource("CircleShape2D_nh2m4")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = -21.25
+offset_top = -53.75
+offset_right = 25.75
+offset_bottom = -30.75
+scale = Vector2(0.93908566, 0.93908566)
+text = "Name"
