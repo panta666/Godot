@@ -1,6 +1,6 @@
 [gd_scene load_steps=49 format=3 uid="uid://bgeien6cw7ehi"]
 
-[ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scenes/player_dreamworld.gd" id="1_fo2fe"]
+[ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="Texture2D" uid="uid://xsrd2urdv8w6" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_000.png" id="1_tl0xp"]
 [ext_resource type="Texture2D" uid="uid://i3q16a0rsnnj" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_001.png" id="2_fo2fe"]
 [ext_resource type="Texture2D" uid="uid://dj0h8yfp43ojb" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_002.png" id="3_v17r1"]
