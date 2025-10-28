@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=49 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="Texture2D" uid="uid://xsrd2urdv8w6" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_000.png" id="1_tl0xp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cg0frg13ehtl1" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_003.png" id="4_agpj8"]
 [ext_resource type="Texture2D" uid="uid://cc13j7psxrll2" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_004.png" id="5_aw0br"]
 [ext_resource type="Texture2D" uid="uid://dltnyvr7828et" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_005.png" id="6_ipxrn"]
+[ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="8_cys85"]
 [ext_resource type="Texture2D" uid="uid://s1ngywdi37n3" path="res://assets/plattformer_character/animations/crouching/east/frame_003.png" id="10_i4ihi"]
 [ext_resource type="Texture2D" uid="uid://bp0gly5vrpymc" path="res://assets/plattformer_character/animations/crouching/east/frame_004.png" id="11_paqmm"]
 [ext_resource type="Texture2D" uid="uid://dcsbjiemglw36" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_000.png" id="12_sfij5"]
@@ -30,6 +31,10 @@
 [ext_resource type="Texture2D" uid="uid://bqoikoiq2m7ca" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_001.png" id="30_kj80b"]
 [ext_resource type="Texture2D" uid="uid://c8kddkl1wn6ye" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_002.png" id="31_oyyjt"]
 [ext_resource type="Texture2D" uid="uid://btgvtc27brtkj" path="res://assets/plattformer_character/animations/running-4-frames/east/frame_003.png" id="32_wd1bp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl0xp"]
+atlas = ExtResource("8_cys85")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdh20"]
 atlas = ExtResource("11_paqmm")
@@ -111,6 +116,14 @@ animations = [{
 "loop": true,
 "name": &"crouch",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl0xp")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -210,18 +223,21 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f4uby"]
-radius = 9.055386
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdh20"]
+size = Vector2(14, 39)
 
 [node name="Player_Dreamworld" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_fo2fe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"duck"
+animation = &"dash"
 autoplay = "idle"
-frame_progress = 0.38364202
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
-shape = SubResource("CircleShape2D_f4uby")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_cdh20")
+
+[node name="HeadCheck" type="RayCast2D" parent="."]
+target_position = Vector2(0, -19)

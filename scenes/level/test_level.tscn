@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=20 format=4 uid="uid://d0evhf7xj448n"]
 
-[ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
-[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/player_dreamworld.tscn" id="1_ocww7"]
-[ext_resource type="Texture2D" uid="uid://c8dtql8mpogvy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="2_vu5gk"]
-[ext_resource type="Texture2D" uid="uid://bmsv36kxi1mj0" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="3_hrsau"]
-[ext_resource type="Texture2D" uid="uid://vu0tgce0wve8" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="4_ahlc2"]
-[ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="5_kb6fe"]
-[ext_resource type="Texture2D" uid="uid://7n7m5wbnwb4g" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="6_6dbnu"]
-[ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="7_rwgd0"]
+[ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_xaj2o"]
+[ext_resource type="Texture2D" uid="uid://c8dtql8mpogvy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="2_nxsyj"]
+[ext_resource type="Texture2D" uid="uid://bmsv36kxi1mj0" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="3_mrxxk"]
+[ext_resource type="Texture2D" uid="uid://vu0tgce0wve8" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="4_nom25"]
+[ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="5_sytxn"]
+[ext_resource type="Texture2D" uid="uid://7n7m5wbnwb4g" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="6_k6grx"]
+[ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="7_mmrb6"]
+[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/player_dreamworld.tscn" id="8_pfo8u"]
+[ext_resource type="PackedScene" uid="uid://71w0wye5dpch" path="res://scenes/death_collider.tscn" id="9_nxsyj"]
+[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_mrxxk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
-texture = ExtResource("1_d7njt")
+texture = ExtResource("1_xaj2o")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 5.3957634, 8, 5.3957634, 8, 8, -8, 8)
 1:0/0 = 0
@@ -394,7 +396,7 @@ texture = ExtResource("1_d7njt")
 24:22/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3661e"]
-texture = ExtResource("2_vu5gk")
+texture = ExtResource("2_nxsyj")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -513,7 +515,7 @@ texture = ExtResource("2_vu5gk")
 4:15/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cnhcn"]
-texture = ExtResource("3_hrsau")
+texture = ExtResource("3_mrxxk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -766,7 +768,7 @@ texture = ExtResource("3_hrsau")
 7:14/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mb4d8"]
-texture = ExtResource("4_ahlc2")
+texture = ExtResource("4_nom25")
 1:0/0 = 0
 2:0/0 = 0
 4:0/0 = 0
@@ -1101,7 +1103,7 @@ texture = ExtResource("4_ahlc2")
 11:20/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wpoq0"]
-texture = ExtResource("5_kb6fe")
+texture = ExtResource("5_sytxn")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1120,15 +1122,10 @@ texture = ExtResource("5_kb6fe")
 21:0/0 = 0
 22:0/0 = 0
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
-2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:1/0 = 0
-3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:1/0 = 0
-4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
@@ -1148,15 +1145,10 @@ texture = ExtResource("5_kb6fe")
 23:1/0 = 0
 24:1/0 = 0
 0:2/0 = 0
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:2/0 = 0
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
@@ -1469,7 +1461,6 @@ texture = ExtResource("5_kb6fe")
 2:18/0 = 0
 3:18/0 = 0
 4:18/0 = 0
-4:18/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:18/0 = 0
 6:18/0 = 0
 7:18/0 = 0
@@ -1579,7 +1570,7 @@ texture = ExtResource("5_kb6fe")
 19:24/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mqs6g"]
-texture = ExtResource("6_6dbnu")
+texture = ExtResource("6_k6grx")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1867,7 +1858,7 @@ texture = ExtResource("6_6dbnu")
 18:23/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wajvq"]
-texture = ExtResource("7_rwgd0")
+texture = ExtResource("7_mmrb6")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -2389,10 +2380,11 @@ sources/4 = SubResource("TileSetAtlasSource_wpoq0")
 sources/5 = SubResource("TileSetAtlasSource_mqs6g")
 sources/6 = SubResource("TileSetAtlasSource_wajvq")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mrxxk"]
+
 [node name="Level_one" type="Node2D"]
 
 [node name="Level_one_Tiles" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAJAAMAAAACAAoAAAAKAAMAAAACAAoAAAALAAMAAAACAAoAAAAMAAMAAAACAAoAAAA=")
 tile_set = SubResource("TileSet_x23ky")
 
 [node name="Background" type="TileMapLayer" parent="Level_one_Tiles"]
@@ -2400,12 +2392,22 @@ tile_map_data = PackedByteArray("AAD9//z/BgAAAAAAAAD9//3/BgAAAAEAAAD9//7/BgAAAAI
 tile_set = SubResource("TileSet_x23ky")
 
 [node name="Collisions" type="TileMapLayer" parent="Level_one_Tiles"]
-tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAAAAAYAAAAAAAYAAAABAAUAAAABAAUAAAABAAYAAAABAAYAAAACAAUAAAACAAUAAAACAAYAAAACAAYAAAADAAUAAAAAAAUAAAADAAYAAAAAAAYAAAAEAAUAAAABAAUAAAAEAAYAAAABAAYAAAAFAAUAAAACAAUAAAAGAAUAAAAAAAUAAAAGAAYAAAAAAAYAAAAHAAUAAAABAAUAAAAHAAYAAAABAAYAAAAIAAUAAAACAAUAAAAIAAYAAAACAAYAAAAJAAUAAAAAAAUAAAAJAAYAAAAAAAYAAAAKAAUAAAABAAUAAAAKAAYAAAABAAYAAAALAAUAAAACAAUAAAALAAYAAAACAAYAAAAMAAUAAAAAAAUAAAAMAAYAAAAAAAYAAAANAAUAAAABAAUAAAANAAYAAAABAAYAAAAOAAUAAAACAAUAAAAOAAYAAAACAAYAAAAPAAUAAAAAAAUAAAAPAAYAAAAAAAYAAAAQAAUAAAABAAUAAAAQAAYAAAABAAYAAAARAAUAAAACAAUAAAARAAYAAAACAAYAAAASAAUAAAAAAAUAAAASAAYAAAAAAAYAAAATAAUAAAABAAUAAAATAAYAAAABAAYAAAAUAAUAAAACAAUAAAAUAAYAAAACAAYAAAASAAEAAAAAAAUAAAASAAIAAAAAAAYAAAATAAEAAAABAAUAAAATAAIAAAABAAYAAAAUAAEAAAACAAUAAAAUAAIAAAACAAYAAAAVAAEAAAAAAAUAAAAVAAIAAAAAAAYAAAAWAAEAAAABAAUAAAAWAAIAAAABAAYAAAAXAAEAAAACAAUAAAAXAAIAAAACAAYAAAAYAAEAAAAAAAUAAAAYAAIAAAAAAAYAAAAZAAEAAAABAAUAAAAZAAIAAAABAAYAAAAFAAYAAAACAAYAAAAGAAMABAAAAAEAAAAHAAMABAAAAAEAAAAIAAMABAAAAAEAAAAJAAMABAAAAAEAAAAKAAMABAAAAAEAAAALAAMABAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAUAAAAAAAYAAAAAAAYAAAABAAUAAAABAAUAAAABAAYAAAABAAYAAAACAAUAAAACAAUAAAACAAYAAAACAAYAAAADAAUAAAAAAAUAAAADAAYAAAAAAAYAAAAEAAUAAAABAAUAAAAEAAYAAAABAAYAAAAFAAUAAAACAAUAAAAFAAYAAAACAAYAAAAGAAUAAAAAAAUAAAAGAAYAAAAAAAYAAAAHAAUAAAABAAUAAAAHAAYAAAABAAYAAAAIAAUAAAACAAUAAAAIAAYAAAACAAYAAAAJAAUAAAAAAAUAAAAJAAYAAAAAAAYAAAAKAAUAAAABAAUAAAAKAAYAAAABAAYAAAALAAUAAAACAAUAAAALAAYAAAACAAYAAAAMAAUAAAAAAAUAAAAMAAYAAAAAAAYAAAANAAUAAAABAAUAAAANAAYAAAABAAYAAAAOAAUAAAACAAUAAAAOAAYAAAACAAYAAAAPAAUAAAAAAAUAAAAPAAYAAAAAAAYAAAAQAAUAAAABAAUAAAAQAAYAAAABAAYAAAARAAUAAAACAAUAAAARAAYAAAACAAYAAAASAAUAAAAAAAUAAAASAAYAAAAAAAYAAAATAAUAAAABAAUAAAATAAYAAAABAAYAAAAUAAUAAAACAAUAAAAUAAYAAAACAAYAAAASAAEAAAAAAAUAAAASAAIAAAAAAAYAAAATAAEAAAABAAUAAAATAAIAAAABAAYAAAAUAAEAAAACAAUAAAAUAAIAAAACAAYAAAAVAAEAAAAAAAUAAAAVAAIAAAAAAAYAAAAWAAEAAAABAAUAAAAWAAIAAAABAAYAAAAXAAEAAAACAAUAAAAXAAIAAAACAAYAAAAYAAEAAAAAAAUAAAAYAAIAAAAAAAYAAAAZAAEAAAABAAUAAAAZAAIAAAABAAYAAAA=")
 tile_set = SubResource("TileSet_x23ky")
 
 [node name="Foreground" type="TileMapLayer" parent="Level_one_Tiles"]
 tile_set = SubResource("TileSet_x23ky")
 
-[node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
+[node name="Player_Dreamworld" parent="." instance=ExtResource("8_pfo8u")]
 position = Vector2(35, 72)
+collision_layer = 15
+
+[node name="Area2D" parent="." instance=ExtResource("9_nxsyj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(156, 216)
+shape = SubResource("WorldBoundaryShape2D_mrxxk")
+
+[node name="Enemy" parent="." instance=ExtResource("10_mrxxk")]
+position = Vector2(201, 19)
 collision_layer = 5
