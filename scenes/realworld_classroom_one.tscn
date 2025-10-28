@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cmhtkekesscxr"]
+[gd_scene load_steps=15 format=4 uid="uid://cmhtkekesscxr"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="PackedScene" uid="uid://sxc5oblkvejp" path="res://scenes/player_realworld.tscn" id="2_pn73f"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="4_55vsv"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="5_onpry"]
-[ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_kr4x2"]
-[ext_resource type="Resource" uid="uid://pgpirmi3a1cu" path="res://assets/npc_data_animations/npc_prof.tres" id="8_p60gb"]
-[ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="8_qgh3e"]
+[ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_p60gb"]
+[ext_resource type="Resource" uid="uid://pgpirmi3a1cu" path="res://assets/npc_data_animations/npc_prof.tres" id="8_fktbd"]
+[ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("2_sdypo")
@@ -4506,6 +4506,12 @@ sources/1 = SubResource("TileSetAtlasSource_kr4x2")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onpry"]
 size = Vector2(42, 31)
 
+[sub_resource type="Curve2D" id="Curve2D_4xjni"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1.25, 103.750015, 0, 0, 0, 0, -2.5, 268.75, 0, 0, 0, 0, 40.00003, 267.5, 0, 0, 0, 0, 78.75003, 268.75, 0, 0, 0, 0, 80.00003, 158.75002)
+}
+point_count = 5
+
 [node name="Realworld_Classroom_One" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_tf4s0")
@@ -4586,15 +4592,30 @@ shape = SubResource("RectangleShape2D_onpry")
 
 [node name="NPC" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(145, 196)
-npc_data = ExtResource("7_kr4x2")
+npc_data = ExtResource("7_p60gb")
 
 [node name="NPC2" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(583, 249)
-npc_data = ExtResource("8_p60gb")
+npc_data = ExtResource("8_fktbd")
 
-[node name="NPC3" parent="." instance=ExtResource("4_55vsv")]
-position = Vector2(358, 168)
-npc_data = ExtResource("8_qgh3e")
+[node name="PatrolPath" type="Path2D" parent="."]
+y_sort_enabled = true
+position = Vector2(360, 141)
+scale = Vector2(0.79999995, 0.79999995)
+curve = SubResource("Curve2D_4xjni")
+
+[node name="Follow" type="PathFollow2D" parent="PatrolPath"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-1.25, 103.750015)
+rotation = 1.5783719
+loop = false
+
+[node name="NPC3" parent="PatrolPath/Follow" instance=ExtResource("4_55vsv")]
+position = Vector2(-11.248978, 0.15200806)
+rotation = -1.584309
+scale = Vector2(1.0000001, 1.0000001)
+npc_data = ExtResource("9_6ftnj")
 
 [connection signal="body_entered" from="Door_Exit" to="." method="_on_door_exit_body_entered"]
 [connection signal="body_exited" from="Door_Exit" to="." method="_on_door_exit_body_exited"]
