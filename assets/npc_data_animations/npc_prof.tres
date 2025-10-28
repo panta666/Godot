@@ -146,4 +146,5 @@ script = ExtResource("1_qsns6")
 npc_name = "Dahm"
 sprite_frames = SubResource("SpriteFrames_nsc3p")
 dialog_timeline_path = "res://dialog/dahm_timeline.dtl"
+behavior_type = 1
 metadata/_custom_type_script = "uid://bclj33y315xbn"
