@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerRealworld
 
 const SPEED = 120.0
 
@@ -10,7 +11,7 @@ var can_move := true
 
 func _physics_process(_delta: float) -> void:
 	if not can_move:
-		return 
+		return
 
 	# Eingabe lesen (Input Map: move_up, move_down, move_left, move_right)
 	var input_vector := Vector2(

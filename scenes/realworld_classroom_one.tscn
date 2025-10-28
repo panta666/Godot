@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="4_55vsv"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="5_onpry"]
-[ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc/npc_typ1.tres" id="7_kr4x2"]
-[ext_resource type="Resource" uid="uid://pgpirmi3a1cu" path="res://assets/npc/npc_prof.tres" id="8_p60gb"]
-[ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc/npc_lady1.tres" id="8_qgh3e"]
+[ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_kr4x2"]
+[ext_resource type="Resource" uid="uid://pgpirmi3a1cu" path="res://assets/npc_data_animations/npc_prof.tres" id="8_p60gb"]
+[ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="8_qgh3e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("2_sdypo")

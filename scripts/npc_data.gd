@@ -14,3 +14,4 @@ class_name NPCData
 
 @export var start_facing: String = "down_idle"
 @export var can_talk: bool = true
+@export var dialog_timeline_path: String = ""
