@@ -1,33 +1,57 @@
 extends Control
 
-# Const für Optionsmenü. Lädt das Optionsmenu um es später anzuzeigen.
-var OPTIONS_SCENE = preload("res://scenes/Options.tscn")
-# Instanz für das Optionsmenu.
-var options_instance = null
+# --- Szenen-Referenzen ---
+var OPTIONS_SCENE := preload("res://scenes/Options.tscn")
 
-# Methode wird aufgerufen wenn auf der UI der New Game Button angeklickt wird.
+# --- Laufzeit-Referenzen ---
+var options_instance: Control = null
+
+# --- Menü-Kamera ---
+@onready var menu_camera: Camera2D = $Camera2D
+
+
+func _ready() -> void:
+	# Menü-Kamera aktivieren
+	if menu_camera and menu_camera is Camera2D:
+		menu_camera.make_current()
+	else:
+		push_warning("MainMenu hat keine gültige Camera2D!")
+
+	# Falls ein alter Player noch existiert, kurz deaktivieren
+	if GlobalScript.player and is_instance_valid(GlobalScript.player):
+		GlobalScript.player.visible = false
+		GlobalScript.player.can_move = false
+
+
+# --- Neues Spiel starten ---
 func _on_new_game_pressed() -> void:
-	print("Das Spiel soll starten. Gehe zur Hubworld.")
-	# Spielfortschritt zurücksetzen (für später, wenn wir Savegames haben)
-	global.game_first_loading = true
-	global.current_scene = "realworld_classroom_one"
-	global.transition_scene = false
+	print("Starte neues Spiel → Gehe zur Hubworld")
 
-	# Szene wechseln zur Hubworld.
-	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
+	GlobalScript.game_first_loading = true
+	GlobalScript.current_scene = "realworld_classroom_one"
+	GlobalScript.transition_scene = false
 
-# Methode wird aufgerufen wenn auf der UI der Options Button angeklickt wird.
+	# Scene wechseln → Player wird automatisch über pending_spawn in GlobalScript.spawn_player() hinzugefügt
+	GlobalScript.start_new_game()
+
+
+# --- Optionsmenü öffnen ---
 func _on_options_pressed() -> void:
-	# Wenn keine Instanz des Optionsmenu existiert wird sie erstellt und als Kind dem Haupmenü
-	# hinzugefügt.
 	if options_instance == null:
 		options_instance = OPTIONS_SCENE.instantiate()
 		add_child(options_instance)
-		
-		# Prüft ob die Options Szene ein Signal closed hat, welche das schließen der Szene steuert.
-		if options_instance.has_signal("closed"):
-			print("options_instance.closed.connect(_on_options_closed)")
 
-# Methde um das Spiel zu beenden wenn der Quit Buttn auf der UI gedrückt wird.
+		if options_instance.has_signal("closed"):
+			options_instance.closed.connect(_on_options_closed)
+
+
+# --- Optionsmenü schließen ---
+func _on_options_closed() -> void:
+	if options_instance:
+		options_instance.queue_free()
+		options_instance = null
+
+
+# --- Spiel beenden ---
 func _on_quit_pressed() -> void:
 	get_tree().quit()
