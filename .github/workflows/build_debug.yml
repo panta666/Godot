@@ -16,13 +16,13 @@ on:
           - mac
           - all
 env:
-  GODOT_VERSION: 4.5
+  GODOT_VERSION: 4.5 # Muss bei Änderung auch für die macOS executable angepasst werden.
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
   EXPORT_FOLDER_MACOS: export/MacOS
   APPLICATION_NAME: BattleForBachelor
-  GODOT_EXECUTABLE: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
+  GODOT_EXECUTABLE: ./Godot_v4.5-stable_macos.universal
 
 jobs:
   build_windwows_linux:
