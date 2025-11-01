@@ -17,7 +17,7 @@ on:
           - all
 env:
   GODOT_VERSION: 4.5 # Muss bei Änderung auch für die macOS executable angepasst werden.
-  GODOT_EXECUTABLE: ./Godot_v4.5-stable_macos.universal
+  GODOT_EXECUTABLE: ./Godot.app
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Settings extra variables
         run: |
-          echo "DATE=$(date + '%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
 
       - name: Installing dependencies
@@ -113,7 +113,7 @@ jobs:
           unzip godot_export_templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
           mv ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
 
-          sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
+          sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-debug"/' ${{ env.GODOT_PROJECT_LOCATION }}
 
       - name: Building debug macOS
         # Der Godot-Befehl ist ähnlich, nutzt aber das macOS-Binary
