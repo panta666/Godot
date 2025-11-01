@@ -22,6 +22,7 @@ env:
   EXPORT_FOLDER_WINDOWS: export/Windows
   EXPORT_FOLDER_MACOS: export/MacOS
   APPLICATION_NAME: BattleForBachelor
+  GODOT_EXECUTABLE: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
 
 jobs:
   build_windwows_linux:
@@ -87,10 +88,6 @@ jobs:
     if: (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch')
 
     runs-on: macos-latest # <- WICHTIG: Muss macOS sein
-
-    env:
-      # Der Pfad zur ausführbaren Godot-Datei auf macOS ist anders
-      GODOT_EXECUTABLE: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
 
     steps:
       - name: Settings extra variables
