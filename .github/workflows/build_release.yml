@@ -17,6 +17,7 @@ on:
           - all
 env:
   GODOT_VERSION: 4.5
+  GODOT_EXECUTABLE: ./Godot_v4.5-stable_macos.universal
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
@@ -86,10 +87,6 @@ jobs:
     if: (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
 
     runs-on: macos-latest # <- WICHTIG: Muss macOS sein
-
-    env:
-      # Der Pfad zur ausführbaren Godot-Datei auf macOS ist anders
-      GODOT_EXECUTABLE: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
 
     steps:
       - name: Settings extra variables
