@@ -20,11 +20,12 @@ env:
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
+  EXPORT_FOLDER_MACOS: export/MacOS
   APPLICATION_NAME: BattleForBachelor
 
 jobs:
-  build:
-    if: github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch'
+  build_windwows_linux:
+    if: (github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -80,3 +81,55 @@ jobs:
         with:
           name: ${{ env.APPLICATION_NAME }}_windows_debug_${{ env.DATE }}.tar
           path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
+
+  build_macos:
+    # Führen Sie diesen Job nur aus, wenn 'mac' oder 'all' ausgewählt wurde UND der Branch develop ist.
+    if: (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch')
+
+    runs-on: macos-latest # <- WICHTIG: Muss macOS sein
+
+    env:
+      # Der Pfad zur ausführbaren Godot-Datei auf macOS ist anders
+      GODOT_EXECUTABLE: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
+
+    steps:
+      - name: Settings extra variables
+        run: |
+          echo "DATE=$(date + '%Y-%m-%d')" >> $GITHUB_ENV
+          echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
+
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Prepare Godot for macOS
+        # 1. Godot-Binary für macOS herunterladen (Universal/Intel+ARM)
+        # 2. Export-Templates herunterladen und entpacken (wie in Ihrem anderen Job)
+        # 3. Projektversion setzen (wie in Ihrem anderen Job)
+        run: |
+          wget -q -O godot_macos.zip https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal.zip
+          unzip godot_macos.zip
+
+          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          unzip godot_export_templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          mv ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
+
+          sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
+
+      - name: Building debug macOS
+        # Der Godot-Befehl ist ähnlich, nutzt aber das macOS-Binary
+        # Pfad zur macOS-Binary: Es ist eine App-Bundle, aber die ausführbare Datei ist innerhalb davon
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_MACOS }}
+          ${{ env.GODOT_EXECUTABLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug "macOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+
+      - name: Zip files
+        run: zip -r ${{ env.APPLICATION_NAME }}_macos_debug_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
+
+      - name: Uploading Artifact debug
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_macos_debug_${{ env.DATE }}.zip
+          path: ${{ env.APPLICATION_NAME }}_macos_debug_${{ env.DATE }}.zip
