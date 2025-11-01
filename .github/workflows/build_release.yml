@@ -2,6 +2,8 @@ name : Release build
 run-name: Building release version
 on:
   workflow_dispatch:
+    branches:
+      - main
     inputs:
       job_target:
         description: 'Wähle Plattform aus'
@@ -11,7 +13,8 @@ on:
         options:
           - windows
           - linux
-          - both
+          - mac
+          - all
 env:
   GODOT_VERSION: 4.5
   GODOT_PROJECT_LOCATION: project.godot
@@ -21,6 +24,7 @@ env:
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -49,28 +53,28 @@ jobs:
           sed -i 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
 
       - name: Building release Linux
-        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'both' }}
+        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_LINUX }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release Linux ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
           chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
       - name: Tar files
-        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'both' }}
+        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         run: tar -cvf ${{ env.APPLICATION_NAME }}release{{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
       - name: Uploading GDExtensin artifact release
-        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'both' }}
+        if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar
           path: ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar
 
       - name: Building release Windows
-        if: ${{ github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'both' }}
+        if: ${{ github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_WINDOWS }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release Windows ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_WINDOWS }}/${{ env.APPLICATION_NAME }}.exe
       - name: Uploading GDExtensin artifact release
-        if: ${{ github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'both' }}
+        if: ${{ github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_windows_release_${{ env.DATE }}.tar
