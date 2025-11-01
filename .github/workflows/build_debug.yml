@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Settings extra variables
         run: |
-          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATE=$(date + '%Y-%m-%d')" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
 
       - name: Installing dependencies
