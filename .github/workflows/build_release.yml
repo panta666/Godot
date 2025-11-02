@@ -119,11 +119,13 @@ jobs:
           
           # Verschiebt alle Einzeldateien (inkl. macos.zip) aus dem Unterordner 'templates' eine Ebene höher
           mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
-          unzip $TEMPLATES_DIR/macos.zip -d $TEMPLATES_DIR/
-          rm $TEMPLATES_DIR/macos.zip
-          mv $TEMPLATES_DIR/macos_template.app/Contents/MacOS/godot_macos_release.universal $TEMPLATES_DIR/
-
+          
+          echo "stable folder"
+          ls Support/Godot/export_templates/4.5.stable/
+          
+          echo "template folder"
           ls $TEMPLATES_DIR
+          
           
           # 3. Projektversion setzen (mit sed für macOS)
           sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
