@@ -84,15 +84,14 @@ jobs:
           path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
 
   build_macos:
-    # Führen Sie diesen Job nur aus, wenn 'mac' oder 'all' ausgewählt wurde UND der Branch develop ist.
-    if: (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch')
+    if: (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
 
-    runs-on: macos-latest # <- WICHTIG: Muss macOS sein
+    runs-on: macos-latest
 
     steps:
       - name: Settings extra variables
         run: |
-          echo "DATE=$(date + '%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
           echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
 
       - name: Checkout submodules
@@ -101,26 +100,37 @@ jobs:
           submodules: 'recursive'
 
       - name: Prepare Godot for macOS
-        # 1. Godot-Binary für macOS herunterladen (Universal/Intel+ARM)
-        # 2. Export-Templates herunterladen und entpacken (wie in Ihrem anderen Job)
-        # 3. Projektversion setzen (wie in Ihrem anderen Job)
         run: |
-          wget -q -O godot_macos.zip https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal.zip
+          GODOT_V=${{ env.GODOT_VERSION }}
+
+          # 1. Godot-Binary für macOS herunterladen und entpacken.
+          wget -q -O godot_macos.zip https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_macos.universal.zip
           unzip godot_macos.zip
 
-          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/${{ env.GODOT_VERSION }}-stable/Godot_v${{ env.GODOT_VERSION }}-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
-          unzip godot_export_templates.tpz -d ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
-          mv ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/templates/* ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable/
+          # 2. Export-Templates herunterladen, entpacken und Pfad korrigieren
+          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_export_templates.tpz
+          TEMPLATES_DIR=~/.local/share/godot/export_templates/$GODOT_V.stable
+          mkdir -p $TEMPLATES_DIR
 
+          # Entpackt die Templates in den Zielordner
+          unzip godot_export_templates.tpz -d $TEMPLATES_DIR
+
+          # Verschiebt alle Einzeldateien (inkl. macos.zip) aus dem Unterordner 'templates' eine Ebene höher
+          mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
+
+          mkdir -p /Users/runner/Library/"Application Support"/Godot/export_templates/4.5.1.stable/
+          cp $TEMPLATES_DIR/macos.zip /Users/runner/Library/"Application Support"/Godot/export_templates/4.5.1.stable/
+
+          # 3. Projektversion setzen (mit sed für macOS)
           sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-debug"/' ${{ env.GODOT_PROJECT_LOCATION }}
 
       - name: Building debug macOS
-        # Der Godot-Befehl ist ähnlich, nutzt aber das macOS-Binary
-        # Pfad zur macOS-Binary: Es ist eine App-Bundle, aber die ausführbare Datei ist innerhalb davon
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_MACOS }}
-          ${{ env.GODOT_EXECUTABLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug "MacOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+
+          # Verwenden des korrigierten App-Bundle-Pfads
+          # und des korrekten Exportnamens "MacOS"
+          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug "macOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_debug_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
