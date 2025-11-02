@@ -18,8 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-global="*res://scripts/global.gd"
+GlobalScript="*res://scripts/global.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
+Player_Realworld="*res://scenes/player_realworld.tscn"
 
 [dialogic]
 
@@ -28,11 +29,6 @@ directories/dtl_directory={
 "dahm_timeline": "res://dialog/dahm_timeline.dtl"
 }
 layout/style_directory={}
-
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
 
 [editor_plugins]
 
@@ -103,3 +99,4 @@ dialogic_default_action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true

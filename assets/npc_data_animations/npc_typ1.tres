@@ -148,5 +148,4 @@ sprite_frames = SubResource("SpriteFrames_wox3n")
 start_facing = "right"
 can_talk = false
 behavior_type = 2
-path_node = null
 metadata/_custom_type_script = "uid://bclj33y315xbn"
