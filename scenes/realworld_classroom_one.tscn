@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=4 uid="uid://cmhtkekesscxr"]
+[gd_scene load_steps=14 format=4 uid="uid://cmhtkekesscxr"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
-[ext_resource type="PackedScene" uid="uid://sxc5oblkvejp" path="res://scenes/player_realworld.tscn" id="2_pn73f"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="4_55vsv"]
@@ -4568,12 +4567,9 @@ position = Vector2(40, 56)
 tile_map_data = PackedByteArray("AAAAAP3/AQAXAAIAAAAiAP3/AQAaAAIAAAAAAP7/AQAXAAMAAAAAAP//AQAXAAQAAAAAAAAAAQAXAAUAAAAAAAEAAQAXAAMAAAAAAAIAAQAXAAQAAAAAAAMAAQAXAAUAAAAAAAQAAQAXAAMAAAAAAAUAAQAXAAQAAAAAAAYAAQAXAAUAAAAAAAcAAQAXAAMAAAAAAAgAAQAXAAMAAAAAAAkAAQAXAAMAAAAAAAoAAQAXAAMAAAAAAAsAAQAXAAMAAAAAAAwAAQAXAAMAAAAAAA0AAQAXAAMAAAAAAA4AAQAXAAMAAAAAAA8AAQAXAAMAAAAAABAAAQAXAAYAAAAiABAAAQAaAAYAAAAiAAMAAQAaAAUAAAAiAAQAAQAaAAMAAAAiAAUAAQAaAAQAAAAiAAYAAQAaAAUAAAAiAAcAAQAaAAMAAAAiAAgAAQAaAAQAAAAiAAkAAQAaAAUAAAAiAAoAAQAaAAMAAAAiAAsAAQAaAAQAAAAiAAwAAQAaAAUAAAAiAA0AAQAaAAMAAAAiAA4AAQAaAAQAAAAiAA8AAQAaAAUAAAAiAAEAAQAaAAQAAAAiAAIAAQAaAAUAAAAiAP7/AQAaAAMAAAAiAP//AQAaAAQAAAAiAAAAAQAaAAUAAAA=")
 tile_set = SubResource("TileSet_x23ky")
 
-[node name="Player_Realworld" parent="." instance=ExtResource("2_pn73f")]
-position = Vector2(504, 354)
-scale = Vector2(1.5, 1.5)
-
 [node name="Chair" parent="." instance=ExtResource("5_onpry")]
 z_index = 1
+y_sort_enabled = true
 position = Vector2(180, 327)
 sit_position = Vector2(187, 330)
 stand_position = Vector2(160, 310)
