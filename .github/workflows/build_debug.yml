@@ -120,7 +120,7 @@ jobs:
         # Pfad zur macOS-Binary: Es ist eine App-Bundle, aber die ausführbare Datei ist innerhalb davon
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_MACOS }}
-          ${{ env.GODOT_EXECUTABLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug "macOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+          ${{ env.GODOT_EXECUTABLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug "MacOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_debug_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
