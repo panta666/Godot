@@ -104,8 +104,8 @@ jobs:
       - name: Prepare Godot for macOS
         run: |
           GODOT_V=${{ env.GODOT_VERSION }}
-
-          # 1. Godot-Binary für macOS herunterladen und entpacken
+          
+          # 1. Godot-Binary für macOS herunterladen und entpacken.
           wget -q -O godot_macos.zip https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_macos.universal.zip
           unzip godot_macos.zip
           
@@ -113,12 +113,12 @@ jobs:
           wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_export_templates.tpz
           TEMPLATES_DIR=~/.local/share/godot/export_templates/$GODOT_V.stable
           mkdir -p $TEMPLATES_DIR
-          unzip godot_export_templates.tpz -d $TEMPLATES_DIR
-          mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
           
-          # Link erstellen, damit Godot das Template findet
-          # Da Sie Release bauen, verwenden wir macos_release.zip und verlinken es auf macos.zip
-          ln -s $TEMPLATES_DIR/macos_release.zip $TEMPLATES_DIR/macos.zip
+          # Entpackt die Templates in den Zielordner
+          unzip godot_export_templates.tpz -d $TEMPLATES_DIR
+          
+          # Verschiebt alle Einzeldateien (inkl. macos.zip) aus dem Unterordner 'templates' eine Ebene höher
+          mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
           
           # 3. Projektversion setzen (mit sed für macOS)
           sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
@@ -127,9 +127,9 @@ jobs:
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_MACOS }}
           
-          # Verwenden des korrigierten Umgebungsvariablen-Pfads
-          # und den korrekten Exportnamen "MacOS"
-          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release MacOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+          # Verwenden des korrigierten App-Bundle-Pfads
+          # und des korrekten Exportnamens "MacOS"
+          ${{ env.GODOT_APP_BUNDLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release MacOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
