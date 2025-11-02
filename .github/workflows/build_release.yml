@@ -120,6 +120,7 @@ jobs:
           # Verschiebt alle Einzeldateien (inkl. macos.zip) aus dem Unterordner 'templates' eine Ebene höher
           mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
           unzip $TEMPLATES_DIR/macos.zip -d $TEMPLATES_DIR/
+          ls $TEMPLATES_DIR
           
           # 3. Projektversion setzen (mit sed für macOS)
           sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
@@ -130,7 +131,7 @@ jobs:
           
           # Verwenden des korrigierten App-Bundle-Pfads
           # und des korrekten Exportnamens "MacOS"
-          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release macOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release "macOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
