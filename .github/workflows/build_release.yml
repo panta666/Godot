@@ -8,7 +8,7 @@ on:
       job_target:
         description: 'Wähle Plattform aus'
         required: true
-        default: 'windows'
+        default: 'all'
         type: choice
         options:
           - windows
@@ -27,7 +27,7 @@ env:
 
 jobs:
   build_windwos_linux:
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    if: (github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all') && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -129,7 +129,7 @@ jobs:
           
           # Verwenden des korrigierten App-Bundle-Pfads
           # und des korrekten Exportnamens "MacOS"
-          ${{ env.GODOT_APP_BUNDLE }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release MacOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release MacOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
