@@ -1,7 +1,7 @@
 name : Debug build
 run-name: Building debug version
 on:
-  pull_request:
+  push:
     branches:
       - develop
 
@@ -18,7 +18,7 @@ on:
           - mac
           - all
 env:
-  GODOT_VERSION: 4.5 # Muss bei Änderung auch für die macOS executable angepasst werden.
+  GODOT_VERSION: 4.5.1
   GODOT_EXECUTABLE: ./Godot.app
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
@@ -28,7 +28,7 @@ env:
 
 jobs:
   build_windwows_linux:
-    if: (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && (github.event_name == 'pull_request' || (github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all'))
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.event_name == 'push' || (github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all'))
     runs-on: ubuntu-latest
     container:
       image: archlinux:latest
@@ -57,7 +57,7 @@ jobs:
           sed -i 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-debug"/' ${{ env.GODOT_PROJECT_LOCATION }}
 
       - name: Building debug Linux
-        if: ${{ github.event_name == 'pull_request' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_LINUX }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Linux ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
@@ -65,30 +65,31 @@ jobs:
           chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
 
       - name: Tar files
-        if: ${{ github.event_name == 'pull_request' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         run: tar -cvf ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
 
       - name: Uploading GDExtensin artifact debug
-        if: ${{ github.event_name == 'pull_request' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar
           path: ${{ env.APPLICATION_NAME }}_linux_debug_${{ env.DATE }}.tar
 
       - name: Building debug Windows
-        if: ${{ github.event_name == 'pull_request' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
         run: |
           mkdir -p ${{ env.EXPORT_FOLDER_WINDOWS }}
           ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-debug Windows ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_WINDOWS }}/${{ env.APPLICATION_NAME }}.exe
+
       - name: Uploading GDExtensin artifact debug
-        if: ${{ github.event_name == 'pull_request' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_windows_debug_${{ env.DATE }}.tar
           path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
 
   build_macos:
-    if: (github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch') && (github.event_name == 'pull_request' || (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all'))
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.event_name == 'push' || (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all'))
 
     runs-on: macos-latest
 
