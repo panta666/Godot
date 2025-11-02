@@ -65,7 +65,7 @@ jobs:
           chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
       - name: Tar files
         if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
-        run: tar -cvf ${{ env.APPLICATION_NAME }}_windows_release_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
+        run: tar -cvf ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
       - name: Uploading GDExtensin artifact release
         if: ${{ github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
         uses: actions/upload-artifact@v4
@@ -129,7 +129,7 @@ jobs:
           
           # Verwenden des korrigierten App-Bundle-Pfads
           # und des korrekten Exportnamens "MacOS"
-          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release MacOS ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release macos ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
 
       - name: Zip files
         run: zip -r ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
