@@ -40,11 +40,9 @@ jobs:
         # Definiert die Zielplattformen für die Matrix
         platform:
           - name: Linux
-            runner: ubuntu-latest
             preset_name: Linux/X11
             target_platform: linux
           - name: Windows
-            runner: ubuntu-latest
             preset_name: Windows Desktop
             target_platform: windows
 
@@ -57,29 +55,22 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # Verwenden der godot-ci Action für den Export
+      # VERWENDUNG DER KORRIGIERTEN ACTION: game-ci/godot-builder@v1
       - name: Export ${{ matrix.platform.name }} Release
-        uses: godot-ci/godot-build@v2
+        uses: game-ci/godot-builder@v1
         with:
           godot_version: ${{ env.GODOT_VERSION }}
-          # Verwendet den Preset-Namen aus der Matrix
           export_preset: ${{ matrix.platform.preset_name }}
-          # Definiert den Zieldateipfad für die Action
           archive_path: ${{ env.EXPORT_PATH }}/${{ matrix.platform.name }}/${{ env.APPLICATION_NAME }}.${{ matrix.platform.name == 'Windows' && 'exe' || 'x86_64' }}
           target_platform: ${{ matrix.platform.target_platform }}
           export_type: release
 
       - name: Tar und Upload Artifact
-        # Erstellt ein Tar-Archiv aus dem Export-Verzeichnis und lädt es hoch
         run: |
           BUILD_FOLDER=${{ env.EXPORT_PATH }}/${{ matrix.platform.name }}
           ARCHIVE_NAME=${{ env.APPLICATION_NAME }}_${{ matrix.platform.name }}_release_${{ env.DATE }}.tar.gz
           tar -czvf $ARCHIVE_NAME $BUILD_FOLDER
-          
-          # Upload
-          find . -name "*.tar.gz" -exec ls -l {} \;
 
-        # Upload des erstellten Archivs
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_${{ matrix.platform.name }}_release_${{ env.DATE }}
@@ -90,9 +81,9 @@ jobs:
   # JOB 2: MACOS (Separater macOS-Runner)
   # =================================================================
   build_macos:
-    # Führen Sie diesen Job nur aus, wenn 'mac' oder 'all' ausgewählt wurde.
+    # Führen Sie diesen Job nur aus, wenn 'macos' oder 'all' ausgewählt wurde.
     if: |
-      github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' || github.event.name == 'workflow_dispatch' &&
       (github.event.inputs.job_target == 'macos' || github.event.inputs.job_target == 'all')
 
     runs-on: macos-latest # <- Erforderlich für den macOS-Export
@@ -106,19 +97,15 @@ jobs:
         with:
           submodules: 'recursive'
 
-      # Verwenden der godot-ci Action für den Export
+      # VERWENDUNG DER KORRIGIERTEN ACTION: game-ci/godot-builder@v1
       - name: Export macOS Release
-        uses: godot-ci/godot-build@v2
+        uses: game-ci/godot-builder@v1
         with:
           godot_version: ${{ env.GODOT_VERSION }}
-          # Korrekter Preset-Name für macOS
-          export_preset: "macOS"
-          # Exportpfad für die .app-Datei
+          export_preset: "macOS" # Muss im Godot-Projekt vorhanden sein
           archive_path: ${{ env.EXPORT_PATH }}/macOS/${{ env.APPLICATION_NAME }}.app
           target_platform: osx
           export_type: release
-          # WICHTIG: Erlaubt das Bündeln der App für macOS
-          # notarize: true # Zum Notarisieren notwendig (erfordert Apple Dev Credentials als Secrets)
 
       - name: Zip und Upload Artifact
         run: |
@@ -127,7 +114,6 @@ jobs:
           # macOS-Apps werden üblicherweise gezippt
           zip -r $ARCHIVE_NAME $BUILD_FOLDER
 
-        # Upload des erstellten Archivs
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}
