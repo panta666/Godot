@@ -18,7 +18,7 @@ on:
 env:
   GODOT_VERSION: 4.5
   # Muss den heruntergeladenen Ordnernamen reflektieren, nicht den generischen .app Namen.
-  GODOT_EXECUTABLE_MACOS: ./Godot_v${{ env.GODOT_VERSION }}-stable_macos.universal
+  GODOT_EXECUTABLE_MACOS: ./Godot.app
   GODOT_PROJECT_LOCATION: project.godot
   EXPORT_FOLDER_LINUX: export/Linux
   EXPORT_FOLDER_WINDOWS: export/Windows
