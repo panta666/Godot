@@ -121,7 +121,7 @@ jobs:
           mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
           
           echo "stable folder"
-          ls Support/Godot/export_templates/4.5.stable/
+          ls /Users/runner/Library/Application Support/Godot/export_templates/4.5.stable/macos.zip
           
           echo "template folder"
           ls $TEMPLATES_DIR
