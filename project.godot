@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 GlobalScript="*res://scripts/global.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 Player_Realworld="*res://scenes/player_realworld.tscn"
+MusicManager="*res://scripts/music_manager.gd"
 
 [dialogic]
 

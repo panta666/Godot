@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cv311ae638wic"
+path="res://.godot/imported/Hubworld theme.mp3-5dcc0dbafed421d34f2e0f7cafa54e7c.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Hubworld theme.mp3"
+dest_files=["res://.godot/imported/Hubworld theme.mp3-5dcc0dbafed421d34f2e0f7cafa54e7c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
