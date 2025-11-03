@@ -21,6 +21,9 @@ func _ready() -> void:
 	if GlobalScript.player and is_instance_valid(GlobalScript.player):
 		GlobalScript.player.visible = false
 		GlobalScript.player.can_move = false
+	
+	# Starte Menümusik.
+	MusicManager.playMusic(MusicManager.MusicType.MENU)
 
 
 # --- Neues Spiel starten ---
@@ -30,7 +33,7 @@ func _on_new_game_pressed() -> void:
 	GlobalScript.game_first_loading = true
 	GlobalScript.current_scene = "realworld_classroom_one"
 	GlobalScript.transition_scene = false
-
+	
 	# Scene wechseln → Player wird automatisch über pending_spawn in GlobalScript.spawn_player() hinzugefügt
 	GlobalScript.start_new_game()
 

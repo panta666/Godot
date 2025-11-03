@@ -1,42 +1,68 @@
 # MusicManager.gd (Autoload)
+# Globaler Singleton-Manager zur Steuerung der Hintergrundmusik (BGM).
 extends Node
 
-# 1. Pfade zu den Musikdateien (wie gewünscht angepasst)
-const MENU_MUSIC = preload("res://assets/music/MainMenuTheme.wav")
-const HUB_MUSIC = preload("res://assets/music/Hubworld theme.mp3")
+# Definiert alle verfügbaren Musik-Tracks für typsicheren Zugriff.
+enum MusicType {
+	NONE,    # Repräsentiert keine Musik (Stille)
+	MENU,    # Hauptmenü-Theme
+	HUB      # Hubworld-Theme
+	# TODO: Zukünftige Tracks hier hinzufügen (z.B. DREAMWORLD)
+}
 
-# (Optional: Fügen Sie hier später Ihre Dreamworld-Musik hinzu)
-# const DREAM_MUSIC = preload("res://assets/music/DreamworldTheme.mp3")
+# Bildet die MusicType-Enums auf die vorgeladenen AudioStream-Ressourcen ab.
+const TRACKS = {
+	MusicType.MENU: preload("res://assets/music/MainMenuTheme.wav"),
+	MusicType.HUB: preload("res://assets/music/Hubworld theme.mp3")
+}
 
-# Der Player, der die Musik verwaltet
 var music_player: AudioStreamPlayer
 
+# Erstellt den AudioStreamPlayer-Node bei Initialisierung.
 func _ready():
-	# Erstellt den AudioStreamPlayer und fügt ihn dem MusicManager hinzu
 	music_player = AudioStreamPlayer.new()
+	
+	# Player für Hintergrundmusik dem Music bus hinzufügen.
+	music_player.bus = "Music"
+	
 	add_child(music_player)
 
-## --- STEUERUNGSFUNKTIONEN ---
 
-# Diese Funktion rufen Sie auf, wenn die Hubworld betreten wird
-func play_hub_music():
-	# Prüfen, ob die Hub-Musik bereits läuft
-	if music_player.playing and music_player.stream == HUB_MUSIC:
-		return # Nichts tun, sie läuft schon
-		
-	music_player.stream = HUB_MUSIC
-	music_player.play()
-
-# Diese Funktion rufen Sie auf, wenn das Hauptmenü betreten wird
-func play_menu_music():
-	# Prüfen, ob die Menü-Musik bereits läuft
-	if music_player.playing and music_player.stream == MENU_MUSIC:
-		return # Nichts tun, sie läuft schon
+# Spielt einen bestimmten Musik-Track basierend auf dem übergebenen MusicType.
+# Stoppt den aktuellen Track und startet den neuen.
+# Verhindert das Neustarten, wenn der angeforderte Track bereits läuft.
+func playMusic(music_type: MusicType):
 	
-	music_player.stream = MENU_MUSIC
+	# Nichts tun, wenn der angeforderte Track bereits spielt.
+	if isPlaying(music_type):
+		return
+
+	# Prüfen, ob der angeforderte music_type gültig ist.
+	if not TRACKS.has(music_type):
+		# Stoppt die Wiedergabe, wenn der Typ NONE oder ungültig ist.
+		stop_music()
+		push_error("MusicManager: Ungültiger MusicType oder 'NONE' angefordert. Musik wird gestoppt.")
+		return
+
+	# Lädt den neuen Track und startet die Wiedergabe.
+	# Das Setzen von .stream stoppt automatisch den vorherigen Track.
+	music_player.stream = TRACKS[music_type]
 	music_player.play()
 
-# Diese Funktion rufen Sie auf, wenn die Musik komplett stoppen soll
-# (z.B. beim Betreten einer Dreamworld oder in Ladebildschirmen)
+
+# Stoppt die Musikwiedergabe sofort.
 func stop_music():
 	music_player.stop()
+
+
+# Prüft, ob ein spezifischer Musik-Track (MusicType) gerade aktiv ist.
+func isPlaying(music_type: MusicType) -> bool:
+	# Zurückgeben 'false', wenn der Player nicht spielt.
+	if not music_player.playing:
+		return false
+		
+	# Prüfen, ob der Typ gültig ist und dem aktuell geladenen Stream entspricht.
+	if TRACKS.has(music_type) and music_player.stream == TRACKS[music_type]:
+		return true
+			
+	return false
