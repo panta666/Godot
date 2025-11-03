@@ -13,5 +13,6 @@ func hide_enter_button():
 	enter_level_button.visible = false
 
 func _on_enter_button_pressed():
+	MusicManager.playMusic(MusicManager.MusicType.NONE)
 	print("Level betreten!")
 	get_tree().change_scene_to_file("res://scenes/level/level_one.tscn") # Platzhalter
