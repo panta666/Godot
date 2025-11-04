@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -320.0 #-300
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var last_facing_direction = 1
 
@@ -150,4 +150,8 @@ func _physics_process(delta: float) -> void:
 	player_sprite.flip_h = (last_facing_direction < 0)
 	
 	move_and_slide()
+	
+func _input(event: InputEvent):
+	if(event.is_action_pressed("move_down") && is_on_floor()):
+		position.y += 1
 	
