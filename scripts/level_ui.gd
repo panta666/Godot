@@ -53,6 +53,7 @@ func _on_hover_exited():
 	exit_tween.tween_property(enter_level_button, "scale", Vector2(1, 1), 0.15)
 
 func _on_enter_button_pressed():
+	MusicManager.playMusic(MusicManager.MusicType.NONE)
 	print("Level betreten!")
 	enter_level_button.disabled = true
 	var fade_tween = create_tween()
