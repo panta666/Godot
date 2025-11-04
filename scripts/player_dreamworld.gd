@@ -33,121 +33,276 @@ var forced_crouch: bool
 const CROUCH_SPEED:float = 100
 var is_crouching: bool = false
 
+#Variablen für Attack
+var is_attacking = false
+@onready var hit_box_left: HitBox = $HitBoxLeft
+@onready var hit_box_right: HitBox = $HitBoxRight
+
+#Variablen für Damage nehmen /Knockback
+var is_taking_damage: bool = false
+var knockback_timer = 0.0
+var knockback_length = 0.2
+
+#HP
+var is_alive: bool = true
+
+func _ready() -> void:
+	hit_box_left.monitoring = false
+	hit_box_right.monitoring = false
+
 func _physics_process(delta: float) -> void:
+	if not is_alive:
+		update_animation()
+		return
+	
+	if is_taking_damage:
+		add_gravity(delta)
+		apply_knockback(delta)
+		player_sprite.flip_h = (last_facing_direction < 0)
+		update_animation()
+		move_and_slide()
+		return
 	forced_crouch = head_check.is_colliding()
 	
 	# Add gravity
+	add_gravity(delta)
+
+	#Coyote Timer neu setzen/ runterzählen
+	handle_coyote_time(delta)
+
+	# Handle jump (double jump)
+	if not is_dashing:
+		if Input.is_action_just_pressed("jump"):
+			handle_jump()
+		# Jump Count auf 0 wenn boden berührt wird
+		if is_on_floor() and velocity.y == 0:
+			jump_count = 0
+			dash_count = 1
+
+		# Movement
+		if not is_crouching:
+			handle_movement()
+
+	#Handle-Dash
+	if Input.is_action_just_pressed("dash") and can_dash and dash_timer <= 0 and dash_count == 1 and forced_crouch == false:
+		handle_dash()
+
+	#Dash Aktiv ?
+	stop_dashing(delta)
+
+	#Handle Crouching
+	if Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
+		handle_crouching()
+	else:
+		stop_crouching()
+
+	#Handle Attack
+	if Input.is_action_just_pressed("attack"):
+		handle_attack()
+	
+	#Sprite-Flip
+	player_sprite.flip_h = (last_facing_direction < 0)
+	
+	update_animation()
+
+	move_and_slide()
+
+
+
+#Handle Gravity
+func add_gravity(delta: float) -> void:
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-		if velocity.y < 0 and player_sprite.animation != "jump":
-			player_sprite.play("jump")
-		elif player_sprite.animation != "fall" and player_sprite.animation != "jump":
-			player_sprite.play("fall")
-			collision_shape.shape.size = Vector2(14.0, 24.5)
-			collision_shape.position = Vector2(0.0, -6.25)
-			player_sprite.position.y = 0.0
+		velocity.y += get_gravity().y * delta
+		collision_shape.shape.size = Vector2(14.0, 24.5)
+		collision_shape.position = Vector2(0.0, -6.25)
+		player_sprite.position.y = 0.0
 	else:
 		# Standard-Collision (Idle)
 		collision_shape.shape.size = Vector2(14.0, 39.0)
 		collision_shape.position = Vector2(0.0, 1.0)
 		player_sprite.position.y = 0.0
 
+#Handle Movement
+func handle_movement():
+	var direction := Input.get_axis("move_left", "move_right")
+	if direction:
+		velocity.x = direction * SPEED
+		last_facing_direction = direction
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	#Coyote Timer neu setzen/ runterzählen
+#Handle Coyote-Time
+func handle_coyote_time(delta: float):
 	if is_on_floor():
 		coyote_timer = coyote_time
 	else:
 		coyote_timer = max(coyote_timer - delta, 0)
 
+#Handle Jump and Double Jump
+func handle_jump():
+	# Erster Sprung / Coyote Time
+	if is_on_floor() or coyote_timer > 0.0:
+		velocity.y = JUMP_VELOCITY
+		jump_count = 1
+		coyote_timer = 0.0		#Coyote Time aufbrauchen
+	# Zweiter Sprung wenn erlaubt
+	elif double_jump_allowed:
+		if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
+			velocity.y = JUMP_VELOCITY
+			jump_count = 2
+		elif jump_count == 1:	#Einfacher double jump
+			velocity.y = JUMP_VELOCITY
+			jump_count = 2
 
-	# Handle jump (double jump)
+#Handle Dash
+func handle_dash():
+	if dash_allowed:
+		var direction = Input.get_axis("move_left", "move_right")
+		if direction == 0:	#Dash in Blickrichtung
+			direction = last_facing_direction
+		is_dashing = true
+		dash_count = 0
+		can_dash = false
+		velocity.x = direction * DASH_SPEED
+		dash_timer = DASH_DURATION
+
+func handle_crouching():
 	if not is_dashing:
-		if Input.is_action_just_pressed("jump"):
-			# Erster Sprung / Coyote Time
-			if is_on_floor() or coyote_timer > 0.0:
-				velocity.y = JUMP_VELOCITY
-				jump_count = 1
-				coyote_timer = 0.0		#Coyote Time aufbrauchen
-				player_sprite.play("jump")
-			# Zweiter Sprung wenn erlaubt
-			elif double_jump_allowed:
-				player_sprite.play("jump")
-				if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
-					velocity.y = JUMP_VELOCITY
-					jump_count = 2
-				elif jump_count == 1:	#Einfacher double jump
-					velocity.y = JUMP_VELOCITY
-					jump_count = 2
+		is_crouching = true
+		collision_shape.shape.size = Vector2(14.0, 29.0)
+		collision_shape.position = Vector2(0.0, 6.0)
+		player_sprite.position.y = 5.0
+		var direction := Input.get_axis("move_left", "move_right")
+		velocity.x = direction * CROUCH_SPEED
+		if direction != 0:
+			last_facing_direction = direction
 
-		# Jump Count auf 0 wenn boden berührt wird
-		if is_on_floor() and velocity.y == 0:
-			jump_count = 0
-			dash_count = 1
+func stop_crouching():
+	is_crouching = false
+	collision_shape.shape.size = Vector2(14.0, 39.0)
+	collision_shape.position = Vector2(0.0, 1.0)
+	player_sprite.position.y = 0.0
 
-
-		# Movement
-		if not is_crouching:
-			var direction := Input.get_axis("move_left", "move_right")
-			if direction:
-				velocity.x = direction * SPEED
-				last_facing_direction = direction
-				if is_on_floor() and player_sprite.animation != "run":
-					player_sprite.play("run")
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
-				if is_on_floor() and player_sprite.animation != "idle":
-					player_sprite.play("idle")
-
-
-	#Handle-Dash
-	if Input.is_action_just_pressed("dash") and can_dash and dash_timer <= 0 and dash_count == 1 and forced_crouch == false:
-		if dash_allowed:
-			var direction = Input.get_axis("move_left", "move_right")
-			if direction == 0:	#Dash in Blickrichtung
-				direction = last_facing_direction
-			is_dashing = true
-			dash_count = 0
-			can_dash = false
-			velocity.x = direction * DASH_SPEED
-			dash_timer = DASH_DURATION
-	
-	#Dash Aktiv ?
+func stop_dashing(delta: float):
 	if is_dashing:
-		player_sprite.play("dash")
-		dash_timer -= delta	#Dash Timer runterzählen
+		dash_timer -= delta		#Dash Timer runterzählen
 		if dash_timer <= 0:
 			is_dashing = false
 			await get_tree().create_timer(dash_cooldown).timeout
 			can_dash = true
 
+#Handle Attack
+func handle_attack():
+	if is_attacking:
+		return
+	
+	is_attacking = true
 
-	#Handle Crouching
-	if Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
-		if not is_dashing:
-			is_crouching = true
-			collision_shape.shape.size = Vector2(14.0, 29.0)
-			collision_shape.position = Vector2(0.0, 6.0)
-			player_sprite.position.y = 5.0
-			var direction := Input.get_axis("move_left", "move_right")
-			velocity.x = direction * CROUCH_SPEED
-			if direction == 0:
-				if player_sprite.animation != "duck":
-					player_sprite.play("duck")
-					print("duck")
-			else:
-				last_facing_direction = direction
-				if player_sprite.animation != "crouch":
-					player_sprite.play("crouch")
-					print("crouch")
+	if last_facing_direction > 0:
+		hit_box_right.monitorable = true
+		hit_box_right.monitoring = true
 	else:
-		is_crouching = false
-		collision_shape.shape.size = Vector2(14.0, 39.0)
-		collision_shape.position = Vector2(0.0, 1.0)
-		player_sprite.position.y = 0.0
+		hit_box_left.monitorable = true
+		hit_box_left.monitoring = true
+
+	await player_sprite.animation_finished
+
+	hit_box_right.monitorable = false
+	hit_box_left.monitorable = false
+	hit_box_right.monitoring = false
+	hit_box_left.monitoring = false
+	is_attacking = false
 
 
-	#Sprite-Flip
-	player_sprite.flip_h = (last_facing_direction < 0)
+#Handle Take Damage
+func received_damage(damage: int) -> void:
+	if is_taking_damage:
+		return
+	is_taking_damage = true
+	is_attacking = false
+	is_crouching = false
+
+	# Knockbackrichtung (entgegengesetzt der Blickrichtung)
+	var knock_dir = -sign(last_facing_direction)
+	if knock_dir == 0:
+		knock_dir = -1
+
+	# Rückstoßgeschwindigkeit
+	velocity.x = knock_dir * 250.0
+	velocity.y = -80.0  # leicht nach oben schleudern
+
+	# Timer aktivieren
+	knockback_timer = knockback_length
+
+	print("Player takes", damage, "damage!")
+
+#Apply Knockback on Hit taken
+func apply_knockback(delta: float):
+	if is_taking_damage:
+		knockback_timer -= delta
+		if knockback_timer <= 0:
+			is_taking_damage = false
+			velocity.x = 0
+			stop_dashing(delta)
+			print(can_dash)
+
+#Handle Death
+func _on_health_depleted() -> void:
+	if not is_alive:
+		return
 	
-	move_and_slide()
+	is_alive = false
+	is_taking_damage = false
+	is_attacking = false
+	is_dashing = false
+	is_crouching = false
+	velocity = Vector2.ZERO
 	
+	player_sprite.play("die")
+	
+	await player_sprite.animation_finished
+	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
+
+
+#Animationen updaten
+func update_animation():
+	if not is_alive:
+		return
+
+
+	if is_taking_damage:
+		if player_sprite.animation != "take_damage":
+			player_sprite.play("take_damage")
+		return
+
+	if is_attacking:
+		if player_sprite.animation != "attack":
+			player_sprite.play("attack")
+		return
+
+	if is_dashing:
+		if player_sprite.animation != "dash":
+			player_sprite.play("dash")
+		return
+
+	if not is_on_floor():
+		if velocity.y < 0:
+			if player_sprite.animation != "jump":
+				player_sprite.play("jump")
+		else:
+			if player_sprite.animation != "fall":
+				player_sprite.play("fall")
+	elif is_crouching:
+		if abs(velocity.x) > 0:
+			if player_sprite.animation != "crouch":
+				player_sprite.play("crouch")
+		else:
+			if player_sprite.animation != "duck":
+				player_sprite.play("duck")
+	else:
+		if abs(velocity.x) > 10:
+			if player_sprite.animation != "run":
+				player_sprite.play("run")
+		else:
+			if player_sprite.animation != "idle":
+				player_sprite.play("idle")

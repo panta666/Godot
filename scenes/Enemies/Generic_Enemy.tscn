@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://chn72gotg061q"]
+[gd_scene load_steps=57 format=3 uid="uid://chn72gotg061q"]
 
 [ext_resource type="Script" uid="uid://cmqa42vk1r6ay" path="res://scripts/generic_enemy.gd" id="1_3o17i"]
 [ext_resource type="Texture2D" uid="uid://dx4ibd22pdek5" path="res://assets/characters/enemies/Walk_Cycle/0001.png" id="2_downs"]
@@ -48,6 +48,9 @@
 [ext_resource type="Texture2D" uid="uid://j3ep4uy7rvoy" path="res://assets/characters/enemies/Walk_Cycle/0045.png" id="46_fxyfd"]
 [ext_resource type="Texture2D" uid="uid://b1fb2ihcdwwnn" path="res://assets/characters/enemies/Walk_Cycle/0046.png" id="47_r4hh6"]
 [ext_resource type="Texture2D" uid="uid://cyndqj2uo0mws" path="res://assets/characters/enemies/Walk_Cycle/0047.png" id="48_qaa68"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="49_t4mn2"]
+[ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://scenes/components/health.gd" id="50_5sdct"]
+[ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="51_80wx8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qaa68"]
 animations = [{
@@ -204,9 +207,20 @@ size = Vector2(62.5, 35.9375)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6fs8"]
 size = Vector2(542.50073, 208.75032)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5sdct"]
+size = Vector2(53.750015, 31.250004)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go3w4"]
+size = Vector2(53.750008, 31.250004)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3o17i")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("50_5sdct")
+max_health = 20
+metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(11.250002, -5.000001)
@@ -247,3 +261,28 @@ collision_mask = 2
 position = Vector2(0, -50.624996)
 scale = Vector2(0.99999833, 0.99999833)
 shape = SubResource("RectangleShape2D_p6fs8")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("49_t4mn2")
+damage = 10
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-4.375001, 4.3749995)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_5sdct")
+
+[node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+script = ExtResource("51_80wx8")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://doiua0q38uaxe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-4.375001, 4.374997)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_go3w4")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]

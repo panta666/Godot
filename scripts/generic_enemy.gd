@@ -92,4 +92,7 @@ func track_player(player_position: Vector2):
 func _attack():
 	is_walking = 0
 		
-	
+
+
+func _on_health_depleted() -> void:
+	queue_free()
