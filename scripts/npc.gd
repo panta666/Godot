@@ -251,6 +251,40 @@ func _on_interact() -> void:
 
 	_face_player()
 
+	# 🧹 Falls noch alte Dialogic-Layouts existieren, löschen
+	for child in get_tree().root.get_children():
+		if "DialogicLayout" in child.name:
+			print("🧹 Entferne alte Dialogic-Instanz:", child.name)
+			child.queue_free()
+
+	# ✅ Starte Dialogic-Dialog (Dialogic kümmert sich um das Hinzufügen selbst)
+	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
+
+	if dialog_instance:
+		# Signals verbinden (aber NICHT add_child()!)
+		if dialog_instance.has_signal("timeline_ended"):
+			dialog_instance.connect("timeline_ended", Callable(self, "_on_dialog_ended"))
+		elif dialog_instance.has_signal("dialogic_timeline_end"):
+			dialog_instance.connect("dialogic_timeline_end", Callable(self, "_on_dialog_ended"))
+		else:
+			dialog_instance.connect("tree_exited", Callable(self, "_on_dialog_ended"))
+
+	if not player or dialog_active or not npc_data.can_talk:
+		return
+	if npc_data.dialog_timeline_path == "":
+		push_warning(npc_data.npc_name + " hat keine Dialog-Timeline zugewiesen.")
+		return
+
+	dialog_active = true
+	interactable.is_interactable = false
+
+	player.can_move = false
+	if player.has_node("InteractingComponent"):
+		var ic = player.get_node("InteractingComponent")
+		ic.can_interact = false
+
+	_face_player()
+
 	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
 	if dialog_instance:
 		get_tree().root.add_child(dialog_instance)

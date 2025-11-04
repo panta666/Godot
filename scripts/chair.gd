@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		else:
 			interactable.interact_name = "Press F to stand up"
 
-func _on_interact():
+func _on_interact() -> void:
 	var player = GlobalScript.player
 	if not player:
 		return
@@ -27,9 +27,9 @@ func _on_interact():
 	var classroom = get_tree().current_scene
 	if not classroom.has_node("LevelUI"):
 		return
-	
+
 	var level_ui = classroom.get_node("LevelUI") as CanvasLayer
-	
+
 	if not player.sitting:
 		# Auf den Stuhl setzen
 		player.sit_on_chair(sit_position)

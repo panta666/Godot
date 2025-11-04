@@ -28,7 +28,7 @@ func _ready() -> void:
 
 # --- Neues Spiel starten ---
 func _on_new_game_pressed() -> void:
-	print("Starte neues Spiel → Gehe zur Hubworld")
+	print("Starte neues Spiel - Gehe zur Hubworld")
 
 	GlobalScript.game_first_loading = true
 	GlobalScript.current_scene = "realworld_classroom_one"
