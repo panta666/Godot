@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -320.0 #-300
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var last_facing_direction = 1
 
@@ -57,12 +57,12 @@ func _ready() -> void:
 	hit_box_right.monitoring = false
 	hit_box_down.monitoring = false
 	hit_box_up.monitoring = false
-	
+
 	hit_box_left.monitorable = false
 	hit_box_right.monitorable = false
 	hit_box_up.monitorable = false
 	hit_box_down.monitorable = false
-	
+
 	health_wave.set_health_component(health)
 
 
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	if not is_alive:
 		update_animation()
 		return
-	
+
 	if is_taking_damage:
 		add_gravity(delta)
 		apply_knockback(delta)
@@ -115,10 +115,10 @@ func _physics_process(delta: float) -> void:
 	#Handle Attack
 	if Input.is_action_just_pressed("attack"):
 		handle_attack()
-	
+
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
-	
+
 	update_animation()
 
 	move_and_slide()
@@ -215,7 +215,7 @@ func stop_dashing(delta: float):
 func handle_attack():
 	if is_attacking:
 		return
-	
+
 	is_attacking = true
 	if Input.is_action_pressed("move_up"):
 		hit_box_up.monitoring = true
@@ -264,7 +264,7 @@ func received_damage(damage: int) -> void:
 
 	# Rückstoßgeschwindigkeit
 	velocity.x = knock_dir * 250.0
-	velocity.y = -80.0 
+	velocity.y = -80.0
 
 	knockback_timer = knockback_length
 
@@ -284,16 +284,16 @@ func apply_knockback(delta: float):
 func _on_health_depleted() -> void:
 	if not is_alive:
 		return
-	
+
 	is_alive = false
 	is_taking_damage = false
 	is_attacking = false
 	is_dashing = false
 	is_crouching = false
 	velocity = Vector2.ZERO
-	
+
 	player_sprite.play("die")
-	
+
 	await player_sprite.animation_finished
 	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
 
@@ -354,9 +354,13 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 		return
 	if is_on_floor():
 		return
-	
+
 	# Bounce nach oben
 	if body.is_in_group("enemy"):
 		print("Down-Hit auf Gegner:", body.name)
 		velocity.y = JUMP_VELOCITY
 		print("Bounce Jump")
+
+func _input(event: InputEvent):
+	if(event.is_action_pressed("move_down") && is_on_floor()):
+		position.y += 1
