@@ -34,9 +34,11 @@ func _on_interact() -> void:
 		# Auf den Stuhl setzen
 		player.sit_on_chair(sit_position)
 		interactable.is_interactable = true
-		level_ui.show_enter_button()
+		# Zeige Phone_Off, PowerArea wird aktiv
+		level_ui.show_phone_off()
 	else:
 		# Aufstehen
 		player.stand_up(stand_position)
 		interactable.is_interactable = true
-		level_ui.hide_enter_button()
+		# Phone komplett ausblenden, egal in welchem Zustand
+		level_ui.hide_phone()
