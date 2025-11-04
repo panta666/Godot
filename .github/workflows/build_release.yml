@@ -1,0 +1,149 @@
+name : Release build
+run-name: Building release version
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+    inputs:
+      job_target:
+        description: 'Wähle Plattform aus'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - windows
+          - linux
+          - mac
+          - all
+env:
+  GODOT_VERSION: 4.5.1
+  # Muss den heruntergeladenen Ordnernamen reflektieren, nicht den generischen .app Namen.
+  GODOT_EXECUTABLE_MACOS: ./Godot.app
+  GODOT_PROJECT_LOCATION: project.godot
+  EXPORT_FOLDER_LINUX: export/Linux
+  EXPORT_FOLDER_WINDOWS: export/Windows
+  EXPORT_FOLDER_MACOS: export/MacOS
+  APPLICATION_NAME: BattleForBachelor
+
+jobs:
+  build_windwos_linux:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.event_name == 'push' || (github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all'))
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - name: Settings extra variables
+        run: |
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
+
+      - name: Installing dependencies
+        run: pacman -Syu --noconfirm git bash yasm python python-pip scons gcc diffutils make wget unzip tar mingw-w64
+
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Prepare Godot
+        run: |
+          GODOT_V=${{ env.GODOT_VERSION }}
+          
+          wget -q -O godot_linux.zip https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_linux.x86_64.zip
+          unzip godot_linux.zip
+          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/$GODOT_V.stable
+          unzip godot_export_templates.tpz -d ~/.local/share/godot/export_templates/$GODOT_V.stable
+          mv ~/.local/share/godot/export_templates/$GODOT_V.stable/templates/* ~/.local/share/godot/export_templates/$GODOT_V.stable/
+          sed -i 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
+
+      - name: Building release Linux
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_LINUX }}
+          ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release Linux ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
+          chmod +x ${{ env.EXPORT_FOLDER_LINUX }}/${{ env.APPLICATION_NAME }}.x86_64
+
+      - name: Tar files
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        run: tar -cvf ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar ${{ env.EXPORT_FOLDER_LINUX }}
+
+      - name: Uploading GDExtensin artifact release
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'linux' || github.event.inputs.job_target == 'all' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar
+          path: ${{ env.APPLICATION_NAME }}_linux_release_${{ env.DATE }}.tar
+
+      - name: Building release Windows
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_WINDOWS }}
+          ./Godot_v${{ env.GODOT_VERSION }}-stable_linux.x86_64 --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release Windows ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_WINDOWS }}/${{ env.APPLICATION_NAME }}.exe
+
+      - name: Uploading GDExtensin artifact release
+        if: ${{ github.event_name == 'push' || github.event.inputs.job_target == 'windows' || github.event.inputs.job_target == 'all' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_windows_release_${{ env.DATE }}.tar
+          path: ${{ env.EXPORT_FOLDER_WINDOWS }}/
+
+  build_macos:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.event_name == 'push' || (github.event.inputs.job_target == 'mac' || github.event.inputs.job_target == 'all'))
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Settings extra variables
+        run: |
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "MAIN_FOLDER=$(pwd)" >> $GITHUB_ENV
+
+      - name: Checkout submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Prepare Godot for macOS
+        run: |
+          GODOT_V=${{ env.GODOT_VERSION }}
+          
+          # 1. Godot-Binary für macOS herunterladen und entpacken.
+          wget -q -O godot_macos.zip https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_macos.universal.zip
+          unzip godot_macos.zip
+          
+          # 2. Export-Templates herunterladen, entpacken und Pfad korrigieren
+          wget -q -O godot_export_templates.tpz https://github.com/godotengine/godot-builds/releases/download/$GODOT_V-stable/Godot_v$GODOT_V-stable_export_templates.tpz
+          TEMPLATES_DIR=~/.local/share/godot/export_templates/$GODOT_V.stable
+          mkdir -p $TEMPLATES_DIR
+          
+          # Entpackt die Templates in den Zielordner
+          unzip godot_export_templates.tpz -d $TEMPLATES_DIR
+          
+          # Verschiebt alle Einzeldateien (inkl. macos.zip) aus dem Unterordner 'templates' eine Ebene höher
+          mv $TEMPLATES_DIR/templates/* $TEMPLATES_DIR/
+          
+          mkdir -p /Users/runner/Library/"Application Support"/Godot/export_templates/4.5.1.stable/
+          cp $TEMPLATES_DIR/macos.zip /Users/runner/Library/"Application Support"/Godot/export_templates/4.5.1.stable/
+          
+          # 3. Projektversion setzen (mit sed für macOS)
+          sed -i '' 's/config\/version="[^"]*"/config\/version="${{ env.DATE }}-release"/' ${{ env.GODOT_PROJECT_LOCATION }}
+
+      - name: Building release macOS
+        run: |
+          mkdir -p ${{ env.EXPORT_FOLDER_MACOS }}
+          
+          # Verwenden des korrigierten App-Bundle-Pfads
+          # und des korrekten Exportnamens "MacOS"
+          ${{ env.GODOT_EXECUTABLE_MACOS }}/Contents/MacOS/Godot --import ${{ env.GODOT_PROJECT_LOCATION }} --quiet --headless --export-release "macOS" ${{ env.MAIN_FOLDER }}/${{ env.EXPORT_FOLDER_MACOS }}/${{ env.APPLICATION_NAME }}.app
+
+      - name: Zip files
+        run: zip -r ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip ${{ env.EXPORT_FOLDER_MACOS }}
+
+      - name: Uploading Artifact release
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip
+          path: ${{ env.APPLICATION_NAME }}_macos_release_${{ env.DATE }}.zip

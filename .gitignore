@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.idea/
+.github/workflows/.idea/
+addons/godot-git-plugin/
+export/Linux/BattleForBachelor.*
+export/Windows/BattleForBachelor.*
+export/MacOS/BattleForBachelor.*
