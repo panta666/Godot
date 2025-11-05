@@ -20,6 +20,12 @@ enum PhoneState { OFF, ON }
 var phone_state: PhoneState = PhoneState.OFF
 
 # ------------------------------------------------------
+# Drag & Drop Variablen
+# ------------------------------------------------------
+var dragging := false
+var drag_offset := Vector2.ZERO
+
+# ------------------------------------------------------
 # Setup beim Levelstart
 # ------------------------------------------------------
 func _ready():
@@ -44,7 +50,24 @@ func _ready():
 		power_area_on.monitoring = false
 
 # ------------------------------------------------------
-# Phone_Off anzeigen (z. B. nach Sitzen)
+# Drag & Drop Input (nur über Control)
+# ------------------------------------------------------
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var mouse_pos = get_viewport().get_mouse_position()
+			# Prüfen, ob Klick innerhalb der Control Node liegt
+			if control.get_global_rect().has_point(mouse_pos):
+				dragging = true
+				drag_offset = mouse_pos - control.global_position
+		else:
+			dragging = false
+
+	elif event is InputEventMouseMotion and dragging:
+		control.global_position = get_viewport().get_mouse_position() - drag_offset
+
+# ------------------------------------------------------
+# Phone_Off anzeigen
 # ------------------------------------------------------
 func show_phone_off():
 	phone_off.visible = true
@@ -69,6 +92,11 @@ func _on_power_area_off_input(_viewport, event, _shape_idx):
 func _on_power_area_on_input(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_turn_off_phone()
+
+# ------------------------------------------------------
+# KOMMENTAR ERINNERUNG FÜR SOUND
+# Handy Sound wenn man Handy anmacht (benötigen wir auch wenn wir ESC später drücken fürs "Inventar", "Menu" etc.
+# ------------------------------------------------------
 
 # ------------------------------------------------------
 # Phone einschalten
@@ -111,34 +139,24 @@ func _turn_off_phone():
 	phone_state = PhoneState.OFF
 
 # ------------------------------------------------------
-# Phone komplett ausblenden (z. B. beim Aufstehen)
+# Phone komplett ausblenden
 # ------------------------------------------------------
 func hide_phone():
 	if tween:
 		tween.kill()
 
 	tween = create_tween()
-
-	# Zuerst den Button ausblenden
 	tween.tween_property(enter_level_button, "modulate:a", 0.0, 0.15)
-
-	# Danach den Hintergrund
 	tween.tween_property(background, "modulate:a", 0.0, 0.15).set_delay(0.1)
-
-	# Zum Schluss das Phone selbst
 	tween.tween_property(phone, "modulate:a", 0.0, 0.15).set_delay(0.2)
-
-	# Wenn alles fertig ist → alles deaktivieren
 	tween.connect("finished", Callable(self, "_on_hide_phone_done"))
 
-	# PowerAreas sofort deaktivieren
 	if power_area_off:
 		power_area_off.monitoring = false
 	if power_area_on:
 		power_area_on.monitoring = false
 
 	phone_state = PhoneState.OFF
-
 
 func _on_hide_phone_done():
 	phone.visible = false
@@ -164,15 +182,38 @@ func hide_enter_button():
 	tween.tween_property(enter_level_button, "modulate:a", 0.0, 0.3)
 
 # ------------------------------------------------------
-# LEVEL BUTTON: Levelwechsel
+# KOMMENTAR ERRINERUNG FÜR SOUND
+# Ein Gähnen beim Einschlafen beim EnterButton
+# ------------------------------------------------------
+
+
+# ------------------------------------------------------
+# LEVEL BUTTON: Levelwechsel mit Einschlafen/Aufwachen
 # ------------------------------------------------------
 func _on_enter_button_pressed():
 	MusicManager.playMusic(MusicManager.MusicType.NONE)
 	print("Level betreten!")
 	enter_level_button.disabled = true
 
+	# UI ausblenden
 	var fade_tween = create_tween()
 	fade_tween.tween_property(control, "modulate:a", 0.0, 0.5)
 	await fade_tween.finished
 
-	get_tree().change_scene_to_file("res://scenes/level/level_one.tscn")
+	# Blink-Overlay einfügen (CanvasLayer bleibt)
+	var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
+	if blink_overlay_scene:
+		var blink_overlay_layer = blink_overlay_scene.instantiate() as CanvasLayer
+		if blink_overlay_layer:
+			get_tree().root.add_child(blink_overlay_layer)
+			
+			# Zugriff auf ColorRect, an dem das Script hängt
+			var blink_rect = blink_overlay_layer.get_node("Blink_Overlay") as ColorRect
+			if blink_rect:
+				await blink_rect.play_sleep_wake("res://scenes/level/level_one.tscn")
+			else:
+				push_error("ColorRect Blink_Overlay nicht gefunden!")
+		else:
+			push_error("Blink overlay CanvasLayer konnte nicht instanziiert werden.")
+	else:
+		push_error("Blink overlay Szene konnte nicht geladen werden!")
