@@ -94,6 +94,11 @@ func _on_power_area_on_input(_viewport, event, _shape_idx):
 		_turn_off_phone()
 
 # ------------------------------------------------------
+# KOMMENTAR ERINNERUNG FÜR SOUND
+# Handy Sound wenn man Handy anmacht (benötigen wir auch wenn wir ESC später drücken fürs "Inventar", "Menu" etc.
+# ------------------------------------------------------
+
+# ------------------------------------------------------
 # Phone einschalten
 # ------------------------------------------------------
 func _turn_on_phone():
@@ -177,9 +182,16 @@ func hide_enter_button():
 	tween.tween_property(enter_level_button, "modulate:a", 0.0, 0.3)
 
 # ------------------------------------------------------
+# KOMMENTAR ERRINERUNG FÜR SOUND
+# Ein Gähnen beim Einschlafen beim EnterButton
+# ------------------------------------------------------
+
+
+# ------------------------------------------------------
 # LEVEL BUTTON: Levelwechsel mit Einschlafen/Aufwachen
 # ------------------------------------------------------
 func _on_enter_button_pressed():
+	MusicManager.playMusic(MusicManager.MusicType.NONE)
 	print("Level betreten!")
 	enter_level_button.disabled = true
 

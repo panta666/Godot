@@ -584,6 +584,7 @@ script = ExtResource("1_exbfu")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 0
 offset_left = 204.0
 offset_top = 143.0
 offset_right = 363.0

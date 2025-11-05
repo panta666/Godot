@@ -11,6 +11,11 @@ extends Area2D
 func _ready() -> void:
 	interactable.interact = _on_interact
 
+# ------------------------------------------------------
+# KOMMENTAR ERINNERUNG FÜR SOUND
+# Handy Sound (aus der Tasche ziehen oder sowas) (benötigen wir auch wenn wir ESC später drücken fürs "Inventar", "Menu" etc.
+# ------------------------------------------------------
+
 func _process(_delta: float) -> void:
 	var player = GlobalScript.player
 	if player and interactable.is_interactable:
