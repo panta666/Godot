@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8p6ajp5wlh43"
-path="res://.godot/imported/frame_004.png-3dd180bddd61397ed943f4c5227b23c4.ctex"
+uid="uid://jsfguq2li6dp"
+path="res://.godot/imported/frame_004.png-ffdbce4994e8a4145d0774efd7f7db09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plattformer_character/animations/crouching/east/frame_004.png"
-dest_files=["res://.godot/imported/frame_004.png-3dd180bddd61397ed943f4c5227b23c4.ctex"]
+source_file="res://assets/plattformer_character/animations/running-6-frames/east/frame_004.png"
+dest_files=["res://.godot/imported/frame_004.png-ffdbce4994e8a4145d0774efd7f7db09.ctex"]
 
 [params]
 

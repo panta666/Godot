@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8kddkl1wn6ye"
-path="res://.godot/imported/frame_002.png-570d9d1441dd0340500d00a66ec695d7.ctex"
+uid="uid://dwpmh1c2kq5qt"
+path="res://.godot/imported/frame_003.png-4a9bb9e1d7542d356e08051dd2fddc33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plattformer_character/animations/running-4-frames/east/frame_002.png"
-dest_files=["res://.godot/imported/frame_002.png-570d9d1441dd0340500d00a66ec695d7.ctex"]
+source_file="res://assets/plattformer_character/animations/running-6-frames/east/frame_003.png"
+dest_files=["res://.godot/imported/frame_003.png-4a9bb9e1d7542d356e08051dd2fddc33.ctex"]
 
 [params]
 
