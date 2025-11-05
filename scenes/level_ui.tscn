@@ -584,17 +584,18 @@ script = ExtResource("1_exbfu")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 204.0
+offset_top = 143.0
+offset_right = 363.0
+offset_bottom = 437.0
 
 [node name="PhoneScreenContainer" type="Control" parent="Control"]
 clip_contents = true
 anchors_preset = 0
-offset_left = 199.0
-offset_top = 161.0
-offset_right = 345.0
-offset_bottom = 428.0
+offset_left = 8.0
+offset_top = 26.0
+offset_right = 154.0
+offset_bottom = 293.0
 
 [node name="Background" type="AnimatedSprite2D" parent="Control/PhoneScreenContainer"]
 position = Vector2(139, 135)
@@ -605,7 +606,7 @@ autoplay = "background"
 frame_progress = 0.719345
 
 [node name="Phone" type="Sprite2D" parent="Control"]
-position = Vector2(272, 305)
+position = Vector2(81, 170)
 texture = ExtResource("2_qvfhj")
 
 [node name="PowerArea" type="Area2D" parent="Control/Phone"]
@@ -616,7 +617,7 @@ shape = SubResource("RectangleShape2D_di37k")
 
 [node name="Phone_off" type="Sprite2D" parent="Control"]
 visible = false
-position = Vector2(272, 305)
+position = Vector2(81, 170)
 texture = ExtResource("144_hrjav")
 
 [node name="PowerArea" type="Area2D" parent="Control/Phone_off"]
@@ -627,10 +628,10 @@ shape = SubResource("RectangleShape2D_di37k")
 
 [node name="EnterLevelButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 173.0
-offset_right = 332.0
-offset_bottom = 204.0
+offset_left = 21.0
+offset_top = 38.0
+offset_right = 141.0
+offset_bottom = 69.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.70400786, 0.9168332, 0.9715262, 1)
 theme_override_colors/font_pressed_color = Color(0.11427544, 0.29684758, 0.23027517, 1)
