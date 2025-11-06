@@ -8,27 +8,27 @@ extends CharacterBody2D
 @onready var interactable: Area2D = $Interactable
 @onready var interact_range: Area2D = $InteractRange
 
-# Player wird über GlobalScript referenziert
 var player: PlayerRealworld = null
-
-# --- Status & Verhalten ---
 var dialog_active: bool = false
 var dialog_instance: Node = null
 var idle_timer: Timer
 var current_target: Vector2 = Vector2.ZERO
 
-# --- Pfadbezogen ---
 var path_follow: PathFollow2D = null
 var current_facing: String = "down"
 var patrol_forward: bool = true
 var last_path_pos: Vector2 = Vector2.ZERO
 
 
+# --------------------------
+# Ready
+# --------------------------
 func _ready() -> void:
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	
 	if not Engine.is_editor_hint():
-		player = GlobalScript.player  # Immer die aktuelle Player-Instanz aus GlobalScript verwenden
-
+		player = GlobalScript.player
+	
 	if not npc_data:
 		push_error("Kein NPCData zugewiesen für " + name)
 		return
@@ -48,9 +48,8 @@ func _ready() -> void:
 		interact_range.connect("body_exited", Callable(self, "_on_range_exited"))
 	else:
 		interactable.is_interactable = false
-		interactable.interact_name = ""
 
-	# --- Timer für Idle / Random Walk ---
+	# --- Idle/Random Timer ---
 	idle_timer = Timer.new()
 	idle_timer.wait_time = npc_data.wander_interval
 	idle_timer.one_shot = false
@@ -58,7 +57,7 @@ func _ready() -> void:
 	add_child(idle_timer)
 	idle_timer.connect("timeout", Callable(self, "_on_idle_behavior"))
 
-	# --- PathFollow Setup für Patrol ---
+	# --- Patrol Setup ---
 	if not Engine.is_editor_hint() and npc_data.behavior_type == npc_data.BehaviorType.PATROL and npc_data.path_node != null:
 		var path = get_node_or_null(npc_data.path_node)
 		if path and path is Path2D:
@@ -75,10 +74,11 @@ func _ready() -> void:
 			last_path_pos = path_follow.global_position
 
 
+# --------------------------
+# Bewegung / Verhalten
+# --------------------------
 func _physics_process(delta: float) -> void:
-	if dialog_active:
-		return
-	if not player:
+	if dialog_active or not player:
 		return
 
 	match npc_data.behavior_type:
@@ -90,9 +90,6 @@ func _physics_process(delta: float) -> void:
 			pass
 
 
-# --------------------------
-# Idle / Random Walk
-# --------------------------
 func _on_idle_behavior() -> void:
 	if dialog_active or not player:
 		return
@@ -139,9 +136,6 @@ func _random_walk(delta: float) -> void:
 		_update_walk_animation(dir_vec)
 
 
-# --------------------------
-# Patrol über PathFollow2D
-# --------------------------
 func _patrol(delta: float) -> void:
 	if not path_follow:
 		return
@@ -176,9 +170,6 @@ func _patrol(delta: float) -> void:
 		animated_sprite.play(_idle_animation_for_current_facing())
 
 
-# --------------------------
-# Walk Animation Helper
-# --------------------------
 func _update_walk_animation(dir_vec: Vector2) -> void:
 	if abs(dir_vec.x) > abs(dir_vec.y):
 		if dir_vec.x > 0:
@@ -244,51 +235,30 @@ func _on_interact() -> void:
 
 	dialog_active = true
 	interactable.is_interactable = false
-
 	player.can_move = false
+
 	if player.has_node("InteractingComponent"):
 		var ic = player.get_node("InteractingComponent")
 		ic.can_interact = false
 
 	_face_player()
 
-	# 🧹 Falls noch alte Dialogic-Layouts existieren, löschen
+	# Entferne alte Dialogic-Instanzen
 	for child in get_tree().root.get_children():
 		if "DialogicLayout" in child.name:
-			print("Entferne alte Dialogic-Instanz:", child.name)
 			child.queue_free()
 
-	# Starte Dialogic-Dialog (Dialogic kümmert sich um das Hinzufügen selbst)
+	# Starte Dialogic
 	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
 
+	# Charakter registrieren, falls vorhanden
+	if npc_data.dialogic_character:
+		dialog_instance.register_character(npc_data.dialogic_character, self)
+	else:
+		push_warning("Kein Dialogic-Character in NPCData gesetzt für " + npc_data.npc_name)
+
+	# Signals verbinden
 	if dialog_instance:
-		# Signals verbinden (aber NICHT add_child()!)
-		if dialog_instance.has_signal("timeline_ended"):
-			dialog_instance.connect("timeline_ended", Callable(self, "_on_dialog_ended"))
-		elif dialog_instance.has_signal("dialogic_timeline_end"):
-			dialog_instance.connect("dialogic_timeline_end", Callable(self, "_on_dialog_ended"))
-		else:
-			dialog_instance.connect("tree_exited", Callable(self, "_on_dialog_ended"))
-
-	if not player or dialog_active or not npc_data.can_talk:
-		return
-	if npc_data.dialog_timeline_path == "":
-		push_warning(npc_data.npc_name + " hat keine Dialog-Timeline zugewiesen.")
-		return
-
-	dialog_active = true
-	interactable.is_interactable = false
-
-	player.can_move = false
-	if player.has_node("InteractingComponent"):
-		var ic = player.get_node("InteractingComponent")
-		ic.can_interact = false
-
-	_face_player()
-
-	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
-	if dialog_instance:
-		get_tree().root.add_child(dialog_instance)
 		if dialog_instance.has_signal("timeline_ended"):
 			dialog_instance.connect("timeline_ended", Callable(self, "_on_dialog_ended"))
 		elif dialog_instance.has_signal("dialogic_timeline_end"):
@@ -302,7 +272,6 @@ func _on_dialog_ended() -> void:
 		return
 
 	dialog_active = false
-
 	if dialog_instance and dialog_instance.get_parent():
 		dialog_instance.queue_free()
 	dialog_instance = null
@@ -344,9 +313,11 @@ func _set_facing(dir: String) -> void:
 		_:
 			animated_sprite.play(npc_data.idle_down)
 
+
 func _on_dialogic_signal(argument: String):
 	if argument == "go_home":
 		get_tree().quit()
+
 
 func player_in_range() -> bool:
 	return player and interact_range.get_overlapping_bodies().has(player)

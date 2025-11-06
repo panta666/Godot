@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=19 format=3 uid="uid://dkwhe3yvc7m7p"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=20 format=3 uid="uid://dkwhe3yvc7m7p"]
 
 [ext_resource type="Script" uid="uid://bclj33y315xbn" path="res://scripts/npc_data.gd" id="1_fo02w"]
+[ext_resource type="Resource" uid="uid://bjk5ukmy8op3t" path="res://dialog/characters/npc_henry.dch" id="1_qx7gc"]
 [ext_resource type="Texture2D" uid="uid://celk8w30kwpd2" path="res://assets/characters/npc_stylesheets/DP_Beta008.png" id="2_xgmug"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhkdd"]
@@ -147,5 +148,6 @@ npc_name = "Henry"
 sprite_frames = SubResource("SpriteFrames_wox3n")
 start_facing = "right"
 dialog_timeline_path = "res://dialog/npc_henry_timeline.dtl"
+dialogic_character = ExtResource("1_qx7gc")
 behavior_type = 2
 metadata/_custom_type_script = "uid://bclj33y315xbn"

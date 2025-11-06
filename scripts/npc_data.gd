@@ -19,6 +19,7 @@ class_name NPCData
 @export var start_facing: String = "down"
 @export var can_talk: bool = true
 @export var dialog_timeline_path: String = ""
+@export var dialogic_character: Resource
 
 # --- Verhalten-System ---
 enum BehaviorType { NONE, IDLE_TURN, RANDOM_WALK, PATROL }
