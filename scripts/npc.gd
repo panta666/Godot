@@ -25,6 +25,7 @@ var last_path_pos: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 	if not Engine.is_editor_hint():
 		player = GlobalScript.player  # Immer die aktuelle Player-Instanz aus GlobalScript verwenden
 
@@ -254,10 +255,10 @@ func _on_interact() -> void:
 	# 🧹 Falls noch alte Dialogic-Layouts existieren, löschen
 	for child in get_tree().root.get_children():
 		if "DialogicLayout" in child.name:
-			print("🧹 Entferne alte Dialogic-Instanz:", child.name)
+			print("Entferne alte Dialogic-Instanz:", child.name)
 			child.queue_free()
 
-	# ✅ Starte Dialogic-Dialog (Dialogic kümmert sich um das Hinzufügen selbst)
+	# Starte Dialogic-Dialog (Dialogic kümmert sich um das Hinzufügen selbst)
 	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
 
 	if dialog_instance:
@@ -343,6 +344,9 @@ func _set_facing(dir: String) -> void:
 		_:
 			animated_sprite.play(npc_data.idle_down)
 
+func _on_dialogic_signal(argument: String):
+	if argument == "go_home":
+		get_tree().quit()
 
 func player_in_range() -> bool:
 	return player and interact_range.get_overlapping_bodies().has(player)

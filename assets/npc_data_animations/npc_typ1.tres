@@ -146,6 +146,6 @@ script = ExtResource("1_fo02w")
 npc_name = "Henry"
 sprite_frames = SubResource("SpriteFrames_wox3n")
 start_facing = "right"
-can_talk = false
+dialog_timeline_path = "res://dialog/npc_henry_timeline.dtl"
 behavior_type = 2
 metadata/_custom_type_script = "uid://bclj33y315xbn"

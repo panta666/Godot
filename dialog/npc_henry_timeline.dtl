@@ -1,0 +1,17 @@
+npc_henry: Hey, i didn't see you in the 'Erstiwoche', were you ill?
+- Yes i was ill
+	npc_henry: Ah okay. Good to know. I'm Henry btw.
+	npc_henry: The lecture is about to start. We better get to our seats.
+- Nope, i wasn't ill
+	npc_henry: Ah okay..mhmm so why weren't you there?
+	npc_henry: The lecture is about to start. We better get to our seats.
+	- i didn't want to attend there.
+		npc_henry: Ah okay. The lazy kind huh..
+	- Wasn't feeling it.
+		npc_henry: I feel you. I just went there because everyone did..
+		npc_henry: The lecture is about to start. We better get to our seats.
+	- None of your business.
+		npc_henry: OMG Chill man! Yeez.
+- Oh yeah didn't went there.. I just didn't care..
+	npc_henry: Ah okay. You didn't need the extra Information i see.
+	npc_henry: The lecture is about to start. We better get to our seats.
