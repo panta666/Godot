@@ -74,7 +74,7 @@ func track_player(player_position: Vector2):
 	sprite.play("walk")
 	is_walking =1
 	var dx = abs(player_position.x - position.x)
-	print(dx)
+	#print(dx)
 	if dx > 15:
 		if player_position.x > position.x:
 			direction = 1
