@@ -37,6 +37,9 @@ var is_crouching: bool = false
 var is_attacking = false
 @onready var hit_box_left: HitBox = $HitBoxLeft
 @onready var hit_box_right: HitBox = $HitBoxRight
+@onready var hit_box_down: HitBox = $HitBoxDown
+@onready var hit_box_up: HitBox = $HitBoxUp
+
 
 #Variablen für Damage nehmen /Knockback
 var is_taking_damage: bool = false
@@ -49,6 +52,13 @@ var is_alive: bool = true
 func _ready() -> void:
 	hit_box_left.monitoring = false
 	hit_box_right.monitoring = false
+	hit_box_down.monitoring = false
+	hit_box_up.monitoring = false
+	
+	hit_box_left.monitorable = false
+	hit_box_right.monitorable = false
+	hit_box_up.monitorable = false
+	hit_box_down.monitorable = false
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
@@ -197,13 +207,23 @@ func handle_attack():
 		return
 	
 	is_attacking = true
-
-	if last_facing_direction > 0:
+	
+	if Input.is_action_pressed("move_up"):
+		hit_box_up.monitoring = true
+		hit_box_up.monitorable = true
+		print("up_attack")
+	elif Input.is_action_pressed("move_down") and not is_on_floor():
+		hit_box_down.monitoring = true
+		hit_box_down.monitorable = true
+		print("down_attack")
+	elif last_facing_direction > 0:
 		hit_box_right.monitorable = true
 		hit_box_right.monitoring = true
+		print("right_attack")
 	else:
 		hit_box_left.monitorable = true
 		hit_box_left.monitoring = true
+		print("left_attack")
 
 	await player_sprite.animation_finished
 
@@ -244,7 +264,6 @@ func apply_knockback(delta: float):
 			is_taking_damage = false
 			velocity.x = 0
 			stop_dashing(delta)
-			print(can_dash)
 
 #Handle Death
 func _on_health_depleted() -> void:
@@ -264,11 +283,11 @@ func _on_health_depleted() -> void:
 	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
 
 
+
 #Animationen updaten
 func update_animation():
 	if not is_alive:
 		return
-
 
 	if is_taking_damage:
 		if player_sprite.animation != "take_damage":
@@ -277,7 +296,12 @@ func update_animation():
 
 	if is_attacking:
 		if player_sprite.animation != "attack":
-			player_sprite.play("attack")
+			if Input.is_action_pressed("move_up"):
+				player_sprite.play("attack_up")
+			elif Input.is_action_pressed("move_down"):
+				player_sprite.play("attack_down")
+			else:
+				player_sprite.play("attack")
 		return
 
 	if is_dashing:
@@ -306,3 +330,16 @@ func update_animation():
 		else:
 			if player_sprite.animation != "idle":
 				player_sprite.play("idle")
+
+#Handle Down-Attack
+func _on_hit_box_down_body_entered(body: Node2D) -> void:
+	if not is_attacking:
+		return
+	if not Input.is_action_pressed("move_down"):
+		return
+	if is_on_floor():
+		return
+	
+	# Bounce nach oben
+	velocity.y = JUMP_VELOCITY
+	print("Bounce Jump")
