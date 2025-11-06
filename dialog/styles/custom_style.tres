@@ -27,4 +27,4 @@ layer_info = {
 "10": SubResource("Resource_85j6h"),
 "11": SubResource("Resource_n1tlm")
 }
-metadata/_latest_layer = ""
+metadata/_latest_layer = "10"
