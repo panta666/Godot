@@ -98,3 +98,30 @@ func change_scene(new_scene: String) -> void:
 		player.visible = true
 		player.can_move = true
 		print("Player wurde nach Szenenwechsel in %s gesetzt" % new_scene)
+
+
+# ==========================================================
+#                     ESC-MENÜ SYSTEM
+# ==========================================================
+
+var esc_menu_scene := preload("res://scenes/esc_menu.tscn")
+var esc_menu_instance: CanvasLayer = null
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc_menu"):  # Standardmäßig Escape
+		_toggle_esc_menu()
+
+func _toggle_esc_menu() -> void:
+	# ❌ Nicht im Hauptmenü anzeigen
+	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":
+		return
+
+	if not esc_menu_instance:
+		esc_menu_instance = esc_menu_scene.instantiate()
+		get_tree().root.add_child(esc_menu_instance)
+		esc_menu_instance.open_menu()
+	else:
+		if esc_menu_instance.visible:
+			esc_menu_instance.close_menu()
+		else:
+			esc_menu_instance.open_menu()

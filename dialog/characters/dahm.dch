@@ -10,12 +10,22 @@
 "style": "",
 "suffix": ""
 },
-&"default_portrait": "",
+&"default_portrait": "dahm",
 &"description": "",
 &"display_name": "Prof. Dr.-Ing. Dahm",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
-&"portraits": {},
+&"portraits": {
+"dahm": {
+"export_overrides": {
+"image": "\"res://assets/npc_data_animations/npc_portraits/dahm.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
 &"scale": 1.0
 }
