@@ -10,11 +10,16 @@ config_version=5
 
 [application]
 
-config/name="HSD Godot Projekt"
+config/name="BattleForBachelor"
+config/description="\"Battle for Bachelor\" ist ein 2D-Pixel-Art-Plattformer. Erlebe den Kontrast zwischen der entspannten Hubworld der Universität und den düsteren, albtraumhaften \"Dreamworlds\". Bewaffnet mit Alltagsgegenständen wie Linealen und Smartphones, kämpfst du gegen lebendig gewordene Formeln und Bücherstapel, um den Bachelor-Abschluss zu erringen.
+
+Dieses Spiel wurde als studentisches Projekt entwickelt."
 config/version="0.1"
 run/main_scene="uid://dpkw6p6jwdxlw"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://bsqpyyqgqaqsh"
+config/macos_native_icon="res://assets/programm/MacOS/BfB_icon_1024_no_bg.icns"
+config/windows_native_icon="res://assets/programm/Windwos/BfB_icon.ico"
 
 [autoload]
 
