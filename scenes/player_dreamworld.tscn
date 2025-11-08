@@ -1,6 +1,7 @@
-[gd_scene load_steps=121 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=122 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
+[ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://cbfkyca8x3out" path="res://assets/plattformer_character/animations/lead-jab/east/frame_000.png" id="3_w3r8r"]
 [ext_resource type="Texture2D" uid="uid://j738q4tahpiq" path="res://assets/plattformer_character/animations/lead-jab/east/frame_001.png" id="4_aofeu"]
 [ext_resource type="Texture2D" uid="uid://cym82rp3ek17n" path="res://assets/plattformer_character/animations/lead-jab/east/frame_002.png" id="5_c7cji"]
@@ -552,13 +553,15 @@ script = ExtResource("32_fo2fe")
 max_health = 100
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthWave" parent="CanvasLayer" instance=ExtResource("3_rfwbl")]
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"attack_down"
-frame = 3
-frame_progress = 1.0
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -568,7 +571,8 @@ shape = SubResource("RectangleShape2D_cdh20")
 target_position = Vector2(0, -19)
 
 [node name="HitBoxRight" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 16
+collision_mask = 32
 monitoring = false
 monitorable = false
 script = ExtResource("33_fo2fe")
@@ -581,7 +585,8 @@ scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_v17r1")
 
 [node name="HitBoxLeft" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 16
+collision_mask = 32
 monitoring = false
 monitorable = false
 script = ExtResource("33_fo2fe")
@@ -594,6 +599,8 @@ scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_v17r1")
 
 [node name="HitBoxUp" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
 monitoring = false
 monitorable = false
 script = ExtResource("33_fo2fe")
@@ -605,6 +612,8 @@ position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_aofeu")
 
 [node name="HitBoxDown" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 32
 monitoring = false
 monitorable = false
 script = ExtResource("33_fo2fe")
@@ -627,5 +636,6 @@ position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_agpj8")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
+[connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="body_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="received_damage" from="HurtBox" to="." method="received_damage"]

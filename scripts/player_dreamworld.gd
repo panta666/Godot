@@ -48,6 +48,8 @@ var knockback_length = 0.2
 
 #HP
 var is_alive: bool = true
+@onready var health_wave: Control = $CanvasLayer/HealthWave
+@onready var health: Health = $Health
 
 func _ready() -> void:
 	hit_box_left.monitoring = false
@@ -59,6 +61,9 @@ func _ready() -> void:
 	hit_box_right.monitorable = false
 	hit_box_up.monitorable = false
 	hit_box_down.monitorable = false
+	
+	health_wave.set_health_component(health)
+
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
@@ -207,7 +212,6 @@ func handle_attack():
 		return
 	
 	is_attacking = true
-	
 	if Input.is_action_pressed("move_up"):
 		hit_box_up.monitoring = true
 		hit_box_up.monitorable = true
@@ -227,6 +231,10 @@ func handle_attack():
 
 	await player_sprite.animation_finished
 
+	hit_box_down.monitoring = false
+	hit_box_down.monitorable = false
+	hit_box_up.monitoring = false
+	hit_box_up.monitorable = false
 	hit_box_right.monitorable = false
 	hit_box_left.monitorable = false
 	hit_box_right.monitoring = false
@@ -236,25 +244,27 @@ func handle_attack():
 
 #Handle Take Damage
 func received_damage(damage: int) -> void:
+	if is_dashing:
+		return
 	if is_taking_damage:
 		return
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
 
-	# Knockbackrichtung (entgegengesetzt der Blickrichtung)
+	# Knockbackrichtung
 	var knock_dir = -sign(last_facing_direction)
 	if knock_dir == 0:
 		knock_dir = -1
 
 	# Rückstoßgeschwindigkeit
 	velocity.x = knock_dir * 250.0
-	velocity.y = -80.0  # leicht nach oben schleudern
+	velocity.y = -80.0 
 
-	# Timer aktivieren
 	knockback_timer = knockback_length
 
 	print("Player takes", damage, "damage!")
+	print("Player HP: ", health.get_health())
 
 #Apply Knockback on Hit taken
 func apply_knockback(delta: float):
@@ -341,5 +351,7 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 		return
 	
 	# Bounce nach oben
-	velocity.y = JUMP_VELOCITY
-	print("Bounce Jump")
+	if body.is_in_group("enemy"):
+		print("Down-Hit auf Gegner:", body.name)
+		velocity.y = JUMP_VELOCITY
+		print("Bounce Jump")
