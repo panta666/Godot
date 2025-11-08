@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=19 format=3 uid="uid://pgpirmi3a1cu"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=20 format=3 uid="uid://pgpirmi3a1cu"]
 
+[ext_resource type="Resource" uid="uid://dgrplcq6tk0tl" path="res://dialog/characters/dahm.dch" id="1_kl1t6"]
 [ext_resource type="Script" uid="uid://bclj33y315xbn" path="res://scripts/npc_data.gd" id="1_qsns6"]
 [ext_resource type="Texture2D" uid="uid://vjjfso546y54" path="res://assets/characters/npc_stylesheets/HGSS_054WW.png" id="2_3s4cc"]
 
@@ -146,5 +147,6 @@ script = ExtResource("1_qsns6")
 npc_name = "Dahm"
 sprite_frames = SubResource("SpriteFrames_nsc3p")
 dialog_timeline_path = "res://dialog/dahm_timeline.dtl"
+dialogic_character = ExtResource("1_kl1t6")
 behavior_type = 1
 metadata/_custom_type_script = "uid://bclj33y315xbn"

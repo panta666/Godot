@@ -30,11 +30,56 @@ MusicManager="*res://scripts/music_manager.gd"
 
 [dialogic]
 
-directories/dch_directory={}
-directories/dtl_directory={
-"dahm_timeline": "res://dialog/dahm_timeline.dtl"
+directories/dch_directory={
+"dahm": "res://dialog/characters/dahm.dch",
+"npc_henry": "res://dialog/characters/npc_henry.dch",
+"player": "res://dialog/characters/player.dch"
 }
-layout/style_directory={}
+directories/dtl_directory={
+"dahm_timeline": "res://dialog/dahm_timeline.dtl",
+"npc_henry_timeline": "res://dialog/npc_henry_timeline.dtl"
+}
+layout/style_directory={
+"": "res://dialog/styles/custom_style.tres",
+"custom_style": "res://dialog/styles/custom_style.tres"
+}
+glossary/default_case_sensitive=true
+layout/style_list=["res://dialog/styles/custom_style.tres"]
+layout/default_style="res://dialog/styles/custom_style.tres"
+variables={}
+extensions_folder="res://addons/dialogic_additions"
+text/letter_speed=0.01
+text/initial_text_reveal_skippable=true
+text/text_reveal_skip_delay=0.1
+text/advance_delay=0.1
+text/autoadvance_per_character_delay=0.1
+text/autoadvance_ignored_characters_enabled=true
+animations/join_default_length=0.5
+animations/join_default_wait=true
+animations/leave_default_length=0.5
+animations/leave_default_wait=true
+animations/cross_fade_default_length=0.5
+choices/autofocus_first=true
+choices/delay=0.2
+choices/reveal_delay=0
+choices/reveal_by_input=false
+save/autosave_delay=60.0
+save/encryption_on_exports_only=true
+text/autopauses={}
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
 
 [editor_plugins]
 
