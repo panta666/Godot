@@ -35,6 +35,11 @@ layout/style_directory={}
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[global_group]
+
+enemy=""
+player=""
+
 [input]
 
 move_up={

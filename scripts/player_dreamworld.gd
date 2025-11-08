@@ -64,6 +64,7 @@ func _ready() -> void:
 	
 	health_wave.set_health_component(health)
 
+
 func _physics_process(delta: float) -> void:
 	if not is_alive:
 		update_animation()
@@ -211,7 +212,6 @@ func handle_attack():
 		return
 	
 	is_attacking = true
-	print(">>> Attack started at time:", Time.get_ticks_msec())
 	if Input.is_action_pressed("move_up"):
 		hit_box_up.monitoring = true
 		hit_box_up.monitorable = true
@@ -230,8 +230,7 @@ func handle_attack():
 		print("left_attack")
 
 	await player_sprite.animation_finished
-	
-	print(">>> Attack animation finished at time:", Time.get_ticks_msec())
+
 	hit_box_down.monitoring = false
 	hit_box_down.monitorable = false
 	hit_box_up.monitoring = false
@@ -253,16 +252,15 @@ func received_damage(damage: int) -> void:
 	is_attacking = false
 	is_crouching = false
 
-	# Knockbackrichtung (entgegengesetzt der Blickrichtung)
+	# Knockbackrichtung
 	var knock_dir = -sign(last_facing_direction)
 	if knock_dir == 0:
 		knock_dir = -1
 
 	# Rückstoßgeschwindigkeit
 	velocity.x = knock_dir * 250.0
-	velocity.y = -80.0  # leicht nach oben schleudern
+	velocity.y = -80.0 
 
-	# Timer aktivieren
 	knockback_timer = knockback_length
 
 	print("Player takes", damage, "damage!")
@@ -351,8 +349,9 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 		return
 	if is_on_floor():
 		return
-	print("Down-Hit: ", body.name, "(", body.get_class(), ")")
-
+	
 	# Bounce nach oben
-	velocity.y = JUMP_VELOCITY
-	print("Bounce Jump")
+	if body.is_in_group("enemy"):
+		print("Down-Hit auf Gegner:", body.name)
+		velocity.y = JUMP_VELOCITY
+		print("Bounce Jump")

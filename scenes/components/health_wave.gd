@@ -4,12 +4,13 @@ extends Control
 @export var base_amplitude: float = 5.0
 @export var base_frequency: float = 2.0
 @export var speed: float = 2.0
-@export var amplitude_factor: float = 20.0  # Wie stark die Amplitude mit Damage zunimmt
+@export var amplitude_factor: float = 20.0
+@export var line_width: float = 2.0
 
 var time: float = 0.0
 var health_component: Health
 
-# Setze Verbindung zur Health-Komponente
+# Verbindung mit Health-System
 func set_health_component(health: Health):
 	health_component = health
 	health.health_changed.connect(_on_health_changed)
@@ -30,16 +31,17 @@ func _draw() -> void:
 	var health_ratio = float(health_component.get_health()) / float(health_component.get_max_health())
 	var amplitude = base_amplitude + (1.0 - health_ratio) * amplitude_factor
 	var frequency = base_frequency + (1.0 - health_ratio) * 3.0
-	
+	var color = wave_color.lerp(Color.RED, 1.0 - health_ratio)
+
 	var width = size.x
-	var height = size.y / 2.0
+	var height_center = size.y / 2.0
 	var points = PackedVector2Array()
 
-	# Sinuskurve generieren
+	# Verschiebung der Phase, damit die Welle "nach rechts scrollt"
+	var scroll_offset = time * TAU * 0.5
+
 	for x in range(int(width)):
-		var y = height + sin((x / width) * TAU * frequency + time) * amplitude
+		var y = height_center + sin((x / width) * TAU * frequency + scroll_offset) * amplitude
 		points.append(Vector2(x, y))
-	
-	# Linie zeichnen
-	var color = wave_color.lerp(Color.RED, 1.0 - health_ratio)
-	draw_polyline(points, color, 2.0)
+
+	draw_polyline(points, color, line_width)
