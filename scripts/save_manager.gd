@@ -111,6 +111,7 @@ func update_audio_settings(main_vol_db, music_vol_db, sfx_vol_db, is_muted):
 
 # Wird von deiner Spiellogik aufgerufen (z.B. beim Erreichen eines Checkpoints).
 func update_current_scene(scene_path: String):
+	print("save szene: ", scene_path)
 	save_data["game_progress"]["current_scene_path"] = scene_path
 	save_game()
 
