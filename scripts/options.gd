@@ -18,7 +18,6 @@ var SFX_BUS := 2
 # In der ready Funktion werden die gespeicherten Soundeinstellungen geladen damit sie wieder richtig angezeigt werden.
 func _ready() -> void:
 	var audio_settings := SaveManager.get_audio_settings()
-	
 
 
 # Mastervolume Slider der den Bus Master anpasst.
