@@ -8,6 +8,18 @@ var MASTER_BUS := 0
 var MUSIC_BUS := 1
 var SFX_BUS := 2
 
+# UI Elemente
+@onready var master_volume: HSlider = $MarginContainer/CenterContainer/VBoxContainer/MasterVolume
+@onready var check_box: CheckBox = $MarginContainer/CenterContainer/VBoxContainer/CheckBox
+@onready var music_volume: HSlider = $MarginContainer/CenterContainer/VBoxContainer/MusicVolume
+
+
+
+# In der ready Funktion werden die gespeicherten Soundeinstellungen geladen damit sie wieder richtig angezeigt werden.
+func _ready() -> void:
+	var audio_settings := SaveManager.get_audio_settings()
+	
+
 
 # Mastervolume Slider der den Bus Master anpasst.
 func _on_master_volume_value_changed(value: float) -> void:
