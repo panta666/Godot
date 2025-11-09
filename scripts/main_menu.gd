@@ -58,3 +58,7 @@ func _on_options_closed() -> void:
 # --- Spiel beenden ---
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_continue_pressed() -> void:
+	SaveManager.load_last_scene()

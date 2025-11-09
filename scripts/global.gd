@@ -17,8 +17,11 @@ var player_positions := {
 	"realworld_hall": Vector2(568, 374)
 }
 
+
 var player: Node = null
 var game_first_loading: bool = true
+
+const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 
 
 # -------------------------

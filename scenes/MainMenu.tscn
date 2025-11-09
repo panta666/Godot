@@ -98,6 +98,7 @@ texture = ExtResource("1_fnwlw")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(505, 245)
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
