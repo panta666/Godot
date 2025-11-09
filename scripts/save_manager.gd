@@ -11,9 +11,9 @@ var save_data = {
 		"current_scene_path": "res://scenes/MainMenu.tscn" # Standard-Startszene (passe dies an)
 	},
 	"audio_settings": {
-		"master_bus_volume_db": 0.0,   # 0.0 dB ist volle Lautstärke
-		"music_bus_volume_db": -13.0,
-		"sfx_bus_volume_db": 0.0,
+		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
+		"Music": -13.0,
+		"SFX": 0.0,
 		"is_muted": false
 	},
 	"player_stats": {
@@ -80,9 +80,9 @@ func apply_audio_settings():
 	var settings = save_data["audio_settings"]
 	
 	# WICHTIG: Godot verwendet Dezibel (dB) für die Lautstärke. 0.0 ist max, -80.0 ist stumm.
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), settings["master_bus_volume_db"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), settings["music_bus_volume_db"])
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), settings["sfx_bus_volume_db"])
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), settings["Master"])
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), settings["Music"])
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), settings["SFX"])
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), settings["is_muted"])
 	print("SaveManager: Audioeinstellungen angewendet.")
 
@@ -91,17 +91,23 @@ func apply_audio_settings():
 ## ÖFFENTLICHE FUNKTIONEN: Von anderen Skripten aufrufen
 ## ----------------------------------------------------------------
 
-# Wird vom Einstellungsmenü (Options.gd) aufgerufen.
-func update_audio_settings(main_vol_db, music_vol_db, sfx_vol_db, is_muted):
-	save_data["audio_settings"]["master_bus_volume_db"] = main_vol_db
-	save_data["audio_settings"]["music_bus_volume_db"] = music_vol_db
-	save_data["audio_settings"]["sfx_bus_volume_db"] = sfx_vol_db
+func update_bus_volume(audio_bus_id: int, volume: float):
+	if (audio_bus_id < Global.AUDIO_BUSES.size()):
+		save_data["audio_settings"][Global.AUDIO_BUSES[audio_bus_id]] = volume
+		save_game()
+	else:
+		push_error("Bus unknown!")
+
+
+func update_is_muted(is_muted: bool):
 	save_data["audio_settings"]["is_muted"] = is_muted
-	
-	# Speichert bei jeder Änderung sofort (wie gewünscht).
 	save_game()
-	# Wendet die Einstellungen auch sofort an (falls 'is_muted' geändert wurde).
-	apply_audio_settings()
+
+
+# Wird vom Einstellungsmenü (Options.gd) aufgerufen.
+func update_audio_settings(main_vol_db, music_vol_db, sfx_vol_db, is_muted):	
+	# Speichert bei jeder Änderung sofort.
+	save_game()
 
 # Wird von deiner Spiellogik aufgerufen (z.B. beim Erreichen eines Checkpoints).
 func update_current_scene(scene_path: String):

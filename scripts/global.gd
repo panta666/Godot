@@ -21,6 +21,8 @@ var player_positions := {
 var player: Node = null
 var game_first_loading: bool = true
 
+const AUDIO_BUSES = ['Master', 'Music', 'SFX']
+
 
 # -------------------------
 # Neues Spiel starten
