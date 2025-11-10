@@ -2416,7 +2416,7 @@ tile_set = SubResource("TileSet_x23ky")
 position = Vector2(35, 72)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Dreamworld"]
-scale = Vector2(4, 4)
+scale = Vector2(5, 5)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
