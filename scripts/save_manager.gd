@@ -104,11 +104,6 @@ func update_is_muted(is_muted: bool):
 	save_game()
 
 
-# Wird vom Einstellungsmenü (Options.gd) aufgerufen.
-func update_audio_settings(main_vol_db, music_vol_db, sfx_vol_db, is_muted):	
-	# Speichert bei jeder Änderung sofort.
-	save_game()
-
 # Wird von deiner Spiellogik aufgerufen (z.B. beim Erreichen eines Checkpoints).
 func update_current_scene(scene_path: String):
 	print("save szene: ", scene_path)

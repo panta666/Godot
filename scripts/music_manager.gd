@@ -32,7 +32,9 @@ func _ready():
 # Stoppt den aktuellen Track und startet den neuen.
 # Verhindert das Neustarten, wenn der angeforderte Track bereits läuft.
 func playMusic(music_type: MusicType):
-	
+	if music_type == MusicType.NONE:
+		stop_music()
+		return
 	# Nichts tun, wenn der angeforderte Track bereits spielt.
 	if isPlaying(music_type):
 		return

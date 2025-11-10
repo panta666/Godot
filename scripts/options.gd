@@ -28,7 +28,7 @@ func _on_master_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(MASTER_BUS, value)
 
 # Speichert den neuen Wert
-func _on_master_volume_drag_ended(value_changed: bool) -> void:
+func _on_master_volume_drag_ended(_value_changed: bool) -> void:
 	SaveManager.update_bus_volume(MASTER_BUS, master_volume.value)
 
 # Mastervolume Slider der den Bus Musik anpasst.
@@ -36,7 +36,7 @@ func _on_music_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(MUSIC_BUS, value)
 
 # Speichert den neuen Wert
-func _on_music_volume_drag_ended(value_changed: bool) -> void:
+func _on_music_volume_drag_ended(_value_changed: bool) -> void:
 	SaveManager.update_bus_volume(MUSIC_BUS, music_volume.value)
 
 # Checkbox um das Spiel zu stumm und laut zu stellen.
