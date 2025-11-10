@@ -556,12 +556,16 @@ metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthWave" parent="CanvasLayer" instance=ExtResource("3_rfwbl")]
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 111.0
+offset_bottom = 72.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"attack"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

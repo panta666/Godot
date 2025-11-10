@@ -27,6 +27,7 @@ var can_dash = true
 var is_dashing = false
 var dash_count = 1
 var dash_allowed: bool = true
+@onready var hurt_box: HurtBox = $HurtBox
 
 #Variablen für Crouching
 var forced_crouch: bool
@@ -176,6 +177,8 @@ func handle_dash():
 		if direction == 0:	#Dash in Blickrichtung
 			direction = last_facing_direction
 		is_dashing = true
+		hurt_box.monitoring = false
+		hurt_box.monitorable = false
 		dash_count = 0
 		can_dash = false
 		velocity.x = direction * DASH_SPEED
@@ -203,6 +206,8 @@ func stop_dashing(delta: float):
 		dash_timer -= delta		#Dash Timer runterzählen
 		if dash_timer <= 0:
 			is_dashing = false
+			hurt_box.monitoring = true
+			hurt_box.monitorable = true
 			await get_tree().create_timer(dash_cooldown).timeout
 			can_dash = true
 
@@ -308,7 +313,7 @@ func update_animation():
 		if player_sprite.animation != "attack":
 			if Input.is_action_pressed("move_up"):
 				player_sprite.play("attack_up")
-			elif Input.is_action_pressed("move_down"):
+			elif Input.is_action_pressed("move_down") and not is_on_floor():
 				player_sprite.play("attack_down")
 			else:
 				player_sprite.play("attack")
