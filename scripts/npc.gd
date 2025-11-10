@@ -24,7 +24,7 @@ var last_path_pos: Vector2 = Vector2.ZERO
 # --------------------------
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		player = GlobalScript.player
+		call_deferred("_setup_player")
 
 	if not npc_data:
 		push_error("Kein NPCData zugewiesen für " + name)
@@ -308,3 +308,20 @@ func _on_dialogic_signal(argument: String):
 
 func player_in_range() -> bool:
 	return player and interact_range.get_overlapping_bodies().has(player)
+
+# --------------------------
+# Sicheren Player nach Szenenwechsel finden
+# --------------------------
+func _setup_player() -> void:
+	# Warte, bis der Player im GlobalScript gesetzt ist
+	if GlobalScript.player and is_instance_valid(GlobalScript.player):
+		player = GlobalScript.player
+	else:
+		# Falls der Player noch nicht existiert (z. B. beim Szenenwechsel),
+		# warte einen Frame und prüfe erneut
+		await get_tree().process_frame
+		if GlobalScript.player and is_instance_valid(GlobalScript.player):
+			player = GlobalScript.player
+		else:
+			player = null
+			push_warning("Kein gültiger Player: " + name)
