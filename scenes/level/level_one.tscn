@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=23 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -2506,12 +2506,12 @@ tile_set = SubResource("TileSet_x23ky")
 position = Vector2(35, 72)
 
 [node name="Camera2D" type="Camera2D" parent="Player_Dreamworld"]
-scale = Vector2(5, 5)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(156, 216)
+position = Vector2(156, 1300)
 shape = SubResource("WorldBoundaryShape2D_hrsau")
 
 [node name="Enemy" parent="." instance=ExtResource("10_hrsau")]
@@ -2519,6 +2519,3 @@ position = Vector2(251, 71.99999)
 scale = Vector2(0.55, 0.55)
 collision_layer = 4
 collision_mask = 9
-
-[node name="Camera2D" type="Camera2D" parent="Player_Dreamworld"]
-zoom = Vector2(2.5, 2.5)
