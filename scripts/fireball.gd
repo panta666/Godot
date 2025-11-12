@@ -11,12 +11,12 @@ func _physics_process(delta: float) -> void:
 	fireball_sprite.flip_h = (direction > 0)
 	move_local_x(direction * SPEED * delta)
 	
-	if ray_cast_2d.is_colliding():
+	if ray_cast_2d.is_colliding(): #Collision mit Wänden
 		fireball_sprite.play("death")
 		await fireball_sprite.animation_finished
 		queue_free()
 
-func _on_hit_box_area_entered(area: Area2D) -> void:
+func _on_hit_box_area_entered(area: Area2D) -> void: #Collision mit Gegnern
 	fireball_sprite.play("death")
 	await fireball_sprite.animation_finished
 	queue_free()

@@ -45,7 +45,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mi4h5"]
-size = Vector2(35, 20)
+size = Vector2(39, 20)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mi4h5"]
 
@@ -65,7 +65,7 @@ damage = 20
 metadata/_custom_type_script = "uid://rb433xiwvdb6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-18.5, -1)
+position = Vector2(-20.5, -1)
 shape = SubResource("RectangleShape2D_mi4h5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

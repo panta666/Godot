@@ -36,11 +36,22 @@ var is_crouching: bool = false
 
 #Variablen für Attacke und Range Attacke
 var is_attacking = false
+
+const ATTACK_COOLDOWN = 0.5
+var attack_timer = 0.0
+var can_attack = true
+
 @onready var hit_box_left: HitBox = $HitBoxLeft
 @onready var hit_box_right: HitBox = $HitBoxRight
 @onready var hit_box_down: HitBox = $HitBoxDown
 @onready var hit_box_up: HitBox = $HitBoxUp
 @onready var fireball = preload("res://scenes/fireball.tscn")
+
+@onready var sprite_right_hitbox: AnimatedSprite2D = $HitBoxRight/SpriteRightHitbox
+@onready var sprite_left_hitbox: AnimatedSprite2D = $HitBoxLeft/SpriteLeftHitbox
+@onready var sprite_up_hitbox: AnimatedSprite2D = $HitBoxUp/SpriteUpHitbox
+@onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
+
 
 #Variablen für Damage nehmen /Knockback
 var is_taking_damage: bool = false
@@ -63,7 +74,15 @@ func _ready() -> void:
 	hit_box_up.monitorable = false
 	hit_box_down.monitorable = false
 
+	sprite_right_hitbox.visible = false
+	sprite_left_hitbox.visible = false
+	sprite_down_hitbox.visible = false
+	sprite_up_hitbox.visible = false
+
 	health_wave.set_health_component(health)
+
+	player_sprite.animation_finished.connect(_on_animation_finished)
+
 
 
 func _physics_process(delta: float) -> void:
@@ -99,18 +118,21 @@ func _physics_process(delta: float) -> void:
 		if not is_crouching:
 			handle_movement()
 
+	#Dash Aktiv ?
+	stop_dashing(delta)
+
 	#Handle-Dash
 	if Input.is_action_just_pressed("dash") and can_dash and dash_timer <= 0 and dash_count == 1 and forced_crouch == false:
 		handle_dash()
-
-	#Dash Aktiv ?
-	stop_dashing(delta)
 
 	#Handle Crouching
 	if Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
 		handle_crouching()
 	else:
 		stop_crouching()
+
+	#Handle Attack_Timner
+	countdown_attack_timer(delta)
 
 	#Handle Attack
 	if Input.is_action_just_pressed("attack"):
@@ -119,6 +141,7 @@ func _physics_process(delta: float) -> void:
 	#Handle Range Attack
 	if Input.is_action_just_pressed("range_attack"):
 		handle_range_attack()
+
 
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
@@ -217,39 +240,24 @@ func stop_dashing(delta: float):
 
 #Handle Attack
 func handle_attack():
-	if is_attacking:
+	if is_attacking or not can_attack:
 		return
 
 	is_attacking = true
+	can_attack = false
+	attack_timer = ATTACK_COOLDOWN
+
 	if Input.is_action_pressed("move_up"):
-		hit_box_up.monitoring = true
-		hit_box_up.monitorable = true
-		print("up_attack")
+		play_slash(sprite_up_hitbox, hit_box_up)
 	elif Input.is_action_pressed("move_down") and not is_on_floor():
-		hit_box_down.monitoring = true
-		hit_box_down.monitorable = true
-		print("down_attack")
+		play_slash(sprite_down_hitbox, hit_box_down)
 	elif last_facing_direction > 0:
-		hit_box_right.monitorable = true
-		hit_box_right.monitoring = true
-		print("right_attack")
+		play_slash(sprite_right_hitbox, hit_box_right)
 	else:
-		hit_box_left.monitorable = true
-		hit_box_left.monitoring = true
-		print("left_attack")
+		play_slash(sprite_left_hitbox, hit_box_left)
 
-	await player_sprite.animation_finished
 
-	hit_box_down.monitoring = false
-	hit_box_down.monitorable = false
-	hit_box_up.monitoring = false
-	hit_box_up.monitorable = false
-	hit_box_right.monitorable = false
-	hit_box_left.monitorable = false
-	hit_box_right.monitoring = false
-	hit_box_left.monitoring = false
-	is_attacking = false
-
+#Handle Range Attack
 func handle_range_attack():
 	if is_attacking:
 		return
@@ -264,15 +272,42 @@ func handle_range_attack():
 	var f = fireball.instantiate()
 
 	if last_facing_direction > 0: #nach Rechts schießen
-		f.position = global_position + Vector2(30, 0)
+		f.position = global_position + Vector2(20, 0)
 		f.direction = 1
 		print("right_range")
 	else:	#nach Links schießen
 		f.direction = -1
 		print("left_range")
-		f.position = global_position + Vector2(-30, 0)
+		f.position = global_position + Vector2(-20, 0)
 		
 	get_parent().add_child(f)
+
+#Handle Attack Cooldown
+func countdown_attack_timer(delta: float):
+	if not can_attack:
+		attack_timer -= delta
+		if attack_timer <= 0:
+			can_attack = true
+
+#Damit man nicht in Animation stuck ist
+func _on_animation_finished():
+	if player_sprite.animation.begins_with("attack") or player_sprite.animation.begins_with("range_attack"):
+		is_attacking = false
+
+
+#Handle Slash-Animationwwwww
+func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
+	hitbox.monitorable = true
+	hitbox.monitoring = true
+	sprite.visible = true
+	sprite.play("slash")
+	sprite.animation_finished.connect(func ():
+		hitbox.monitorable = false
+		hitbox.monitoring = false
+		sprite.visible = false
+	)
+
+
 
 #Handle Take Damage
 func received_damage(damage: int) -> void:
@@ -346,6 +381,7 @@ func update_animation():
 				player_sprite.play("range_attack")
 			else:
 				player_sprite.play("attack")
+				#sprite_right_hitbox.play("slash")
 		return
 
 	if is_dashing:
