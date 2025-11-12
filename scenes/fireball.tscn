@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://c0xr60xegk3f3"]
+
+[ext_resource type="Texture2D" uid="uid://c0712qxpxtoo7" path="res://assets/fire ball/fire splat 1.png" id="1_86oub"]
+[ext_resource type="Script" uid="uid://dhplbhsk1gwlt" path="res://scripts/fireball.gd" id="1_qaphm"]
+[ext_resource type="Texture2D" uid="uid://7puqvpgl8o8y" path="res://assets/fire ball/fire splat 2.png" id="2_qaphm"]
+[ext_resource type="Texture2D" uid="uid://bxgoxc8yxc8ft" path="res://assets/fire ball/fire splat 3.png" id="3_mi4h5"]
+[ext_resource type="Texture2D" uid="uid://ohgdhxon71f7" path="res://assets/fire ball/fire splat 44.png" id="4_wyo3q"]
+[ext_resource type="Texture2D" uid="uid://ch3vs27owjkoo" path="res://assets/fire ball/fire ball 1.png" id="5_1fb5b"]
+[ext_resource type="Texture2D" uid="uid://d0bmy44tpjmqf" path="res://assets/fire ball/fire ball 2.png" id="6_tyqc2"]
+[ext_resource type="Texture2D" uid="uid://dt2h8wxhq5v53" path="res://assets/fire ball/fire ball 3.png" id="7_pq144"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="9_mi4h5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0rtms"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_86oub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qaphm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mi4h5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wyo3q")
+}],
+"loop": false,
+"name": &"death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1fb5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tyqc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pq144")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi4h5"]
+size = Vector2(35, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mi4h5"]
+
+[node name="Fireball" type="CharacterBody2D"]
+script = ExtResource("1_qaphm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0rtms")
+animation = &"run"
+autoplay = "run"
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 32
+script = ExtResource("9_mi4h5")
+damage = 20
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-18.5, -1)
+shape = SubResource("RectangleShape2D_mi4h5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-27, -1)
+shape = SubResource("CircleShape2D_mi4h5")
+disabled = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(6, 0)
+target_position = Vector2(-57, 0)
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]

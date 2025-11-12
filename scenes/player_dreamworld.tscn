@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=128 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
@@ -56,7 +56,13 @@
 [ext_resource type="Texture2D" uid="uid://cakb6tgudt15m" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_002.png" id="43_a5qtf"]
 [ext_resource type="Texture2D" uid="uid://dwpmh1c2kq5qt" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_003.png" id="44_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://jsfguq2li6dp" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_004.png" id="45_3dpfv"]
+[ext_resource type="Texture2D" uid="uid://4ueo0ipga2li" path="res://assets/plattformer_character/animations/fireball/east/frame_000.png" id="45_wd1bp"]
+[ext_resource type="Texture2D" uid="uid://cey76430t5m23" path="res://assets/plattformer_character/animations/fireball/east/frame_001.png" id="46_105pv"]
 [ext_resource type="Texture2D" uid="uid://dqjsfcbkjwexy" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_005.png" id="46_sssl5"]
+[ext_resource type="Texture2D" uid="uid://cker5th2samjc" path="res://assets/plattformer_character/animations/fireball/east/frame_002.png" id="47_swb8n"]
+[ext_resource type="Texture2D" uid="uid://b85teokyhw3l8" path="res://assets/plattformer_character/animations/fireball/east/frame_003.png" id="48_1frwq"]
+[ext_resource type="Texture2D" uid="uid://bj5na3errj3f5" path="res://assets/plattformer_character/animations/fireball/east/frame_004.png" id="49_q6oaw"]
+[ext_resource type="Texture2D" uid="uid://dyuwwwgjgvlnv" path="res://assets/plattformer_character/animations/fireball/east/frame_005.png" id="50_k4woj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3r8r"]
 atlas = ExtResource("3_w3r8r")
@@ -485,6 +491,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("45_wd1bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_105pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_swb8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_1frwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_k4woj")
+}],
+"loop": false,
+"name": &"range_attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w3ag3")
 }, {
 "duration": 1.0,
@@ -565,7 +594,9 @@ offset_bottom = 72.0
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"idle"
+animation = &"range_attack"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

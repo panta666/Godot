@@ -34,13 +34,13 @@ var forced_crouch: bool
 const CROUCH_SPEED:float = 100
 var is_crouching: bool = false
 
-#Variablen für Attack
+#Variablen für Attacke und Range Attacke
 var is_attacking = false
 @onready var hit_box_left: HitBox = $HitBoxLeft
 @onready var hit_box_right: HitBox = $HitBoxRight
 @onready var hit_box_down: HitBox = $HitBoxDown
 @onready var hit_box_up: HitBox = $HitBoxUp
-
+@onready var fireball = preload("res://scenes/fireball.tscn")
 
 #Variablen für Damage nehmen /Knockback
 var is_taking_damage: bool = false
@@ -115,6 +115,10 @@ func _physics_process(delta: float) -> void:
 	#Handle Attack
 	if Input.is_action_just_pressed("attack"):
 		handle_attack()
+
+	#Handle Range Attack
+	if Input.is_action_just_pressed("range_attack"):
+		handle_range_attack()
 
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
@@ -246,6 +250,29 @@ func handle_attack():
 	hit_box_left.monitoring = false
 	is_attacking = false
 
+func handle_range_attack():
+	if is_attacking:
+		return
+
+	is_attacking = true
+
+	await player_sprite.animation_finished
+	print("Range Attack")
+
+	is_attacking = false
+
+	var f = fireball.instantiate()
+
+	if last_facing_direction > 0: #nach Rechts schießen
+		f.position = global_position + Vector2(30, 0)
+		f.direction = 1
+		print("right_range")
+	else:	#nach Links schießen
+		f.direction = -1
+		print("left_range")
+		f.position = global_position + Vector2(-30, 0)
+		
+	get_parent().add_child(f)
 
 #Handle Take Damage
 func received_damage(damage: int) -> void:
@@ -315,6 +342,8 @@ func update_animation():
 				player_sprite.play("attack_up")
 			elif Input.is_action_pressed("move_down") and not is_on_floor():
 				player_sprite.play("attack_down")
+			elif Input.is_action_pressed("range_attack"):
+				player_sprite.play("range_attack")
 			else:
 				player_sprite.play("attack")
 		return
