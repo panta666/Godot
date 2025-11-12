@@ -6,15 +6,31 @@ var current_interactions := []
 var can_interact := true
 
 func _input(event: InputEvent) -> void:
+	# ESC-Menü offen - keine Interaktion erlauben
+	var esc_menu = GlobalScript.esc_menu_instance
+	if esc_menu and (esc_menu.menu_container.visible or esc_menu.options_container.visible):
+		# Menü offen - Interaktion blockieren
+		return
+		
 	if event.is_action_pressed('interact') and can_interact:
-		if current_interactions:
+		if current_interactions.size() > 0:
 			can_interact = false
 			interact_label.hide()
 			
+			# Interaktion ausführen
 			current_interactions[0].interact.call()
+			
+			# Danach wieder freigeben
 			can_interact = true
 
 func _process(_delta: float) -> void:
+	var esc_menu = GlobalScript.esc_menu_instance
+	# Menü offen → keine Anzeige
+	if esc_menu and (esc_menu.menu_container.visible or esc_menu.options_container.visible):
+		interact_label.hide()
+		return
+
+	# Interaktionen sortieren und Label anzeigen
 	if current_interactions and can_interact:
 		current_interactions.sort_custom(_sort_by_nearest)
 		if current_interactions[0].is_interactable:

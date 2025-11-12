@@ -9,18 +9,21 @@ const SCALE_FACTOR = 1.5
 
 var facing_direction: String = "down"
 var sitting: bool = false
-var can_move: bool = true
 
+# --- Bewegung & Interaktion Flags ---
+var can_move: bool = true
+var can_interact: bool = true
+var is_busy: bool = false
+
+# --- Handy Callback ---
+var _mobile_callback: Callable
 
 func _ready() -> void:
-	# Skalierung
 	scale = Vector2(SCALE_FACTOR, SCALE_FACTOR)
 
-	# --- Player global registrieren ---
 	if not Engine.is_editor_hint():
 		GlobalScript.player = self
 
-	# --- Aktivierung abhängig von Szene ---
 	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":
 		disable_player()
 	else:
@@ -31,7 +34,9 @@ func _ready() -> void:
 	set_process(true)
 	set_physics_process(true)
 
-
+# --------------------------
+# Bewegung & Animation
+# --------------------------
 func _physics_process(_delta: float) -> void:
 	if not can_move:
 		return
@@ -44,7 +49,6 @@ func _physics_process(_delta: float) -> void:
 	velocity = input_vector * SPEED
 	move_and_slide()
 
-	# --- Animationen ---
 	if input_vector == Vector2.ZERO:
 		match facing_direction:
 			"up": animated_sprite_2d.play("idle_up")
@@ -62,38 +66,107 @@ func _physics_process(_delta: float) -> void:
 			animated_sprite_2d.play("walk_down")
 			facing_direction = "down"
 
+# --------------------------
+# Handy (ESC) Animationen
+# --------------------------
+func open_mobile(callback: Callable) -> void:
+	print("[PLAYER] open_mobile() gestartet")
+	_mobile_callback = callback
+	animated_sprite_2d.play("mobile_hand")
 
-# --- Hilfsfunktionen ---
+	if animated_sprite_2d.animation_finished.is_connected(_on_mobile_hand_finished):
+		animated_sprite_2d.animation_finished.disconnect(_on_mobile_hand_finished)
+	animated_sprite_2d.animation_finished.connect(_on_mobile_hand_finished)
+
+func _on_mobile_hand_finished() -> void:
+	print("[PLAYER] _on_mobile_hand_finished() aufgerufen | Animation=", animated_sprite_2d.animation)
+	if animated_sprite_2d.animation == "mobile_hand":
+		if animated_sprite_2d.animation_finished.is_connected(_on_mobile_hand_finished):
+			animated_sprite_2d.animation_finished.disconnect(_on_mobile_hand_finished)
+		animated_sprite_2d.play("mobile_idle")
+
+		if _mobile_callback != null and _mobile_callback.is_valid():
+			print("[PLAYER] open_mobile Callback wird ausgeführt")
+			_mobile_callback.call()
+			_mobile_callback = Callable()  # Reset
+
+func close_mobile(callback: Callable = Callable()) -> void:
+	print("[PLAYER] close_mobile() gestartet")
+	_mobile_callback = callback
+	animated_sprite_2d.play("mobile_pocket")
+
+	# Alte Verbindung trennen, falls vorhanden
+	if animated_sprite_2d.animation_finished.is_connected(_on_mobile_pocket_finished):
+		animated_sprite_2d.animation_finished.disconnect(_on_mobile_pocket_finished)
+
+	# Verbindung neu setzen
+	animated_sprite_2d.animation_finished.connect(_on_mobile_pocket_finished)
+
+func _on_mobile_pocket_finished() -> void:
+	print("[PLAYER] _on_mobile_pocket_finished() aufgerufen | Animation=", animated_sprite_2d.animation)
+	if animated_sprite_2d.animation == "mobile_pocket":
+		if animated_sprite_2d.animation_finished.is_connected(_on_mobile_pocket_finished):
+			animated_sprite_2d.animation_finished.disconnect(_on_mobile_pocket_finished)
+		animated_sprite_2d.play("idle_down")
+
+	if _mobile_callback != null and _mobile_callback.is_valid():
+		print("[PLAYER] close_mobile Callback wird ausgeführt")
+		_mobile_callback.call()
+		_mobile_callback = Callable()  # Reset
+
+# --------------------------
+# Hilfsfunktionen
+# --------------------------
 func set_facing_direction(dir: String) -> void:
 	facing_direction = dir
 
 func get_facing_direction() -> String:
 	return facing_direction
 
-func player():
-	pass
+# --------------------------
+# NPC-Richtung
+# --------------------------
+func _face_npc(npc_position: Vector2) -> void:
+	var dir = npc_position - global_position
+	if abs(dir.x) > abs(dir.y):
+		facing_direction = "side"
+		animated_sprite_2d.flip_h = dir.x < 0
+		animated_sprite_2d.play("idle_side")
+	else:
+		if dir.y > 0:
+			facing_direction = "down"
+			animated_sprite_2d.play("idle_down")
+		else:
+			facing_direction = "up"
+			animated_sprite_2d.play("idle_up")
 
-
-# --- Sitz-Logik ---
+# --------------------------
+# Sitz-Logik
+# --------------------------
 func sit_on_chair(target_pos: Vector2) -> void:
 	global_position = target_pos
 	sitting = true
 	can_move = false
+	can_interact = false
+	is_busy = true
 	velocity = Vector2.ZERO
 	animated_sprite_2d.flip_h = false
 	animated_sprite_2d.play("sit")
 
-
 func stand_up(target_pos: Vector2) -> void:
 	sitting = false
 	can_move = true
+	can_interact = true
+	is_busy = false
 	global_position = target_pos
 	animated_sprite_2d.play("idle_down")
 
-
-# --- Aktivierung / Deaktivierung für MainMenu ---
+# --------------------------
+# MainMenu Aktivierung/Deaktivierung
+# --------------------------
 func disable_player() -> void:
 	can_move = false
+	can_interact = false
 	set_process(false)
 	set_physics_process(false)
 	animated_sprite_2d.stop()
@@ -101,6 +174,7 @@ func disable_player() -> void:
 
 func enable_player() -> void:
 	can_move = true
+	can_interact = true
 	set_process(true)
 	set_physics_process(true)
 	visible = true

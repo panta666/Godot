@@ -1,8 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://sxc5oblkvejp"]
+[gd_scene load_steps=64 format=3 uid="uid://sxc5oblkvejp"]
 
 [ext_resource type="Script" uid="uid://cgoc1ya8wq8xj" path="res://scripts/player_realworld.gd" id="1_r46w1"]
 [ext_resource type="Texture2D" uid="uid://w2180mglnytw" path="res://assets/characters/Adam_idle_anim_16x16.png" id="1_w8k1j"]
 [ext_resource type="Texture2D" uid="uid://bjqv33fy708yl" path="res://assets/characters/Adam_sit2_16x16.png" id="2_so0tf"]
+[ext_resource type="Texture2D" uid="uid://cnmi5r7qi63ft" path="res://assets/characters/Adam_phone_16x16.png" id="3_hu31r"]
 [ext_resource type="Texture2D" uid="uid://d0miohmums12w" path="res://assets/characters/Adam_run_16x16.png" id="3_r46w1"]
 [ext_resource type="PackedScene" uid="uid://bnyiexpv6yii2" path="res://scenes/interacting_component.tscn" id="4_so0tf"]
 
@@ -77,6 +78,54 @@ region = Rect2(160, 0, 16, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8kyd"]
 atlas = ExtResource("1_w8k1j")
 region = Rect2(176, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l0ai"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bn08"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktrvk"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikwes"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb5w8"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjwsa"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxare"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p7rp"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ybr"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8xf5"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh0i8"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5s28"]
+atlas = ExtResource("3_hu31r")
+region = Rect2(0, 0, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3ee4"]
 atlas = ExtResource("2_so0tf")
@@ -247,6 +296,57 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7l0ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bn08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktrvk")
+}],
+"loop": false,
+"name": &"mobile_hand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikwes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb5w8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjwsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxare")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2p7rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ybr")
+}],
+"loop": true,
+"name": &"mobile_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8xf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh0i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5s28")
+}],
+"loop": false,
+"name": &"mobile_pocket",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_c3ee4")
 }, {
 "duration": 1.0,
@@ -341,6 +441,51 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bn08"]
 radius = 6.0
 
+[sub_resource type="GDScript" id="GDScript_r46w1"]
+script/source = "extends Camera2D
+class_name Realworld_Player_Camera
+
+# Kamera-Einstellungen
+var smoothing_enabled := true
+var smoothing_speed := 5.0
+
+#func _ready() -> void:
+	#make_current()  # Kamera aktivieren
+
+	# Smoothing aktivieren
+	#smoothing_enabled = true
+	#smoothing_speed = 5.0
+
+	# TileMapBounds-Signal verbinden
+	#GlobalScript.TileMapBoundsChanged.connect(UpdateLimits)
+
+	# Falls die Bounds schon gesetzt wurden
+	#if GlobalScript.current_tilemap_bounds and GlobalScript.current_tilemap_bounds.size() == 2:
+		#UpdateLimits(GlobalScript.current_tilemap_bounds)
+
+func _process(_delta: float) -> void:
+	if not GlobalScript.player or not is_instance_valid(GlobalScript.player):
+		return
+	
+	# Kamera folgt Player
+	global_position = GlobalScript.player.global_position
+
+func UpdateLimits(bounds: Array[Vector2]) -> void:
+	if not bounds or bounds.size() < 2:
+		push_warning(\"Ungültige Bounds: %s\" % [bounds])
+		return
+
+	var top_left: Vector2 = bounds[0]
+	var bottom_right: Vector2 = bounds[1]
+
+	limit_left = int(top_left.x)
+	limit_top = int(top_left.y)
+	limit_right = int(bottom_right.x)
+	limit_bottom = int(bottom_right.y)
+
+	print(\"[Camera] Limits gesetzt -> L/T/R/B:\", limit_left, limit_top, limit_right, limit_bottom)
+"
+
 [node name="Player_Realworld" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
@@ -349,7 +494,7 @@ script = ExtResource("1_r46w1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_7l0ai")
-animation = &"idle_up"
+animation = &"mobile_pocket"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8bn08")
@@ -357,5 +502,12 @@ shape = SubResource("CircleShape2D_8bn08")
 [node name="InteractingComponent" parent="." instance=ExtResource("4_so0tf")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_enabled = false
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.05
+drag_top_margin = 0.02
+drag_right_margin = 0.05
+drag_bottom_margin = 0.02
+script = SubResource("GDScript_r46w1")

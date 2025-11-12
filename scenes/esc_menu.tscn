@@ -303,10 +303,10 @@ script = ExtResource("1_7f7ni")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 220.0
-offset_top = 299.0
-offset_right = 381.0
-offset_bottom = 332.0
+offset_left = 712.0
+offset_top = 101.0
+offset_right = 873.0
+offset_bottom = 134.0
 
 [node name="PhoneScreenContainer" type="Control" parent="Control"]
 clip_contents = true
