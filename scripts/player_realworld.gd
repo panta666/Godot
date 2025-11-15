@@ -11,6 +11,15 @@ var facing_direction: String = "down"
 var sitting: bool = false
 var can_move: bool = true
 
+# Sounds für random footsteps
+const FOOTSTEP_SOUNDS = [
+	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_001.ogg"),
+	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_002.ogg"),
+	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_003.ogg"),
+	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_004.ogg")
+]
+
+@onready var footstep_player = $FootstepPlayer
 
 func _ready() -> void:
 	# Skalierung
@@ -61,6 +70,7 @@ func _physics_process(_delta: float) -> void:
 		elif input_vector.y > 0:
 			animated_sprite_2d.play("walk_down")
 			facing_direction = "down"
+		play_footstep_sound()
 
 
 # --- Hilfsfunktionen ---
@@ -73,6 +83,21 @@ func get_facing_direction() -> String:
 func player():
 	pass
 
+func play_footstep_sound():
+	# Verhindert, dass Sounds sich überlagern, wenn die Funktion
+	# schnell hintereinander aufgerufen wird
+	if footstep_player.is_playing():
+		return
+
+	# Wählt einen zufälligen Sound aus der Liste
+	footstep_player.stream = FOOTSTEP_SOUNDS.pick_random()
+
+	# Variiert die Tonhöhe leicht (zwischen 90% und 110%)
+	# Dies ist der wichtigste Trick, damit es nicht robotisch klingt!
+	footstep_player.pitch_scale = randf_range(0.9, 1.1)
+
+	# Spielt den Sound ab
+	footstep_player.play()
 
 # --- Sitz-Logik ---
 func sit_on_chair(target_pos: Vector2) -> void:
