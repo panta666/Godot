@@ -1,0 +1,88 @@
+name: Run Godot Tests (GUT)
+
+# Dieser Workflow wird ausgelöst, wenn ein Pull Request
+# auf die Branches 'main' oder 'develop' erstellt oder aktualisiert wird.
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+env:
+  GODOT_VERSION: 4.5 # Stelle sicher, dass dies dieselbe Version wie dein Projekt ist
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    # WICHTIG: Verwende einen Container, der bereits Godot Headless
+    # enthält, oder installiere es manuell. Wir verwenden hier einen
+    # vorgefertigten Docker-Container, der Godot-headless enthält.
+    # Dies ist oft zuverlässiger als die manuelle Installation.
+    # (Dieser Container wird von der Community gepflegt)
+    container:
+      image: barichello/godot-ci:4.5-stable
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          # WICHTIG: GUT muss als Addon in deinem Repository
+          # (z.B. im Ordner 'addons/gut') eingecheckt sein!
+          submodules: 'recursive'
+
+      - name: Verzeichnis-Check (Stelle sicher, dass alles kopiert wurde)
+        run: |
+          echo "Verifying required directories..."
+          # Prüfe, ob die Haupt-Skriptordner vorhanden sind
+          if [ ! -d "scripts" ]; then
+              echo "FEHLER: 'scripts' Verzeichnis nicht gefunden." >&2
+              exit 1
+          fi
+          if [ ! -d "tests" ]; then
+              echo "FEHLER: 'tests' Verzeichnis nicht gefunden." >&2
+              exit 1
+          fi
+          # Prüfe, ob das GUT-Addon (Submodul) korrekt geladen wurde
+          if [ ! -d "addons/gut" ]; then
+              echo "FEHLER: 'addons/gut' Verzeichnis nicht gefunden. Submodul-Checkout fehlgeschlagen?" >&2
+              exit 1
+          fi
+          echo "Alle Verzeichnisse vorhanden."
+
+      - name: Test-Abdeckung prüfen (Script/Test-Paarung)
+        run: |
+          echo "Checking test coverage (scripts/ vs tests/)..."
+          PASSED=true
+          # Durchlaufe jedes .gd Skript im 'scripts' Ordner
+          for script in $(find scripts -type f -name "*.gd"); do
+              # Extrahiere den reinen Dateinamen (z.B. player.gd)
+              FILENAME=$(basename $script)
+              # Erstelle den erwarteten Pfad zur Testdatei (z.B. tests/test_player.gd)
+              EXPECTED_TEST="tests/test_$FILENAME"
+          
+              # Prüfe, ob die Testdatei NICHT existiert
+              if [ ! -f "$EXPECTED_TEST" ]; then
+                  echo "FEHLER: Fehlender Test für $script. Erwartete Datei: $EXPECTED_TEST" >&2
+                  PASSED=false
+              else
+                  echo "OK: Test $EXPECTED_TEST für $script gefunden."
+              fi
+          done
+          
+          # Beende den Job mit Fehler, wenn ein Test fehlt
+          if [ "$PASSED" = false ]; then
+              echo "Test-Abdeckungs-Check fehlgeschlagen. Bitte erstelle die fehlenden Testdateien." >&2
+              exit 1
+          fi
+          echo "Test-Abdeckungs-Check bestanden."
+
+      - name: Run GUT CLI Tests
+        run: |
+          echo "Starting GUT tests..."
+          # Godot wird im Headless-Modus gestartet (-e für exit after running).
+          # -s startet das gut_cli.gd Skript.
+          # -gdir gibt das Verzeichnis an, in dem deine Tests liegen.
+          # -gexit beendet Godot nach den Tests mit einem Fehlercode,
+          # falls Tests fehlschlagen, was die CI stoppt.
+          godot --headless --path . -s addons/gut/gut_cmdln.gd -gdir=res://tests -gexit
