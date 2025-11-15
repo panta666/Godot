@@ -7,7 +7,7 @@ class_name Global
 var current_scene: String = "realworld_classroom_one"
 var next_scene: String = ""
 var transition_scene: bool = false
-var pending_spawn: bool = false 
+var pending_spawn: bool = false
 
 # -------------------------
 # Spieler-Infos
@@ -17,8 +17,12 @@ var player_positions := {
 	"realworld_hall": Vector2(568, 374)
 }
 
+
 var player: Node = null
 var game_first_loading: bool = true
+
+const AUDIO_BUSES = ['Master', 'Music', 'SFX']
+
 
 # -------------------------
 # Neues Spiel starten
@@ -50,6 +54,7 @@ func spawn_player() -> void:
 	else:
 		player.global_position = Vector2(504, 340)  # Fallback
 
+
 # -------------------------
 # Player mit Szene wechseln
 # -------------------------
@@ -64,27 +69,62 @@ func move_player_to_current_scene() -> void:
 			player.visible = true
 			player.can_move = true
 
+
 # -------------------------
 # Szene wechseln
 # -------------------------
 func change_scene(new_scene: String) -> void:
-	# Alte Szene entfernen
+	# 🔹 Dialogic-Instanz entfernen, wenn vorhanden
+	var dialogic_node = get_tree().root.get_node_or_null("DialogicLayout_VisualNovelStyle")
+	if dialogic_node:
+		print("Entferne alte Dialogic-Instanz vor Szenenwechsel …")
+		dialogic_node.queue_free()
+
+	# 🔹 Alte Szene entfernen
 	var old_scene = get_tree().current_scene
 	if old_scene:
 		old_scene.queue_free()
 
-	# Neue Szene laden
+	# 🔹 Neue Szene laden
 	var scene_path := "res://scenes/%s.tscn" % new_scene
 	var new_scene_instance = load(scene_path).instantiate()
 	get_tree().root.add_child(new_scene_instance)
-	get_tree().current_scene = new_scene_instance  # richtig setzen
+	get_tree().current_scene = new_scene_instance
 
 	current_scene = new_scene
 
-	# Player verschieben
+	# 🔹 Player verschieben oder neu hinzufügen
 	move_player_to_current_scene()
 
-	# Spieler sichtbar & aktiv
+	# 🔹 Sichtbarkeit sicherstellen
 	if player:
 		player.visible = true
 		player.can_move = true
+		print("Player wurde nach Szenenwechsel in %s gesetzt" % new_scene)
+
+
+# ==========================================================
+#                     ESC-MENÜ SYSTEM
+# ==========================================================
+
+var esc_menu_scene := preload("res://scenes/esc_menu.tscn")
+var esc_menu_instance: CanvasLayer = null
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("esc_menu"):  # Standardmäßig Escape
+		_toggle_esc_menu()
+
+func _toggle_esc_menu() -> void:
+	# ❌ Nicht im Hauptmenü anzeigen
+	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":
+		return
+
+	if not esc_menu_instance:
+		esc_menu_instance = esc_menu_scene.instantiate()
+		get_tree().root.add_child(esc_menu_instance)
+		esc_menu_instance.open_menu()
+	else:
+		if esc_menu_instance.visible:
+			esc_menu_instance.close_menu()
+		else:
+			esc_menu_instance.open_menu()

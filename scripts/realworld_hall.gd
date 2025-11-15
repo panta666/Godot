@@ -6,6 +6,8 @@ var level_ui: CanvasLayer
 const PLAYER_SPAWN_POS := Vector2(144, 67)
 
 func _ready() -> void:
+	# Speichert die aktuelle Szene für continue
+	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
 	# --- Player sicher in die aktuelle Szene verschieben oder neu spawnen ---
 	GlobalScript.move_player_to_current_scene()
 

@@ -4,6 +4,9 @@ var level_ui
 const PLAYER_SPAWN_POS_FROM_HALL := Vector2(568, 362)  # Position, wenn Player aus Hall kommt
 
 func _ready() -> void:
+	MusicManager.playMusic(MusicManager.MusicType.HUB)
+	# Speichert die aktuelle Szene für continue
+	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
 	print("Classroom Szene geladen")
 
 	# --- Player sicherstellen ---

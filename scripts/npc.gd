@@ -8,25 +8,23 @@ extends CharacterBody2D
 @onready var interactable: Area2D = $Interactable
 @onready var interact_range: Area2D = $InteractRange
 
-# Player wird über GlobalScript referenziert
 var player: PlayerRealworld = null
-
-# --- Status & Verhalten ---
 var dialog_active: bool = false
 var dialog_instance: Node = null
 var idle_timer: Timer
 var current_target: Vector2 = Vector2.ZERO
 
-# --- Pfadbezogen ---
 var path_follow: PathFollow2D = null
 var current_facing: String = "down"
 var patrol_forward: bool = true
 var last_path_pos: Vector2 = Vector2.ZERO
 
-
+# --------------------------
+# Ready
+# --------------------------
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		player = GlobalScript.player  # Immer die aktuelle Player-Instanz aus GlobalScript verwenden
+		call_deferred("_setup_player")
 
 	if not npc_data:
 		push_error("Kein NPCData zugewiesen für " + name)
@@ -47,9 +45,8 @@ func _ready() -> void:
 		interact_range.connect("body_exited", Callable(self, "_on_range_exited"))
 	else:
 		interactable.is_interactable = false
-		interactable.interact_name = ""
 
-	# --- Timer für Idle / Random Walk ---
+	# --- Idle/Random Timer ---
 	idle_timer = Timer.new()
 	idle_timer.wait_time = npc_data.wander_interval
 	idle_timer.one_shot = false
@@ -57,7 +54,7 @@ func _ready() -> void:
 	add_child(idle_timer)
 	idle_timer.connect("timeout", Callable(self, "_on_idle_behavior"))
 
-	# --- PathFollow Setup für Patrol ---
+	# --- Patrol Setup ---
 	if not Engine.is_editor_hint() and npc_data.behavior_type == npc_data.BehaviorType.PATROL and npc_data.path_node != null:
 		var path = get_node_or_null(npc_data.path_node)
 		if path and path is Path2D:
@@ -73,11 +70,16 @@ func _ready() -> void:
 				position = Vector2.ZERO
 			last_path_pos = path_follow.global_position
 
+	# --- Dialogic-Signal global verbinden ---
+	if not Engine.is_editor_hint():
+		Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
 
+
+# --------------------------
+# Bewegung / Verhalten
+# --------------------------
 func _physics_process(delta: float) -> void:
-	if dialog_active:
-		return
-	if not player:
+	if dialog_active or not player:
 		return
 
 	match npc_data.behavior_type:
@@ -88,10 +90,6 @@ func _physics_process(delta: float) -> void:
 		_:
 			pass
 
-
-# --------------------------
-# Idle / Random Walk
-# --------------------------
 func _on_idle_behavior() -> void:
 	if dialog_active or not player:
 		return
@@ -102,16 +100,13 @@ func _on_idle_behavior() -> void:
 		npc_data.BehaviorType.RANDOM_WALK:
 			_set_random_target()
 
-
 func _turn_random() -> void:
 	var dirs = ["up", "down", "left", "right"]
 	_set_facing(dirs[randi() % dirs.size()])
 
-
 func _set_random_target() -> void:
 	var directions = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
 	current_target = global_position + directions[randi() % directions.size()] * 32
-
 
 func _random_walk(delta: float) -> void:
 	if current_target == Vector2.ZERO:
@@ -137,10 +132,6 @@ func _random_walk(delta: float) -> void:
 	else:
 		_update_walk_animation(dir_vec)
 
-
-# --------------------------
-# Patrol über PathFollow2D
-# --------------------------
 func _patrol(delta: float) -> void:
 	if not path_follow:
 		return
@@ -156,7 +147,6 @@ func _patrol(delta: float) -> void:
 		path_follow.progress -= speed
 
 	var curve_length = curve.get_baked_length()
-
 	if path_follow.progress >= curve_length:
 		path_follow.progress = curve_length
 		patrol_forward = false
@@ -174,10 +164,6 @@ func _patrol(delta: float) -> void:
 	else:
 		animated_sprite.play(_idle_animation_for_current_facing())
 
-
-# --------------------------
-# Walk Animation Helper
-# --------------------------
 func _update_walk_animation(dir_vec: Vector2) -> void:
 	if abs(dir_vec.x) > abs(dir_vec.y):
 		if dir_vec.x > 0:
@@ -195,7 +181,6 @@ func _update_walk_animation(dir_vec: Vector2) -> void:
 		else:
 			current_facing = "up"
 			animated_sprite.play(npc_data.walk_up)
-
 
 func _idle_animation_for_current_facing() -> String:
 	match current_facing:
@@ -221,7 +206,6 @@ func _on_range_entered(body: Node) -> void:
 		var ic = player.get_node("InteractingComponent")
 		ic._on_interact_range_area_entered(interactable)
 
-
 func _on_range_exited(body: Node) -> void:
 	if not player or body != player:
 		return
@@ -233,7 +217,6 @@ func _on_range_exited(body: Node) -> void:
 		var ic = player.get_node("InteractingComponent")
 		ic._on_interact_range_area_exited(interactable)
 
-
 func _on_interact() -> void:
 	if not player or dialog_active or not npc_data.can_talk:
 		return
@@ -243,17 +226,30 @@ func _on_interact() -> void:
 
 	dialog_active = true
 	interactable.is_interactable = false
-
 	player.can_move = false
+
 	if player.has_node("InteractingComponent"):
 		var ic = player.get_node("InteractingComponent")
 		ic.can_interact = false
 
 	_face_player()
 
+	# Entferne alte Dialogic-Instanzen
+	for child in get_tree().root.get_children():
+		if "DialogicLayout" in child.name:
+			child.queue_free()
+
+	# Starte Dialogic
 	dialog_instance = Dialogic.start(npc_data.dialog_timeline_path)
+
+	# Charakter registrieren, falls vorhanden
+	if npc_data.dialogic_character:
+		dialog_instance.register_character(npc_data.dialogic_character, self)
+	else:
+		push_warning("Kein Dialogic-Character in NPCData gesetzt für " + npc_data.npc_name)
+
+	# timeline-ende Signale verbinden
 	if dialog_instance:
-		get_tree().root.add_child(dialog_instance)
 		if dialog_instance.has_signal("timeline_ended"):
 			dialog_instance.connect("timeline_ended", Callable(self, "_on_dialog_ended"))
 		elif dialog_instance.has_signal("dialogic_timeline_end"):
@@ -261,13 +257,11 @@ func _on_interact() -> void:
 		else:
 			dialog_instance.connect("tree_exited", Callable(self, "_on_dialog_ended"))
 
-
 func _on_dialog_ended() -> void:
 	if not dialog_active:
 		return
 
 	dialog_active = false
-
 	if dialog_instance and dialog_instance.get_parent():
 		dialog_instance.queue_free()
 	dialog_instance = null
@@ -294,7 +288,6 @@ func _face_player() -> void:
 	else:
 		_set_facing("down" if dir.y > 0 else "up")
 
-
 func _set_facing(dir: String) -> void:
 	current_facing = dir
 	match dir:
@@ -309,6 +302,26 @@ func _set_facing(dir: String) -> void:
 		_:
 			animated_sprite.play(npc_data.idle_down)
 
+func _on_dialogic_signal(argument: String):
+	if argument == "go_home":
+		get_tree().quit()
 
 func player_in_range() -> bool:
 	return player and interact_range.get_overlapping_bodies().has(player)
+
+# --------------------------
+# Sicheren Player nach Szenenwechsel finden
+# --------------------------
+func _setup_player() -> void:
+	# Warte, bis der Player im GlobalScript gesetzt ist
+	if GlobalScript.player and is_instance_valid(GlobalScript.player):
+		player = GlobalScript.player
+	else:
+		# Falls der Player noch nicht existiert (z. B. beim Szenenwechsel),
+		# warte einen Frame und prüfe erneut
+		await get_tree().process_frame
+		if GlobalScript.player and is_instance_valid(GlobalScript.player):
+			player = GlobalScript.player
+		else:
+			player = null
+			push_warning("Kein gültiger Player: " + name)

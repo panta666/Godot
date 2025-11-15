@@ -21,16 +21,19 @@ func _ready() -> void:
 	if GlobalScript.player and is_instance_valid(GlobalScript.player):
 		GlobalScript.player.visible = false
 		GlobalScript.player.can_move = false
+	
+	# Starte Menümusik.
+	MusicManager.playMusic(MusicManager.MusicType.MENU)
 
 
 # --- Neues Spiel starten ---
 func _on_new_game_pressed() -> void:
-	print("Starte neues Spiel → Gehe zur Hubworld")
+	print("Starte neues Spiel - Gehe zur Hubworld")
 
 	GlobalScript.game_first_loading = true
 	GlobalScript.current_scene = "realworld_classroom_one"
 	GlobalScript.transition_scene = false
-
+	
 	# Scene wechseln → Player wird automatisch über pending_spawn in GlobalScript.spawn_player() hinzugefügt
 	GlobalScript.start_new_game()
 
@@ -55,3 +58,7 @@ func _on_options_closed() -> void:
 # --- Spiel beenden ---
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_continue_pressed() -> void:
+	SaveManager.load_last_scene()

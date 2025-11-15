@@ -11,6 +11,11 @@ extends Area2D
 func _ready() -> void:
 	interactable.interact = _on_interact
 
+# ------------------------------------------------------
+# KOMMENTAR ERINNERUNG FÜR SOUND
+# Handy Sound (aus der Tasche ziehen oder sowas) (benötigen wir auch wenn wir ESC später drücken fürs "Inventar", "Menu" etc.
+# ------------------------------------------------------
+
 func _process(_delta: float) -> void:
 	var player = GlobalScript.player
 	if player and interactable.is_interactable:
@@ -19,7 +24,7 @@ func _process(_delta: float) -> void:
 		else:
 			interactable.interact_name = "Press F to stand up"
 
-func _on_interact():
+func _on_interact() -> void:
 	var player = GlobalScript.player
 	if not player:
 		return
@@ -27,16 +32,18 @@ func _on_interact():
 	var classroom = get_tree().current_scene
 	if not classroom.has_node("LevelUI"):
 		return
-	
+
 	var level_ui = classroom.get_node("LevelUI") as CanvasLayer
-	
+
 	if not player.sitting:
 		# Auf den Stuhl setzen
 		player.sit_on_chair(sit_position)
 		interactable.is_interactable = true
-		level_ui.show_enter_button()
+		# Zeige Phone_Off, PowerArea wird aktiv
+		level_ui.show_phone_off()
 	else:
 		# Aufstehen
 		player.stand_up(stand_position)
 		interactable.is_interactable = true
-		level_ui.hide_enter_button()
+		# Phone komplett ausblenden, egal in welchem Zustand
+		level_ui.hide_phone()

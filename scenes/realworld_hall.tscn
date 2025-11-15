@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=11 format=4 uid="uid://dqloihqvrxpgp"]
 
 [ext_resource type="Script" uid="uid://dk5vsksec6wud" path="res://scripts/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
+[ext_resource type="Texture2D" uid="uid://10pmppui1eeq" path="res://assets/npc_data_animations/npc_portraits/dahm.png" id="4_je2ly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hr5nr"]
 texture = ExtResource("2_6r254")
@@ -4497,6 +4498,19 @@ sources/1 = SubResource("TileSetAtlasSource_cc48g")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je2ly"]
 size = Vector2(35, 32.5)
 
+[sub_resource type="SystemFont" id="SystemFont_je2ly"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6r254"]
+font = SubResource("SystemFont_je2ly")
+font_size = 10
+outline_size = 1
+outline_color = Color(0.7254902, 0.31764707, 0.34901962, 1)
+shadow_color = Color(0, 0, 0, 0.34117648)
+shadow_offset = Vector2(-1, -1)
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(1, 1)
+stacked_shadow_0/color = Color(0.9415527, 0.80734235, 0.7459527, 1)
+
 [node name="Realworld_Hall" type="Node2D"]
 script = ExtResource("1_je2ly")
 
@@ -4554,6 +4568,21 @@ polygon = PackedVector2Array(55, 46, 920, 47, 1330, 47, 1330, 561, 1215, 560, 12
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Classroom_one_door"]
 position = Vector2(144, 37)
 shape = SubResource("RectangleShape2D_je2ly")
+
+[node name="Door_OOP_Label" type="Label" parent="."]
+z_index = 1
+offset_left = 161.0
+offset_top = 5.0
+offset_right = 201.0
+offset_bottom = 28.0
+text = "OOP"
+label_settings = SubResource("LabelSettings_6r254")
+
+[node name="OOP_Picture" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(109, 21)
+scale = Vector2(0.4285711, 0.4285711)
+texture = ExtResource("4_je2ly")
 
 [connection signal="body_entered" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_entered"]
 [connection signal="body_exited" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_exited"]
