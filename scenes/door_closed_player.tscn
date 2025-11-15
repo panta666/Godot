@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://doewejfkw5eds"]
+
+[ext_resource type="AudioStream" uid="uid://ducvyxs06t080" path="res://assets/sfx/829092__fugu__locked-door.wav" id="1_y4uxc"]
+
+[node name="DoorClosedPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_y4uxc")
+bus = &"SFX"

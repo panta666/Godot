@@ -3,6 +3,10 @@ extends Node2D
 var level_ui
 const PLAYER_SPAWN_POS_FROM_HALL := Vector2(568, 362)  # Position, wenn Player aus Hall kommt
 
+
+@onready var door_open_player: AudioStreamPlayer = $Door_Exit/DoorOpenPlayer
+
+
 func _ready() -> void:
 	MusicManager.playMusic(MusicManager.MusicType.HUB)
 	# Speichert die aktuelle Szene für continue
@@ -71,6 +75,7 @@ func _change_scene_to_next() -> void:
 func _on_door_exit_body_entered(body: Node2D) -> void:
 	if GlobalScript.player and body == GlobalScript.player:
 		GlobalScript.transition_scene = true
+		door_open_player.play()
 
 
 func _on_door_exit_body_exited(body: Node2D) -> void:
