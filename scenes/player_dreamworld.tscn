@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=136 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
@@ -56,7 +56,17 @@
 [ext_resource type="Texture2D" uid="uid://cakb6tgudt15m" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_002.png" id="43_a5qtf"]
 [ext_resource type="Texture2D" uid="uid://dwpmh1c2kq5qt" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_003.png" id="44_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://jsfguq2li6dp" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_004.png" id="45_3dpfv"]
+[ext_resource type="Texture2D" uid="uid://4ueo0ipga2li" path="res://assets/plattformer_character/animations/fireball/east/frame_000.png" id="45_wd1bp"]
+[ext_resource type="Texture2D" uid="uid://cey76430t5m23" path="res://assets/plattformer_character/animations/fireball/east/frame_001.png" id="46_105pv"]
 [ext_resource type="Texture2D" uid="uid://dqjsfcbkjwexy" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_005.png" id="46_sssl5"]
+[ext_resource type="Texture2D" uid="uid://cker5th2samjc" path="res://assets/plattformer_character/animations/fireball/east/frame_002.png" id="47_swb8n"]
+[ext_resource type="Texture2D" uid="uid://b85teokyhw3l8" path="res://assets/plattformer_character/animations/fireball/east/frame_003.png" id="48_1frwq"]
+[ext_resource type="Texture2D" uid="uid://bj5na3errj3f5" path="res://assets/plattformer_character/animations/fireball/east/frame_004.png" id="49_q6oaw"]
+[ext_resource type="Texture2D" uid="uid://dyuwwwgjgvlnv" path="res://assets/plattformer_character/animations/fireball/east/frame_005.png" id="50_k4woj"]
+[ext_resource type="Texture2D" uid="uid://d1atpo45f7fum" path="res://assets/plattformer_character/animations/melee_slash/NPT100.png" id="63_q6oaw"]
+[ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="64_k4woj"]
+[ext_resource type="Texture2D" uid="uid://bjlhawrp55nnj" path="res://assets/plattformer_character/animations/melee_slash/NPT102.png" id="65_2ba4m"]
+[ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="66_kneac"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3r8r"]
 atlas = ExtResource("3_w3r8r")
@@ -304,7 +314,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 20.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -321,7 +331,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_down",
-"speed": 20.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -347,7 +357,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_up",
-"speed": 20.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -485,6 +495,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("45_wd1bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_105pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_swb8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_1frwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_k4woj")
+}],
+"loop": false,
+"name": &"range_attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_w3ag3")
 }, {
 "duration": 1.0,
@@ -536,10 +569,90 @@ size = Vector2(14, 39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v17r1"]
 size = Vector2(25.937502, 48.749996)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wd1bp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("63_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_k4woj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_2ba4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_kneac")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 16.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6oaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("63_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_k4woj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_2ba4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_kneac")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 16.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aofeu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4woj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("63_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_k4woj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_2ba4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_kneac")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 16.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w3r8r"]
 size = Vector2(23, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ba4m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("63_q6oaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_k4woj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_2ba4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_kneac")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 16.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agpj8"]
 size = Vector2(15, 41)
@@ -565,7 +678,7 @@ offset_bottom = 72.0
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"idle"
+animation = &"attack_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -588,6 +701,14 @@ position = Vector2(18, -1.1920929e-07)
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_v17r1")
 
+[node name="SpriteRightHitbox" type="AnimatedSprite2D" parent="HitBoxRight"]
+position = Vector2(12.999999, -0.37499833)
+scale = Vector2(0.05664063, 0.103587955)
+sprite_frames = SubResource("SpriteFrames_wd1bp")
+animation = &"slash"
+frame = 3
+frame_progress = 1.0
+
 [node name="HitBoxLeft" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 32
@@ -602,6 +723,16 @@ position = Vector2(-17, -1)
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_v17r1")
 
+[node name="SpriteLeftHitbox" type="AnimatedSprite2D" parent="HitBoxLeft"]
+position = Vector2(-13.999999, -3.0000002)
+rotation = 3.1415927
+scale = Vector2(0.057, 0.108)
+sprite_frames = SubResource("SpriteFrames_q6oaw")
+animation = &"slash"
+frame = 3
+frame_progress = 1.0
+flip_v = true
+
 [node name="HitBoxUp" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 32
@@ -615,6 +746,15 @@ metadata/_custom_type_script = "uid://rb433xiwvdb6"
 position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_aofeu")
 
+[node name="SpriteUpHitbox" type="AnimatedSprite2D" parent="HitBoxUp"]
+position = Vector2(-1.9073486e-06, -26)
+rotation = -1.5707964
+scale = Vector2(0.03727033, 0.041106243)
+sprite_frames = SubResource("SpriteFrames_k4woj")
+animation = &"slash"
+frame = 3
+frame_progress = 1.0
+
 [node name="HitBoxDown" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 32
@@ -627,6 +767,15 @@ metadata/_custom_type_script = "uid://rb433xiwvdb6"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxDown"]
 position = Vector2(-1.5, 22)
 shape = SubResource("RectangleShape2D_w3r8r")
+
+[node name="SpriteDownHitbox" type="AnimatedSprite2D" parent="HitBoxDown"]
+position = Vector2(-3.3704934, 22)
+rotation = 1.5707964
+scale = Vector2(0.04560995, 0.05520546)
+sprite_frames = SubResource("SpriteFrames_2ba4m")
+animation = &"slash"
+frame = 3
+frame_progress = 1.0
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
