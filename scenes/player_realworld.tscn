@@ -349,7 +349,7 @@ script = ExtResource("1_r46w1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
 sprite_frames = SubResource("SpriteFrames_7l0ai")
-animation = &"idle_up"
+animation = &"walk_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8bn08")
@@ -359,3 +359,6 @@ shape = SubResource("CircleShape2D_8bn08")
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

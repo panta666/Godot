@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://cmhtkekesscxr"]
+[gd_scene load_steps=15 format=4 uid="uid://cmhtkekesscxr"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="4_55vsv"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="5_onpry"]
+[ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="5_p60gb"]
 [ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_p60gb"]
 [ext_resource type="Resource" uid="uid://pgpirmi3a1cu" path="res://assets/npc_data_animations/npc_prof.tres" id="8_fktbd"]
 [ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
@@ -4585,6 +4586,8 @@ polygon = PackedVector2Array(95, 126, 625, 126, 624, 410, 585, 410, 585, 427, 54
 z_index = 4
 position = Vector2(567, 416.5)
 shape = SubResource("RectangleShape2D_onpry")
+
+[node name="DoorOpenPlayer" parent="Door_Exit" instance=ExtResource("5_p60gb")]
 
 [node name="NPC" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(145, 196)
