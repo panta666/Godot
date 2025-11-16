@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=17 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -9,8 +9,8 @@
 [ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_p60gb"]
 [ext_resource type="Resource" uid="uid://bfgu0b8j8frw2" path="res://assets/npc_data_animations/dahm.tres" id="7_qgh3e"]
 [ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
-[ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
 [ext_resource type="Resource" uid="uid://bk5m7wfr5ivs5" path="res://assets/npc_data_animations/npc_typ2.tres" id="9_p60gb"]
+[ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("2_sdypo")
