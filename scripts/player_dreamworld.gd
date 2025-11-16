@@ -62,6 +62,7 @@ var knockback_length = 0.2
 var is_alive: bool = true
 @onready var health_wave: Control = $CanvasLayer/HealthWave
 @onready var health: Health = $Health
+var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 
 func _ready() -> void:
 	hit_box_left.monitoring = false
@@ -310,7 +311,7 @@ func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
 
 
 #Handle Take Damage
-func received_damage(damage: int) -> void:
+func received_damage(_damage: int) -> void:
 	if is_dashing:
 		return
 	if is_taking_damage:
@@ -329,9 +330,6 @@ func received_damage(damage: int) -> void:
 	velocity.y = -80.0
 
 	knockback_timer = knockback_length
-
-	print("Player takes", damage, "damage!")
-	print("Player HP: ", health.get_health())
 
 #Apply Knockback on Hit taken
 func apply_knockback(delta: float):
@@ -354,11 +352,35 @@ func _on_health_depleted() -> void:
 	is_crouching = false
 	velocity = Vector2.ZERO
 
+	print("dead")
+
 	player_sprite.play("die")
-
+	await get_tree().create_timer(0.7).timeout
+	player_sprite.position.y = 15.0
 	await player_sprite.animation_finished
-	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
 
+	# Death-Screen zeigen
+	await show_death_screen()
+
+	await blink_overlay("res://scenes/realworld_classroom_one.tscn")
+
+func show_death_screen():
+	var scene = preload("res://scenes/components/death_screen.tscn")
+	var death_screen = scene.instantiate() as CanvasLayer
+	get_tree().root.add_child(death_screen)
+
+	await death_screen.play_screen()
+	await get_tree().create_timer(1.0).timeout
+
+	death_screen.queue_free()
+
+func blink_overlay(next_scene_path: String) -> void:
+	if blink_overlay_scene:
+		var overlay = blink_overlay_scene.instantiate() as CanvasLayer
+		get_tree().root.add_child(overlay)
+
+		var blink_rect = overlay.get_node("Blink_Overlay") as ColorRect
+		blink_rect.play_wake_up(next_scene_path)
 
 
 #Animationen updaten

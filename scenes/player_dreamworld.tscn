@@ -678,7 +678,9 @@ offset_bottom = 72.0
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"attack_down"
+animation = &"die"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
