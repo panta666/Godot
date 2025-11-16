@@ -6,14 +6,18 @@ var player_spawn: Vector2 = Vector2.ZERO
 var previous_scene_spawn: Vector2 = Vector2.ZERO
 var scene_name: String = ""
 
-
-
 func _ready() -> void:
 	MusicManager.playMusic(MusicManager.MusicType.HUB)
 	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
 
 	_init_player()
 	_load_ui()
+
+	# --- Fade-In starten, wenn die vorherige Tür einen Fade-Out ausgelöst hat ---
+	if GlobalScript.last_door_for_transition and is_instance_valid(GlobalScript.last_door_for_transition):
+		var door_node = GlobalScript.last_door_for_transition
+		GlobalScript.last_door_for_transition = null  # Reset, damit nicht nochmal abgespielt wird
+		await door_node._fade_in(2.0)
 
 func _init_player() -> void:
 	# Spieler laden oder übernehmen

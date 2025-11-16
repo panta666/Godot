@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=16 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="4_55vsv"]
+[ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="5_4xjni"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="5_onpry"]
-[ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="5_p60gb"]
 [ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_p60gb"]
 [ext_resource type="Resource" uid="uid://bfgu0b8j8frw2" path="res://assets/npc_data_animations/dahm.tres" id="7_qgh3e"]
 [ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
@@ -3575,6 +3575,12 @@ texture = ExtResource("2_sdypo")
 20:80/0 = 0
 20:80/0/y_sort_origin = -10
 20:80/0/physics_layer_0/polygon_0/points = PackedVector2Array(-26.605667, -6.691246, 25.96841, -6.691246, 30.110607, 14.338383, 19.277164, 14.0197525, 21.188946, 4.4608307, -19.59579, 4.4608307, -19.27716, 14.338383, -29.473343, 14.0197525)
+13:18/0 = 0
+12:17/0 = 0
+12:19/0 = 0
+12:18/0 = 0
+13:17/0 = 0
+13:19/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kr4x2"]
 texture = ExtResource("3_onpry")
@@ -4505,9 +4511,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_55vsv")
 sources/1 = SubResource("TileSetAtlasSource_kr4x2")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_onpry"]
-size = Vector2(42, 31)
-
 [sub_resource type="Curve2D" id="Curve2D_4xjni"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -1.25, 103.750015, 0, 0, 0, 0, -2.5, 268.75, 0, 0, 0, 0, 40.00003, 267.5, 0, 0, 0, 0, 78.75003, 268.75, 0, 0, 0, 0, 80.00003, 158.75002)
@@ -4545,8 +4548,7 @@ tile_set = SubResource("TileSet_x23ky")
 [node name="Wall_bot_Object" type="TileMapLayer" parent="Classroom/Wall_bot"]
 z_index = 3
 y_sort_enabled = true
-position = Vector2(56, 367)
-tile_map_data = PackedByteArray("AAAZAOf/AAAOABEAAAAZAOj/AAAOABIAAAAZAOn/AAAOABMAAAAaAOf/AAAPABEAAAAaAOj/AAAPABIAAAAaAOn/AAAPABMAAAA=")
+position = Vector2(40, 367)
 tile_set = SubResource("TileSet_x23ky")
 
 [node name="Wall_top" type="TileMapLayer" parent="Classroom"]
@@ -4577,17 +4579,15 @@ position = Vector2(180, 327)
 sit_position = Vector2(187, 330)
 stand_position = Vector2(160, 310)
 
+[node name="Door" parent="." instance=ExtResource("5_4xjni")]
+z_index = 7
+position = Vector2(567, 410)
+next_scene = "realworld_hall"
+
 [node name="Collisions" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collisions"]
 polygon = PackedVector2Array(95, 126, 625, 126, 624, 410, 585, 410, 585, 427, 549, 427, 549, 410, 92, 410, 94, 370, 95, 128, 91, 126, 40, 179, 17, 354, 28, 477, 99, 515, 375, 520, 657, 524, 720, 400, 710, 202, 702, 67, 647, 21, 437, 15, 183, 20, 95, 24, 54, 48, 38, 101, 65, 122, 93, 123, 94, 127)
-
-[node name="Door_Exit" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_Exit"]
-z_index = 4
-position = Vector2(567, 416.5)
-shape = SubResource("RectangleShape2D_onpry")
 
 [node name="NPC" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(145, 196)
@@ -4622,8 +4622,3 @@ npc_data = ExtResource("9_p60gb")
 [node name="SFX" type="Node" parent="."]
 
 [node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("10_fktbd")]
-
-[node name="DoorOpenPlayer" parent="SFX" instance=ExtResource("5_p60gb")]
-
-[connection signal="body_entered" from="Door_Exit" to="." method="_on_door_exit_body_entered"]
-[connection signal="body_exited" from="Door_Exit" to="." method="_on_door_exit_body_exited"]
