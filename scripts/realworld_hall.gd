@@ -5,9 +5,11 @@ var level_ui: CanvasLayer
 # Spawn Position von Classroom_One -> Hall
 const PLAYER_SPAWN_POS := Vector2(144, 67)
 
-@onready var door_open_player: AudioStreamPlayer = $Classroom_one_door/DoorOpenPlayer
-@onready var door_closed_door2_player: AudioStreamPlayer = $Classroom_two_door2/DoorClosedPlayer
-@onready var door_closed_door3_player: AudioStreamPlayer = $Classroom_three_door3/DoorClosedPlayer
+
+@onready var door_open_player: AudioStreamPlayer = $SFX/DoorOpenPlayer
+@onready var door_closed_player: AudioStreamPlayer = $SFX/DoorClosedPlayer
+@onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
+
 
 
 func _ready() -> void:
@@ -15,6 +17,9 @@ func _ready() -> void:
 	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
 	# --- Player sicher in die aktuelle Szene verschieben oder neu spawnen ---
 	GlobalScript.move_player_to_current_scene()
+	
+	# Starte Hintergrundgeräusche
+	classroom_ambiance_player.play()
 
 	# --- Player direkt an die Tür setzen ---
 	if GlobalScript.player:
@@ -72,16 +77,9 @@ func _on_classroom_one_door_body_exited(body: Node2D) -> void:
 
 func _on_classroom_two_door_2_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
-		door_closed_door2_player.play()
-
-func _on_classroom_two_door_2_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+		door_closed_player.play()
 
 
 func _on_classroom_three_door_3_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
-		door_closed_door3_player.play()
-
-
-func _on_classroom_three_door_3_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+		door_closed_player.play()
