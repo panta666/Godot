@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=14 format=4 uid="uid://dqloihqvrxpgp"]
 
 [ext_resource type="Script" uid="uid://dk5vsksec6wud" path="res://scripts/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="4_6r254"]
 [ext_resource type="Texture2D" uid="uid://10pmppui1eeq" path="res://assets/npc_data_animations/npc_portraits/dahm.png" id="4_je2ly"]
+[ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="5_2ufs1"]
 [ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://scenes/door_closed_player.tscn" id="5_752cd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hr5nr"]
@@ -4571,23 +4572,17 @@ polygon = PackedVector2Array(55, 46, 920, 47, 1330, 47, 1330, 561, 1215, 560, 12
 position = Vector2(144, 37)
 shape = SubResource("RectangleShape2D_je2ly")
 
-[node name="DoorOpenPlayer" parent="Classroom_one_door" instance=ExtResource("4_6r254")]
-
 [node name="Classroom_two_door2" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Classroom_two_door2"]
 position = Vector2(400, 37)
 shape = SubResource("RectangleShape2D_je2ly")
 
-[node name="DoorClosedPlayer" parent="Classroom_two_door2" instance=ExtResource("5_752cd")]
-
 [node name="Classroom_three_door3" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Classroom_three_door3"]
 position = Vector2(641, 37)
 shape = SubResource("RectangleShape2D_je2ly")
-
-[node name="DoorClosedPlayer" parent="Classroom_three_door3" instance=ExtResource("5_752cd")]
 
 [node name="Door_OOP_Label" type="Label" parent="."]
 z_index = 1
@@ -4603,6 +4598,14 @@ z_index = 1
 position = Vector2(109, 21)
 scale = Vector2(0.4285711, 0.4285711)
 texture = ExtResource("4_je2ly")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("5_2ufs1")]
+
+[node name="DoorClosedPlayer" parent="SFX" instance=ExtResource("5_752cd")]
+
+[node name="DoorOpenPlayer" parent="SFX" instance=ExtResource("4_6r254")]
 
 [connection signal="body_entered" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_entered"]
 [connection signal="body_exited" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_exited"]

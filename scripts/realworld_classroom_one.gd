@@ -5,10 +5,12 @@ const PLAYER_SPAWN_POS_FROM_HALL := Vector2(568, 362)  # Position, wenn Player a
 
 
 @onready var door_open_player: AudioStreamPlayer = $Door_Exit/DoorOpenPlayer
+@onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
 
 
 func _ready() -> void:
 	MusicManager.playMusic(MusicManager.MusicType.HUB)
+	classroom_ambiance_player.play()
 	# Speichert die aktuelle Szene für continue
 	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
 	print("Classroom Szene geladen")
