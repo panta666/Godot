@@ -1,7 +1,7 @@
 extends RealworldScenes
 
 
-@onready var door_open_player: AudioStreamPlayer = $Door_Exit/DoorOpenPlayer
+@onready var door_open_player: AudioStreamPlayer = $SFX/DoorOpenPlayer
 @onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
 
 

@@ -1,6 +1,11 @@
 extends RealworldScenes
 
+@onready var door_open_player: AudioStreamPlayer = $SFX/DoorOpenPlayer
+@onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
+
+
 func _ready() -> void:
+	classroom_ambiance_player.play()
 	scene_name = "realworld_classroom_two"
 	previous_scene_spawn = Vector2(1135, 710) # Wenn aus Hall kommt
 	super._ready()
@@ -8,6 +13,7 @@ func _ready() -> void:
 func _on_door_exit_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		GlobalScript.transition_scene = true
+		door_open_player.play()
 
 func _on_door_exit_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.player:

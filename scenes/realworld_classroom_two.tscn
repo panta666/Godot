@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=16 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://scenes/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="3_cwmjx"]
@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://bndxfw16cb177" path="res://assets/npc_data_animations/npc_typ7.tres" id="7_p33au"]
 [ext_resource type="Resource" uid="uid://cnru41iad6e14" path="res://assets/npc_data_animations/npc_typ8.tres" id="8_1lbkm"]
 [ext_resource type="Resource" uid="uid://djd3jjjpykij8" path="res://assets/npc_data_animations/npc_lady6.tres" id="9_kvmm4"]
+[ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="10_p33au"]
+[ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="11_1lbkm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("3_cwmjx")
@@ -4599,6 +4601,12 @@ npc_data = ExtResource("8_1lbkm")
 [node name="NPC5" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1579, 684)
 npc_data = ExtResource("9_kvmm4")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="DoorOpenPlayer" parent="SFX" instance=ExtResource("10_p33au")]
+
+[node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("11_1lbkm")]
 
 [connection signal="body_entered" from="Door_Exit" to="." method="_on_door_exit_body_entered"]
 [connection signal="body_exited" from="Door_Exit" to="." method="_on_door_exit_body_exited"]

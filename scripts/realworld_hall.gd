@@ -58,6 +58,7 @@ func _on_classroom_two_door_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		GlobalScript.transition_scene = true
 		next_scene_from_door = "realworld_classroom_two"
+		door_open_player.play()
 
 func _on_classroom_two_door_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.player:
