@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		await fireball_sprite.animation_finished
 		queue_free()
 
-func _on_hit_box_area_entered(area: Area2D) -> void: #Collision mit Gegnern
+func _on_hit_box_area_entered(_area: Area2D) -> void: #Collision mit Gegnern
 	fireball_sprite.play("death")
 	await fireball_sprite.animation_finished
 	queue_free()

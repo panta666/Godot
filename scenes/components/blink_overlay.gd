@@ -73,3 +73,13 @@ func animate_shader(param: String, from: float, to: float, duration: float) -> v
 		await get_tree().process_frame
 		t += get_process_delta_time()
 	mat.set_shader_parameter(param, to)
+
+func play_wake_up(next_scene_path: String) -> void:
+	visible = true
+	get_tree().change_scene_to_file(next_scene_path)
+
+	# Aufwachen: Augen öffnen + Blur weg
+	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
+	await animate_shader("blur_strength", max_blur_strength, 0.0, second_blink_duration)
+	
+	visible = false

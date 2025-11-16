@@ -21,7 +21,7 @@ func set_health_component(health: Health):
 	health.max_health_changed.connect(_on_health_changed)
 	health.health_depleted.connect(_on_health_changed)
 
-func _on_health_changed(diff: int = 0):
+func _on_health_changed(_diff: int = 0):
 	queue_redraw()
 
 func _process(delta: float) -> void:
