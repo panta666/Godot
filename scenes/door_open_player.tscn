@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdqaf2dnok7fm"]
+
+[ext_resource type="AudioStream" uid="uid://b2bqiivx7tvvs" path="res://assets/sfx/832737__evamusik__doorhandle.wav" id="1_m08h1"]
+
+[node name="DoorOpenPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_m08h1")
+bus = &"SFX"

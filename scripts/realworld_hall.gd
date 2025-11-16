@@ -5,7 +5,21 @@ var next_scene_from_door: String = ""
 const PLAYER_SPAWN_POS_ONE := Vector2(184, 420)
 const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
 
+
+@onready var door_open_player: AudioStreamPlayer = $SFX/DoorOpenPlayer
+@onready var door_closed_player: AudioStreamPlayer = $SFX/DoorClosedPlayer
+@onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
+
+
+
 func _ready() -> void:
+    # Speichert die aktuelle Szene für continue
+	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
+	# --- Player sicher in die aktuelle Szene verschieben oder neu spawnen ---
+	GlobalScript.move_player_to_current_scene()
+
+	# Starte Hintergrundgeräusche
+	classroom_ambiance_player.play()
 	scene_name = "realworld_hall"
 	player_spawn = Vector2(567, 416) # Standardposition
 	previous_scene_spawn = Vector2.ZERO
@@ -33,6 +47,7 @@ func _on_classroom_one_door_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		GlobalScript.transition_scene = true
 		next_scene_from_door = "realworld_classroom_one"
+		door_open_player.play()
 
 func _on_classroom_one_door_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.player:
@@ -48,3 +63,7 @@ func _on_classroom_two_door_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		GlobalScript.transition_scene = false
 		next_scene_from_door = ""
+
+func _on_classroom_three_door_3_body_entered(body: Node2D) -> void:
+	if body == GlobalScript.player:
+		door_closed_player.play()

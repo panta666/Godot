@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm4bor8s1rv0h"]
+
+[ext_resource type="AudioStream" uid="uid://t1yumkbfpij7" path="res://assets/sfx/765192__janica_uys241180__classroom-ambience.wav" id="1_g0yik"]
+
+[node name="ClassroomAmbiancePlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_g0yik")
+bus = &"SFX"

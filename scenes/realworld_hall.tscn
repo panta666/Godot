@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
 [ext_resource type="Texture2D" uid="uid://ca88g7h8ksquv" path="res://assets/tilemap/32x32/TopDownHouse_DoorsAndWindows.png" id="4_1ug8t"]
+[ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="4_6r254"]
 [ext_resource type="Texture2D" uid="uid://10pmppui1eeq" path="res://assets/npc_data_animations/npc_portraits/dahm.png" id="4_je2ly"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://scenes/npc.tscn" id="5_3x2cr"]
 [ext_resource type="Resource" uid="uid://cttvf6qpmdlt7" path="res://assets/npc_data_animations/npc_typ3.tres" id="6_1ug8t"]
@@ -12,6 +13,8 @@
 [ext_resource type="Resource" uid="uid://natb34qu7bfr" path="res://assets/npc_data_animations/npc_lady5.tres" id="9_w26c5"]
 [ext_resource type="Resource" uid="uid://coirwlyfbwyvn" path="res://assets/npc_data_animations/npc_typ5.tres" id="10_snpmh"]
 [ext_resource type="Resource" uid="uid://bscgws4thhpl2" path="res://assets/npc_data_animations/npc_lady2.tres" id="11_ldiki"]
+[ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="5_2ufs1"]
+[ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://scenes/door_closed_player.tscn" id="5_752cd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_je2ly"]
 texture = ExtResource("2_6r254")
@@ -14158,6 +14161,12 @@ position = Vector2(423, 344.2857)
 position = Vector2(-240, 38.714294)
 shape = SubResource("RectangleShape2D_je2ly")
 
+[node name="Classroom_three_door3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Classroom_three_door3"]
+position = Vector2(641, 37)
+shape = SubResource("RectangleShape2D_je2ly")
+
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-513, 2)
@@ -14202,5 +14211,15 @@ tile_set = SubResource("TileSet_w26c5")
 
 [connection signal="body_entered" from="Classroom_two_door" to="." method="_on_classroom_two_door_body_entered"]
 [connection signal="body_exited" from="Classroom_two_door" to="." method="_on_classroom_two_door_body_exited"]
+[node name="SFX" type="Node" parent="."]
+
+[node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("5_2ufs1")]
+
+[node name="DoorClosedPlayer" parent="SFX" instance=ExtResource("5_752cd")]
+
+[node name="DoorOpenPlayer" parent="SFX" instance=ExtResource("4_6r254")]
+
 [connection signal="body_entered" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_entered"]
 [connection signal="body_exited" from="Classroom_one_door" to="." method="_on_classroom_one_door_body_exited"]
+
+[connection signal="body_entered" from="Classroom_three_door3" to="." method="_on_classroom_three_door_3_body_entered"]

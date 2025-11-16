@@ -1,5 +1,10 @@
 extends RealworldScenes
 
+
+@onready var door_open_player: AudioStreamPlayer = $Door_Exit/DoorOpenPlayer
+@onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
+
+
 func _ready() -> void:
 	scene_name = "realworld_classroom_one"
 	player_spawn = Vector2(504, 340)        # Standardposition
@@ -9,6 +14,7 @@ func _ready() -> void:
 func _on_door_exit_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		GlobalScript.transition_scene = true
+		door_open_player.play()
 
 func _on_door_exit_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.player:

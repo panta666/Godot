@@ -181,11 +181,6 @@ func hide_enter_button():
 	tween = create_tween()
 	tween.tween_property(enter_level_button, "modulate:a", 0.0, 0.3)
 
-# ------------------------------------------------------
-# KOMMENTAR ERRINERUNG FÜR SOUND
-# Ein Gähnen beim Einschlafen beim EnterButton
-# ------------------------------------------------------
-
 
 # ------------------------------------------------------
 # LEVEL BUTTON: Levelwechsel mit Einschlafen/Aufwachen

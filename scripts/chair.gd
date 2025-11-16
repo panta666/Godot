@@ -3,6 +3,8 @@ extends Area2D
 @onready var interactable: Area2D = $Interactable
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+@onready var sound: AudioStreamPlayer = $AudioStreamPlayer
+
 # Position, wo der Charakter "teleportiert" wird, wenn er sitzt
 @export var sit_position: Vector2 = Vector2(102, 125)
 # Position, wo der Charakter nach dem Aufstehen hingestellt wird
@@ -34,7 +36,7 @@ func _on_interact() -> void:
 		return
 
 	var level_ui = classroom.get_node("LevelUI") as CanvasLayer
-
+	sound.play()
 	if not player.sitting:
 		# Auf den Stuhl setzen
 		player.sit_on_chair(sit_position)

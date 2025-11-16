@@ -5,6 +5,9 @@ extends ColorRect
 @export var second_blink_duration := 1.3  # Zweites Blinzeln schneller
 @export var eyes_closed_hold := 0.5       # Zeit, in der die Augen geschlossen bleiben
 @onready var mat := material
+@onready var yawning_player: AudioStreamPlayer = $"../YawningPlayer"
+
+
 
 func _ready():
 	mat.set_shader_parameter("resolution", get_viewport_rect().size)
@@ -17,7 +20,9 @@ func _ready():
 # ------------------------------------------------------
 func play_sleep_wake(next_scene_path: String) -> void:
 	visible = true
-
+	
+	yawning_player.play()
+	
 	# Erstes Blinzeln (langsamer)
 	await animate_blink(first_blink_duration)
 

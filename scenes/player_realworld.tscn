@@ -466,7 +466,7 @@ var smoothing_speed := 5.0
 func _process(_delta: float) -> void:
 	if not GlobalScript.player or not is_instance_valid(GlobalScript.player):
 		return
-	
+
 	# Kamera folgt Player
 	global_position = GlobalScript.player.global_position
 
@@ -511,3 +511,6 @@ drag_top_margin = 0.02
 drag_right_margin = 0.05
 drag_bottom_margin = 0.02
 script = SubResource("GDScript_r46w1")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
