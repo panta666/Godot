@@ -150,4 +150,7 @@ start_facing = "right"
 dialog_timeline_path = "res://dialog/npc_henry_timeline.dtl"
 dialogic_character = ExtResource("1_qx7gc")
 behavior_type = 2
+move_speed = 59.0
+wander_interval = 3.6
+patrol_wait_time = 0.2
 metadata/_custom_type_script = "uid://bclj33y315xbn"

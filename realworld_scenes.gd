@@ -6,6 +6,8 @@ var player_spawn: Vector2 = Vector2.ZERO
 var previous_scene_spawn: Vector2 = Vector2.ZERO
 var scene_name: String = ""
 
+
+
 func _ready() -> void:
 	MusicManager.playMusic(MusicManager.MusicType.HUB)
 	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)

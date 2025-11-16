@@ -2,8 +2,8 @@ extends RealworldScenes
 
 var next_scene_from_door: String = ""
 
-const PLAYER_SPAWN_POS_ONE := Vector2(568, 420)
-const PLAYER_SPAWN_POS_TWO := Vector2(710, 420)
+const PLAYER_SPAWN_POS_ONE := Vector2(184, 420)
+const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
 
 func _ready() -> void:
 	scene_name = "realworld_hall"
