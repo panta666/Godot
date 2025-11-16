@@ -79,14 +79,7 @@ func _on_classroom_two_door_2_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		door_closed_player.play()
 
-func _on_classroom_two_door_2_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
-
 
 func _on_classroom_three_door_3_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		door_closed_player.play()
-
-
-func _on_classroom_three_door_3_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
