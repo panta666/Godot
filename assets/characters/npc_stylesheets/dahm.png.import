@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tljds44inr8f"
-path="res://.godot/imported/[RD]Doors03.png-ca1c4e79848afd2ee9fbfc8aca10bf84.ctex"
+uid="uid://de8c35k0sfhie"
+path="res://.godot/imported/dahm.png-da17e14ac92e65b19459a8df7facfaaf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/doors/[RD]Doors03.png"
-dest_files=["res://.godot/imported/[RD]Doors03.png-ca1c4e79848afd2ee9fbfc8aca10bf84.ctex"]
+source_file="res://assets/characters/npc_stylesheets/dahm.png"
+dest_files=["res://.godot/imported/dahm.png-da17e14ac92e65b19459a8df7facfaaf.ctex"]
 
 [params]
 

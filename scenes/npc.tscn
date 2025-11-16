@@ -18,6 +18,7 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("1_nh2m4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+animation = &""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20)

@@ -227,12 +227,16 @@ func _on_interact() -> void:
 	dialog_active = true
 	interactable.is_interactable = false
 	player.can_move = false
+	player.is_busy = true
 
 	if player.has_node("InteractingComponent"):
 		var ic = player.get_node("InteractingComponent")
 		ic.can_interact = false
-
 	_face_player()
+	
+	# Player schaut auf NPC
+	if player and is_instance_valid(player):
+		player._face_npc(global_position)
 
 	# Entferne alte Dialogic-Instanzen
 	for child in get_tree().root.get_children():
@@ -268,6 +272,7 @@ func _on_dialog_ended() -> void:
 
 	if player:
 		player.can_move = true
+		player.is_busy = false
 		if player.has_node("InteractingComponent"):
 			var ic = player.get_node("InteractingComponent")
 			ic.can_interact = true
