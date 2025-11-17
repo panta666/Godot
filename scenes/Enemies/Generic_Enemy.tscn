@@ -1,10 +1,13 @@
-[gd_scene load_steps=59 format=3 uid="uid://chn72gotg061q"]
+[gd_scene load_steps=61 format=3 uid="uid://chn72gotg061q"]
 
 [ext_resource type="Script" uid="uid://cmqa42vk1r6ay" path="res://scripts/generic_enemy.gd" id="1_3o17i"]
 [ext_resource type="Texture2D" uid="uid://dx4ibd22pdek5" path="res://assets/characters/enemies/Walk_Cycle/0001.png" id="2_downs"]
 [ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_go3w4"]
+[ext_resource type="Resource" uid="uid://ou55octuf0rv" path="res://scenes/Enemies/slash_attack_bug.tres" id="3_7i3vj"]
 [ext_resource type="Texture2D" uid="uid://66qxb7ls0f0m" path="res://assets/characters/enemies/Walk_Cycle/0002.png" id="3_t4mn2"]
 [ext_resource type="Texture2D" uid="uid://kpj0h5ldm031" path="res://assets/characters/enemies/Walk_Cycle/0003.png" id="4_5sdct"]
+[ext_resource type="Script" uid="uid://cdshcdgrunfvm" path="res://scripts/range_attack.gd" id="4_srpwg"]
+[ext_resource type="Resource" uid="uid://b7xc3pllsyhm0" path="res://scenes/Enemies/bug_projectile_attack.tres" id="5_50va1"]
 [ext_resource type="Texture2D" uid="uid://cql5bmqmmnslj" path="res://assets/characters/enemies/Walk_Cycle/0004.png" id="5_80wx8"]
 [ext_resource type="Texture2D" uid="uid://bwudltduyadkq" path="res://assets/characters/enemies/Walk_Cycle/0005.png" id="6_go3w4"]
 [ext_resource type="Texture2D" uid="uid://dq2gufokbb7km" path="res://assets/characters/enemies/Walk_Cycle/0006.png" id="7_7i3vj"]
@@ -52,13 +55,6 @@
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="49_t4mn2"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://scenes/components/health.gd" id="50_5sdct"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="51_80wx8"]
-
-[sub_resource type="Resource" id="Resource_7i3vj"]
-script = ExtResource("2_go3w4")
-attack_duration = 0.75
-pre_attack_duration = 0.5
-post_attack_duration = 0.5
-metadata/_custom_type_script = "uid://d2iv1cx41gku0"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qaa68"]
 animations = [{
@@ -213,22 +209,23 @@ animations = [{
 size = Vector2(62.5, 35.9375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6fs8"]
-size = Vector2(720.00116, 208.75032)
+size = Vector2(1125.0022, 255.0005)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go3w4"]
 size = Vector2(53.750008, 31.250004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80wx8"]
-size = Vector2(65.000015, 33.125008)
+size = Vector2(25.000021, 29.062513)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3o17i")
-attacks = Array[ExtResource("2_go3w4")]([SubResource("Resource_7i3vj")])
+attacks = Array[ExtResource("2_go3w4")]([ExtResource("3_7i3vj")])
+range_attacks = Array[ExtResource("4_srpwg")]([ExtResource("5_50va1")])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("50_5sdct")
-max_health = 21
+max_health = 100
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -245,7 +242,7 @@ shape = SubResource("RectangleShape2D_3o17i")
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(16.25, -7.500001)
 scale = Vector2(0.8, 0.8)
-target_position = Vector2(9.374992, 1.9073486e-06)
+target_position = Vector2(33.115, 0.09)
 
 [node name="RaycastDownRight" type="RayCast2D" parent="."]
 position = Vector2(45, 2.5)
@@ -255,20 +252,20 @@ collision_mask = 5
 
 [node name="Vision_Front" type="RayCast2D" parent="."]
 position = Vector2(1.2500038, 0)
-target_position = Vector2(363.74997, 1.2499999)
+target_position = Vector2(560, 0)
 collision_mask = 2
 
 [node name="Vision_Back" type="RayCast2D" parent="."]
 position = Vector2(-1.2500038, -7.1054274e-15)
-target_position = Vector2(-351.24997, 7.105427e-15)
+target_position = Vector2(-560, 0)
 collision_mask = 2
 
 [node name="Tracking_Box" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tracking_Box"]
-position = Vector2(6.249975, -50.624977)
-scale = Vector2(0.9999982, 0.9999982)
+position = Vector2(3.7498896, -42.499992)
+scale = Vector2(0.9999977, 0.9999977)
 shape = SubResource("RectangleShape2D_p6fs8")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health") groups=["enemy"]]
@@ -284,7 +281,7 @@ scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_go3w4")
 
 [node name="DashingTimer" type="Timer" parent="."]
-wait_time = 0.75
+wait_time = 0.5
 one_shot = true
 
 [node name="DashingCoolDownTimer" type="Timer" parent="."]
@@ -299,11 +296,17 @@ damage = 20
 metadata/_custom_type_script = "uid://rb433xiwvdb6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-3.7499995, 4.0624986)
-scale = Vector2(0.99999946, 0.99999946)
+position = Vector2(31.25, 3.75)
+scale = Vector2(0.9999992, 0.9999992)
 shape = SubResource("RectangleShape2D_80wx8")
 disabled = true
 
+[node name="Attack_Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
+[connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]
 [connection signal="timeout" from="DashingTimer" to="." method="_on_dashing_timer_timeout"]
 [connection signal="timeout" from="DashingCoolDownTimer" to="." method="_on_dashing_cool_down_timer_timeout"]
+[connection signal="timeout" from="Attack_Cooldown" to="." method="_on_attack_cooldown_timeout"]
