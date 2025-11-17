@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=25 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="8_vu5gk"]
 [ext_resource type="PackedScene" uid="uid://71w0wye5dpch" path="res://scenes/death_collider.tscn" id="9_vu5gk"]
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_hrsau"]
+[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="13_6dbnu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -2484,6 +2485,13 @@ sources/7 = SubResource("TileSetAtlasSource_hrsau")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hrsau"]
 
+[sub_resource type="Resource" id="Resource_6dbnu"]
+script = ExtResource("13_6dbnu")
+attack_duration = 0.75
+pre_attack_duration = 0.5
+post_attack_duration = 1.0
+metadata/_custom_type_script = "uid://d2iv1cx41gku0"
+
 [node name="Level_one" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
@@ -2519,3 +2527,4 @@ position = Vector2(251, 71.99999)
 scale = Vector2(0.55, 0.55)
 collision_layer = 4
 collision_mask = 9
+attacks = Array[ExtResource("13_6dbnu")]([SubResource("Resource_6dbnu")])
