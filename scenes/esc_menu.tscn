@@ -463,3 +463,6 @@ min_value = -40.0
 max_value = 0.0
 step = 0.1
 value = -13.0
+
+[connection signal="drag_ended" from="Control/OptionsContainer/VBoxContainer/MasterVolume" to="." method="_on_master_volume_drag_ended"]
+[connection signal="drag_ended" from="Control/OptionsContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_drag_ended"]

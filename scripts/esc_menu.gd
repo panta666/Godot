@@ -199,3 +199,12 @@ func _on_music_volume_value_changed(value: float) -> void:
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(MASTER_BUS, toggled_on)
+	SaveManager.update_is_muted(toggled_on)
+
+
+func _on_master_volume_drag_ended(_value_changed: bool) -> void:
+	SaveManager.update_bus_volume(MASTER_BUS, master_volume.value)
+
+
+func _on_music_volume_drag_ended(_value_changed: bool) -> void:
+	SaveManager.update_bus_volume(MUSIC_BUS, music_volume.value)

@@ -61,4 +61,7 @@ func _on_quit_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	SaveManager.load_last_scene()
+	GlobalScript.game_first_loading = true
+	GlobalScript.transition_scene = false
+	
+	GlobalScript.start_from_menu()

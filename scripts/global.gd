@@ -39,6 +39,15 @@ func start_new_game() -> void:
 	# jetzt Player deferred
 	call_deferred("spawn_player")
 
+func start_from_menu() -> void:
+	pending_spawn = true
+	previous_scene = ""
+	
+	# Scene wechseln - Player wird erst nach SceneReady erzeugt
+	SaveManager.load_last_scene()
+	
+	# Player deferred instanziieren
+	call_deferred("spawn_player")
 
 # -------------------------
 # Spieler instanziieren + unter Szene packen
