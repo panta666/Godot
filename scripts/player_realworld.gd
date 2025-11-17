@@ -34,7 +34,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		GlobalScript.player = self
 
-	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":
+	if get_tree().current_scene and get_tree().current_scene.name == "Main.Menu":
 		disable_player()
 	else:
 		enable_player()

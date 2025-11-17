@@ -8,7 +8,7 @@ var scene_name: String = ""
 
 func _ready() -> void:
 	MusicManager.playMusic(MusicManager.MusicType.HUB)
-	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
+	SaveManager.update_current_scene()
 
 	_init_player()
 	_load_ui()

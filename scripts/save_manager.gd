@@ -8,7 +8,7 @@ const SAVE_PATH = "user://game_save.dat"
 # Hier werden die Standardwerte für ein neues Spiel definiert.
 var save_data = {
 	"game_progress": {
-		"current_scene_path": "res://scenes/MainMenu.tscn" # Standard-Startszene (passe dies an)
+		"current_scene_path": "MainMenu" # Standard-Startszene (passe dies an)
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -105,9 +105,9 @@ func update_is_muted(is_muted: bool):
 
 
 # Wird von deiner Spiellogik aufgerufen (z.B. beim Erreichen eines Checkpoints).
-func update_current_scene(scene_path: String):
-	print("save szene: ", scene_path)
-	save_data["game_progress"]["current_scene_path"] = scene_path
+func update_current_scene():
+	print("save szene: ", GlobalScript.current_scene)
+	save_data["game_progress"]["current_scene_path"] = GlobalScript.current_scene
 	save_game()
 
 # (Vorbereitet für die Zukunft)
@@ -122,16 +122,18 @@ func update_current_scene(scene_path: String):
 
 # Wird vom Hauptmenü aufgerufen, um den "Continue"-Button zu starten.
 func load_last_scene():
+	GlobalScript.previous_scene = ""
 	var scene_path = save_data["game_progress"]["current_scene_path"]
+	print("lade Szene: " + scene_path)
 	
 	# Verhindert den Start im Menü, wenn "Weiter" geklickt wird
-	if scene_path == "res://scenes/MainMenu.tscn":
-		scene_path = "res://scenes/realworld_classroom_one.tscn" # Passe dies an deine erste Szene nach dem Menü an
-		
-	if get_tree().change_scene_to_file(scene_path) != OK:
-		push_error("SaveManager: Gespeicherte Szene ungültig. Lade Fallback-Szene.")
-		# Passe dies an deine Standard-Startszene an
-		get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
+	if scene_path == "MainMenu":
+		scene_path = "realworld_classroom_one" # Passe dies an deine erste Szene nach dem Menü an
+	GlobalScript.current_scene = scene_path
+	#if get_tree().change_scene_to_file("res://scenes/%s.tscn" % scene_path) != OK:
+	#	push_error("SaveManager: Gespeicherte Szene ungültig. Lade Fallback-Szene.")
+	#GlobalScript.current_scene = "realworld_classroom_one"
+	GlobalScript.change_scene(scene_path)
 
 # Wird vom Einstellungsmenü aufgerufen, um die Slider/Checkboxen zu füllen.
 func get_audio_settings() -> Dictionary:

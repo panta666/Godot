@@ -10,7 +10,7 @@ const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
 
 func _ready() -> void:
 	# Speichert die aktuelle Szene für continue
-	SaveManager.update_current_scene(get_tree().current_scene.scene_file_path)
+	SaveManager.update_current_scene()
 	# --- Player sicher in die aktuelle Szene verschieben oder neu spawnen ---
 	GlobalScript.move_player_to_current_scene()
 
