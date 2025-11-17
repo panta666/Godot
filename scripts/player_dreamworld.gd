@@ -64,6 +64,8 @@ var is_alive: bool = true
 @onready var health: Health = $Health
 var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 
+@onready var camera_2d: Camera2D = $Camera2D
+
 func _ready() -> void:
 	hit_box_left.monitoring = false
 	hit_box_right.monitoring = false
@@ -83,6 +85,10 @@ func _ready() -> void:
 	health_wave.set_health_component(health)
 
 	player_sprite.animation_finished.connect(_on_animation_finished)
+	if Player_Realworld != null:
+		Player_Realworld.disable_player()
+	if camera_2d:
+			camera_2d.make_current()
 
 
 

@@ -790,6 +790,9 @@ metadata/_custom_type_script = "uid://doiua0q38uaxe"
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_agpj8")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="body_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
