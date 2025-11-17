@@ -1,8 +1,7 @@
-[gd_scene load_steps=59 format=3 uid="uid://chn72gotg061q"]
+[gd_scene load_steps=57 format=3 uid="uid://chn72gotg061q"]
 
 [ext_resource type="Script" uid="uid://cmqa42vk1r6ay" path="res://scripts/generic_enemy.gd" id="1_3o17i"]
 [ext_resource type="Texture2D" uid="uid://dx4ibd22pdek5" path="res://assets/characters/enemies/Walk_Cycle/0001.png" id="2_downs"]
-[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_go3w4"]
 [ext_resource type="Texture2D" uid="uid://66qxb7ls0f0m" path="res://assets/characters/enemies/Walk_Cycle/0002.png" id="3_t4mn2"]
 [ext_resource type="Texture2D" uid="uid://kpj0h5ldm031" path="res://assets/characters/enemies/Walk_Cycle/0003.png" id="4_5sdct"]
 [ext_resource type="Texture2D" uid="uid://cql5bmqmmnslj" path="res://assets/characters/enemies/Walk_Cycle/0004.png" id="5_80wx8"]
@@ -52,13 +51,6 @@
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="49_t4mn2"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://scenes/components/health.gd" id="50_5sdct"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="51_80wx8"]
-
-[sub_resource type="Resource" id="Resource_7i3vj"]
-script = ExtResource("2_go3w4")
-attack_duration = 0.75
-pre_attack_duration = 0.5
-post_attack_duration = 0.5
-metadata/_custom_type_script = "uid://d2iv1cx41gku0"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qaa68"]
 animations = [{
@@ -213,22 +205,21 @@ animations = [{
 size = Vector2(62.5, 35.9375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6fs8"]
-size = Vector2(720.00116, 208.75032)
+size = Vector2(542.50073, 208.75032)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go3w4"]
 size = Vector2(53.750008, 31.250004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80wx8"]
-size = Vector2(65.000015, 33.125008)
+size = Vector2(52.500008, 27.500004)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3o17i")
-attacks = Array[ExtResource("2_go3w4")]([SubResource("Resource_7i3vj")])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("50_5sdct")
-max_health = 21
+max_health = 20
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -255,20 +246,20 @@ collision_mask = 5
 
 [node name="Vision_Front" type="RayCast2D" parent="."]
 position = Vector2(1.2500038, 0)
-target_position = Vector2(363.74997, 1.2499999)
+target_position = Vector2(273.74997, 0)
 collision_mask = 2
 
 [node name="Vision_Back" type="RayCast2D" parent="."]
 position = Vector2(-1.2500038, -7.1054274e-15)
-target_position = Vector2(-351.24997, 7.105427e-15)
+target_position = Vector2(-269.99997, 7.105427e-15)
 collision_mask = 2
 
 [node name="Tracking_Box" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tracking_Box"]
-position = Vector2(6.249975, -50.624977)
-scale = Vector2(0.9999982, 0.9999982)
+position = Vector2(0, -50.624996)
+scale = Vector2(0.99999833, 0.99999833)
 shape = SubResource("RectangleShape2D_p6fs8")
 
 [node name="HurtBox" type="Area2D" parent="." node_paths=PackedStringArray("health") groups=["enemy"]]
@@ -292,17 +283,13 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HitBox" type="Area2D" parent="."]
-collision_layer = 12
-collision_mask = 13
 script = ExtResource("49_t4mn2")
-damage = 20
 metadata/_custom_type_script = "uid://rb433xiwvdb6"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-3.7499995, 4.0624986)
-scale = Vector2(0.99999946, 0.99999946)
+position = Vector2(-4.9999986, 3.7500005)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_80wx8")
-disabled = true
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="timeout" from="DashingTimer" to="." method="_on_dashing_timer_timeout"]
