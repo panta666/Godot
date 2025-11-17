@@ -9,6 +9,7 @@ var previous_scene: String = ""
 var next_scene: String = ""
 var transition_scene: bool = false
 var pending_spawn: bool = false
+var last_door_for_transition: Node = null
 
 # -------------------------
 # Spieler-Infos
@@ -33,10 +34,9 @@ func start_new_game() -> void:
 	current_scene = "realworld_classroom_one"
 	previous_scene = ""
 	
-	# Scene wechseln - Player wird erst nach SceneReady erzeugt
 	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
-	
-	# Player deferred instanziieren
+
+	# jetzt Player deferred
 	call_deferred("spawn_player")
 
 
@@ -67,8 +67,8 @@ func spawn_player() -> void:
 	# Bewegung aktivieren
 	if player.has_method("set_can_move"):
 		player.call_deferred("set_can_move", true)
-	elif player.has_variable("can_move"):
-		player.set("can_move", true)
+	else:
+		player.can_move = true
 
 	# Position setzen
 	if player_positions.has(current_scene):
@@ -102,8 +102,8 @@ func _deferred_setup_player() -> void:
 	player.visible = true
 	if player.has_method("set_can_move"):
 		player.call_deferred("set_can_move", true)
-	elif player.has_variable("can_move"):
-		player.set("can_move", true)
+	else:
+		player.can_move = true
 	call_deferred("_deferred_play_default_animation")
 
 
@@ -115,48 +115,66 @@ func _deferred_play_default_animation() -> void:
 
 
 func _play_default_animation() -> void:
+
 	if not player or not is_instance_valid(player):
+		print("[DEBUG] player invalid, abort")
 		return
+
+	print("[DEBUG] Player:", player)
 
 	var anim_sprite := _find_animated_sprite(player)
+	print("[DEBUG] _find_animated_sprite():", anim_sprite)
+
 	if anim_sprite == null:
-		print("Kein AnimatedSprite2D im Player gefunden.")
+		print("[ERROR] Kein AnimatedSprite2D im Player gefunden!")
 		return
+
 	if anim_sprite.sprite_frames == null:
-		print("AnimatedSprite2D hat keine sprite_frames-Resource.")
+		print("[ERROR] sprite_frames ist NULL!")
 		return
 
-	var preferred_anim := "idle_down"
-	if player.has_variable("facing_direction"):
-		var fd = str(player.get("facing_direction"))
-		if fd != "":
-			var candidate = "idle_%s" % fd
-			if anim_sprite.sprite_frames.has_animation(candidate):
-				preferred_anim = candidate
+	print("[DEBUG] sprite_frames animations:", anim_sprite.sprite_frames.get_animation_names())
 
-	# Safe Animation spielen
+	# facing_direction sicher abrufen
+	var fd := "down"
+	if player is PlayerRealworld:
+		print("[DEBUG] player.facing_direction =", player.facing_direction)
+		fd = player.facing_direction if player.facing_direction != "" else "down"
+
+	var preferred_anim := "idle_%s" % fd
+	print("[DEBUG] preferred_anim =", preferred_anim)
+
+	# hat die Animation?
 	if anim_sprite.sprite_frames.has_animation(preferred_anim):
+		print("[DEBUG] playing preferred animation:", preferred_anim)
 		anim_sprite.play(preferred_anim)
+		return
+
+	print("[WARN] preferred animation not found!")
+
+	# Fallback
+	var anim_list = anim_sprite.sprite_frames.get_animation_names()
+	if anim_list.size() > 0:
+		print("[DEBUG] fallback animation:", anim_list[0])
+		anim_sprite.play(anim_list[0])
 	else:
-		var anim_list = anim_sprite.sprite_frames.get_animation_names()
-		if anim_list.size() > 0:
-			anim_sprite.play(anim_list[0])
-			print("Preferred animation '%s' nicht gefunden — spiele '%s'." % [preferred_anim, anim_list[0]])
-		else:
-			print("Keine Animationen in sprite_frames vorhanden.")
+		print("[ERROR] Keine Animationen in sprite_frames!")
 
 
 # -------------------------
 # Hilfsfunktion: rekursives Finden eines AnimatedSprite2D-Knotens
 # -------------------------
 func _find_animated_sprite(node: Node) -> AnimatedSprite2D:
-	if node is AnimatedSprite2D:
-		return node
 	for child in node.get_children():
-		if child is Node:
-			var found := _find_animated_sprite(child)
-			if found != null:
-				return found
+		print("[SCAN] Node:", child.name, "Type:", child.get_class())
+		if child is AnimatedSprite2D:
+			print("[FOUND] AnimatedSprite2D at:", child.name)
+			return child
+
+		var found := _find_animated_sprite(child)
+		if found != null:
+			return found
+
 	return null
 
 

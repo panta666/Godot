@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpw2kucamlx24"]
+[gd_scene load_steps=7 format=3 uid="uid://bpw2kucamlx24"]
 
 [ext_resource type="Script" uid="uid://bsufyyswxm6md" path="res://scripts/npc.gd" id="1_nh2m4"]
 [ext_resource type="Script" uid="uid://h2tcli0pemif" path="res://scripts/interactable.gd" id="2_abqhh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abqhh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7vdml"]
 radius = 12.0
@@ -18,7 +20,7 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("1_nh2m4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-animation = &""
+sprite_frames = SubResource("SpriteFrames_abqhh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 20)

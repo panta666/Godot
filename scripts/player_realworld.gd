@@ -133,6 +133,9 @@ func set_facing_direction(dir: String) -> void:
 
 func get_facing_direction() -> String:
 	return facing_direction
+	
+func player():
+	pass
 
 # --------------------------
 # NPC-Richtung
