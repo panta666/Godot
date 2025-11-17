@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://ou55octuf0rv"]
+
+[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="1_nluf2"]
+
+[resource]
+script = ExtResource("1_nluf2")
+damage = 20
+pre_attack_duration = 0.5
+post_attack_duration = 0.7
+hitbox_offset = Vector2(40, 5)
+hitbox_size = Vector2(20, 10)
+hitbox_duration = 0.75
+metadata/_custom_type_script = "uid://d2iv1cx41gku0"
