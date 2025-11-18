@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://lloliascsxx0"]
+[gd_scene load_steps=4 format=3 uid="uid://lloliascsxx0"]
 
 [ext_resource type="Script" uid="uid://bp4roocxhh0m6" path="res://scripts/options.gd" id="1_j6yq7"]
 [ext_resource type="Texture2D" uid="uid://dihbgyp6hdir3" path="res://assets/options menu/Gemini_Generated_Image_fqlhr1fqlhr1fqlh.png" id="2_ckjey"]
+[ext_resource type="Texture2D" uid="uid://d3jcvl5lqfcep" path="res://assets/Phone/Tablet/tablet_on.png" id="2_nmn1p"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -42.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
@@ -18,19 +20,47 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -174.0
+offset_top = -332.0
+offset_right = -40.0
+offset_bottom = 556.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 300
 theme_override_constants/margin_top = 500
 
-[node name="Background" type="TextureRect" parent="MarginContainer"]
-layout_mode = 2
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+z_index = 1
+position = Vector2(802.3699, 1042.6576)
+rotation = 1.5707964
+scale = Vector2(1.580234, 1.5802339)
+texture = ExtResource("2_nmn1p")
+
+[node name="Control" type="Control" parent="MarginContainer/Sprite2D"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -341.98987
+offset_top = -216.92697
+offset_right = 303.19342
+offset_bottom = 215.36713
+
+[node name="Background" type="TextureRect" parent="MarginContainer/Sprite2D/Control"]
+z_index = -1
+layout_mode = 0
+offset_left = -0.016998768
+offset_top = 538.63245
+offset_right = 644.1911
+offset_bottom = 1186.5068
+rotation = -1.5707964
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_ckjey")
+expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_stretch_ratio = 0.22
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
