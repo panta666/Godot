@@ -101,6 +101,18 @@ max_value = 0.0
 step = 0.1
 value = -13.0
 
+[node name="SFXVolumeLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "SFX"
+
+[node name="SFXVolume" type="HSlider" parent="MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+min_value = -40.0
+max_value = 0.0
+step = 0.1
+
 [node name="Back" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -114,4 +126,6 @@ flat = true
 [connection signal="toggled" from="MarginContainer/CenterContainer/VBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="drag_ended" from="MarginContainer/CenterContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_drag_ended"]
 [connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/CenterContainer/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/CenterContainer/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
