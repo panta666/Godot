@@ -1,10 +1,11 @@
 extends CenterContainer
 
 # --- Options-UI ---
-@onready var master_volume: HSlider = $OptionsContainer/VBoxContainer/MasterVolume
-@onready var check_box: CheckBox = $OptionsContainer/VBoxContainer/CheckBox
-@onready var music_volume: HSlider = $OptionsContainer/VBoxContainer/MusicVolume
-@onready var sfx_volume: HSlider = $OptionsContainer/VBoxContainer/SFXVolume
+@onready var master_volume: HSlider = $VBoxContainer/MasterVolume
+@onready var check_box: CheckBox = $VBoxContainer/CheckBox
+@onready var music_volume: HSlider = $VBoxContainer/MusicVolume
+@onready var sfx_volume: HSlider = $VBoxContainer/SFXVolume
+
 
 # --- Soundbus-IDs ---
 const MASTER_BUS := 0

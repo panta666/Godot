@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var menu_container: VBoxContainer = $Control/MenuContainer
 @onready var menu_options: VBoxContainer = $Control/MenuContainer/MenuOptions
 @onready var options_container: CenterContainer = $Control/OptionsContainer
-@onready var v_box_container: VBoxContainer = $Control/OptionsContainer/VBoxContainer
 
 # --- Menü-Buttons ---
 @onready var continue_button: Button = $Control/MenuContainer/MenuOptions/Continue
@@ -15,22 +14,12 @@ extends CanvasLayer
 @onready var credits_button: Button = $Control/MenuContainer/MenuOptions/Credits
 @onready var quit_button: Button = $Control/MenuContainer/MenuOptions/Quit
 
-# --- Options-UI ---
-@onready var master_volume: HSlider = $Control/OptionsContainer/VBoxContainer/MasterVolume
-@onready var check_box: CheckBox = $Control/OptionsContainer/VBoxContainer/CheckBox
-@onready var music_volume: HSlider = $Control/OptionsContainer/VBoxContainer/MusicVolume
-@onready var sfx_volume: HSlider = $Control/OptionsContainer/VBoxContainer/SFXVolume
-
 
 # --- Phone / PowerArea ---
 @onready var phone: Sprite2D = $Control/Phone
 @onready var phone_background: AnimatedSprite2D = $Control/PhoneScreenContainer/Background
 @onready var back: Area2D = $Control/Phone/PowerArea
 
-# --- Soundbus-IDs ---
-const MASTER_BUS := 0
-const MUSIC_BUS := 1
-const SFX_BUS := 2
 
 # --------------------------
 # Drag & Drop
@@ -43,19 +32,7 @@ var is_transitioning: bool = false
 
 func _ready() -> void:
 	GlobalScript.esc_menu_instance = self
-
-	# Buttons verbinden
-	continue_button.pressed.connect(_on_continue_pressed)
-	save_button.pressed.connect(_on_save_pressed)
-	load_button.pressed.connect(_on_load_pressed)
-	options_button.pressed.connect(_on_options_pressed)
-	credits_button.pressed.connect(_on_credits_pressed)
-	quit_button.pressed.connect(_on_quit_pressed)
-
-	master_volume.value_changed.connect(_on_master_volume_value_changed)
-	music_volume.value_changed.connect(_on_music_volume_value_changed)
-	check_box.toggled.connect(_on_check_box_toggled)
-
+	
 	back.input_event.connect(_on_back_pressed)
 
 	# Menü unsichtbar starten
@@ -191,30 +168,3 @@ func _on_back_pressed(_viewport: Viewport, event: InputEvent, _shape_idx: int) -
 		menu_container.visible = true
 		options_container.visible = false
 		print("[ESC_MENU] Zurück gedrückt | menu_visible=", menu_container.visible, " | options_visible=", options_container.visible)
-
-# --------------------------
-# Audio
-func _on_master_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(MASTER_BUS, value)
-
-func _on_music_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(MUSIC_BUS, value)
-
-func _on_check_box_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(MASTER_BUS, toggled_on)
-	SaveManager.update_is_muted(toggled_on)
-
-
-func _on_master_volume_drag_ended(_value_changed: bool) -> void:
-	SaveManager.update_bus_volume(MASTER_BUS, master_volume.value)
-
-
-func _on_music_volume_drag_ended(_value_changed: bool) -> void:
-	SaveManager.update_bus_volume(MUSIC_BUS, music_volume.value)
-
-func _on_sfx_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(SFX_BUS, value)
-
-
-func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
-	SaveManager.update_bus_volume(SFX_BUS, sfx_volume.value)
