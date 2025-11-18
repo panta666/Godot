@@ -19,6 +19,8 @@ extends CanvasLayer
 @onready var master_volume: HSlider = $Control/OptionsContainer/VBoxContainer/MasterVolume
 @onready var check_box: CheckBox = $Control/OptionsContainer/VBoxContainer/CheckBox
 @onready var music_volume: HSlider = $Control/OptionsContainer/VBoxContainer/MusicVolume
+@onready var sfx_volume: HSlider = $Control/OptionsContainer/VBoxContainer/SFXVolume
+
 
 # --- Phone / PowerArea ---
 @onready var phone: Sprite2D = $Control/Phone
@@ -28,6 +30,7 @@ extends CanvasLayer
 # --- Soundbus-IDs ---
 const MASTER_BUS := 0
 const MUSIC_BUS := 1
+const SFX_BUS := 2
 
 # --------------------------
 # Drag & Drop
@@ -208,3 +211,10 @@ func _on_master_volume_drag_ended(_value_changed: bool) -> void:
 
 func _on_music_volume_drag_ended(_value_changed: bool) -> void:
 	SaveManager.update_bus_volume(MUSIC_BUS, music_volume.value)
+
+func _on_sfx_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(SFX_BUS, value)
+
+
+func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
+	SaveManager.update_bus_volume(SFX_BUS, sfx_volume.value)
