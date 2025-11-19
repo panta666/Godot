@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bekvvekgehgcu"]
+[gd_scene load_steps=73 format=3 uid="uid://bekvvekgehgcu"]
 
 [ext_resource type="Script" uid="uid://dl6s1606r8b4i" path="res://scripts/esc_menu.gd" id="1_7f7ni"]
 [ext_resource type="Texture2D" uid="uid://b3aqpvst1i4q6" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0000.png" id="1_yrc1y"]
@@ -69,6 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://5hv12d6b8e70" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0065.png" id="66_amtte"]
 [ext_resource type="Texture2D" uid="uid://dmdfpjqc2ndmh" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0066.png" id="67_auuyg"]
 [ext_resource type="Texture2D" uid="uid://c7qbren4uddpe" path="res://assets/Phone/empty.png" id="68_vce8b"]
+[ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/sound_options_container.tscn" id="71_3jpo3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l41tf"]
 animations = [{
@@ -282,21 +283,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrc1y"]
 size = Vector2(47, 20)
 
-[sub_resource type="LabelSettings" id="LabelSettings_yrc1y"]
-font_size = 35
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7f7ni"]
-font_size = 35
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_gmq7s"]
-font_size = 35
-shadow_size = 3
-shadow_color = Color(0, 0, 0, 1)
-
 [node name="ESC_Menu" type="CanvasLayer"]
 script = ExtResource("1_7f7ni")
 
@@ -408,75 +394,11 @@ theme_override_font_sizes/font_size = 20
 text = "Quit"
 flat = true
 
-[node name="OptionsContainer" type="CenterContainer" parent="Control"]
+[node name="OptionsContainer" parent="Control" instance=ExtResource("71_3jpo3")]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 94.0
-offset_right = 170.0
-offset_bottom = 378.0
-scale = Vector2(0.5, 0.5)
+offset_left = 44.0
+offset_top = 68.0
+offset_right = 163.0
+offset_bottom = 364.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/OptionsContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="MasterVolumeLabel" type="Label" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "Master"
-label_settings = SubResource("LabelSettings_yrc1y")
-
-[node name="MasterVolume" type="HSlider" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-min_value = -40.0
-max_value = 0.0
-step = 0.1
-
-[node name="Mute" type="Label" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "Mute"
-label_settings = SubResource("LabelSettings_7f7ni")
-
-[node name="CheckBox" type="CheckBox" parent="Control/OptionsContainer/VBoxContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
-theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_colors/checkbox_checked_color = Color(1, 1, 1, 1)
-theme_override_colors/checkbox_unchecked_color = Color(1, 1, 1, 1)
-
-[node name="MusicVolumeLabel" type="Label" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 35
-text = "Music"
-label_settings = SubResource("LabelSettings_gmq7s")
-
-[node name="MusicVolume" type="HSlider" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-min_value = -40.0
-max_value = 0.0
-step = 0.1
-value = -13.0
-
-[node name="SFXVolumeLabel" type="Label" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 35
-text = "SFX"
-
-[node name="SFXVolume" type="HSlider" parent="Control/OptionsContainer/VBoxContainer"]
-layout_mode = 2
-min_value = -40.0
-max_value = 0.0
-step = 0.1
-
-[connection signal="drag_ended" from="Control/OptionsContainer/VBoxContainer/MasterVolume" to="." method="_on_master_volume_drag_ended"]
-[connection signal="drag_ended" from="Control/OptionsContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_drag_ended"]
-[connection signal="drag_ended" from="Control/OptionsContainer/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_drag_ended"]
-[connection signal="value_changed" from="Control/OptionsContainer/VBoxContainer/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="Control/MenuContainer/MenuOptions/Options" to="." method="_on_options_pressed"]

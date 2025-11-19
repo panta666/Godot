@@ -1,7 +1,9 @@
 extends Control
 
 # --- Szenen-Referenzen ---
-var OPTIONS_SCENE := preload("res://scenes/Options.tscn")
+@onready var options: Control = $Options
+@onready var title_screen: MarginContainer = $TitleScreen
+
 
 # --- Laufzeit-Referenzen ---
 var options_instance: Control = null
@@ -16,6 +18,9 @@ func _ready() -> void:
 		menu_camera.make_current()
 	else:
 		push_warning("MainMenu hat keine gültige Camera2D!")
+	
+	title_screen.visible = true
+	options.visible = false
 
 	# Falls ein alter Player noch existiert, kurz deaktivieren
 	if GlobalScript.player and is_instance_valid(GlobalScript.player):
@@ -40,19 +45,9 @@ func _on_new_game_pressed() -> void:
 
 # --- Optionsmenü öffnen ---
 func _on_options_pressed() -> void:
-	if options_instance == null:
-		options_instance = OPTIONS_SCENE.instantiate()
-		add_child(options_instance)
+	options.visible = true
+	title_screen.visible = false
 
-		if options_instance.has_signal("closed"):
-			options_instance.closed.connect(_on_options_closed)
-
-
-# --- Optionsmenü schließen ---
-func _on_options_closed() -> void:
-	if options_instance:
-		options_instance.queue_free()
-		options_instance = null
 
 
 # --- Spiel beenden ---
@@ -65,3 +60,8 @@ func _on_continue_pressed() -> void:
 	GlobalScript.transition_scene = false
 	
 	GlobalScript.start_from_menu()
+
+
+func _on_einstellungen_speichern_pressed() -> void:
+	options.visible = false
+	title_screen.visible = true
