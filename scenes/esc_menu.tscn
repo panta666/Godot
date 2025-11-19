@@ -69,7 +69,7 @@
 [ext_resource type="Texture2D" uid="uid://5hv12d6b8e70" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0065.png" id="66_amtte"]
 [ext_resource type="Texture2D" uid="uid://dmdfpjqc2ndmh" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0066.png" id="67_auuyg"]
 [ext_resource type="Texture2D" uid="uid://c7qbren4uddpe" path="res://assets/Phone/empty.png" id="68_vce8b"]
-[ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/options_container.tscn" id="71_3jpo3"]
+[ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/sound_options_container.tscn" id="71_3jpo3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l41tf"]
 animations = [{

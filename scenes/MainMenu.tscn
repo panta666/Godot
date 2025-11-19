@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpkw6p6jwdxlw"]
+[gd_scene load_steps=5 format=3 uid="uid://dpkw6p6jwdxlw"]
 
 [ext_resource type="Script" uid="uid://brdbqgmoxuone" path="res://scripts/main_menu.gd" id="1_2ue1o"]
 [ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="1_fnwlw"]
 [ext_resource type="Texture2D" uid="uid://c8xfhs2goquw5" path="res://assets/Phone/Tablet/tablet_off.png" id="2_ow34m"]
+[ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/sound_options_container.tscn" id="4_ow34m"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,7 +19,8 @@ position = Vector2(495, 256)
 scale = Vector2(1.389323, 1.389323)
 texture = ExtResource("2_ow34m")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TitleScreen" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -27,25 +29,25 @@ theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 80
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/HBoxContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="TitleScreen/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 42
 text = "Battle for Bachelor"
 
-[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MenuOptions" type="VBoxContainer" parent="TitleScreen/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="Continue" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Continue" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
@@ -53,7 +55,7 @@ theme_override_font_sizes/font_size = 20
 text = "Continue"
 flat = true
 
-[node name="NewGame" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="NewGame" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
@@ -61,7 +63,7 @@ theme_override_font_sizes/font_size = 20
 text = "New Game"
 flat = true
 
-[node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Options" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
@@ -69,7 +71,7 @@ theme_override_font_sizes/font_size = 20
 text = "Options"
 flat = true
 
-[node name="Credits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Credits" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
@@ -77,7 +79,7 @@ theme_override_font_sizes/font_size = 20
 text = "Credits"
 flat = true
 
-[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions"]
+[node name="Quit" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
@@ -85,26 +87,79 @@ theme_override_font_sizes/font_size = 20
 text = "Quit"
 flat = true
 
-[node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Version" type="Label" parent="TitleScreen/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.963345, 0.51539916, 5.7756904e-07, 1)
 theme_override_font_sizes/font_size = 11
 text = "ver 0.1"
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="TitleScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Illustration" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer"]
+[node name="Illustration" type="TextureRect" parent="TitleScreen/HBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 texture = ExtResource("1_fnwlw")
 
+[node name="Options" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoOptions" type="Control" parent="Options"]
+anchors_preset = 0
+offset_left = 620.0
+offset_top = -39.0
+offset_right = 660.0
+offset_bottom = 1.0
+
+[node name="VideoOptionsLabel" type="Label" parent="Options/VideoOptions"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "Video"
+
+[node name="SoundOptions" type="Control" parent="Options"]
+anchors_preset = 0
+offset_left = 620.0
+offset_top = -39.0
+offset_right = 660.0
+offset_bottom = 1.0
+
+[node name="SoundOptionsLabel" type="Label" parent="Options/SoundOptions"]
+layout_mode = 0
+offset_left = -333.0
+offset_top = 1.0
+offset_right = -180.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 50
+text = "Sound"
+
+[node name="SoundOptionsContainer" parent="Options/SoundOptions" instance=ExtResource("4_ow34m")]
+layout_mode = 0
+offset_left = -330.0
+offset_top = 123.0
+offset_right = -211.0
+offset_bottom = 419.0
+scale = Vector2(1, 1)
+
+[node name="EinstellungenSpeichern" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 445.0
+offset_right = 705.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 29
+text = "Anwenden und speichern"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(505, 245)
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/EinstellungenSpeichern" to="." method="_on_einstellungen_speichern_pressed"]

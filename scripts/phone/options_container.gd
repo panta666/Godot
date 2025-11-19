@@ -12,6 +12,13 @@ const MASTER_BUS := 0
 const MUSIC_BUS := 1
 const SFX_BUS := 2
 
+func _ready() -> void:
+	var audio_settings := SaveManager.get_audio_settings()
+	master_volume.value = audio_settings["Master"]
+	music_volume.value = audio_settings["Music"]
+	sfx_volume.value = audio_settings["SFX"]
+	check_box.button_pressed = audio_settings["is_muted"]
+
 
 # --------------------------
 # Audio
