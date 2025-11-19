@@ -27,6 +27,12 @@ var game_first_loading: bool = true
 const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 
 # -------------------------
+# Freigeschaltete Level (global)
+# -------------------------
+var oop_level_unlocked := [true, false, false]
+var medg_level_unlocked := [false, false, false]
+
+# -------------------------
 # Neues Spiel starten
 # -------------------------
 func start_new_game() -> void:

@@ -64,4 +64,4 @@ func _load_ui() -> void:
 		add_child(level_ui)
 	elif not level_ui.is_inside_tree():
 		add_child(level_ui)
-	level_ui.hide_enter_button()
+		level_ui.hide_enter_button()

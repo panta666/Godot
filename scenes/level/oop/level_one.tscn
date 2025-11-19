@@ -1,6 +1,6 @@
-[gd_scene load_steps=33 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=37 format=4 uid="uid://cs33rhtx4gyqy"]
 
-[ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/level_one.gd" id="1_ahlc2"]
+[ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/player_dreamworld.tscn" id="1_ocww7"]
 [ext_resource type="Texture2D" uid="uid://c8dtql8mpogvy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="2_vu5gk"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_hrsau"]
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="11_67yw2"]
 [ext_resource type="PackedScene" uid="uid://c1e450qelo0gk" path="res://scenes/platform_up.tscn" id="15_67yw2"]
+[ext_resource type="Script" uid="uid://dvegcwxxgc673" path="res://scenes/level/oop/test_level_finish.gd" id="16_q7fde"]
+[ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -2637,6 +2639,21 @@ sources/0 = SubResource("TileSetAtlasSource_dvhax")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hrsau"]
 
+[sub_resource type="Animation" id="Animation_cnhcn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3699, 350)]
+}
+
 [sub_resource type="Animation" id="Animation_3661e"]
 resource_name = "move"
 length = 3.0
@@ -2654,26 +2671,17 @@ tracks/0/keys = {
 "values": [Vector2(3699, 350), Vector2(3699, 256)]
 }
 
-[sub_resource type="Animation" id="Animation_cnhcn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3699, 350)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mb4d8"]
 _data = {
 &"RESET": SubResource("Animation_cnhcn"),
 &"move": SubResource("Animation_3661e")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr7g"]
+size = Vector2(106, 88)
+
+[sub_resource type="LabelSettings" id="LabelSettings_swoql"]
+font_size = 8
 
 [node name="Level_one" type="Node2D"]
 script = ExtResource("1_ahlc2")
@@ -2720,3 +2728,28 @@ libraries = {
 &"": SubResource("AnimationLibrary_mb4d8")
 }
 autoplay = "move"
+
+[node name="TestLevelFinished" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("16_q7fde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevelFinished"]
+position = Vector2(725, -175)
+shape = SubResource("RectangleShape2D_uhr7g")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestLevelFinished"]
+position = Vector2(726, -174.50003)
+scale = Vector2(0.7968744, 0.69531214)
+texture = ExtResource("17_uhr7g")
+
+[node name="Label" type="Label" parent="TestLevelFinished"]
+offset_left = 708.0
+offset_top = -110.0
+offset_right = 747.0
+offset_bottom = -83.0
+text = "Level 1
+finish test"
+label_settings = SubResource("LabelSettings_swoql")
+
+[connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
