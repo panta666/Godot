@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=16 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://scripts/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="2_1lbkm"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://cnru41iad6e14" path="res://assets/npc_data_animations/npc_typ8.tres" id="8_1lbkm"]
 [ext_resource type="Resource" uid="uid://djd3jjjpykij8" path="res://assets/npc_data_animations/npc_lady6.tres" id="9_kvmm4"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="11_1lbkm"]
+[ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="12_kvmm4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("3_cwmjx")
@@ -4605,3 +4606,13 @@ npc_data = ExtResource("9_kvmm4")
 [node name="SFX" type="Node" parent="."]
 
 [node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("11_1lbkm")]
+
+[node name="Chair" parent="." instance=ExtResource("12_kvmm4")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(1367, 612)
+room_type = "MEDG"
+sit_position = Vector2(1360, 625)
+stand_position = Vector2(1383, 600)
+flip_horizontal = true
+flip_player_on_sit = true

@@ -627,7 +627,34 @@ texture = ExtResource("144_hrjav")
 position = Vector2(1, 141)
 shape = SubResource("RectangleShape2D_di37k")
 
+[node name="EnterLevelButton3" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 132.0
+offset_right = 141.0
+offset_bottom = 163.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.70400786, 0.9168332, 0.9715262, 1)
+theme_override_colors/font_pressed_color = Color(0.11427544, 0.29684758, 0.23027517, 1)
+theme_override_colors/font_hover_color = Color(0.95686275, 0.91764706, 0.972549, 1)
+text = "Level betreten"
+
+[node name="EnterLevelButton2" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 85.0
+offset_right = 141.0
+offset_bottom = 116.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.70400786, 0.9168332, 0.9715262, 1)
+theme_override_colors/font_pressed_color = Color(0.11427544, 0.29684758, 0.23027517, 1)
+theme_override_colors/font_hover_color = Color(0.95686275, 0.91764706, 0.972549, 1)
+text = "Level betreten"
+
 [node name="EnterLevelButton" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 21.0
 offset_top = 38.0
