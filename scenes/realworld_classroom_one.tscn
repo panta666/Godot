@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=17 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -11,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
 [ext_resource type="Resource" uid="uid://bk5m7wfr5ivs5" path="res://assets/npc_data_animations/npc_typ2.tres" id="9_p60gb"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
+[ext_resource type="Texture2D" uid="uid://ciyck2crvjcfy" path="res://assets/tilemap/32x32/Light_Textures/64x64/64x64 textures (5).png" id="12_4xjni"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_55vsv"]
 texture = ExtResource("2_sdypo")
@@ -4507,6 +4508,7 @@ texture = ExtResource("3_onpry")
 19:41/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_x23ky"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_55vsv")
 sources/1 = SubResource("TileSetAtlasSource_kr4x2")
@@ -4622,3 +4624,12 @@ npc_data = ExtResource("9_p60gb")
 [node name="SFX" type="Node" parent="."]
 
 [node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("10_fktbd")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(374, -82.99999)
+scale = Vector2(14.192376, 5.749477)
+color = Color(1, 1, 1, 0.3647059)
+energy = 4.73
+shadow_enabled = true
+texture = ExtResource("12_4xjni")
+texture_scale = 1.49
