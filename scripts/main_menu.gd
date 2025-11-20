@@ -48,7 +48,7 @@ func _on_new_game_pressed() -> void:
 func _on_options_pressed() -> void:
 	options.visible = true
 	title_screen.visible = false
-	blinking.blinking(true)
+	blinking.set_blinking_on(true)
 
 
 
