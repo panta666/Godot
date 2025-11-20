@@ -1,8 +1,9 @@
-[gd_scene load_steps=136 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=144 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://cbfkyca8x3out" path="res://assets/plattformer_character/animations/lead-jab/east/frame_000.png" id="3_w3r8r"]
+[ext_resource type="PackedScene" uid="uid://2puypr5ol8x8" path="res://scenes/range_attack_charges.tscn" id="4_50cf0"]
 [ext_resource type="Texture2D" uid="uid://j738q4tahpiq" path="res://assets/plattformer_character/animations/lead-jab/east/frame_001.png" id="4_aofeu"]
 [ext_resource type="Texture2D" uid="uid://cym82rp3ek17n" path="res://assets/plattformer_character/animations/lead-jab/east/frame_002.png" id="5_c7cji"]
 [ext_resource type="Texture2D" uid="uid://lhc35761letl" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_000.png" id="6_a5qtf"]
@@ -38,9 +39,13 @@
 [ext_resource type="Texture2D" uid="uid://bkbtsniemeyva" path="res://assets/plattformer_character/animations/falling-back-death/east/frame_006.png" id="23_87d0b"]
 [ext_resource type="Texture2D" uid="uid://dyiolwjd22yk0" path="res://assets/plattformer_character/animations/jumping-1/east/frame_003.png" id="23_lsnhg"]
 [ext_resource type="Texture2D" uid="uid://cifk0bu4cxdgy" path="res://assets/plattformer_character/animations/jumping-1/east/frame_004.png" id="24_26kqb"]
+[ext_resource type="Texture2D" uid="uid://c2r0jrrek3wb8" path="res://assets/plattformer_character/animations/pushing/east/frame_000.png" id="24_t3ro2"]
+[ext_resource type="Texture2D" uid="uid://c2kf1j45ghrof" path="res://assets/plattformer_character/animations/pushing/east/frame_001.png" id="25_50cf0"]
 [ext_resource type="Texture2D" uid="uid://dkb16f20gr2ym" path="res://assets/plattformer_character/animations/jumping-1/east/frame_005.png" id="25_a5qtf"]
+[ext_resource type="Texture2D" uid="uid://cb3beibal3j3b" path="res://assets/plattformer_character/animations/pushing/east/frame_002.png" id="26_bqe6c"]
 [ext_resource type="Texture2D" uid="uid://cj1j5xnuwqn5d" path="res://assets/plattformer_character/animations/jumping-1/east/frame_006.png" id="26_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://dnrgl7uvlcxrn" path="res://assets/plattformer_character/animations/jumping-1/east/frame_007.png" id="27_3dpfv"]
+[ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="27_u4aui"]
 [ext_resource type="Texture2D" uid="uid://bbgh5e0tmb6hm" path="res://assets/plattformer_character/animations/jumping-1/east/frame_008.png" id="28_sssl5"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://scenes/components/health.gd" id="32_fo2fe"]
 [ext_resource type="Texture2D" uid="uid://diadbgeush3nc" path="res://assets/plattformer_character/animations/taking-punch/east/frame_000.png" id="32_qkbfk"]
@@ -67,6 +72,25 @@
 [ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="64_k4woj"]
 [ext_resource type="Texture2D" uid="uid://bjlhawrp55nnj" path="res://assets/plattformer_character/animations/melee_slash/NPT102.png" id="65_2ba4m"]
 [ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="66_kneac"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t3ro2"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_t3ro2"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(0.99248123, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_50cf0"]
+curve = SubResource("Curve_t3ro2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bqe6c"]
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_50cf0")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3r8r"]
 atlas = ExtResource("3_w3r8r")
@@ -142,10 +166,6 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wd1bp"]
 atlas = ExtResource("15_7t4at")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5bv1k"]
-atlas = ExtResource("44_rfwbl")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ku5kx"]
@@ -384,7 +404,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5bv1k")
+"texture": ExtResource("24_t3ro2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_50cf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_bqe6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_u4aui")
 }],
 "loop": true,
 "name": &"dash",
@@ -661,14 +690,29 @@ size = Vector2(15, 41)
 collision_layer = 2
 script = ExtResource("1_fo2fe")
 
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_t3ro2")
+emitting = false
+texture = ExtResource("27_u4aui")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_bqe6c")
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource("32_fo2fe")
 max_health = 100
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="RangeAttackCharges" type="CanvasLayer" parent="."]
 
-[node name="HealthWave" parent="CanvasLayer" instance=ExtResource("3_rfwbl")]
+[node name="RangeAttackCharges" parent="RangeAttackCharges" instance=ExtResource("4_50cf0")]
+offset_left = 131.0
+offset_top = 23.0
+offset_right = 171.0
+offset_bottom = 63.0
+
+[node name="Healthwave" type="CanvasLayer" parent="."]
+
+[node name="HealthWave" parent="Healthwave" instance=ExtResource("3_rfwbl")]
 offset_left = 16.0
 offset_top = 19.0
 offset_right = 111.0
@@ -678,9 +722,7 @@ offset_bottom = 72.0
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"die"
-frame = 4
-frame_progress = 1.0
+animation = &"duck"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

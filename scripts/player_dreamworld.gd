@@ -28,13 +28,14 @@ var is_dashing = false
 var dash_count = 1
 var dash_allowed: bool = true
 @onready var hurt_box: HurtBox = $HurtBox
+@onready var dash_particles: GPUParticles2D = $DashParticles
 
 #Variablen für Crouching
 var forced_crouch: bool
 const CROUCH_SPEED:float = 100
 var is_crouching: bool = false
 
-#Variablen für Attacke und Range Attacke
+#Variablen für Attacke
 var is_attacking = false
 
 const ATTACK_COOLDOWN = 0.5
@@ -45,22 +46,28 @@ var can_attack = true
 @onready var hit_box_right: HitBox = $HitBoxRight
 @onready var hit_box_down: HitBox = $HitBoxDown
 @onready var hit_box_up: HitBox = $HitBoxUp
-@onready var fireball = preload("res://scenes/fireball.tscn")
 
 @onready var sprite_right_hitbox: AnimatedSprite2D = $HitBoxRight/SpriteRightHitbox
 @onready var sprite_left_hitbox: AnimatedSprite2D = $HitBoxLeft/SpriteLeftHitbox
 @onready var sprite_up_hitbox: AnimatedSprite2D = $HitBoxUp/SpriteUpHitbox
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
 
+#Variablen für Range Attacke
+@onready var fireball = preload("res://scenes/fireball.tscn")
+const MAX_RANGE_ATTACK = 2
+var current_range_attack = 2
+const RANGE_ATTACK_RECHARGE_TIME = 5.0
+var recharge_timer = 0.0
+@onready var range_attack_charges: TextureButton = $RangeAttackCharges/RangeAttackCharges
 
-#Variablen für Damage nehmen /Knockback
+#Variablen für Damage nehmen/ Knockback
 var is_taking_damage: bool = false
 var knockback_timer = 0.0
 var knockback_length = 0.2
 
 #HP
 var is_alive: bool = true
-@onready var health_wave: Control = $CanvasLayer/HealthWave
+@onready var health_wave: Control = $Healthwave/HealthWave
 @onready var health: Health = $Health
 var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 
@@ -83,6 +90,8 @@ func _ready() -> void:
 	health_wave.set_health_component(health)
 
 	player_sprite.animation_finished.connect(_on_animation_finished)
+
+	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
 
 
 
@@ -143,9 +152,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("range_attack"):
 		handle_range_attack()
 
+	handle_range_recharge(delta)
 
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
+	dash_particles.scale.x = last_facing_direction
 
 	update_animation()
 
@@ -205,6 +216,7 @@ func handle_dash():
 		if direction == 0:	#Dash in Blickrichtung
 			direction = last_facing_direction
 		is_dashing = true
+		dash_particles.emitting = true
 		hurt_box.monitoring = false
 		hurt_box.monitorable = false
 		dash_count = 0
@@ -238,6 +250,7 @@ func stop_dashing(delta: float):
 			hurt_box.monitorable = true
 			await get_tree().create_timer(dash_cooldown).timeout
 			can_dash = true
+			dash_particles.emitting = false
 
 #Handle Attack
 func handle_attack():
@@ -262,6 +275,10 @@ func handle_attack():
 func handle_range_attack():
 	if is_attacking:
 		return
+	
+	if current_range_attack <= 0:
+		print("Keine Charges!")
+		return
 
 	is_attacking = true
 
@@ -269,6 +286,15 @@ func handle_range_attack():
 	print("Range Attack")
 
 	is_attacking = false
+
+	current_range_attack -= 1
+	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+	print("Range Attack! Charges übrig:", current_range_attack)
+
+	if current_range_attack < MAX_RANGE_ATTACK and recharge_timer <= 0:
+		recharge_timer = RANGE_ATTACK_RECHARGE_TIME
+		recharge_timer = RANGE_ATTACK_RECHARGE_TIME
+		range_attack_charges.update_recharge_progress(0.0)
 
 	var f = fireball.instantiate()
 
@@ -282,6 +308,28 @@ func handle_range_attack():
 		f.position = global_position + Vector2(-20, 0)
 		
 	get_parent().add_child(f)
+
+#Handle Recharge Timer für Range Attacke
+func handle_range_recharge(delta):
+	if current_range_attack >= MAX_RANGE_ATTACK:
+		range_attack_charges.update_recharge_progress(1.0) # Voll = 100%
+		return
+
+	recharge_timer -= delta
+
+	var progress: float = clamp(1.0 - (recharge_timer / RANGE_ATTACK_RECHARGE_TIME), 0.0, 1.0)
+	range_attack_charges.update_recharge_progress(progress)
+
+	if recharge_timer <= 0:
+		current_range_attack += 1
+		range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+
+		if current_range_attack < MAX_RANGE_ATTACK:
+			recharge_timer = RANGE_ATTACK_RECHARGE_TIME
+		else:
+			range_attack_charges.update_recharge_progress(1.0)
+
+
 
 #Handle Attack Cooldown
 func countdown_attack_timer(delta: float):
@@ -403,7 +451,6 @@ func update_animation():
 				player_sprite.play("range_attack")
 			else:
 				player_sprite.play("attack")
-				#sprite_right_hitbox.play("slash")
 		return
 
 	if is_dashing:
