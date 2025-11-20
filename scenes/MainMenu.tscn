@@ -123,6 +123,24 @@ offset_bottom = 69.0
 theme_override_font_sizes/font_size = 50
 text = "Video"
 
+[node name="TutorialLabel" type="Label" parent="Options/VideoOptions"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 126.0
+offset_right = 127.0
+offset_bottom = 175.0
+theme_type_variation = &"GraphFrameTitleLabel"
+theme_override_font_sizes/font_size = 35
+text = "Tutorial"
+
+[node name="CheckBox" type="CheckBox" parent="Options/VideoOptions"]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 140.0
+offset_right = 165.0
+offset_bottom = 164.0
+button_pressed = true
+
 [node name="SoundOptions" type="Control" parent="Options"]
 anchors_preset = 0
 offset_left = 620.0
@@ -172,4 +190,5 @@ position = Vector2(505, 245)
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="Options/VideoOptions/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="Options/Backbutton/EinstellungenSpeichern" to="." method="_on_einstellungen_speichern_pressed"]

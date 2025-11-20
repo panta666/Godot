@@ -9,6 +9,8 @@ void fragment() {
 	if(blink_toggle) {
 		float blink = sin(TIME * blink_speed);
 		color.a *= abs(blink);
+	} else {
+		color.a = 0.0;
 	}
 	COLOR = color;
 }

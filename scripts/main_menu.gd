@@ -67,3 +67,8 @@ func _on_continue_pressed() -> void:
 func _on_einstellungen_speichern_pressed() -> void:
 	options.visible = false
 	title_screen.visible = true
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	GlobalScript.tutorial_on = toggled_on
+	blinking.enable_tutorial(toggled_on)

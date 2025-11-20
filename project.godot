@@ -82,6 +82,10 @@ audio/channel_defaults={
 }
 }
 
+[dotnet]
+
+project/assembly_name="BattleForBachelor"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")

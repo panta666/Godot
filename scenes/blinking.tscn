@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bvdh"]
 shader = ExtResource("1_vjbpe")
 shader_parameter/blink_speed = 1.0
-shader_parameter/blink_toggle = false
+shader_parameter/blink_toggle = true
 
 [node name="Blinking" type="Node2D"]
 script = ExtResource("3_tqcdi")
