@@ -3,6 +3,7 @@ extends Control
 # --- Szenen-Referenzen ---
 @onready var options: Control = $Options
 @onready var title_screen: MarginContainer = $TitleScreen
+@onready var blinking: Node2D = $Options/Backbutton/Blinking
 
 
 # --- Laufzeit-Referenzen ---
@@ -47,6 +48,7 @@ func _on_new_game_pressed() -> void:
 func _on_options_pressed() -> void:
 	options.visible = true
 	title_screen.visible = false
+	blinking.set_blinking_on(true)
 
 
 
@@ -65,3 +67,8 @@ func _on_continue_pressed() -> void:
 func _on_einstellungen_speichern_pressed() -> void:
 	options.visible = false
 	title_screen.visible = true
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	GlobalScript.tutorial_on = toggled_on
+	blinking.enable_tutorial(toggled_on)

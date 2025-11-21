@@ -20,6 +20,9 @@ extends CanvasLayer
 @onready var phone_background: AnimatedSprite2D = $Control/PhoneScreenContainer/Background
 @onready var back: Area2D = $Control/Phone/PowerArea
 
+# --- Tutorial ---
+@onready var blinking: Node2D = $Control/Blinking
+
 
 # --------------------------
 # Drag & Drop
@@ -40,6 +43,8 @@ func _ready() -> void:
 	options_container.visible = false
 	phone.visible = false
 	phone_background.visible = false
+	
+	blinking.visible = true
 
 	set_process_input(true)
 
@@ -134,6 +139,8 @@ func _on_close_mobile_finished() -> void:
 	options_container.visible = false
 	phone.visible = false
 	phone_background.visible = false
+	
+	blinking.visible = false
 
 	is_transitioning = false
 	print("[ESC_MENU] close_menu() vollständig abgeschlossen")
@@ -167,4 +174,5 @@ func _on_back_pressed(_viewport: Viewport, event: InputEvent, _shape_idx: int) -
 	if event is InputEventMouseButton and event.pressed:
 		menu_container.visible = true
 		options_container.visible = false
+		blinking.visible = false
 		print("[ESC_MENU] Zurück gedrückt | menu_visible=", menu_container.visible, " | options_visible=", options_container.visible)

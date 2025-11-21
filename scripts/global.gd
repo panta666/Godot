@@ -33,6 +33,11 @@ var oop_level_unlocked := [true, false, false]
 var medg_level_unlocked := [false, false, false]
 
 # -------------------------
+# Tutorial steurung (global)
+# -------------------------
+var tutorial_on := true
+
+# -------------------------
 # Neues Spiel starten
 # -------------------------
 func start_new_game() -> void:

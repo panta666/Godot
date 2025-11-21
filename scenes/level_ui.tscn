@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://rkc21geb74i1"]
+[gd_scene load_steps=148 format=3 uid="uid://rkc21geb74i1"]
 
 [ext_resource type="Script" uid="uid://ciwcno1t7dw4d" path="res://scripts/level_ui.gd" id="1_exbfu"]
 [ext_resource type="Texture2D" uid="uid://okvy2yv1mlo3" path="res://assets/Phone/mobile_phone_background/frame0000.png" id="2_di37k"]
@@ -144,6 +144,7 @@
 [ext_resource type="Texture2D" uid="uid://cx5an1077qj1" path="res://assets/Phone/mobile_phone_background/frame0139.png" id="141_6at87"]
 [ext_resource type="Texture2D" uid="uid://bpj4dv16sgfl0" path="res://assets/Phone/mobile_phone_background/frame0140.png" id="142_e23rf"]
 [ext_resource type="Texture2D" uid="uid://ti0ax670rdod" path="res://assets/Phone/off.png" id="144_hrjav"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="145_llhc3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oofme"]
 animations = [{
@@ -665,3 +666,7 @@ theme_override_colors/font_color = Color(0.70400786, 0.9168332, 0.9715262, 1)
 theme_override_colors/font_pressed_color = Color(0.11427544, 0.29684758, 0.23027517, 1)
 theme_override_colors/font_hover_color = Color(0.95686275, 0.91764706, 0.972549, 1)
 text = "Level betreten"
+
+[node name="Blinking" parent="Control" instance=ExtResource("145_llhc3")]
+position = Vector2(82, 312)
+scale = Vector2(0.15, 0.07)

@@ -15,6 +15,10 @@ extends CanvasLayer
 @onready var power_area_off: Area2D = $Control/Phone_off/PowerArea
 @onready var power_area_on: Area2D = $Control/Phone/PowerArea
 
+# Tutorial
+@onready var blinking: Node2D = $Control/Blinking
+
+
 var tween: Tween
 
 # ------------------------------------------------------
@@ -46,6 +50,8 @@ func _ready():
 	phone.visible = false
 	background.visible = false
 	phone_off.visible = false
+	
+	blinking.visible = false
 
 	# Unlock-Arrays aus Global übernehmen
 	oop_level_unlocked = GlobalScript.oop_level_unlocked.duplicate()
@@ -137,6 +143,8 @@ func show_phone_off():
 	power_area_on.monitoring = false
 
 	phone_state = PhoneState.OFF
+	
+	blinking.visible = true
 
 
 func _on_power_area_off_input(_vp, event, _idx):
@@ -153,6 +161,8 @@ func _turn_on_phone():
 	phone_off.visible = false
 	phone.visible = true
 	background.visible = true
+	
+	blinking.visible = false
 
 	update_level_button()
 
