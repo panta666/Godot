@@ -1,12 +1,16 @@
 extends CharacterBody2D
 
+class_name Enemy
+
 @export var attacks: Array[Attack] = []
 
 @export var range_attacks: Array[Range_Attack] = []
 
 var projectile_object = preload("res://scenes/Enemies/Projectile.tscn")
 
-@onready var health = $Health.health
+var healthbar_object = preload("res://scenes/Enemies/enemy_health_bar.tscn")
+
+var healthbar
 
 const SPEED = 50.0
 
@@ -15,6 +19,12 @@ const STUN_TIME = 0.3
 const DASH_SPEED = 300.0
 
 const RANGE = 250
+
+const ATTACK_RANGE_FAR = 200
+
+const ATTACK_RANGE_NEAR = 150
+
+const HEALTH_BAR_POSITION = Vector2(0, -30)
 
 var direction = 1
 
@@ -44,9 +54,12 @@ var player: Node2D = null
 
 @onready var tracking_box = $Tracking_Box
 
+func _ready() -> void:
+	call_deferred("_spawn_healthbar")
+
+
 
 func _physics_process(delta: float) -> void:
-	print(health)
 	# Add the gravity.
 	
 	if not is_on_floor():
@@ -61,7 +74,7 @@ func _physics_process(delta: float) -> void:
 			else:
 				if _is_player_in_sight():
 					if !is_attacking:
-						_start_attack(RANGE)
+						_start_attack()
 					if !dashing:
 						track_player(player.position)
 				else:
@@ -77,7 +90,7 @@ func _physics_process(delta: float) -> void:
 								sprite.pause()
 						else:
 							player = null
-
+				
 		if dashing:
 			velocity.x = direction * DASH_SPEED * is_walking
 		else:
@@ -124,18 +137,22 @@ func track_player(player_position: Vector2):
 		is_walking = 0
 		sprite.pause()
 		
-func _start_attack(attack_range: float):
+func _start_attack():
 		if player != null:
 			if range_attacks.is_empty():
-				var r  = randi_range(0, attacks.size() - 1)
+				var r  = randi_range(0, attacks.size() - 1)	
 				_attack(attacks[r])
+			elif attacks.is_empty():
+				var r  = randi_range(0, range_attacks.size() - 1)
+				_range_attack(range_attacks[r])
 			else:
-				if player.global_position.distance_to(global_position) > attack_range:
-					var r  = randi_range(0, attacks.size() - 1)
+				if player.global_position.distance_to(global_position) > ATTACK_RANGE_FAR:
+					var r  = randi_range(0, range_attacks.size() - 1)
 					_range_attack(range_attacks[r])
 				else:
-					var r  = randi_range(0, attacks.size() - 1)
-					_attack(attacks[r])
+					if player.global_position.distance_to(global_position) < ATTACK_RANGE_NEAR:
+						var r  = randi_range(0, attacks.size() - 1)
+						_attack(attacks[r])
 		
 		
 func _attack(attack: Attack):
@@ -145,7 +162,7 @@ func _attack(attack: Attack):
 	var shape := hitbox.shape as RectangleShape2D
 	shape.extents = attack.hitbox_size
 	$HitBox.damage = attack.damage
-
+	
 	print(attack.hitbox_offset)
 	
 	is_walking = 0
@@ -168,7 +185,7 @@ func _attack(attack: Attack):
 	await get_tree().create_timer(attack_duration).timeout
 	
 	hitbox.disabled = true
-
+	
 	is_walking = 0
 	sprite.pause()
 	await get_tree().create_timer(attack.post_attack_duration).timeout
@@ -179,7 +196,7 @@ func _attack(attack: Attack):
 
 func _range_attack(attack: Range_Attack):
 	is_attacking = true
-
+	
 	is_walking = 0
 	sprite.pause()
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
@@ -189,20 +206,26 @@ func _range_attack(attack: Range_Attack):
 	projectile.position = position + attack.projectile_offset * direction
 	projectile.direction = Vector2.RIGHT * direction
 	get_tree().current_scene.add_child(projectile)
-
+	
 	await get_tree().create_timer(attack.post_attack_duration).timeout
 	is_walking = 1
 	sprite.play("walk")
-	is_attacking = false
+	is_attacking = false	
 
 	
 func _start_dash():
 	if dash_allowed and !dashing:
 		dashing = true
 		$DashingTimer.start()
-		
+
+func _spawn_healthbar():
+	healthbar = healthbar_object.instantiate()
+	get_tree().get_root().add_child(healthbar)
+	healthbar.setup(self)
+
 
 func _on_health_depleted() -> void:
+	healthbar._deplete()
 	queue_free()
 	
 func _on_dashing_timer_timeout() -> void:
@@ -213,9 +236,9 @@ func _on_dashing_timer_timeout() -> void:
 
 func _on_dashing_cool_down_timer_timeout() -> void:
 	dash_allowed = true
-
+	
 func _on_hurt_box_received_damage(damage: int) -> void:
-	print("stunned")
+	healthbar.update()
 	_stun()
 
 func _on_attack_cooldown_timeout() -> void:
