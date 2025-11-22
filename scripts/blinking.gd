@@ -5,6 +5,8 @@ extends Node2D
 
 func _ready() -> void:
 	enable_tutorial(GlobalScript.tutorial_on)
+	# Wir verbinden das Signal aus dem GlobalScript mit unserer Funktion.
+	GlobalScript.tutorial_toggled.connect(set_blinking_on)
 
 
 func set_blinking_on(state: bool, speed := 0):

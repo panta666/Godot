@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpkw6p6jwdxlw"]
+[gd_scene load_steps=7 format=3 uid="uid://dpkw6p6jwdxlw"]
 
 [ext_resource type="Script" uid="uid://brdbqgmoxuone" path="res://scripts/main_menu.gd" id="1_2ue1o"]
 [ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="1_fnwlw"]
 [ext_resource type="Texture2D" uid="uid://c8xfhs2goquw5" path="res://assets/Phone/Tablet/tablet_off.png" id="2_ow34m"]
+[ext_resource type="PackedScene" uid="uid://dl7gwr16p3b6j" path="res://scenes/phone/video_options_container.tscn" id="4_826wr"]
 [ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/sound_options_container.tscn" id="4_ow34m"]
 [ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="5_l72w3"]
 
@@ -123,23 +124,12 @@ offset_bottom = 69.0
 theme_override_font_sizes/font_size = 50
 text = "Video"
 
-[node name="TutorialLabel" type="Label" parent="Options/VideoOptions"]
+[node name="VideoOptionsContainer" parent="Options/VideoOptions" instance=ExtResource("4_826wr")]
 layout_mode = 0
-offset_left = -5.0
-offset_top = 126.0
-offset_right = 127.0
-offset_bottom = 175.0
-theme_type_variation = &"GraphFrameTitleLabel"
-theme_override_font_sizes/font_size = 35
-text = "Tutorial"
-
-[node name="CheckBox" type="CheckBox" parent="Options/VideoOptions"]
-layout_mode = 0
-offset_left = 141.0
-offset_top = 140.0
-offset_right = 165.0
-offset_bottom = 164.0
-button_pressed = true
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 156.0
+offset_bottom = 185.0
 
 [node name="SoundOptions" type="Control" parent="Options"]
 anchors_preset = 0
@@ -190,5 +180,4 @@ position = Vector2(505, 245)
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
-[connection signal="toggled" from="Options/VideoOptions/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="Options/Backbutton/EinstellungenSpeichern" to="." method="_on_einstellungen_speichern_pressed"]

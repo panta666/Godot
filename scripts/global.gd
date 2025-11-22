@@ -38,6 +38,11 @@ var medg_level_unlocked := [false, false, false]
 var tutorial_on := true
 
 # -------------------------
+# Signals (global)
+# -------------------------
+signal tutorial_toggled(is_enabled: bool)
+
+# -------------------------
 # Neues Spiel starten
 # -------------------------
 func start_new_game() -> void:
@@ -253,3 +258,8 @@ func _toggle_esc_menu() -> void:
 			esc_menu_instance.close_menu()
 		else:
 			esc_menu_instance.open_menu()
+
+# Eine Funktion, um den Wert sicher zu ändern und das Signal zu feuern
+func set_tutorial_enabled(value: bool) -> void:
+	tutorial_on = value
+	tutorial_toggled.emit(tutorial_on)
