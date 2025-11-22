@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl7gwr16p3b6j"]
+
+[ext_resource type="Script" uid="uid://dnqgn4a2joxy3" path="res://scripts/phone/video_options_container.gd" id="1_pejhk"]
+
+[node name="VideoOptionsContainer" type="CenterContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.95, 0.95)
+script = ExtResource("1_pejhk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TutorialCheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Tutorial"
+flat = true
+
+[connection signal="toggled" from="VBoxContainer/TutorialCheckBox" to="." method="_on_tutorial_check_box_toggled"]

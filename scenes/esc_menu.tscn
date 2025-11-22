@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bekvvekgehgcu"]
+[gd_scene load_steps=75 format=3 uid="uid://bekvvekgehgcu"]
 
 [ext_resource type="Script" uid="uid://dl6s1606r8b4i" path="res://scripts/esc_menu.gd" id="1_7f7ni"]
 [ext_resource type="Texture2D" uid="uid://b3aqpvst1i4q6" path="res://assets/Phone/mobile_phone_background/mobile_bg2/frame0000.png" id="1_yrc1y"]
@@ -71,6 +71,7 @@
 [ext_resource type="Texture2D" uid="uid://c7qbren4uddpe" path="res://assets/Phone/empty.png" id="68_vce8b"]
 [ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://scenes/phone/sound_options_container.tscn" id="71_3jpo3"]
 [ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="71_gmq7s"]
+[ext_resource type="PackedScene" uid="uid://dl7gwr16p3b6j" path="res://scenes/phone/video_options_container.tscn" id="71_nqm7f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l41tf"]
 animations = [{
@@ -322,6 +323,7 @@ position = Vector2(1, 141)
 shape = SubResource("RectangleShape2D_yrc1y")
 
 [node name="MenuContainer" type="VBoxContainer" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 21.0
@@ -395,12 +397,25 @@ theme_override_font_sizes/font_size = 20
 text = "Quit"
 flat = true
 
-[node name="OptionsContainer" parent="Control" instance=ExtResource("71_3jpo3")]
+[node name="OptionsContainer" type="TabContainer" parent="Control"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 68.0
-offset_right = 163.0
-offset_bottom = 364.0
+offset_left = 11.0
+offset_top = 29.0
+offset_right = 250.0
+offset_bottom = 356.0
+scale = Vector2(0.58473665, 0.7939857)
+theme_override_font_sizes/font_size = 20
+tab_alignment = 1
+current_tab = 0
+
+[node name="Sound" parent="Control/OptionsContainer" instance=ExtResource("71_3jpo3")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Video" parent="Control/OptionsContainer" instance=ExtResource("71_nqm7f")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Blinking" parent="Control" instance=ExtResource("71_gmq7s")]
 position = Vector2(83, 310)
