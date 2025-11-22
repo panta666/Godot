@@ -1,8 +1,8 @@
 extends CenterContainer
 
 # --- Options-UI ---
-@onready var master_volume: HSlider = $VBoxContainer/MasterVolume
-@onready var check_box: CheckBox = $VBoxContainer/CheckBox
+@onready var master_volume: HSlider = $VBoxContainer/MVContainer/MasterVolume
+@onready var mv_mute: CheckBox = $VBoxContainer/MVContainer/MVMuteCheckBox
 @onready var music_volume: HSlider = $VBoxContainer/MusicVolume
 @onready var sfx_volume: HSlider = $VBoxContainer/SFXVolume
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 	master_volume.value = audio_settings["Master"]
 	music_volume.value = audio_settings["Music"]
 	sfx_volume.value = audio_settings["SFX"]
-	check_box.button_pressed = audio_settings["is_muted"]
+	mv_mute.button_pressed = audio_settings["is_muted"]
 
 
 # --------------------------
