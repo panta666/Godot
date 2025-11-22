@@ -1,10 +1,12 @@
 extends CenterContainer
 
 # --- Options-UI ---
-@onready var master_volume: HSlider = $VBoxContainer/MVContainer/MasterVolume
-@onready var mv_mute: CheckBox = $VBoxContainer/MVContainer/MVMuteCheckBox
-@onready var music_volume: HSlider = $VBoxContainer/MusicVolume
-@onready var sfx_volume: HSlider = $VBoxContainer/SFXVolume
+@onready var master_volume: HSlider = $VBoxContainer/MaVContainer/MasterVolume
+@onready var mv_mute: CheckBox = $VBoxContainer/MaVContainer/MaVMuteCheckBox
+@onready var music_volume: HSlider = $VBoxContainer/MuVContainer/MusicVolume
+@onready var mu_mute: CheckBox = $VBoxContainer/MuVContainer/MuVMuteCheckBox
+@onready var sv_mute: CheckBox = $VBoxContainer/SVContainer/SVMuteCheckBox
+@onready var sfx_volume: HSlider = $VBoxContainer/SVContainer/SFXVolume
 
 
 # --- Soundbus-IDs ---
@@ -46,3 +48,11 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 
 func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 	SaveManager.update_bus_volume(SFX_BUS, sfx_volume.value)
+
+
+func _on_sv_mute_check_box_3_toggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(SFX_BUS, toggled_on)
+
+
+func _on_mu_v_mute_check_box_2_toggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(MUSIC_BUS, toggled_on)
