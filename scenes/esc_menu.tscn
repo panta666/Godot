@@ -395,7 +395,12 @@ theme_override_font_sizes/font_size = 20
 text = "Quit"
 flat = true
 
-[node name="OptionsContainer" parent="Control" instance=ExtResource("71_3jpo3")]
+[node name="OptionsContainer" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SoundOptionsContainer" parent="Control/OptionsContainer" instance=ExtResource("71_3jpo3")]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 68.0

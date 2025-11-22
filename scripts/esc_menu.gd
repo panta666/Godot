@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var control: Control = $Control
 @onready var menu_container: VBoxContainer = $Control/MenuContainer
 @onready var menu_options: VBoxContainer = $Control/MenuContainer/MenuOptions
-@onready var options_container: CenterContainer = $Control/OptionsContainer
+@onready var options_container: CenterContainer = $Control/OptionsContainer/SoundOptionsContainer
 
 # --- Menü-Buttons ---
 @onready var continue_button: Button = $Control/MenuContainer/MenuOptions/Continue
