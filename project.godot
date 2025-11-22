@@ -82,6 +82,12 @@ audio/channel_defaults={
 }
 }
 
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=600
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="BattleForBachelor"
