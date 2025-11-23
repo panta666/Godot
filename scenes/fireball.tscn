@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0xr60xegk3f3"]
+[gd_scene load_steps=26 format=3 uid="uid://c0xr60xegk3f3"]
 
 [ext_resource type="Texture2D" uid="uid://c0712qxpxtoo7" path="res://assets/fire ball/fire splat 1.png" id="1_86oub"]
 [ext_resource type="Script" uid="uid://dhplbhsk1gwlt" path="res://scripts/fireball.gd" id="1_qaphm"]
@@ -6,9 +6,55 @@
 [ext_resource type="Texture2D" uid="uid://bxgoxc8yxc8ft" path="res://assets/fire ball/fire splat 3.png" id="3_mi4h5"]
 [ext_resource type="Texture2D" uid="uid://ohgdhxon71f7" path="res://assets/fire ball/fire splat 44.png" id="4_wyo3q"]
 [ext_resource type="Texture2D" uid="uid://ch3vs27owjkoo" path="res://assets/fire ball/fire ball 1.png" id="5_1fb5b"]
+[ext_resource type="Texture2D" uid="uid://dbaxjg5um1rky" path="res://assets/range_attacks/oop_capsule/capsule_death.png" id="6_1fb5b"]
 [ext_resource type="Texture2D" uid="uid://d0bmy44tpjmqf" path="res://assets/fire ball/fire ball 2.png" id="6_tyqc2"]
+[ext_resource type="Texture2D" uid="uid://0o1f4w4w5nhu" path="res://assets/range_attacks/oop_capsule/capsule_flying.png" id="6_wyo3q"]
 [ext_resource type="Texture2D" uid="uid://dt2h8wxhq5v53" path="res://assets/fire ball/fire ball 3.png" id="7_pq144"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="9_mi4h5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3iw0"]
+atlas = ExtResource("6_1fb5b")
+region = Rect2(0, 0, 640, 154)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0dvs"]
+atlas = ExtResource("6_1fb5b")
+region = Rect2(640, 0, 640, 154)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fb5b"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(0, 0, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyqc2"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(640, 0, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pq144"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(1280, 0, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rtms"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(0, 172, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxa2u"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(640, 172, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7iiyt"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(1280, 172, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y511n"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(0, 344, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e52x5"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(640, 344, 640, 172)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hylm5"]
+atlas = ExtResource("6_wyo3q")
+region = Rect2(1280, 344, 640, 172)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0rtms"]
 animations = [{
@@ -28,6 +74,49 @@ animations = [{
 "loop": false,
 "name": &"death",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3iw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0dvs")
+}],
+"loop": false,
+"name": &"oop_death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fb5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyqc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pq144")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rtms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxa2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7iiyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y511n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e52x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hylm5")
+}],
+"loop": true,
+"name": &"oop_run",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -54,8 +143,7 @@ script = ExtResource("1_qaphm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rtms")
-animation = &"run"
-autoplay = "run"
+animation = &"oop_death"
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 17
