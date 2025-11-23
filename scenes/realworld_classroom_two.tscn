@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=26 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://scripts/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="2_1lbkm"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://djd3jjjpykij8" path="res://assets/npc_data_animations/npc_lady6.tres" id="9_kvmm4"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="11_1lbkm"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="12_kvmm4"]
+[ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="13_7iy3m"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvmm4"]
 polygon = PackedVector2Array(-26, -22, 0, -22, 0, -8, 12, -8, 12, -22, 18, -22, 18, 16, 12, 16, 12, 12, 2, 12, 2, 16, 0, 16, 0, 18, -2, 18, -2, 20, -8, 20, -8, 14, -18, 14, -18, 20, -24, 20, -24, 10, -26, 10)
@@ -4653,3 +4654,7 @@ sit_position = Vector2(1360, 625)
 stand_position = Vector2(1383, 600)
 flip_horizontal = true
 flip_player_on_sit = true
+
+[node name="Sunlight" parent="." instance=ExtResource("13_7iy3m")]
+position = Vector2(1355, 296)
+scale = Vector2(22.27431, -11.61313)

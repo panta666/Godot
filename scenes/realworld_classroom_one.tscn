@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
 [ext_resource type="Resource" uid="uid://bk5m7wfr5ivs5" path="res://assets/npc_data_animations/npc_typ2.tres" id="9_p60gb"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
-[ext_resource type="Texture2D" uid="uid://ciyck2crvjcfy" path="res://assets/tilemap/32x32/Light_Textures/64x64/64x64 textures (5).png" id="12_4xjni"]
+[ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="12_4xjni"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xjni"]
 polygon = PackedVector2Array(-16, -22, 10, -22, 10, 10, 8, 10, 8, 20, 2, 20, 2, 14, -8, 14, -8, 20, -14, 20, -14, 10, -16, 10)
@@ -4657,11 +4657,6 @@ npc_data = ExtResource("9_p60gb")
 
 [node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("10_fktbd")]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(374, -82.99999)
-scale = Vector2(14.192376, 5.749477)
-color = Color(1, 1, 1, 0.3647059)
-energy = 4.73
-shadow_enabled = true
-texture = ExtResource("12_4xjni")
-texture_scale = 1.49
+[node name="Sunlight" parent="." instance=ExtResource("12_4xjni")]
+position = Vector2(392, 13)
+scale = Vector2(21.020275, 6.1062403)
