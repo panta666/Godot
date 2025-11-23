@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var health_bar = $ProgressBar
+@onready var health_bar = $TextureProgressBar
 
 var health
 

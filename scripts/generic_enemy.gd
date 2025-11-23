@@ -14,7 +14,7 @@ var healthbar
 
 const SPEED = 50.0
 
-const STUN_TIME = 0.3
+const STUN_TIME = 0.5
 
 const DASH_SPEED = 300.0
 
@@ -78,23 +78,25 @@ func _physics_process(delta: float) -> void:
 					if !dashing:
 						track_player(player.position)
 				else:
-					#if !is_attacking:
-					is_walking = 1
-					sprite.play("walk")
 					if player != null:
 						var bodies = tracking_box.get_overlapping_bodies()
 						if player in bodies:
 							if !dashing:
 								track_player(player.position)
 								is_walking = 0
-								sprite.pause()
+								if sprite.animation != "idle":
+									print("idle1")
+									sprite.play("idle")
 						else:
 							player = null
-				
-		if dashing:
-			velocity.x = direction * DASH_SPEED * is_walking
-		else:
-			velocity.x = direction * SPEED * is_walking
+					else:
+						is_walking = 1
+						sprite.play("walk")
+		if !stunned:
+			if dashing:
+				velocity.x = direction * DASH_SPEED * is_walking
+			else:
+				velocity.x = direction * SPEED * is_walking
 		
 	move_and_slide()
 
@@ -114,15 +116,21 @@ func _is_player_in_sight()-> bool:
 	
 func _stun():
 	stunned = true
+	print("stun")
+	
+	var frames: SpriteFrames = sprite.sprite_frames
+	var frame_number = frames.get_frame_count("stun")
+	var anim_speed = frame_number / STUN_TIME
+	print(anim_speed)
+	frames.set_animation_speed("stun", anim_speed)
+	sprite.play("stun")
 	await get_tree().create_timer(STUN_TIME).timeout
 	stunned = false
 
 
 	
 func track_player(player_position: Vector2):
-	if !is_attacking:
-		sprite.play("walk")
-		is_walking =1
+
 	var dx = abs(player_position.x - position.x)
 	if dx > 15:
 		if player_position.x > position.x:
@@ -133,9 +141,6 @@ func track_player(player_position: Vector2):
 			transform.x = Vector2(-1.0*scale.x, 0.0)
 		
 		ray_cast_right.target_position.x = abs(ray_cast_right.target_position.x) * direction
-	else:
-		is_walking = 0
-		sprite.pause()
 		
 func _start_attack():
 		if player != null:
@@ -162,11 +167,15 @@ func _attack(attack: Attack):
 	var shape := hitbox.shape as RectangleShape2D
 	shape.extents = attack.hitbox_size
 	$HitBox.damage = attack.damage
-	
-	print(attack.hitbox_offset)
+	var frames: SpriteFrames = sprite.sprite_frames
 	
 	is_walking = 0
-	sprite.pause()
+	
+	var frame_number = frames.get_frame_count(attack.pre_animation_name)
+	var anim_speed = frame_number / attack.pre_attack_duration
+	frames.set_animation_speed(attack.pre_animation_name, anim_speed)
+	sprite.play(attack.pre_animation_name)
+	
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
 	is_walking = 1
 	sprite.play("walk")
@@ -178,19 +187,29 @@ func _attack(attack: Attack):
 			attack_duration = $DashingTimer.wait_time
 		attack.movement_type.NONE:
 			is_walking = 0
-			sprite.pause()
+			print("idle2")
+			sprite.play("idle")
 	
 	hitbox.disabled = false
+	
+	frame_number = frames.get_frame_count(attack.animation_name)
+	anim_speed = frame_number / attack_duration
+	frames.set_animation_speed(attack.animation_name, anim_speed)
+	sprite.play(attack.animation_name)
 	
 	await get_tree().create_timer(attack_duration).timeout
 	
 	hitbox.disabled = true
 	
 	is_walking = 0
-	sprite.pause()
+	
+	frame_number = frames.get_frame_count(attack.post_animation_name)
+	anim_speed = frame_number / attack.post_attack_duration
+	frames.set_animation_speed(attack.post_animation_name, anim_speed)
+	sprite.play(attack.post_animation_name)
+	
 	await get_tree().create_timer(attack.post_attack_duration).timeout
-	is_walking = 1
-	sprite.play("walk")
+
 	is_attacking = false
 	
 
@@ -198,7 +217,8 @@ func _range_attack(attack: Range_Attack):
 	is_attacking = true
 	
 	is_walking = 0
-	sprite.pause()
+	print("idle3")
+	sprite.play("idle")
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
 
 	var projectile = projectile_object.instantiate()
