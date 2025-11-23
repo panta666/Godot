@@ -1,13 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpluvay11kswo"]
+[gd_scene load_steps=5 format=3 uid="uid://dpluvay11kswo"]
 
 [ext_resource type="Script" uid="uid://bdhi14ftu225w" path="res://scripts/enemy_health_bar.gd" id="1_po3uj"]
+[ext_resource type="Texture2D" uid="uid://chpm4en8t1lcb" path="res://assets/characters/enemies/healthbar/healthbar_under.png" id="2_dwbri"]
+[ext_resource type="Texture2D" uid="uid://bylcvwqlpi3s5" path="res://assets/characters/enemies/healthbar/healthbar_over.png" id="3_phvob"]
+[ext_resource type="Texture2D" uid="uid://ceh0kux1rshrp" path="res://assets/characters/enemies/healthbar/healthbar_progress.png" id="4_imvy5"]
 
 [node name="EnemyHealthBar" type="Node2D"]
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_po3uj")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -32.0
-offset_top = -7.0
-offset_right = 32.0
-offset_bottom = 27.0
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -35.714287
+offset_top = -8.0
+offset_right = 35.714287
 value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("2_dwbri")
+texture_over = ExtResource("3_phvob")
+texture_progress = ExtResource("4_imvy5")
