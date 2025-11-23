@@ -13,7 +13,7 @@ var is_dead = false
 
 func _ready():
 	current_scene = get_tree().current_scene
-	scene_name = current_scene.name
+	scene_name = current_scene.name.to_lower()
 	
 	change_size()
 
@@ -31,7 +31,7 @@ func _on_hit_box_area_entered(_area: Area2D) -> void: #Collision mit Gegnern
 func play_run_animation():
 	if is_dead == true:
 		return
-	if "Level_one" in scene_name:
+	if "oop" in scene_name:
 		fireball_sprite.play("oop_run")
 	elif "medg" in scene_name:
 		#fireball_sprite.play("medg_run")
@@ -40,7 +40,7 @@ func play_run_animation():
 		fireball_sprite.play("run")
 
 func change_size():
-	if "Level_one" in scene_name:
+	if "oop" in scene_name:
 		fireball_sprite.flip_h = (direction < 0)
 		fireball_sprite.scale = Vector2(0.094,0.154)
 		fireball_sprite.position = Vector2(-20, -1)
@@ -55,7 +55,7 @@ func change_size():
 
 func play_death_animation():
 	is_dead = true
-	if "Level_one" in scene_name:
+	if "oop" in scene_name:
 		fireball_sprite.play("oop_death")
 	elif "medg" in scene_name:
 		#fireball_sprite.play("medg_death")

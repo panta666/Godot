@@ -211,11 +211,11 @@ func _on_enter_level3_pressed():
 
 
 func _get_scene_path(level_index: int) -> String:
-	if current_room == "OOP":
+	if current_room == "OOP": 
 		return [
-			"res://scenes/level/oop/level_one.tscn",
-			"res://scenes/level/oop/level_two.tscn",
-			"res://scenes/level/oop/level_three.tscn"
+			"res://scenes/level/oop/oop_level_one.tscn",
+			"res://scenes/level/oop/oop_level_two.tscn",
+			"res://scenes/level/oop/oop_level_three.tscn"
 		][level_index]
 
 	if current_room == "MEDG":
