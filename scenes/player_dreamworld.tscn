@@ -1,4 +1,4 @@
-[gd_scene load_steps=156 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=161 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://j738q4tahpiq" path="res://assets/plattformer_character/animations/lead-jab/east/frame_001.png" id="4_aofeu"]
 [ext_resource type="Texture2D" uid="uid://cym82rp3ek17n" path="res://assets/plattformer_character/animations/lead-jab/east/frame_002.png" id="5_c7cji"]
 [ext_resource type="Texture2D" uid="uid://lhc35761letl" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_000.png" id="6_a5qtf"]
+[ext_resource type="Shader" uid="uid://l5jshm6m8b1x" path="res://scenes/components/hit_flash.gdshader" id="6_gjpxn"]
 [ext_resource type="Texture2D" uid="uid://ds8d5jx1fxwjp" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_001.png" id="7_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://cksau5e6shf6w" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_002.png" id="8_3dpfv"]
 [ext_resource type="Texture2D" uid="uid://cc3poyo51xpv" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_003.png" id="9_sssl5"]
@@ -97,6 +98,12 @@ gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_50cf0")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5kx"]
+resource_local_to_scene = true
+shader = ExtResource("6_gjpxn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3r8r"]
 atlas = ExtResource("3_w3r8r")
@@ -645,6 +652,43 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_gjpxn"]
+resource_name = "hit_flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ku5kx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku5kx"]
+_data = {
+&"RESET": SubResource("Animation_ku5kx"),
+&"hit_flash": SubResource("Animation_gjpxn")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdh20"]
 size = Vector2(14, 39)
 
@@ -772,10 +816,17 @@ offset_right = 111.0
 offset_bottom = 72.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.1920929e-07, 0)
+material = SubResource("ShaderMaterial_ku5kx")
+position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
 animation = &"attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ku5kx")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

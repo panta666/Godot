@@ -65,6 +65,7 @@ var recharge_timer = 0.0
 var is_taking_damage: bool = false
 var knockback_timer = 0.0
 var knockback_length = 0.2
+@onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 
 #HP
 var is_alive: bool = true
@@ -99,6 +100,9 @@ func _ready() -> void:
 			camera_2d.make_current()
 
 	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+
+	player_sprite.material.set_shader_parameter("flash_value", 0.0)
+
 
 
 
@@ -377,6 +381,8 @@ func received_damage(_damage: int) -> void:
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
+
+	hit_flash_animation.play("hit_flash")
 
 	# Knockbackrichtung
 	var knock_dir = -sign(last_facing_direction)
