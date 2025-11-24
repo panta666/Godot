@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=38 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c1e450qelo0gk" path="res://scenes/platform_up.tscn" id="15_67yw2"]
 [ext_resource type="Script" uid="uid://dvegcwxxgc673" path="res://scenes/level/oop/test_level_finish.gd" id="16_q7fde"]
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
+[ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -2751,5 +2752,20 @@ offset_bottom = -83.0
 text = "Level 1
 finish test"
 label_settings = SubResource("LabelSettings_swoql")
+
+[node name="Coin" parent="." instance=ExtResource("18_swoql")]
+position = Vector2(3315, -267)
+
+[node name="Coin2" parent="." instance=ExtResource("18_swoql")]
+position = Vector2(679, -41)
+
+[node name="Coin3" parent="." instance=ExtResource("18_swoql")]
+position = Vector2(986, -485)
+
+[node name="Coin4" parent="." instance=ExtResource("18_swoql")]
+position = Vector2(1507, 406)
+
+[node name="Coin5" parent="." instance=ExtResource("18_swoql")]
+position = Vector2(3048, 746)
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
