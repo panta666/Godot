@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=156 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
@@ -55,8 +55,14 @@
 [ext_resource type="Texture2D" uid="uid://y5rhrs3wjml3" path="res://assets/plattformer_character/animations/taking-punch/east/frame_002.png" id="34_paqmm"]
 [ext_resource type="Texture2D" uid="uid://cuymn6q8x0ees" path="res://assets/plattformer_character/animations/taking-punch/east/frame_003.png" id="35_sfij5"]
 [ext_resource type="Texture2D" uid="uid://dc8jt76j5q84q" path="res://assets/plattformer_character/animations/taking-punch/east/frame_004.png" id="36_ax8db"]
+[ext_resource type="Texture2D" uid="uid://dftx030yhq70l" path="res://assets/plattformer_character/animations/front-flip/east/frame_000.png" id="37_dk1al"]
 [ext_resource type="Texture2D" uid="uid://cod3uuuqbijii" path="res://assets/plattformer_character/animations/taking-punch/east/frame_005.png" id="37_el3gc"]
+[ext_resource type="Texture2D" uid="uid://dhwy3rkm0hca3" path="res://assets/plattformer_character/animations/front-flip/east/frame_001.png" id="38_gjpxn"]
+[ext_resource type="Texture2D" uid="uid://bi6uhasekvvp0" path="res://assets/plattformer_character/animations/front-flip/east/frame_002.png" id="39_ku5kx"]
+[ext_resource type="Texture2D" uid="uid://bqqpryrxfxalp" path="res://assets/plattformer_character/animations/front-flip/east/frame_003.png" id="40_idqj6"]
 [ext_resource type="Texture2D" uid="uid://cv3hmep2y0c36" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_000.png" id="41_lsnhg"]
+[ext_resource type="Texture2D" uid="uid://cqt3km4sweo6c" path="res://assets/plattformer_character/animations/front-flip/east/frame_004.png" id="41_x8i5p"]
+[ext_resource type="Texture2D" uid="uid://74gh2tjxlv0k" path="res://assets/plattformer_character/animations/front-flip/east/frame_005.png" id="42_17go0"]
 [ext_resource type="Texture2D" uid="uid://b6e4bte84lryb" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_001.png" id="42_26kqb"]
 [ext_resource type="Texture2D" uid="uid://cakb6tgudt15m" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_002.png" id="43_a5qtf"]
 [ext_resource type="Texture2D" uid="uid://dwpmh1c2kq5qt" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_003.png" id="44_rfwbl"]
@@ -202,6 +208,30 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op5et"]
 atlas = ExtResource("24_26kqb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bv1k"]
+atlas = ExtResource("37_dk1al")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdf71"]
+atlas = ExtResource("38_gjpxn")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv01v"]
+atlas = ExtResource("39_ku5kx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w500h"]
+atlas = ExtResource("40_idqj6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cla"]
+atlas = ExtResource("41_x8i5p")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgv2w"]
+atlas = ExtResource("42_17go0")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_105pv"]
@@ -460,6 +490,29 @@ animations = [{
 "loop": true,
 "name": &"fall",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bv1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdf71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv01v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w500h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgv2w")
+}],
+"loop": false,
+"name": &"frontflip",
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -722,7 +775,7 @@ offset_bottom = 72.0
 position = Vector2(-1.1920929e-07, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"duck"
+animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

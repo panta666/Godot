@@ -12,6 +12,7 @@ var last_facing_direction = 1
 #Variablen für double jump
 var jump_count = 0
 const MAX_JUMPS = 2  # 1 Boden + 1 Double Jump
+var is_double_jumping: bool = false
 var double_jump_allowed: bool = true
 
 #Variablen für Coyote Time
@@ -211,9 +212,11 @@ func handle_jump():
 		if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
 			velocity.y = JUMP_VELOCITY
 			jump_count = 2
+			is_double_jumping = true
 		elif jump_count == 1:	#Einfacher double jump
 			velocity.y = JUMP_VELOCITY
 			jump_count = 2
+			is_double_jumping = true
 
 #Handle Dash
 func handle_dash():
@@ -350,7 +353,8 @@ func _on_animation_finished():
 		is_attacking = false
 
 
-#Handle Slash-Animationwwwww
+
+#Handle Slash-Animation
 func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
 	hitbox.monitorable = true
 	hitbox.monitoring = true
@@ -447,6 +451,15 @@ func update_animation():
 			player_sprite.play("take_damage")
 		return
 
+	# Double Jump Animation läuft
+	if is_double_jumping:
+		if player_sprite.animation != "frontflip":
+			player_sprite.play("frontflip")
+		# Sobald man aufhört aufzusteigen → Flip endet 
+		if velocity.y >= 0:
+			is_double_jumping = false
+		return
+
 	if is_attacking:
 		if player_sprite.animation != "attack":
 			if Input.is_action_pressed("move_up"):
@@ -458,6 +471,8 @@ func update_animation():
 			else:
 				player_sprite.play("attack")
 		return
+
+
 
 	if is_dashing:
 		if player_sprite.animation != "dash":
@@ -499,7 +514,7 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		print("Down-Hit auf Gegner:", body.name)
 		velocity.y = JUMP_VELOCITY
-		print("Bounce Jump")
+		is_double_jumping = true
 
 func _input(event: InputEvent):
 	if(event.is_action_pressed("move_down") && is_on_floor()):

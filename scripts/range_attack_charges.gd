@@ -15,7 +15,7 @@ const ATTACK_ICONS  ={
 func _ready():
 	charge_bar.min_value = 0
 	charge_bar.max_value = max_value
-	charge_bar.value = charge_bar.min_value  # Start: voll
+	charge_bar.value = charge_bar.min_value
 	
 	set_attack_texture()
 
