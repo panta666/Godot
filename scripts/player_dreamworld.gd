@@ -12,6 +12,7 @@ var last_facing_direction = 1
 #Variablen für double jump
 var jump_count = 0
 const MAX_JUMPS = 2  # 1 Boden + 1 Double Jump
+var is_double_jumping: bool = false
 var double_jump_allowed: bool = true
 
 #Variablen für Coyote Time
@@ -64,6 +65,7 @@ var recharge_timer = 0.0
 var is_taking_damage: bool = false
 var knockback_timer = 0.0
 var knockback_length = 0.2
+@onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 
 #HP
 var is_alive: bool = true
@@ -98,6 +100,9 @@ func _ready() -> void:
 			camera_2d.make_current()
 
 	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+
+	player_sprite.material.set_shader_parameter("flash_value", 0.0)
+
 
 
 
@@ -211,9 +216,11 @@ func handle_jump():
 		if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
 			velocity.y = JUMP_VELOCITY
 			jump_count = 2
+			is_double_jumping = true
 		elif jump_count == 1:	#Einfacher double jump
 			velocity.y = JUMP_VELOCITY
 			jump_count = 2
+			is_double_jumping = true
 
 #Handle Dash
 func handle_dash():
@@ -350,7 +357,8 @@ func _on_animation_finished():
 		is_attacking = false
 
 
-#Handle Slash-Animationwwwww
+
+#Handle Slash-Animation
 func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
 	hitbox.monitorable = true
 	hitbox.monitoring = true
@@ -373,6 +381,8 @@ func received_damage(_damage: int) -> void:
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
+
+	hit_flash_animation.play("hit_flash")
 
 	# Knockbackrichtung
 	var knock_dir = -sign(last_facing_direction)
@@ -447,6 +457,15 @@ func update_animation():
 			player_sprite.play("take_damage")
 		return
 
+	# Double Jump Animation läuft
+	if is_double_jumping:
+		if player_sprite.animation != "frontflip":
+			player_sprite.play("frontflip")
+		# Sobald man aufhört aufzusteigen → Flip endet 
+		if velocity.y >= 0:
+			is_double_jumping = false
+		return
+
 	if is_attacking:
 		if player_sprite.animation != "attack":
 			if Input.is_action_pressed("move_up"):
@@ -458,6 +477,8 @@ func update_animation():
 			else:
 				player_sprite.play("attack")
 		return
+
+
 
 	if is_dashing:
 		if player_sprite.animation != "dash":
@@ -499,7 +520,7 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		print("Down-Hit auf Gegner:", body.name)
 		velocity.y = JUMP_VELOCITY
-		print("Bounce Jump")
+		is_double_jumping = true
 
 func _input(event: InputEvent):
 	if(event.is_action_pressed("move_down") && is_on_floor()):

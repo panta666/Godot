@@ -1,4 +1,4 @@
-[gd_scene load_steps=144 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=161 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/player_dreamworld.gd" id="1_fo2fe"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/components/health_wave.tscn" id="3_rfwbl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://j738q4tahpiq" path="res://assets/plattformer_character/animations/lead-jab/east/frame_001.png" id="4_aofeu"]
 [ext_resource type="Texture2D" uid="uid://cym82rp3ek17n" path="res://assets/plattformer_character/animations/lead-jab/east/frame_002.png" id="5_c7cji"]
 [ext_resource type="Texture2D" uid="uid://lhc35761letl" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_000.png" id="6_a5qtf"]
+[ext_resource type="Shader" uid="uid://l5jshm6m8b1x" path="res://scenes/components/hit_flash.gdshader" id="6_gjpxn"]
 [ext_resource type="Texture2D" uid="uid://ds8d5jx1fxwjp" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_001.png" id="7_rfwbl"]
 [ext_resource type="Texture2D" uid="uid://cksau5e6shf6w" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_002.png" id="8_3dpfv"]
 [ext_resource type="Texture2D" uid="uid://cc3poyo51xpv" path="res://assets/plattformer_character/animations/surprise-uppercut/east/frame_003.png" id="9_sssl5"]
@@ -55,8 +56,14 @@
 [ext_resource type="Texture2D" uid="uid://y5rhrs3wjml3" path="res://assets/plattformer_character/animations/taking-punch/east/frame_002.png" id="34_paqmm"]
 [ext_resource type="Texture2D" uid="uid://cuymn6q8x0ees" path="res://assets/plattformer_character/animations/taking-punch/east/frame_003.png" id="35_sfij5"]
 [ext_resource type="Texture2D" uid="uid://dc8jt76j5q84q" path="res://assets/plattformer_character/animations/taking-punch/east/frame_004.png" id="36_ax8db"]
+[ext_resource type="Texture2D" uid="uid://dftx030yhq70l" path="res://assets/plattformer_character/animations/front-flip/east/frame_000.png" id="37_dk1al"]
 [ext_resource type="Texture2D" uid="uid://cod3uuuqbijii" path="res://assets/plattformer_character/animations/taking-punch/east/frame_005.png" id="37_el3gc"]
+[ext_resource type="Texture2D" uid="uid://dhwy3rkm0hca3" path="res://assets/plattformer_character/animations/front-flip/east/frame_001.png" id="38_gjpxn"]
+[ext_resource type="Texture2D" uid="uid://bi6uhasekvvp0" path="res://assets/plattformer_character/animations/front-flip/east/frame_002.png" id="39_ku5kx"]
+[ext_resource type="Texture2D" uid="uid://bqqpryrxfxalp" path="res://assets/plattformer_character/animations/front-flip/east/frame_003.png" id="40_idqj6"]
 [ext_resource type="Texture2D" uid="uid://cv3hmep2y0c36" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_000.png" id="41_lsnhg"]
+[ext_resource type="Texture2D" uid="uid://cqt3km4sweo6c" path="res://assets/plattformer_character/animations/front-flip/east/frame_004.png" id="41_x8i5p"]
+[ext_resource type="Texture2D" uid="uid://74gh2tjxlv0k" path="res://assets/plattformer_character/animations/front-flip/east/frame_005.png" id="42_17go0"]
 [ext_resource type="Texture2D" uid="uid://b6e4bte84lryb" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_001.png" id="42_26kqb"]
 [ext_resource type="Texture2D" uid="uid://cakb6tgudt15m" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_002.png" id="43_a5qtf"]
 [ext_resource type="Texture2D" uid="uid://dwpmh1c2kq5qt" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_003.png" id="44_rfwbl"]
@@ -91,6 +98,12 @@ gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_50cf0")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5kx"]
+resource_local_to_scene = true
+shader = ExtResource("6_gjpxn")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w3r8r"]
 atlas = ExtResource("3_w3r8r")
@@ -202,6 +215,30 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_op5et"]
 atlas = ExtResource("24_26kqb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bv1k"]
+atlas = ExtResource("37_dk1al")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdf71"]
+atlas = ExtResource("38_gjpxn")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv01v"]
+atlas = ExtResource("39_ku5kx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w500h"]
+atlas = ExtResource("40_idqj6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44cla"]
+atlas = ExtResource("41_x8i5p")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgv2w"]
+atlas = ExtResource("42_17go0")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_105pv"]
@@ -463,6 +500,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5bv1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdf71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv01v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w500h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44cla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgv2w")
+}],
+"loop": false,
+"name": &"frontflip",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_105pv")
 }, {
 "duration": 1.0,
@@ -592,6 +652,43 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_gjpxn"]
+resource_name = "hit_flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ku5kx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku5kx"]
+_data = {
+&"RESET": SubResource("Animation_ku5kx"),
+&"hit_flash": SubResource("Animation_gjpxn")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cdh20"]
 size = Vector2(14, 39)
 
@@ -719,10 +816,17 @@ offset_right = 111.0
 offset_bottom = 72.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.1920929e-07, 0)
+material = SubResource("ShaderMaterial_ku5kx")
+position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"duck"
+animation = &"attack"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ku5kx")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

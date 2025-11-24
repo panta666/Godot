@@ -2683,7 +2683,7 @@ size = Vector2(106, 88)
 [sub_resource type="LabelSettings" id="LabelSettings_swoql"]
 font_size = 8
 
-[node name="Level_one" type="Node2D"]
+[node name="OOPLevelOne" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
 [node name="Level_one_Tiles" type="TileMapLayer" parent="."]
