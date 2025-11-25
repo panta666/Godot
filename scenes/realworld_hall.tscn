@@ -15,7 +15,7 @@
 [ext_resource type="Resource" uid="uid://natb34qu7bfr" path="res://assets/npc_data_animations/npc_lady5.tres" id="9_w26c5"]
 [ext_resource type="Resource" uid="uid://coirwlyfbwyvn" path="res://assets/npc_data_animations/npc_typ5.tres" id="10_snpmh"]
 [ext_resource type="Resource" uid="uid://bscgws4thhpl2" path="res://assets/npc_data_animations/npc_lady2.tres" id="11_ldiki"]
-[ext_resource type="Texture2D" uid="uid://ckh7st6u17udq" path="res://assets/tilemap/32x32/Light_Textures/256x256/256x256 textures (1).png" id="16_snpmh"]
+[ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="16_snpmh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sep4y"]
 polygon = PackedVector2Array(-2, -6, 8, -6, 8, 8, -2, 8)
@@ -15667,57 +15667,43 @@ tile_set = SubResource("TileSet_w26c5")
 
 [node name="DoorOpenPlayer" parent="SFX" instance=ExtResource("4_6r254")]
 
-[node name="PointLight2D5" type="PointLight2D" parent="."]
-position = Vector2(1921.9999, 1090)
-scale = Vector2(1.6746542, 2.683594)
-color = Color(0.96862745, 0.88235295, 0.8117647, 0.65882355)
-energy = 0.69
-shadow_enabled = true
-texture = ExtResource("16_snpmh")
+[node name="Light Occluder" type="Node2D" parent="."]
 
-[node name="PointLight2D4" type="PointLight2D" parent="."]
-position = Vector2(-739, 654)
-scale = Vector2(1.773113, 3.936757)
-color = Color(0.96862745, 0.88235295, 0.8117647, 0.65882355)
-energy = 0.85
-shadow_enabled = true
-texture = ExtResource("16_snpmh")
-height = 20.0
-
-[node name="PointLight2D3" type="PointLight2D" parent="."]
-position = Vector2(1200.9999, 706.0002)
-scale = Vector2(2.6114485, 0.8822007)
-color = Color(0.96862745, 0.88235295, 0.8117647, 0.65882355)
-energy = 0.69
-shadow_enabled = true
-texture = ExtResource("16_snpmh")
-
-[node name="PointLight2D2" type="PointLight2D" parent="."]
-position = Vector2(575, 707)
-scale = Vector2(1.6159977, 0.9392554)
-color = Color(0.96862745, 0.88235295, 0.8117647, 0.65882355)
-energy = 0.69
-shadow_enabled = true
-texture = ExtResource("16_snpmh")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1739, 413)
-scale = Vector2(1.066886, 0.9691519)
-color = Color(0.96862745, 0.88235295, 0.8117647, 0.65882355)
-shadow_enabled = true
-texture = ExtResource("16_snpmh")
-
-[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Light Occluder"]
 occluder = SubResource("OccluderPolygon2D_c8eyo")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Light Occluder"]
 occluder = SubResource("OccluderPolygon2D_oshli")
 
-[node name="LightOccluder2D3" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Light Occluder"]
 occluder = SubResource("OccluderPolygon2D_idh0u")
 
-[node name="LightOccluder2D4" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="Light Occluder"]
 occluder = SubResource("OccluderPolygon2D_37fdl")
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="Sunlight" parent="Light" instance=ExtResource("16_snpmh")]
+position = Vector2(1802, 403.00003)
+energy = 0.22
+
+[node name="Sunlight2" parent="Light" instance=ExtResource("16_snpmh")]
+position = Vector2(-730.5, 736)
+scale = Vector2(8.140625, 22.281248)
+color = Color(1, 1, 1, 0.1882353)
+energy = 3.78
+
+[node name="Sunlight3" parent="Light" instance=ExtResource("16_snpmh")]
+position = Vector2(682, 695.00006)
+scale = Vector2(11.515626, 6.8000007)
+
+[node name="Sunlight4" parent="Light" instance=ExtResource("16_snpmh")]
+position = Vector2(1914.0001, 1047)
+scale = Vector2(10.56, 10.528125)
+
+[node name="Sunlight5" parent="Light" instance=ExtResource("16_snpmh")]
+position = Vector2(1149, 697.00006)
+scale = Vector2(13.576875, 6.8000007)
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]

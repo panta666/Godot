@@ -4656,5 +4656,6 @@ flip_horizontal = true
 flip_player_on_sit = true
 
 [node name="Sunlight" parent="." instance=ExtResource("13_7iy3m")]
-position = Vector2(1355, 296)
-scale = Vector2(22.27431, -11.61313)
+position = Vector2(1339, 365)
+scale = Vector2(22.27431, -8.603439)
+energy = 1.78
