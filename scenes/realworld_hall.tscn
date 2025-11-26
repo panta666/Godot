@@ -15561,7 +15561,7 @@ scale = Vector2(13.576875, 6.8000007)
 
 [node name="Door" parent="." instance=ExtResource("6_snpmh")]
 position = Vector2(434, 1163)
-next_scene = "home"
+next_scene = "realworld_home"
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]
