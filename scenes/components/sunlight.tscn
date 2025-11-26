@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhq1ghdmad0p7"]
 
-[ext_resource type="Texture2D" uid="uid://ciyck2crvjcfy" path="res://assets/tilemap/32x32/Light_Textures/64x64/64x64 textures (5).png" id="1_2kdl2"]
+[ext_resource type="Texture2D" uid="uid://b4k0scwww2kdp" path="res://assets/tilemap/32x32/Light_Textures/64x64/64x64 textures (99).png" id="1_2kdl2"]
 
 [node name="Sunlight" type="PointLight2D"]
 scale = Vector2(10.56, 6.8000007)

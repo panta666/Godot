@@ -3,6 +3,7 @@ extends RealworldScenes
 var next_scene_from_door: String = ""
 const PLAYER_SPAWN_POS_ONE := Vector2(184, 420)
 const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
+const PLAYER_SPAWN_POS_HOME := Vector2(434, 1118)
 @onready var door_closed_player: AudioStreamPlayer = $SFX/DoorClosedPlayer
 @onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
 
@@ -26,6 +27,8 @@ func _ready() -> void:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE
 	elif GlobalScript.previous_scene == "realworld_classroom_two":
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_TWO
+	elif GlobalScript.previous_scene == "train_scene":
+		GlobalScript.player.global_position = PLAYER_SPAWN_POS_HOME
 	else:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE
 

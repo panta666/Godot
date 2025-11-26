@@ -4658,5 +4658,6 @@ npc_data = ExtResource("9_p60gb")
 [node name="ClassroomAmbiancePlayer" parent="SFX" instance=ExtResource("10_fktbd")]
 
 [node name="Sunlight" parent="." instance=ExtResource("12_4xjni")]
-position = Vector2(392, 13)
-scale = Vector2(21.020275, 6.1062403)
+position = Vector2(377.00003, 37)
+scale = Vector2(21.020275, 5.756245)
+energy = 3.02
