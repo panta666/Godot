@@ -17,7 +17,8 @@ var last_door_for_transition: Node = null
 var player_positions := {
 	"realworld_classroom_one": Vector2(504, 340),
 	"realworld_classroom_two": Vector2(1140, 691),
-	"realworld_hall": Vector2(567, 416)
+	"realworld_hall": Vector2(567, 416),
+	"home": Vector2(368, 170)
 }
 
 var player: Node = null
