@@ -294,7 +294,7 @@ anchors_preset = 0
 offset_left = 712.0
 offset_top = 101.0
 offset_right = 873.0
-offset_bottom = 134.0
+offset_bottom = 390.0
 
 [node name="PhoneScreenContainer" type="Control" parent="Control"]
 clip_contents = true
