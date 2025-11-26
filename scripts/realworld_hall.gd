@@ -27,7 +27,7 @@ func _ready() -> void:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE
 	elif GlobalScript.previous_scene == "realworld_classroom_two":
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_TWO
-	elif GlobalScript.previous_scene == "realworld_home":
+	elif GlobalScript.previous_scene == "train_scene":
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_HOME
 	else:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE

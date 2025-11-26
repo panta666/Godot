@@ -60483,7 +60483,7 @@ tile_set = SubResource("TileSet_kvj23")
 [node name="Door" parent="." instance=ExtResource("10_hhep5")]
 visible = false
 position = Vector2(368, 203)
-next_scene = "realworld_hall"
+next_scene = "train_scene"
 
 [node name="Light" type="Node2D" parent="."]
 
