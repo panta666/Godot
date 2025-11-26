@@ -135,9 +135,7 @@ func show_phone_off():
 	phone.visible = false
 	background.visible = false
 
-	enter_level_button.visible = false
-	enter_level_button2.visible = false
-	enter_level_button3.visible = false
+	hide_enter_button()
 
 	power_area_off.monitoring = true
 	power_area_on.monitoring = false
@@ -177,6 +175,7 @@ func _turn_on_phone():
 	power_area_off.monitoring = false
 	power_area_on.monitoring = true
 
+	show_enter_button()
 	phone_state = PhoneState.ON
 
 
@@ -185,9 +184,7 @@ func _turn_off_phone():
 	phone.visible = false
 	background.visible = false
 
-	enter_level_button.visible = false
-	enter_level_button2.visible = false
-	enter_level_button3.visible = false
+	hide_enter_button()
 
 	power_area_off.monitoring = true
 	power_area_on.monitoring = false
@@ -240,13 +237,24 @@ func hide_phone():
 
 	power_area_off.monitoring = false
 	power_area_on.monitoring = false
-
+	
+	phone_off.visible = false
 	phone_state = PhoneState.OFF
+	hide_enter_button()
 
 func hide_enter_button():
 	enter_level_button.visible = false
 	enter_level_button2.visible = false
 	enter_level_button3.visible = false
+	
+func show_enter_button():
+	enter_level_button.visible = true
+	enter_level_button2.visible = true
+	enter_level_button3.visible = true
+	
+	enter_level_button.modulate.a = 1.0
+	enter_level_button2.modulate.a = 1.0
+	enter_level_button3.modulate.a = 1.0
 
 # Gemeinsames Laden mit Blink-Effekt
 func _load_level_scene(target_scene: String):
