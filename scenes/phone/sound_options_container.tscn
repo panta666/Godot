@@ -43,7 +43,6 @@ label_settings = SubResource("LabelSettings_dq2sb")
 layout_mode = 2
 
 [node name="MaVMuteCheckBox" type="CheckBox" parent="VBoxContainer/MaVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -72,7 +71,6 @@ label_settings = SubResource("LabelSettings_o23y1")
 layout_mode = 2
 
 [node name="MuVMuteCheckBox" type="CheckBox" parent="VBoxContainer/MuVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -102,7 +100,6 @@ label_settings = SubResource("LabelSettings_etaie")
 layout_mode = 2
 
 [node name="SVMuteCheckBox" type="CheckBox" parent="VBoxContainer/SVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
