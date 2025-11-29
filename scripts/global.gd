@@ -59,6 +59,23 @@ var resolutions = {
 	"800x600": Vector2i(800, 600)
 }
 
+# Gesammelte Coins pro classroom.
+var coins = {"class1": 0, "class2":0}
+
+# Gibt an wie viele coins in einem Classroom gesammelt wurden.
+func get_coins_for_classroom(classroom: String) -> int:
+	return coins[classroom]
+
+"""
+Inkrementiert die gesammelten coins eines classrooms und gibt diese zurück.
+"""
+func add_coin_for_classroom(classroom: String) -> int:
+	coins[classroom] = coins[classroom] + 1
+	return coins[classroom]
+
+func set_coins(_coins: Dictionary):
+	coins = _coins
+
 # -------------------------
 # Neues Spiel starten
 # -------------------------
