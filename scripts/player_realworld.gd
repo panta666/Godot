@@ -25,6 +25,8 @@ const FOOTSTEP_SOUNDS = [
 	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_003.ogg"),
 	preload("res://assets/sfx/kenney_impact-sounds/Audio/footstep_wood_004.ogg")
 ]
+# Theoretisch kann jede animation einen anderen play timer haben.
+const FOOTSTEP_FRAMES = {"walk_side":[1,4], "walk_up":[1,4], "walk_down":[1,4]}
 
 @onready var footstep_player = $FootstepPlayer
 
@@ -75,7 +77,6 @@ func _physics_process(_delta: float) -> void:
 		elif input_vector.y > 0:
 			animated_sprite_2d.play("walk_down")
 			facing_direction = "down"
-		play_footstep_sound()
 
 # --------------------------
 # Handy (ESC) Animationen
@@ -206,3 +207,11 @@ func enable_player() -> void:
 	set_process(true)
 	set_physics_process(true)
 	visible = true
+
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+	if (animated_sprite_2d.animation == "walk_down"
+	|| animated_sprite_2d.animation == "walk_side"
+	||animated_sprite_2d.animation == "walk_up"):
+		if animated_sprite_2d.frame in FOOTSTEP_FRAMES[animated_sprite_2d.animation]:
+			play_footstep_sound()
