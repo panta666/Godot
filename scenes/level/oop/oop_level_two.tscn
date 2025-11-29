@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="2_lpkye"]
 [ext_resource type="Texture2D" uid="uid://c6ggydncga2e5" path="res://assets/oop_level/BG_door.png" id="3_k7qmm"]
 [ext_resource type="Texture2D" uid="uid://cm6x4oh6a2csq" path="res://assets/oop_level/HSD_platforms.png" id="4_lj7gi"]
-[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/player_dreamworld.tscn" id="5_lua1s"]
+[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/DreamworldPlayer/player_dreamworld.tscn" id="5_lua1s"]
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="6_d672o"]
 [ext_resource type="Script" uid="uid://8in0jd3f1x2o" path="res://scenes/level/oop/level_3_test.gd" id="6_lpkye"]
 

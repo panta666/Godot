@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://2puypr5ol8x8"]
 
 [ext_resource type="Texture2D" uid="uid://ch3vs27owjkoo" path="res://assets/fire ball/fire ball 1.png" id="1_3bt44"]
-[ext_resource type="Script" uid="uid://dw33x33begkne" path="res://scripts/range_attack_charges.gd" id="1_7svmp"]
+[ext_resource type="Script" uid="uid://dw33x33begkne" path="res://scripts/DreamWorldPlayer/range_attack_charges.gd" id="1_7svmp"]
 [ext_resource type="Texture2D" uid="uid://cuf866ym0nofs" path="res://assets/plattformer_character/white.jpg" id="1_pwgh2"]
 
 [node name="RangeAttackCharges" type="TextureButton"]

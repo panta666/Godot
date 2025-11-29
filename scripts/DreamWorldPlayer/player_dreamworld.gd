@@ -57,7 +57,7 @@ var can_attack = true
 #Variablen für Range Attacke
 var is_range_attack_allowed: bool = false
 var max_range_attack = 1 #Wie viele Charges man hat
-@onready var fireball = preload("res://scenes/fireball.tscn")
+@onready var fireball = preload("res://scenes/DreamworldPlayer/fireball.tscn")
 var current_range_attack = 0
 const RANGE_ATTACK_RECHARGE_TIME = 5.0
 var recharge_timer = 0.0

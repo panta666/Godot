@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
-[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/player_dreamworld.tscn" id="1_ocww7"]
+[ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/DreamworldPlayer/player_dreamworld.tscn" id="1_ocww7"]
 [ext_resource type="Texture2D" uid="uid://c8dtql8mpogvy" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Hive.png" id="2_vu5gk"]
 [ext_resource type="Texture2D" uid="uid://bmsv36kxi1mj0" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Interior-01.png" id="3_hrsau"]
 [ext_resource type="Texture2D" uid="uid://vu0tgce0wve8" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Props-Rocks.png" id="4_ahlc2"]
