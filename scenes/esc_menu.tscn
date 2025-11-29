@@ -294,7 +294,7 @@ anchors_preset = 0
 offset_left = 712.0
 offset_top = 101.0
 offset_right = 873.0
-offset_bottom = 134.0
+offset_bottom = 390.0
 
 [node name="PhoneScreenContainer" type="Control" parent="Control"]
 clip_contents = true
@@ -323,7 +323,6 @@ position = Vector2(1, 141)
 shape = SubResource("RectangleShape2D_yrc1y")
 
 [node name="MenuContainer" type="VBoxContainer" parent="Control"]
-visible = false
 layout_mode = 0
 offset_left = 24.0
 offset_top = 21.0
@@ -398,6 +397,7 @@ text = "Quit"
 flat = true
 
 [node name="OptionsContainer" type="TabContainer" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 29.0
@@ -421,4 +421,6 @@ metadata/_tab_index = 1
 position = Vector2(83, 310)
 scale = Vector2(0.15, 0.07)
 
+[connection signal="pressed" from="Control/MenuContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Control/MenuContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/MenuContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]

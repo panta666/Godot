@@ -177,3 +177,18 @@ func _on_back_pressed(_viewport: Viewport, event: InputEvent, _shape_idx: int) -
 		options_container.visible = false
 		blinking.visible = false
 		print("[ESC_MENU] Zurück gedrückt | menu_visible=", menu_container.visible, " | options_visible=", options_container.visible)
+
+# --------------------------
+# Drag&Drop
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			var mouse_pos = get_viewport().get_mouse_position()
+			if control.get_global_rect().has_point(mouse_pos):
+				dragging = true
+				drag_offset = mouse_pos - control.global_position
+		else:
+			dragging = false
+
+	elif event is InputEventMouseMotion and dragging:
+		control.global_position = get_viewport().get_mouse_position() - drag_offset
