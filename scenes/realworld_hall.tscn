@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=126 format=4 uid="uid://dqloihqvrxpgp"]
 
 [ext_resource type="Script" uid="uid://dk5vsksec6wud" path="res://scripts/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://coirwlyfbwyvn" path="res://assets/npc_data_animations/npc_typ5.tres" id="10_snpmh"]
 [ext_resource type="Resource" uid="uid://bscgws4thhpl2" path="res://assets/npc_data_animations/npc_lady2.tres" id="11_ldiki"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="16_snpmh"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="17_ldiki"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sep4y"]
 polygon = PackedVector2Array(-2, -6, 8, -6, 8, 8, -2, 8)
@@ -15457,6 +15458,13 @@ scale = Vector2(13.576875, 6.8000007)
 [node name="Door" parent="." instance=ExtResource("6_snpmh")]
 position = Vector2(434, 1163)
 next_scene = "realworld_home"
+
+[node name="Blinking" parent="." instance=ExtResource("17_ldiki")]
+z_index = 5
+z_as_relative = false
+position = Vector2(183.00002, 316)
+scale = Vector2(0.062379677, 0.15295406)
+chosen_type = 1
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]
