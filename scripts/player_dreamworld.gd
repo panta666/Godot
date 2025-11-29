@@ -10,16 +10,17 @@ var last_facing_direction = 1
 @onready var head_check: RayCast2D = $HeadCheck
 
 #Variablen für double jump
+var is_double_jump_allowed: bool = false
 var jump_count = 0
 const MAX_JUMPS = 2  # 1 Boden + 1 Double Jump
 var is_double_jumping: bool = false
-var is_double_jump_allowed: bool = false
 
 #Variablen für Coyote Time
 @export var coyote_time: float = 0.15
 var coyote_timer: float = 0.0
 
 #Variablen für Dashing
+var is_dash_allowed: bool = false
 const DASH_SPEED = 700.0
 const DASH_DURATION = 0.1
 var dash_timer = 0.0
@@ -27,15 +28,14 @@ var dash_cooldown = 0.2
 var can_dash = true
 var is_dashing = false
 var dash_count = 1
-var is_dash_allowed: bool = false
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var dash_particles: GPUParticles2D = $DashParticles
 
 #Variablen für Crouching
+var is_crouching_allowed: bool = false
 var forced_crouch: bool
 const CROUCH_SPEED:float = 100
 var is_crouching: bool = false
-var is_crouching_allowed: bool = false
 
 #Variablen für Attacke
 var is_attacking = false
@@ -55,12 +55,12 @@ var can_attack = true
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
 
 #Variablen für Range Attacke
+var is_range_attack_allowed: bool = false
+var max_range_attack = 1 #Wie viele Charges man hat
 @onready var fireball = preload("res://scenes/fireball.tscn")
-var max_range_attack = 1
 var current_range_attack = 0
 const RANGE_ATTACK_RECHARGE_TIME = 5.0
 var recharge_timer = 0.0
-var is_range_attack_allowed: bool = false
 @onready var range_attack_charges: TextureButton = $RangeAttackCharges/RangeAttackCharges
 
 #Variablen für Damage nehmen/ Knockback
