@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=26 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bk5m7wfr5ivs5" path="res://assets/npc_data_animations/npc_typ2.tres" id="9_p60gb"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="12_4xjni"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="13_j8bsy"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xjni"]
 polygon = PackedVector2Array(-16, -22, 10, -22, 10, 10, 8, 10, 8, 20, 2, 20, 2, 14, -8, 14, -8, 20, -14, 20, -14, 10, -16, 10)
@@ -4661,3 +4662,15 @@ npc_data = ExtResource("9_p60gb")
 position = Vector2(377.00003, 37)
 scale = Vector2(21.020275, 5.756245)
 energy = 3.02
+
+[node name="BlinkingChair" parent="." instance=ExtResource("13_j8bsy")]
+z_index = 5
+position = Vector2(183.00002, 279.99997)
+scale = Vector2(0.062379677, 0.15295406)
+chosen_type = 1
+
+[node name="BlinkingProf" parent="." instance=ExtResource("13_j8bsy")]
+z_index = 4
+position = Vector2(584, 196.99998)
+scale = Vector2(0.062, 0.153)
+chosen_type = 1
