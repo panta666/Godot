@@ -4,6 +4,11 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -320.0 #-300
 @onready var player_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var last_facing_direction = 1
+const CLIMB_SPEED = 200
+
+#Variable für Leiter
+var on_ladder: bool
+var climbing: bool
 
 #Variablen für Collision anpassung
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
@@ -108,6 +113,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Add gravity
 	add_gravity(delta)
+	
+	print(on_ladder)
 
 	#Coyote Timer neu setzen/ runterzählen
 	handle_coyote_time(delta)
@@ -170,6 +177,15 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 	move_and_slide()
+	
+	
+	if on_ladder:
+		if Input.is_action_pressed("move_down"):
+			velocity.y = SPEED*delta*40
+		elif Input.is_action_pressed("jump"):
+			velocity.y = -SPEED*delta*40
+		else: 
+			velocity.y = 0
 
 func deactivate_hitboxes():
 	hit_box_left.monitoring = false
@@ -189,7 +205,7 @@ func deactivate_hitboxes():
 
 #Handle Gravity
 func add_gravity(delta: float) -> void:
-	if not is_on_floor():
+	if not is_on_floor() and !on_ladder:
 		velocity.y += get_gravity().y * delta
 		collision_shape.shape.size = Vector2(14.0, 24.5)
 		collision_shape.position = Vector2(0.0, -6.25)
@@ -561,3 +577,11 @@ func activate_dash():
 
 func increase_range_attack_charges():
 	max_range_attack += 1
+	
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	on_ladder = true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	on_ladder = false

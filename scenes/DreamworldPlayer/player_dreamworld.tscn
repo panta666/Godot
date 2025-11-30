@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=163 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/DreamWorldPlayer/player_dreamworld.gd" id="1_fd23n"]
 [ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="2_3pffi"]
@@ -784,6 +784,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agpj8"]
 size = Vector2(15, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pffi"]
+size = Vector2(14, 39)
+
 [node name="Player_Dreamworld" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_fd23n")
@@ -946,7 +949,17 @@ offset_top = -116.0
 offset_right = 142.0
 offset_bottom = -116.0
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_3pffi")
+
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="body_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="received_damage" from="HurtBox" to="." method="received_damage"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
