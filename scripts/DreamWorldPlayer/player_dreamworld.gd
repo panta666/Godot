@@ -10,7 +10,7 @@ var last_facing_direction = 1
 @onready var head_check: RayCast2D = $HeadCheck
 
 #Variablen für double jump
-var is_double_jump_allowed: bool = false
+var is_double_jump_allowed: bool = true # false
 var jump_count = 0
 const MAX_JUMPS = 2  # 1 Boden + 1 Double Jump
 var is_double_jumping: bool = false
