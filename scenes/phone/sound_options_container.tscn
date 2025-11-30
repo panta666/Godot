@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvnebqurtlbh4"]
+[gd_scene load_steps=7 format=3 uid="uid://bvnebqurtlbh4"]
 
 [ext_resource type="Script" uid="uid://c0pnojeuqabx8" path="res://scripts/phone/options_container.gd" id="1_wre1q"]
 [ext_resource type="Texture2D" uid="uid://din25u3qgo271" path="res://assets/options menu/volume-mute-white.png" id="2_etaie"]
@@ -10,6 +10,11 @@ shadow_size = 3
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_o23y1"]
+font_size = 35
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_etaie"]
 font_size = 35
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 1)
@@ -38,7 +43,6 @@ label_settings = SubResource("LabelSettings_dq2sb")
 layout_mode = 2
 
 [node name="MaVMuteCheckBox" type="CheckBox" parent="VBoxContainer/MaVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -67,7 +71,6 @@ label_settings = SubResource("LabelSettings_o23y1")
 layout_mode = 2
 
 [node name="MuVMuteCheckBox" type="CheckBox" parent="VBoxContainer/MuVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
@@ -91,12 +94,12 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 35
 text = "SFX"
+label_settings = SubResource("LabelSettings_etaie")
 
 [node name="SVContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
 [node name="SVMuteCheckBox" type="CheckBox" parent="VBoxContainer/SVContainer"]
-modulate = Color(0.581033, 0.58103293, 0.5810329, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)

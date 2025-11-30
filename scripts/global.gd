@@ -1,6 +1,19 @@
 extends Node
 class_name Global
 
+"""
+	Signals
+"""
+# -------------------------
+# Signal coins
+# -------------------------
+signal coin_collected(level_name: String, total_coins: int)
+
+# -------------------------
+# Signal Tutorial
+# -------------------------
+signal tutorial_toggled(is_enabled: bool)
+
 # -------------------------
 # Allgemeine Szenen-Infos
 # -------------------------
@@ -39,10 +52,6 @@ var medg_level_unlocked := [false, false, false]
 # -------------------------
 var tutorial_on := true
 
-# -------------------------
-# Signals (global)
-# -------------------------
-signal tutorial_toggled(is_enabled: bool)
 
 # -------------------------
 # Possible Resolutions for the Game (global)
@@ -58,6 +67,29 @@ var resolutions = {
 	"1024x600": Vector2i(1024, 600),
 	"800x600": Vector2i(800, 600)
 }
+
+# Gesammelte Coins pro classroom.
+var coins = {"oop_level_one": 0, "oop_level_two":0}
+
+# Gibt an wie viele coins in einem Classroom gesammelt wurden.
+func get_coins_for_classroom(classroom: String) -> int:
+	return coins[classroom]
+
+"""
+Inkrementiert die gesammelten coins eines classrooms und gibt diese zurück.
+"""
+func add_coin_for_classroom(classroom: String) -> int:
+	print("coin add")
+	# 1. Sicherstellen, dass der Eintrag im Dictionary existiert (für neue Level)
+	if not coins.has(classroom):
+		coins[classroom] = 0
+	coins[classroom] += 1
+	# Signal senden (mit Level-Info und neuem Stand)
+	coin_collected.emit(classroom, coins[classroom])
+	return coins[classroom]
+
+func set_coins(_coins: Dictionary):
+	coins = _coins
 
 # -------------------------
 # Neues Spiel starten
