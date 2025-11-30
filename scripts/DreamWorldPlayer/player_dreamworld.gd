@@ -10,16 +10,17 @@ var last_facing_direction = 1
 @onready var head_check: RayCast2D = $HeadCheck
 
 #Variablen für double jump
+var is_double_jump_allowed: bool = false
 var jump_count = 0
 const MAX_JUMPS = 2  # 1 Boden + 1 Double Jump
 var is_double_jumping: bool = false
-var double_jump_allowed: bool = true
 
 #Variablen für Coyote Time
 @export var coyote_time: float = 0.15
 var coyote_timer: float = 0.0
 
 #Variablen für Dashing
+var is_dash_allowed: bool = false
 const DASH_SPEED = 700.0
 const DASH_DURATION = 0.1
 var dash_timer = 0.0
@@ -27,11 +28,11 @@ var dash_cooldown = 0.2
 var can_dash = true
 var is_dashing = false
 var dash_count = 1
-var dash_allowed: bool = true
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var dash_particles: GPUParticles2D = $DashParticles
 
 #Variablen für Crouching
+var is_crouching_allowed: bool = false
 var forced_crouch: bool
 const CROUCH_SPEED:float = 100
 var is_crouching: bool = false
@@ -54,9 +55,10 @@ var can_attack = true
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
 
 #Variablen für Range Attacke
-@onready var fireball = preload("res://scenes/fireball.tscn")
-const MAX_RANGE_ATTACK = 2
-var current_range_attack = 2
+var is_range_attack_allowed: bool = false
+var max_range_attack = 1 #Wie viele Charges man hat
+@onready var fireball = preload("res://scenes/DreamworldPlayer/fireball.tscn")
+var current_range_attack = 0
 const RANGE_ATTACK_RECHARGE_TIME = 5.0
 var recharge_timer = 0.0
 @onready var range_attack_charges: TextureButton = $RangeAttackCharges/RangeAttackCharges
@@ -76,20 +78,7 @@ var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 @onready var camera_2d: Camera2D = $Camera2D
 
 func _ready() -> void:
-	hit_box_left.monitoring = false
-	hit_box_right.monitoring = false
-	hit_box_down.monitoring = false
-	hit_box_up.monitoring = false
-
-	hit_box_left.monitorable = false
-	hit_box_right.monitorable = false
-	hit_box_up.monitorable = false
-	hit_box_down.monitorable = false
-
-	sprite_right_hitbox.visible = false
-	sprite_left_hitbox.visible = false
-	sprite_down_hitbox.visible = false
-	sprite_up_hitbox.visible = false
+	deactivate_hitboxes()
 
 	health_wave.set_health_component(health)
 
@@ -99,12 +88,9 @@ func _ready() -> void:
 	if camera_2d:
 			camera_2d.make_current()
 
-	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+	range_attack_charges.update_charge_text(current_range_attack, max_range_attack)
 
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
-
-
-
 
 func _physics_process(delta: float) -> void:
 	if not is_alive:
@@ -169,11 +155,37 @@ func _physics_process(delta: float) -> void:
 	player_sprite.flip_h = (last_facing_direction < 0)
 	dash_particles.scale.x = last_facing_direction
 
+	#Fähigkeiten aktivieren, wird später entfernt
+	if Input.is_action_just_pressed("activate_crouching"):
+		activate_crouching()
+	if Input.is_action_just_pressed("activate_dash"):
+		activate_dash()
+	if Input.is_action_just_pressed("activate_double_jump"):
+		activate_double_jump()
+	if Input.is_action_just_pressed("activate_range_attack"):
+		activate_range_attack()
+	if Input.is_action_just_pressed("increase_range_attack_charges"):
+		increase_range_attack_charges()
+
 	update_animation()
 
 	move_and_slide()
 
+func deactivate_hitboxes():
+	hit_box_left.monitoring = false
+	hit_box_right.monitoring = false
+	hit_box_down.monitoring = false
+	hit_box_up.monitoring = false
 
+	hit_box_left.monitorable = false
+	hit_box_right.monitorable = false
+	hit_box_up.monitorable = false
+	hit_box_down.monitorable = false
+
+	sprite_right_hitbox.visible = false
+	sprite_left_hitbox.visible = false
+	sprite_down_hitbox.visible = false
+	sprite_up_hitbox.visible = false
 
 #Handle Gravity
 func add_gravity(delta: float) -> void:
@@ -212,7 +224,7 @@ func handle_jump():
 		jump_count = 1
 		coyote_timer = 0.0		#Coyote Time aufbrauchen
 	# Zweiter Sprung wenn erlaubt
-	elif double_jump_allowed:
+	elif is_double_jump_allowed:
 		if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
 			velocity.y = JUMP_VELOCITY
 			jump_count = 2
@@ -224,7 +236,7 @@ func handle_jump():
 
 #Handle Dash
 func handle_dash():
-	if dash_allowed:
+	if is_dash_allowed:
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction == 0:	#Dash in Blickrichtung
 			direction = last_facing_direction
@@ -238,7 +250,7 @@ func handle_dash():
 		dash_timer = DASH_DURATION
 
 func handle_crouching():
-	if not is_dashing:
+	if not is_dashing and is_crouching_allowed:
 		is_crouching = true
 		collision_shape.shape.size = Vector2(14.0, 29.0)
 		collision_shape.position = Vector2(0.0, 6.0)
@@ -289,6 +301,9 @@ func handle_range_attack():
 	if is_attacking:
 		return
 	
+	if not is_range_attack_allowed:
+		return
+	
 	if current_range_attack <= 0:
 		print("Keine Charges!")
 		return
@@ -296,15 +311,14 @@ func handle_range_attack():
 	is_attacking = true
 
 	await player_sprite.animation_finished
-	print("Range Attack")
 
 	is_attacking = false
 
 	current_range_attack -= 1
-	range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+	range_attack_charges.update_charge_text(current_range_attack, max_range_attack)
 	print("Range Attack! Charges übrig:", current_range_attack)
 
-	if current_range_attack < MAX_RANGE_ATTACK and recharge_timer <= 0:
+	if current_range_attack < max_range_attack and recharge_timer <= 0:
 		recharge_timer = RANGE_ATTACK_RECHARGE_TIME
 		recharge_timer = RANGE_ATTACK_RECHARGE_TIME
 		range_attack_charges.update_recharge_progress(0.0)
@@ -324,7 +338,12 @@ func handle_range_attack():
 
 #Handle Recharge Timer für Range Attacke
 func handle_range_recharge(delta):
-	if current_range_attack >= MAX_RANGE_ATTACK:
+	if not is_range_attack_allowed:
+		range_attack_charges.visible = false
+	else:
+		range_attack_charges.visible = true
+
+	if current_range_attack >= max_range_attack:
 		range_attack_charges.update_recharge_progress(1.0) # Voll = 100%
 		return
 
@@ -335,9 +354,9 @@ func handle_range_recharge(delta):
 
 	if recharge_timer <= 0:
 		current_range_attack += 1
-		range_attack_charges.update_charge_text(current_range_attack, MAX_RANGE_ATTACK)
+		range_attack_charges.update_charge_text(current_range_attack, max_range_attack)
 
-		if current_range_attack < MAX_RANGE_ATTACK:
+		if current_range_attack < max_range_attack:
 			recharge_timer = RANGE_ATTACK_RECHARGE_TIME
 		else:
 			range_attack_charges.update_recharge_progress(1.0)
@@ -461,7 +480,7 @@ func update_animation():
 	if is_double_jumping:
 		if player_sprite.animation != "frontflip":
 			player_sprite.play("frontflip")
-		# Sobald man aufhört aufzusteigen → Flip endet 
+		# Sobald man aufhört aufzusteigen -> Flip endet 
 		if velocity.y >= 0:
 			is_double_jumping = false
 		return
@@ -477,7 +496,6 @@ func update_animation():
 			else:
 				player_sprite.play("attack")
 		return
-
 
 
 	if is_dashing:
@@ -528,3 +546,18 @@ func _input(event: InputEvent):
 
 func player():
 	pass
+
+func activate_crouching():
+	is_crouching_allowed = true
+
+func activate_range_attack():
+	is_range_attack_allowed = true
+
+func activate_double_jump():
+	is_double_jump_allowed = true
+
+func activate_dash():
+	is_dash_allowed = true
+
+func increase_range_attack_charges():
+	max_range_attack += 1
