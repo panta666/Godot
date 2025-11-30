@@ -79,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://bjlhawrp55nnj" path="res://assets/plattformer_character/animations/melee_slash/NPT102.png" id="77_6i2nj"]
 [ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="78_rhhck"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="79_84bjp"]
+[ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://scenes/HUD/dreamworld/hund_coin.tscn" id="80_ku5kx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t3ro2"]
 particles_animation = true
@@ -938,6 +939,12 @@ shape = SubResource("RectangleShape2D_agpj8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
+
+[node name="HundCoin" parent="." instance=ExtResource("80_ku5kx")]
+offset_left = 142.0
+offset_top = -116.0
+offset_right = 142.0
+offset_bottom = -116.0
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
