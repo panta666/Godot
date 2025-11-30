@@ -8,6 +8,7 @@ var max_value := 100.0  # ProgressBar max = 100
 #Verschiedene Angriffe Preloaden
 const ATTACK_ICONS  ={
 	"oop_capsule": preload("res://assets/range_attacks/oop_capsule/oop_capsule.png"),
+	"math_calculator": preload("res://assets/range_attacks/math_calculator/frame_005.png"),
 	"fireball": preload("res://assets/fire ball/fire ball 1.png")
 }
 
@@ -29,10 +30,9 @@ func update_recharge_progress(progress: float):
 func set_attack_texture():
 	var current_scene = get_tree().current_scene
 	var scene_name = current_scene.name.to_lower()
-	print("name: ",scene_name)
 	if "oop" in scene_name.to_lower():
 		texture_normal = ATTACK_ICONS["oop_capsule"]
-	elif "medg" in scene_name.to_lower():
-		texture_normal = ATTACK_ICONS["fireball"]
+	elif "math" in scene_name.to_lower():
+		texture_normal = ATTACK_ICONS["math_calculator"]
 	else:
 		texture_normal = ATTACK_ICONS["fireball"]

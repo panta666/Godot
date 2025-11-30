@@ -75,9 +75,15 @@ var is_alive: bool = true
 @onready var health: Health = $Health
 var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 
+#Scene
 @onready var camera_2d: Camera2D = $Camera2D
+var current_scene
+var scene_name
 
 func _ready() -> void:
+	current_scene = get_tree().current_scene
+	scene_name = current_scene.name.to_lower()
+
 	deactivate_hitboxes()
 
 	health_wave.set_health_component(health)
@@ -492,7 +498,10 @@ func update_animation():
 			elif Input.is_action_pressed("move_down") and not is_on_floor():
 				player_sprite.play("attack_down")
 			elif Input.is_action_pressed("range_attack"):
-				player_sprite.play("range_attack")
+				if "oop" in scene_name:
+					player_sprite.play("range_attack")
+				elif "math" in scene_name:
+					player_sprite.play("throw")
 			else:
 				player_sprite.play("attack")
 		return

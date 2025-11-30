@@ -33,9 +33,8 @@ func play_run_animation():
 		return
 	if "oop" in scene_name:
 		fireball_sprite.play("oop_run")
-	elif "medg" in scene_name:
-		#fireball_sprite.play("medg_run")
-		pass
+	elif "math" in scene_name:
+		fireball_sprite.play("math_run")
 	else:
 		fireball_sprite.play("run")
 
@@ -44,10 +43,10 @@ func change_size():
 		fireball_sprite.flip_h = (direction < 0)
 		fireball_sprite.scale = Vector2(0.094,0.154)
 		fireball_sprite.position = Vector2(-20, -1)
-	elif "medg" in scene_name:
+	elif "math" in scene_name:
 		fireball_sprite.flip_h = (direction < 0)
-		fireball_sprite.scale = Vector2(1,1)
-		fireball_sprite.position = Vector2(0, 0)
+		fireball_sprite.scale = Vector2(0.147, 0.062)
+		fireball_sprite.position = Vector2(-23, -1)
 	else:
 		fireball_sprite.flip_h = (direction < 0)
 		fireball_sprite.scale = Vector2(1, 1)
@@ -57,9 +56,8 @@ func play_death_animation():
 	is_dead = true
 	if "oop" in scene_name:
 		fireball_sprite.play("oop_death")
-	elif "medg" in scene_name:
-		#fireball_sprite.play("medg_death")
-		pass
+	elif "math" in scene_name:
+		fireball_sprite.play("math_death")
 	else:
 		fireball_sprite.play("death")
 	await fireball_sprite.animation_finished
