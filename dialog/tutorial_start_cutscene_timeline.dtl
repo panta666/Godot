@@ -1,6 +1,7 @@
-[style name="plattformer_style"]
+[style name="platformer_style"]
 player: Where am I? What the duolingo am I doing here?
 narrator: Hello there. Welcome to the Dreamworld!
 narrator: In here, you can do whatever you want..almost.
 narrator: Here..let me show you what you can do!
+narrator: Use the WASD or Arrow Keys to move.
 [signal arg="cutscene_end"]
