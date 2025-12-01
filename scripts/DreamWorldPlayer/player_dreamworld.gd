@@ -77,6 +77,10 @@ var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 
 @onready var camera_2d: Camera2D = $Camera2D
 
+#Variable für Cutscenes
+var is_cutscene_active: bool = false
+
+
 func _ready() -> void:
 	deactivate_hitboxes()
 
@@ -93,6 +97,11 @@ func _ready() -> void:
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
 func _physics_process(delta: float) -> void:
+	if is_cutscene_active:
+		velocity = Vector2.ZERO
+		player_sprite.play("idle")
+		return
+	
 	if not is_alive:
 		update_animation()
 		return
@@ -561,3 +570,12 @@ func activate_dash():
 
 func increase_range_attack_charges():
 	max_range_attack += 1
+
+# --- Cutscene Methoden ---
+func cutscene_start() -> void:
+	print("CUTSCENE START")
+	is_cutscene_active = true
+
+func cutscene_end() -> void:
+	print("CUTSCENE END")
+	is_cutscene_active = false
