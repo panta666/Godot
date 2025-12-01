@@ -1,51 +1,100 @@
 extends Node2D
 
-@export var timeline_name: String = "tutorial_start_cutscene_timeline"
+@export var timeline_1: String = "tutorial_start_cutscene_timeline"
+@export var timeline_2: String = "tutorial_second_cutscene_timeline"
+@export var timeline_3: String = "tutorial_third_cutscene_timeline"
 
-var cutscene_played: bool = false # Flag, um zu prüfen ob die cutscene bereits lief
+@onready var area_2d_cutscene_1: Area2D = $Area2D_Cutscene1
+@onready var area_2d_cutscene_2: Area2D = $Area2D_Cutscene2
+@onready var area_2d_cutscene_3: Area2D = $Area2D_Cutscene3
+@onready var platforms_container: Node2D = $PlatformsContainer
+
+var cutscene_1_played := false
+var cutscene_2_played := false
+var cutscene_3_played := false
+var platforms: Array = []
 
 func _ready():
 	# Dialogic-Signal global verbinden
 	Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
 
-func _on_area_2d_body_entered(body: Node) -> void:
-	if cutscene_played:
-		return
-	print("Area betreten von:", body.name)
+	# Areas verbinden
+	area_2d_cutscene_1.body_entered.connect(_on_cutscene_1_entered)
+	area_2d_cutscene_2.body_entered.connect(_on_cutscene_2_entered)
+	area_2d_cutscene_3.body_entered.connect(_on_cutscene_3_entered)
 
+	# Alle Plattformen initial deaktivieren
+	for platform in platforms_container.get_children():
+		if platform is AnimatableBody2D:
+			platform.visible = false
+			platform.collision_layer = 0  # keine Kollision
+			platform.collision_mask = 0
+			platforms.append(platform)
+	print("Plattformen initial deaktiviert:", platforms.size())
+
+func _on_cutscene_1_entered(body: Node) -> void:
+	if cutscene_1_played:
+		return
+	_start_cutscene(body, timeline_1)
+	cutscene_1_played = true
+
+func _on_cutscene_2_entered(body: Node) -> void:
+	print("Cutscene 2 Area betreten von:", body.name)
+	if cutscene_2_played:
+		print("Cutscene 2 bereits gespielt, nichts passiert")
+		return
 	if not body.has_method("player"):
-		print("kein Spieler")
+		print("Body hat keine player-Methode:", body)
 		return
+	print("Starte Cutscene 2...")
+	_start_cutscene(body, timeline_2)
+	cutscene_2_played = true
+	
+func _on_cutscene_3_entered(body: Node) -> void:
+	print("Cutscene 3 Area betreten von:", body.name)
+	if cutscene_3_played:
+		print("Cutscene 3 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Starte Cutscene 3...")
+	_start_cutscene(body, timeline_3)
+	cutscene_3_played = true
 
-	print("Spieler erkannt, starte Cutscene...")
-
-	# Spieler bewegungsunfähig machen
+func _start_cutscene(body: Node, timeline_name: String) -> void:
+	print("Versuche Cutscene zu starten:", timeline_name, "für", body.name)
+	if not body.has_method("player"):
+		print("Body ist kein Spieler!")
+		return
 	if body.has_method("cutscene_start"):
+		print("cutscene_start() aufgerufen für", body.name)
 		body.cutscene_start()
-		print("cutscene_start() aufgerufen")
-
-	# Cutscene-Flag setzen
-	body.is_cutscene_active = true
-	print("is_cutscene_active gesetzt auf true")
-
-	# Dialog starten
+		body.is_cutscene_active = true
 	var timeline = Dialogic.start(timeline_name)
 	if not timeline:
-		push_error("Dialogic.start() returned null for timeline: %s" % timeline_name)
+		push_error("Dialogic.start() returned null für timeline: %s" % timeline_name)
 		body.is_cutscene_active = false
 		return
-	print("Dialogic-Timeline gestartet:", timeline.name)
+	print("Cutscene erfolgreich gestartet:", timeline_name)
 
-# Cutscene als gespielt markieren
-	cutscene_played = true
-
-# Reagiere auf Dialogic-Events aus der Timeline
 func _on_dialogic_signal(event_name: String) -> void:
-	if event_name == "cutscene_end":
-		print("Cutscene beendet via Dialogic-Signal!")
-		# Spieler wieder freigeben
+	if event_name.begins_with("cutscene_end"):
 		var player = get_node_or_null("Player_Dreamworld")
 		if player and player.has_method("cutscene_end"):
 			player.cutscene_end()
-			print("cutscene_end() aufgerufen")
-		
+			print("cutscene_end() aufgerufen für", player.name)
+	elif event_name == "get_platform":
+		print("Dialogic Event 'get_platform' empfangen!")
+		for platform in platforms:
+			platform.visible = true
+			# Hier Collisionschicht wieder aktivieren
+			platform.collision_layer = 1
+			platform.collision_mask = 1
+		print("Plattformen aktiviert:", platforms.size())
+	elif event_name == "get_doublejump":
+		print("Dialogic Event 'get_doublejump' empfangen!")
+		var player = get_node_or_null("Player_Dreamworld")
+		if player and player.has_method("activate_double_jump"):
+			player.activate_double_jump()
+			print("Double Jump für Spieler aktiviert!")
