@@ -7,6 +7,7 @@ extends Node2D
 @export var timeline_5: String = "tutorial_fifth_cutscene_timeline"
 @export var timeline_6: String = "tutorial_sixth_cutscene_timeline"
 @export var timeline_7: String = "tutorial_seventh_cutscene_timeline"
+@export var timeline_8: String = "tutorial_skip_timeline"
 
 @onready var area_2d_cutscene_1: Area2D = $Area2D_Cutscene1
 @onready var area_2d_cutscene_2: Area2D = $Area2D_Cutscene2
@@ -15,6 +16,7 @@ extends Node2D
 @onready var area_2d_cutscene_5: Area2D = $Area2D_Cutscene5
 @onready var area_2d_cutscene_6: Area2D = $Area2D_Cutscene6
 @onready var area_2d_cutscene_7: Area2D = $Area2D_Cutscene7
+@onready var area_2d_cutscene_8: Area2D = $Area2D_Cutscene8
 @onready var platforms_container: Node2D = $PlatformsContainer
 
 var cutscene_1_played := false
@@ -24,6 +26,7 @@ var cutscene_4_played := false
 var cutscene_5_played := false
 var cutscene_6_played := false
 var cutscene_7_played := false
+var cutscene_8_played := false
 var platforms: Array = []
 
 func _ready():
@@ -38,6 +41,7 @@ func _ready():
 	area_2d_cutscene_5.body_entered.connect(_on_cutscene_5_entered)
 	area_2d_cutscene_6.body_entered.connect(_on_cutscene_6_entered)
 	area_2d_cutscene_7.body_entered.connect(_on_cutscene_7_entered)
+	area_2d_cutscene_8.body_entered.connect(_on_cutscene_8_entered)
 
 	# Alle Plattformen initial deaktivieren
 	for platform in platforms_container.get_children():
@@ -125,6 +129,18 @@ func _on_cutscene_7_entered(body: Node) -> void:
 	print("Starte Cutscene 7...")
 	_start_cutscene(body, timeline_7)
 	cutscene_7_played = true
+	
+func _on_cutscene_8_entered(body: Node) -> void:
+	print("Cutscene 8 Area betreten von:", body.name)
+	if cutscene_8_played:
+		print("Cutscene 8 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Skip Tutorial...")
+	_start_cutscene(body, timeline_8)
+	cutscene_8_played = true
 
 func _start_cutscene(body: Node, timeline_name: String) -> void:
 	print("Versuche Cutscene zu starten:", timeline_name, "für", body.name)
@@ -193,8 +209,14 @@ func _wake_up_transition() -> void:
 	if player:
 		player.queue_free()  # Dreamworld-Player löschen
 
-	# GlobalScript.player zurücksetzen, damit RealworldScenes einen neuen lädt
+	# Player-Referenz zurücksetzen, damit RealworldScenes den realen Player lädt
 	GlobalScript.player = null
 	GlobalScript.previous_scene = "dreamworld_tutorial"
 
-	get_tree().change_scene_to_file("res://scenes/realworld_home.tscn")
+	var blink_overlay = preload("res://scenes/components/blink_overlay.tscn").instantiate()
+	get_tree().root.add_child(blink_overlay)
+
+	var blink_rect = blink_overlay.get_node("Blink_Overlay")
+
+	# Warten bis die Animation fertig ist, dann Szene wechseln
+	await blink_rect.play_sleep_wake_nosound("res://scenes/realworld_home.tscn")

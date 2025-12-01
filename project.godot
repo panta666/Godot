@@ -46,6 +46,7 @@ directories/dtl_directory={
 "tutorial_second_cutscene_timeline": "res://dialog/tutorial_second_cutscene_timeline.dtl",
 "tutorial_seventh_cutscene_timeline": "res://dialog/tutorial_seventh_cutscene_timeline.dtl",
 "tutorial_sixth_cutscene_timeline": "res://dialog/tutorial_sixth_cutscene_timeline.dtl",
+"tutorial_skip_timeline": "res://dialog/tutorial_skip_timeline.dtl",
 "tutorial_start_cutscene_timeline": "res://dialog/tutorial_start_cutscene_timeline.dtl",
 "tutorial_third_cutscene_timeline": "res://dialog/tutorial_third_cutscene_timeline.dtl"
 }

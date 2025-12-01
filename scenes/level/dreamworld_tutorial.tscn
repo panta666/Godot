@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://btc75g6p7i2mg"]
+[gd_scene load_steps=41 format=4 uid="uid://btc75g6p7i2mg"]
 
 [ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_0hkcn"]
 [ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="1_0u1q0"]
@@ -1891,6 +1891,9 @@ size = Vector2(20, 169)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu4jq"]
 size = Vector2(345, 164)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sblmw"]
+size = Vector2(54.625, 162.25)
+
 [node name="Dreamworld_Tutorial" type="Node2D"]
 script = ExtResource("1_qm84e")
 
@@ -2108,6 +2111,14 @@ classroom = "oop"
 [node name="Coin5" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(2755, 96)
 classroom = "oop"
+
+[node name="Area2D_Cutscene8" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Cutscene8"]
+position = Vector2(-57, 69)
+shape = SubResource("RectangleShape2D_sblmw")
 
 [connection signal="body_entered" from="Area2D_Cutscene1" to="." method="_on_area_2d_cutscene_1_body_entered"]
 [connection signal="body_entered" from="Area2D_Cutscene2" to="." method="_on_area_2d_cutscene_2_body_entered"]
