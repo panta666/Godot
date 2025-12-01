@@ -1,0 +1,8 @@
+[style name="platformer_style"]
+narrator: Long way..huh?
+[signal arg="get_dash"]
+narrator: Here..with this..you are getting there quicker.
+player: Where am I going?
+narrator: You'll see..soon enough.
+narrator: Use the Shift Key to Dash
+[signal arg="cutscene_end"]

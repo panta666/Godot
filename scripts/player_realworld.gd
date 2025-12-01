@@ -215,3 +215,22 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 	||animated_sprite_2d.animation == "walk_up"):
 		if animated_sprite_2d.frame in FOOTSTEP_FRAMES[animated_sprite_2d.animation]:
 			play_footstep_sound()
+
+func cutscene_start() -> void:
+	print("[PlayerRealworld] cutscene_start()")
+	can_move = false
+	can_interact = false
+	is_busy = true
+	velocity = Vector2.ZERO
+
+	# Animation sauber in Idle bringen
+	match facing_direction:
+		"up": animated_sprite_2d.play("idle_up")
+		"down": animated_sprite_2d.play("idle_down")
+		"side": animated_sprite_2d.play("idle_side")
+
+func cutscene_end() -> void:
+	print("[PlayerRealworld] cutscene_end()")
+	can_move = true
+	can_interact = true
+	is_busy = false
