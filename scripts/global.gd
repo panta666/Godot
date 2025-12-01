@@ -98,8 +98,9 @@ func start_new_game() -> void:
 	pending_spawn = true
 	current_scene = "realworld_classroom_one"
 	previous_scene = ""
+	MusicManager.stop_music()
 	
-	get_tree().change_scene_to_file("res://scenes/realworld_classroom_one.tscn")
+	get_tree().change_scene_to_file("res://scenes/level/dreamworld_tutorial.tscn")
 
 	# jetzt Player deferred
 	call_deferred("spawn_player")
