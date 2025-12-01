@@ -1,4 +1,4 @@
-[gd_scene load_steps=161 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=176 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/DreamWorldPlayer/player_dreamworld.gd" id="1_fd23n"]
 [ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="2_3pffi"]
@@ -74,12 +74,19 @@
 [ext_resource type="Texture2D" uid="uid://dc8jt76j5q84q" path="res://assets/plattformer_character/animations/taking-punch/east/frame_004.png" id="72_53q24"]
 [ext_resource type="Texture2D" uid="uid://cod3uuuqbijii" path="res://assets/plattformer_character/animations/taking-punch/east/frame_005.png" id="73_0jkkk"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="74_3kc26"]
+[ext_resource type="Texture2D" uid="uid://btmicecekh2d1" path="res://assets/plattformer_character/animations/throw-object/east/frame_000.png" id="74_7iced"]
+[ext_resource type="Texture2D" uid="uid://evsoju5pm60f" path="res://assets/plattformer_character/animations/throw-object/east/frame_001.png" id="75_ghbo8"]
 [ext_resource type="Texture2D" uid="uid://d1atpo45f7fum" path="res://assets/plattformer_character/animations/melee_slash/NPT100.png" id="75_w18fs"]
 [ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="76_ekknv"]
+[ext_resource type="Texture2D" uid="uid://cage2tfh12v5a" path="res://assets/plattformer_character/animations/throw-object/east/frame_002.png" id="76_iitiy"]
 [ext_resource type="Texture2D" uid="uid://bjlhawrp55nnj" path="res://assets/plattformer_character/animations/melee_slash/NPT102.png" id="77_6i2nj"]
+[ext_resource type="Texture2D" uid="uid://btsulxgi8ovlt" path="res://assets/plattformer_character/animations/throw-object/east/frame_003.png" id="77_cym0o"]
+[ext_resource type="Texture2D" uid="uid://xlpjarkt4n4q" path="res://assets/plattformer_character/animations/throw-object/east/frame_004.png" id="78_d4r3j"]
 [ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="78_rhhck"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="79_84bjp"]
+[ext_resource type="Texture2D" uid="uid://bmwxdlg0u62if" path="res://assets/plattformer_character/animations/throw-object/east/frame_005.png" id="79_uyd2q"]
 [ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://scenes/HUD/dreamworld/hund_coin.tscn" id="80_ku5kx"]
+[ext_resource type="Texture2D" uid="uid://2baq6i52cdio" path="res://assets/plattformer_character/animations/throw-object/east/frame_006.png" id="80_oa2cp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t3ro2"]
 particles_animation = true
@@ -356,6 +363,34 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vyjvs"]
 atlas = ExtResource("73_0jkkk")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c70g4"]
+atlas = ExtResource("74_7iced")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_on6mk"]
+atlas = ExtResource("75_ghbo8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51uo2"]
+atlas = ExtResource("76_iitiy")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01t1s"]
+atlas = ExtResource("77_cym0o")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhbbf"]
+atlas = ExtResource("78_d4r3j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdibv"]
+atlas = ExtResource("79_uyd2q")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igi5t"]
+atlas = ExtResource("80_oa2cp")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w3ag3"]
@@ -651,6 +686,32 @@ animations = [{
 "loop": false,
 "name": &"take_damage",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c70g4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_on6mk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51uo2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01t1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhbbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdibv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igi5t")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 20.0
 }]
 
 [sub_resource type="Animation" id="Animation_ku5kx"]
@@ -821,7 +882,7 @@ material = SubResource("ShaderMaterial_ku5kx")
 position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"attack"
+animation = &"throw"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 root_node = NodePath("../..")

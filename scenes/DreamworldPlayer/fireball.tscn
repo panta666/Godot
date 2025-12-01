@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0xr60xegk3f3"]
+[gd_scene load_steps=42 format=3 uid="uid://c0xr60xegk3f3"]
 
 [ext_resource type="Texture2D" uid="uid://c0712qxpxtoo7" path="res://assets/fire ball/fire splat 1.png" id="1_86oub"]
 [ext_resource type="Script" uid="uid://dhplbhsk1gwlt" path="res://scripts/DreamWorldPlayer/fireball.gd" id="1_qaphm"]
@@ -7,10 +7,50 @@
 [ext_resource type="Texture2D" uid="uid://ohgdhxon71f7" path="res://assets/fire ball/fire splat 44.png" id="4_wyo3q"]
 [ext_resource type="Texture2D" uid="uid://ch3vs27owjkoo" path="res://assets/fire ball/fire ball 1.png" id="5_1fb5b"]
 [ext_resource type="Texture2D" uid="uid://dbaxjg5um1rky" path="res://assets/range_attacks/oop_capsule/capsule_death.png" id="6_1fb5b"]
+[ext_resource type="Texture2D" uid="uid://b6ijumwqsoixy" path="res://assets/range_attacks/math_calculator/frame_035.png" id="6_chjt1"]
 [ext_resource type="Texture2D" uid="uid://d0bmy44tpjmqf" path="res://assets/fire ball/fire ball 2.png" id="6_tyqc2"]
+[ext_resource type="Texture2D" uid="uid://ctfod8gw54wpu" path="res://assets/range_attacks/math_calculator/frame_000.png" id="6_vaarr"]
 [ext_resource type="Texture2D" uid="uid://0o1f4w4w5nhu" path="res://assets/range_attacks/oop_capsule/capsule_flying.png" id="6_wyo3q"]
+[ext_resource type="Texture2D" uid="uid://chh43g3w45pno" path="res://assets/range_attacks/math_calculator/frame_004.png" id="7_chjt1"]
 [ext_resource type="Texture2D" uid="uid://dt2h8wxhq5v53" path="res://assets/fire ball/fire ball 3.png" id="7_pq144"]
+[ext_resource type="Texture2D" uid="uid://co7clymlhfsjm" path="res://assets/range_attacks/math_calculator/frame_007.png" id="8_a7ueb"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="9_mi4h5"]
+[ext_resource type="Texture2D" uid="uid://ca07a1bvh7pum" path="res://assets/range_attacks/math_calculator/frame_008.png" id="9_oxviy"]
+[ext_resource type="Texture2D" uid="uid://y4o16u1xshin" path="res://assets/range_attacks/math_calculator/frame_009.png" id="10_jn5cd"]
+[ext_resource type="Texture2D" uid="uid://bew3x86c7jxfl" path="res://assets/range_attacks/math_calculator/frame_012.png" id="11_tfrfj"]
+[ext_resource type="Texture2D" uid="uid://i5gfr2k7sqpt" path="res://assets/range_attacks/math_calculator/frame_018.png" id="12_wftct"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7ueb"]
+atlas = ExtResource("6_chjt1")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h07uh"]
+atlas = ExtResource("6_vaarr")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6sv4"]
+atlas = ExtResource("7_chjt1")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cibd6"]
+atlas = ExtResource("8_a7ueb")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3i4nj"]
+atlas = ExtResource("9_oxviy")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh477"]
+atlas = ExtResource("10_jn5cd")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33i12"]
+atlas = ExtResource("11_tfrfj")
+region = Rect2(0, 0, 335, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lin7"]
+atlas = ExtResource("12_wftct")
+region = Rect2(0, 0, 335, 329)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3iw0"]
 atlas = ExtResource("6_1fb5b")
@@ -73,6 +113,40 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7ueb")
+}],
+"loop": false,
+"name": &"math_death",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h07uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6sv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cibd6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3i4nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh477")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33i12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lin7")
+}],
+"loop": true,
+"name": &"math_run",
 "speed": 20.0
 }, {
 "frames": [{
@@ -143,7 +217,7 @@ script = ExtResource("1_qaphm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0rtms")
-animation = &"oop_death"
+animation = &"run"
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 17
