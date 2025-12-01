@@ -119,8 +119,6 @@ func _physics_process(delta: float) -> void:
 	
 	# Add gravity
 	add_gravity(delta)
-	
-	print(on_ladder)
 
 	#Coyote Timer neu setzen/ runterzählen
 	handle_coyote_time(delta)
@@ -184,7 +182,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	
+	#Leiter
 	if on_ladder:
 		if Input.is_action_pressed("move_down"):
 			velocity.y = SPEED*delta*40
