@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://btc75g6p7i2mg"]
+[gd_scene load_steps=41 format=4 uid="uid://btc75g6p7i2mg"]
 
 [ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_0hkcn"]
 [ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="1_0u1q0"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="10_sblmw"]
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="12_y8p36"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="16_iu4jq"]
+[ext_resource type="AudioStream" uid="uid://di5og1ypyvron" path="res://assets/sfx/369880__splicesound__alarm-clock-beep-close-perspective.wav" id="17_sblmw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ify"]
 texture = ExtResource("1_0hkcn")
@@ -2108,6 +2109,10 @@ classroom = "oop"
 [node name="Coin5" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(2755, 96)
 classroom = "oop"
+
+[node name="AlarmClockPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_sblmw")
+bus = &"SFX"
 
 [connection signal="body_entered" from="Area2D_Cutscene1" to="." method="_on_area_2d_cutscene_1_body_entered"]
 [connection signal="body_entered" from="Area2D_Cutscene2" to="." method="_on_area_2d_cutscene_2_body_entered"]
