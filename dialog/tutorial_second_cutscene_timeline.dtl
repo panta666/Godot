@@ -3,6 +3,6 @@ player: How am I supposed to go further? I can't fly?!
 narrator: Hey, it's me again. I see you are having troubles getting across?
 narrator: Here, let me help you!
 [signal arg="get_platform"]
-[wait time="1.5"]
+[wait time="1.0"]
 narrator: Use the Spacebar to Jump on the Platforms to get over the Building. Good Luck!
 [signal arg="cutscene_end"]

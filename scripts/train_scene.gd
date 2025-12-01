@@ -1,6 +1,7 @@
 extends RealworldScenes
 
 @onready var animation_player: AnimationPlayer = $Train/AnimationPlayer
+@onready var scene_camera: Camera2D = $Train/Camera2D
 
 func _ready() -> void:
 	scene_name = "train_scene"
@@ -10,7 +11,11 @@ func _ready() -> void:
 	if GlobalScript.player:
 		GlobalScript.player.visible = false
 		GlobalScript.player.can_move = false
+		if GlobalScript.player.camera_2d:
+			GlobalScript.player.camera_2d.enabled = false
 
+	scene_camera.make_current()
+	
 	# Animation starten
 	animation_player.play("drive")
 

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_dqsk4")
-damage = 10
+damage = -10
 pre_attack_duration = 0.5
 post_attack_duration = 0.5
 projectile_offset = Vector2(40, 0)

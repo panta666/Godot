@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://brtdqeh4422x"]
+[gd_scene load_steps=103 format=4 uid="uid://brtdqeh4422x"]
 
 [ext_resource type="Script" uid="uid://bmredq8bgb7g3" path="res://scripts/realworld_home.gd" id="1_cmjdo"]
 [ext_resource type="Texture2D" uid="uid://cijm2jgwbjd0t" path="res://assets/tilemap/32x32/Room_Builder_32x32.png" id="1_krot7"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="10_hhep5"]
 [ext_resource type="Texture2D" uid="uid://ca76di1qfx0r6" path="res://assets/tilemap/32x32/interior_32x32/5_Classroom_and_library_Black_Shadow_32x32.png" id="11_xf65n"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="13_omj7r"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="14_omj7r"]
 
 [sub_resource type="TileSet" id="TileSet_qmde4"]
 occlusion_layer_0/light_mask = 1
@@ -60404,6 +60405,9 @@ polygon = PackedVector2Array(-115, -6, -114, 88, -114, 161, -151, 159, -207, 47,
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_hsbjd"]
 polygon = PackedVector2Array(302, 32, 302, 160, 352, 160, 352, 224, 312, 276, 247, 272, 283, 221, 282, 109, 286, 42)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2lpy"]
+size = Vector2(57, 83)
+
 [node name="Home" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_cmjdo")
@@ -60539,3 +60543,18 @@ occluder = SubResource("OccluderPolygon2D_omj7r")
 
 [node name="LightOccluder2D8" type="LightOccluder2D" parent="Light Occluder"]
 occluder = SubResource("OccluderPolygon2D_hsbjd")
+
+[node name="Area2D_Dialog" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Dialog"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(-3, 113)
+shape = SubResource("RectangleShape2D_h2lpy")
+
+[node name="Blinking" parent="Area2D_Dialog" instance=ExtResource("14_omj7r")]
+position = Vector2(367, 205)
+scale = Vector2(0.05, 0.05)
+chosen_type = 1
+
+[connection signal="body_entered" from="Area2D_Dialog" to="." method="_on_area_2d_dialog_body_entered"]

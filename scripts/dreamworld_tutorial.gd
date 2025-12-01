@@ -3,15 +3,27 @@ extends Node2D
 @export var timeline_1: String = "tutorial_start_cutscene_timeline"
 @export var timeline_2: String = "tutorial_second_cutscene_timeline"
 @export var timeline_3: String = "tutorial_third_cutscene_timeline"
+@export var timeline_4: String = "tutorial_fourth_cutscene_timeline"
+@export var timeline_5: String = "tutorial_fifth_cutscene_timeline"
+@export var timeline_6: String = "tutorial_sixth_cutscene_timeline"
+@export var timeline_7: String = "tutorial_seventh_cutscene_timeline"
 
 @onready var area_2d_cutscene_1: Area2D = $Area2D_Cutscene1
 @onready var area_2d_cutscene_2: Area2D = $Area2D_Cutscene2
 @onready var area_2d_cutscene_3: Area2D = $Area2D_Cutscene3
+@onready var area_2d_cutscene_4: Area2D = $Area2D_Cutscene4
+@onready var area_2d_cutscene_5: Area2D = $Area2D_Cutscene5
+@onready var area_2d_cutscene_6: Area2D = $Area2D_Cutscene6
+@onready var area_2d_cutscene_7: Area2D = $Area2D_Cutscene7
 @onready var platforms_container: Node2D = $PlatformsContainer
 
 var cutscene_1_played := false
 var cutscene_2_played := false
 var cutscene_3_played := false
+var cutscene_4_played := false
+var cutscene_5_played := false
+var cutscene_6_played := false
+var cutscene_7_played := false
 var platforms: Array = []
 
 func _ready():
@@ -22,6 +34,10 @@ func _ready():
 	area_2d_cutscene_1.body_entered.connect(_on_cutscene_1_entered)
 	area_2d_cutscene_2.body_entered.connect(_on_cutscene_2_entered)
 	area_2d_cutscene_3.body_entered.connect(_on_cutscene_3_entered)
+	area_2d_cutscene_4.body_entered.connect(_on_cutscene_4_entered)
+	area_2d_cutscene_5.body_entered.connect(_on_cutscene_5_entered)
+	area_2d_cutscene_6.body_entered.connect(_on_cutscene_6_entered)
+	area_2d_cutscene_7.body_entered.connect(_on_cutscene_7_entered)
 
 	# Alle Plattformen initial deaktivieren
 	for platform in platforms_container.get_children():
@@ -62,6 +78,54 @@ func _on_cutscene_3_entered(body: Node) -> void:
 	_start_cutscene(body, timeline_3)
 	cutscene_3_played = true
 
+func _on_cutscene_4_entered(body: Node) -> void:
+	print("Cutscene 4 Area betreten von:", body.name)
+	if cutscene_4_played:
+		print("Cutscene 4 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Starte Cutscene 4...")
+	_start_cutscene(body, timeline_4)
+	cutscene_4_played = true
+	
+func _on_cutscene_5_entered(body: Node) -> void:
+	print("Cutscene 5 Area betreten von:", body.name)
+	if cutscene_5_played:
+		print("Cutscene 5 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Starte Cutscene 5...")
+	_start_cutscene(body, timeline_5)
+	cutscene_5_played = true
+	
+func _on_cutscene_6_entered(body: Node) -> void:
+	print("Cutscene 6 Area betreten von:", body.name)
+	if cutscene_6_played:
+		print("Cutscene 6 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Starte Cutscene 6...")
+	_start_cutscene(body, timeline_6)
+	cutscene_6_played = true
+	
+func _on_cutscene_7_entered(body: Node) -> void:
+	print("Cutscene 7 Area betreten von:", body.name)
+	if cutscene_7_played:
+		print("Cutscene 7 bereits gespielt, nichts passiert")
+		return
+	if not body.has_method("player"):
+		print("Body hat keine player-Methode:", body)
+		return
+	print("Starte Cutscene 7...")
+	_start_cutscene(body, timeline_7)
+	cutscene_7_played = true
+
 func _start_cutscene(body: Node, timeline_name: String) -> void:
 	print("Versuche Cutscene zu starten:", timeline_name, "für", body.name)
 	if not body.has_method("player"):
@@ -98,3 +162,39 @@ func _on_dialogic_signal(event_name: String) -> void:
 		if player and player.has_method("activate_double_jump"):
 			player.activate_double_jump()
 			print("Double Jump für Spieler aktiviert!")
+	elif event_name == "get_dash":
+		print("Dialogic Event 'get_dash' empfangen!")
+		var player = get_node_or_null("Player_Dreamworld")
+		if player and player.has_method("activate_dash"):
+			player.activate_dash()
+			print("Dash für Spieler aktiviert!")
+	elif event_name == "get_range_attack":
+		print("Dialogic Event 'get_range_attack' empfangen!")
+		var player = get_node_or_null("Player_Dreamworld")
+		if player and player.has_method("activate_range_attack"):
+			player.activate_range_attack()
+			print("Range Attack für Spieler aktiviert!")
+	elif event_name == "get_crouch":
+		print("Dialogic Event 'get_crouch' empfangen!")
+		var player = get_node_or_null("Player_Dreamworld")
+		if player and player.has_method("activate_crouching"):
+			player.activate_crouching()
+			print("Crouching für Spieler aktiviert!")
+	elif event_name == "wake_up":
+		print("Dialogic Event 'wake_up' empfangen! Wechsel zur Realwelt...")
+		_wake_up_transition()
+		
+func _wake_up_transition() -> void:
+	# Spieler von der Dreamworld entfernen
+	var player = get_node_or_null("Player_Dreamworld")
+	if player and player.has_method("cutscene_end"):
+		player.cutscene_end()
+
+	if player:
+		player.queue_free()  # Dreamworld-Player löschen
+
+	# GlobalScript.player zurücksetzen, damit RealworldScenes einen neuen lädt
+	GlobalScript.player = null
+	GlobalScript.previous_scene = "dreamworld_tutorial"
+
+	get_tree().change_scene_to_file("res://scenes/realworld_home.tscn")

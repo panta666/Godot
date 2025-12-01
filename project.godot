@@ -39,8 +39,13 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "dahm_timeline": "res://dialog/dahm_timeline.dtl",
+"home_timeline": "res://dialog/home_timeline.dtl",
 "npc_henry_timeline": "res://dialog/npc_henry_timeline.dtl",
+"tutorial_fifth_cutscene_timeline": "res://dialog/tutorial_fifth_cutscene_timeline.dtl",
+"tutorial_fourth_cutscene_timeline": "res://dialog/tutorial_fourth_cutscene_timeline.dtl",
 "tutorial_second_cutscene_timeline": "res://dialog/tutorial_second_cutscene_timeline.dtl",
+"tutorial_seventh_cutscene_timeline": "res://dialog/tutorial_seventh_cutscene_timeline.dtl",
+"tutorial_sixth_cutscene_timeline": "res://dialog/tutorial_sixth_cutscene_timeline.dtl",
 "tutorial_start_cutscene_timeline": "res://dialog/tutorial_start_cutscene_timeline.dtl",
 "tutorial_third_cutscene_timeline": "res://dialog/tutorial_third_cutscene_timeline.dtl"
 }

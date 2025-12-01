@@ -1,0 +1,8 @@
+[style name="platformer_style"]
+player: What the?!..
+player: What am I seeing?...huh?
+narrator: Oh..yeah..this is a Bug. You should destroy it..or...
+narrator: Something bad might happen. Hehehehe
+narrator: Use Left Mouse Button (LMB) for Melee Attack or Right Mouse Button (RMB) for Range Attack.
+[signal arg="get_range_attack"]
+[signal arg="cutscene_end"]

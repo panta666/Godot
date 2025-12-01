@@ -1,0 +1,7 @@
+[style name="platformer_style"]
+player: What is that Sound? What is happening?
+insert alarm sound here^^
+audio -
+narrator: Ssee...y0u..s00n..hehee 01..001010011
+[signal arg="cutscene_end"]
+[signal arg="wake_up"]
