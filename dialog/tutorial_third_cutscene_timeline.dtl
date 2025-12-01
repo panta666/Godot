@@ -1,0 +1,6 @@
+[style name="platformer_style"]
+player: Damn, i can't reach it..
+narrator: Do you need my help again?
+[signal arg="get_doublejump"]
+narrator: Here. *swoosh* You can use a second Jump now to reach the roof.
+[signal arg="cutscene_end"]

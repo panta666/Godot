@@ -1,8 +1,8 @@
 extends ColorRect
 
 @export var max_blur_strength := 8.0
-@export var first_blink_duration := 1.6   # Erstes Blinzeln langsamer
-@export var second_blink_duration := 1.3  # Zweites Blinzeln schneller
+@export var first_blink_duration := 1.1   # Erstes Blinzeln langsamer
+@export var second_blink_duration := 0.5  # Zweites Blinzeln schneller
 @export var eyes_closed_hold := 0.5       # Zeit, in der die Augen geschlossen bleiben
 @onready var mat := material
 @onready var yawning_player: AudioStreamPlayer = $"../YawningPlayer"
@@ -29,6 +29,25 @@ func play_sleep_wake(next_scene_path: String) -> void:
 	# Zweites Blinzeln (schneller)
 	await animate_blink(second_blink_duration)
 
+	# Augen langsam schließen + Blur hoch
+	await animate_shader("blink_progress", 0.0, 1.0, second_blink_duration)
+	await animate_shader("blur_strength", 0.0, max_blur_strength, second_blink_duration)
+
+	# Augen geschlossen halten
+	await get_tree().create_timer(eyes_closed_hold).timeout
+
+	# Szene wechseln
+	get_tree().change_scene_to_file(next_scene_path)
+
+	# Aufwachen: Augen öffnen + Blur weg
+	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
+	await animate_shader("blur_strength", max_blur_strength, 0.0, second_blink_duration)
+
+	visible = false
+	
+func play_sleep_wake_nosound(next_scene_path: String) -> void:
+	visible = true
+	
 	# Augen langsam schließen + Blur hoch
 	await animate_shader("blink_progress", 0.0, 1.0, second_blink_duration)
 	await animate_shader("blur_strength", 0.0, max_blur_strength, second_blink_duration)

@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_nluf2")
-damage = 20
 pre_attack_duration = 0.5
 post_attack_duration = 0.7
 animation_name = "attack"

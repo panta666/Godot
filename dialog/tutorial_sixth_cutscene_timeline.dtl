@@ -1,0 +1,6 @@
+[style name="platformer_style"]
+player: Hello? Can you help me again with some Platforms please?
+narrator: Uh..i eRRor..got..no..0101 Pl4tf0rms f0r y0u..bu..buut here
+narrator: J..Jjust cr0uch..Ww..it|| 'S'
+[signal arg="get_crouch"]
+[signal arg="cutscene_end"]

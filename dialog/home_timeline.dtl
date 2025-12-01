@@ -1,0 +1,4 @@
+[style name="platformer_style"]
+player: Oh...that was a really wierd Dream..I need to catch my Train..better hurry.
+player: My first Module today is OOP. Lets gooooooo!
+[signal arg="cutscene_end"]
