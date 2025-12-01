@@ -85,6 +85,10 @@ var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 var current_scene
 var scene_name
 
+#Variable für Cutscenes
+var is_cutscene_active: bool = false
+
+
 func _ready() -> void:
 	current_scene = get_tree().current_scene
 	scene_name = current_scene.name.to_lower()
@@ -104,6 +108,11 @@ func _ready() -> void:
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
 func _physics_process(delta: float) -> void:
+	if is_cutscene_active:
+		velocity = Vector2.ZERO
+		player_sprite.play("idle")
+		return
+
 	if not is_alive:
 		update_animation()
 		return
@@ -181,14 +190,14 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 	move_and_slide()
-	
+
 	#Leiter
 	if on_ladder:
 		if Input.is_action_pressed("move_down"):
 			velocity.y = SPEED*delta*40
 		elif Input.is_action_pressed("jump"):
 			velocity.y = -SPEED*delta*40
-		else: 
+		else:
 			velocity.y = 0
 
 func deactivate_hitboxes():
@@ -584,7 +593,16 @@ func activate_dash():
 
 func increase_range_attack_charges():
 	max_range_attack += 1
-	
+
+
+# --- Cutscene Methoden ---
+func cutscene_start() -> void:
+	print("CUTSCENE START")
+	is_cutscene_active = true
+
+func cutscene_end() -> void:
+	print("CUTSCENE END")
+	is_cutscene_active = false
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	on_ladder = true
