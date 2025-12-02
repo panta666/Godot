@@ -190,7 +190,6 @@ func _attack(attack: Attack):
 			attack_duration = $DashingTimer.wait_time
 		attack.movement_type.NONE:
 			is_walking = 0
-			print("idle2")
 			sprite.play("idle")
 	
 	hitbox.disabled = false
@@ -218,19 +217,30 @@ func _attack(attack: Attack):
 
 func _range_attack(attack: Range_Attack):
 	is_attacking = true
+	var frames: SpriteFrames = sprite.sprite_frames
 	
 	is_walking = 0
-	print("idle3")
-	sprite.play("idle")
+	
+	var frame_number = frames.get_frame_count(attack.pre_animation_name)
+	var anim_speed = frame_number / attack.pre_attack_duration
+	frames.set_animation_speed(attack.pre_animation_name, anim_speed)
+	sprite.play(attack.pre_animation_name)
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
 
 	var projectile = projectile_object.instantiate()
 	projectile.get_node("HitBox").damage = attack.damage
 	projectile.position = position + attack.projectile_offset * direction
 	projectile.direction = Vector2.RIGHT * direction
+	projectile._set_exception(self)
 	get_tree().current_scene.add_child(projectile)
 	
+	
+	frame_number = frames.get_frame_count(attack.post_animation_name)
+	anim_speed = frame_number / attack.post_attack_duration
+	frames.set_animation_speed(attack.post_animation_name, anim_speed)
+	sprite.play(attack.post_animation_name)
 	await get_tree().create_timer(attack.post_attack_duration).timeout
+	
 	is_walking = 1
 	sprite.play("walk")
 	is_attacking = false	

@@ -12,12 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="7_rwgd0"]
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="8_vu5gk"]
 [ext_resource type="PackedScene" uid="uid://71w0wye5dpch" path="res://scenes/death_collider.tscn" id="9_vu5gk"]
-[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_hrsau"]
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="11_67yw2"]
 [ext_resource type="PackedScene" uid="uid://c1e450qelo0gk" path="res://scenes/platform_up.tscn" id="15_67yw2"]
 [ext_resource type="Script" uid="uid://dvegcwxxgc673" path="res://scenes/level/oop/test_level_finish.gd" id="16_q7fde"]
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
+[ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="19_8mc05"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -2715,12 +2715,6 @@ position = Vector2(35, 72)
 position = Vector2(156, 1300)
 shape = SubResource("WorldBoundaryShape2D_hrsau")
 
-[node name="Enemy" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(251, 71.99999)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
 [node name="Platform Up" parent="." instance=ExtResource("15_67yw2")]
 position = Vector2(3699, 350)
 
@@ -2767,5 +2761,9 @@ position = Vector2(1507, 406)
 
 [node name="Coin5" parent="." instance=ExtResource("18_swoql")]
 position = Vector2(3048, 746)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("19_8mc05")]
+position = Vector2(200, 66)
+collision_layer = 4
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
