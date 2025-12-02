@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="7_rwgd0"]
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="8_vu5gk"]
 [ext_resource type="PackedScene" uid="uid://71w0wye5dpch" path="res://scenes/death_collider.tscn" id="9_vu5gk"]
-[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_hrsau"]
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="11_67yw2"]
 [ext_resource type="Texture2D" uid="uid://cu0eatkkyeru" path="res://scenes/level/oop/oop_assets/ladder.png" id="12_06ovp"]
 [ext_resource type="Texture2D" uid="uid://cyoj8qn8dpvjh" path="res://assets/oop_level/traps_and_ducks.png" id="13_6k28a"]
@@ -20,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dvegcwxxgc673" path="res://scenes/level/oop/test_level_finish.gd" id="16_q7fde"]
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
+[ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="19_8mc05"]
 [ext_resource type="PackedScene" uid="uid://b5wwjaw1ono3a" path="res://scenes/level/oop/oop_assets/platform_down.tscn" id="19_8mc05"]
 [ext_resource type="Texture2D" uid="uid://cl78wmbroa6b" path="res://scenes/level/oop/oop_assets/oop_boss_background.png" id="20_2lnip"]
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
@@ -3206,5 +3206,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_clmav")
 }
 autoplay = "move"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("19_8mc05")]
+position = Vector2(200, 66)
+collision_layer = 4
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
