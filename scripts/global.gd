@@ -155,6 +155,7 @@ func spawn_player() -> void:
 	call_deferred("_deferred_play_default_animation")
 
 
+
 # -------------------------
 # Player in aktuelle Szene verschieben
 # -------------------------
@@ -276,6 +277,14 @@ func change_scene(new_scene: String) -> void:
 	current_scene = new_scene
 
 	move_player_to_current_scene()
+	
+	# ------------------------
+	# Questziel direkt nach Szenenwechsel setzen
+	# ------------------------
+	if new_scene == "realworld_hall":
+		var door = new_scene_instance.get_node_or_null("Classroom_One_Door")
+		if door and GlobalScript.player:
+			GlobalScript.player.set_quest_target(door)
 
 
 # ==========================================================

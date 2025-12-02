@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://sxc5oblkvejp"]
+[gd_scene load_steps=66 format=3 uid="uid://sxc5oblkvejp"]
 
 [ext_resource type="Script" uid="uid://cgoc1ya8wq8xj" path="res://scripts/player_realworld.gd" id="1_r46w1"]
 [ext_resource type="Texture2D" uid="uid://w2180mglnytw" path="res://assets/characters/Adam_idle_anim_16x16.png" id="1_w8k1j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cnmi5r7qi63ft" path="res://assets/characters/Adam_phone_16x16.png" id="3_hu31r"]
 [ext_resource type="Texture2D" uid="uid://d0miohmums12w" path="res://assets/characters/Adam_run_16x16.png" id="3_r46w1"]
 [ext_resource type="PackedScene" uid="uid://bnyiexpv6yii2" path="res://scenes/interacting_component.tscn" id="4_so0tf"]
+[ext_resource type="PackedScene" uid="uid://ctky543ox2eg" path="res://scenes/HUD/realworld/quest_arrow.tscn" id="7_pu3xt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hu31r"]
 atlas = ExtResource("1_w8k1j")
@@ -492,6 +493,8 @@ polygon = PackedVector2Array(-8, -10, -8, -11, -7, -11, -7, -12, -8, -12, -8, -1
 [node name="Player_Realworld" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_r46w1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -520,5 +523,9 @@ bus = &"SFX"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_hu31r")
+
+[node name="QuestArrow" parent="." instance=ExtResource("7_pu3xt")]
+position = Vector2(0, -28.000002)
+scale = Vector2(0.12738973, 0.17500016)
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
