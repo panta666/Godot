@@ -525,5 +525,6 @@ occluder = SubResource("OccluderPolygon2D_hu31r")
 [node name="QuestArrow" parent="." instance=ExtResource("7_pu3xt")]
 position = Vector2(0, -28.000002)
 scale = Vector2(0.12738973, 0.17500016)
+max_distance = 1000.0
 
 [connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
