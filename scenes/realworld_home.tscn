@@ -60545,8 +60545,6 @@ occluder = SubResource("OccluderPolygon2D_omj7r")
 occluder = SubResource("OccluderPolygon2D_hsbjd")
 
 [node name="Area2D_Dialog" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Dialog"]
 position = Vector2(-3, 113)
