@@ -14,7 +14,7 @@ var healthbar
 
 const SPEED = 50.0
 
-const STUN_TIME = 0.5
+const STUN_TIME = 0.35
 
 const DASH_SPEED = 300.0
 
@@ -23,6 +23,8 @@ const RANGE = 250
 const ATTACK_RANGE_FAR = 166
 
 const ATTACK_RANGE_NEAR = 165
+
+const ATTACK_RANGE = 260
 
 const HEALTH_BAR_POSITION = Vector2(0, -30)
 
@@ -150,8 +152,9 @@ func _start_attack():
 				var r  = randi_range(0, attacks.size() - 1)	
 				_attack(attacks[r])
 			elif attacks.is_empty():
-				var r  = randi_range(0, range_attacks.size() - 1)
-				_range_attack(range_attacks[r])
+				if player.global_position.distance_to(global_position) < ATTACK_RANGE:
+					var r  = randi_range(0, range_attacks.size() - 1)
+					_range_attack(range_attacks[r])
 			else:
 				if player.global_position.distance_to(global_position) > ATTACK_RANGE_FAR:
 					var r  = randi_range(0, range_attacks.size() - 1)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=141 format=3 uid="uid://6wx15xs4nxry"]
+[gd_scene load_steps=143 format=3 uid="uid://6wx15xs4nxry"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_no7e0"]
+[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_5ratu"]
+[ext_resource type="Resource" uid="uid://ou55octuf0rv" path="res://scenes/Enemies/slash_attack_bug.tres" id="3_y0ijw"]
 [ext_resource type="Texture2D" uid="uid://dkyposv7q7mhk" path="res://assets/characters/enemies/Bug/Attack/0001.png" id="6_1ax7u"]
 [ext_resource type="Texture2D" uid="uid://dahgqa1gbucu0" path="res://assets/characters/enemies/Bug/Attack/0002.png" id="7_egypa"]
 [ext_resource type="Texture2D" uid="uid://cm0c25lhmsi6" path="res://assets/characters/enemies/Bug/Attack/0003.png" id="8_jthae"]
@@ -729,6 +731,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" instance=ExtResource("1_no7e0")]
+attacks = Array[ExtResource("2_5ratu")]([ExtResource("3_y0ijw")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_no7e0")

@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cl78wmbroa6b" path="res://scenes/level/oop/oop_assets/oop_boss_background.png" id="20_2lnip"]
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
+[ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="19_b46tw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3055,36 +3056,6 @@ position = Vector2(35, 72)
 position = Vector2(156, 1300)
 shape = SubResource("WorldBoundaryShape2D_hrsau")
 
-[node name="Enemy" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(788, 416)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy2" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(1313, 640)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy4" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(1328, -366)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy5" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(2947, 754)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy6" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(2878.9998, 191)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
 [node name="Platform Up" parent="." instance=ExtResource("15_67yw2")]
 position = Vector2(3699, 350)
 
@@ -3207,8 +3178,14 @@ libraries = {
 }
 autoplay = "move"
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("19_8mc05")]
-position = Vector2(200, 66)
+[node name="Duck_1" parent="." instance=ExtResource("19_8mc05")]
+position = Vector2(613, 389)
+scale = Vector2(0.65, 0.65)
+collision_layer = 4
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(271.00003, 78)
+scale = Vector2(0.65, 0.65)
 collision_layer = 4
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
