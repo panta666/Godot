@@ -1,33 +1,23 @@
-[gd_scene load_steps=98 format=3 uid="uid://dttdsxr6qrhe0"]
+[gd_scene load_steps=160 format=3 uid="uid://dttdsxr6qrhe0"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_6di4g"]
 [ext_resource type="Script" uid="uid://cdshcdgrunfvm" path="res://scripts/range_attack.gd" id="2_wcsn1"]
 [ext_resource type="Resource" uid="uid://cpbkme3shpy64" path="res://scenes/Enemies/Duck_Projectile.tres" id="3_ogr5e"]
-[ext_resource type="Texture2D" uid="uid://bpgq4uusu5w61" path="res://assets/characters/enemies/Duck/Idle/0001.png" id="4_ak1n0"]
-[ext_resource type="Texture2D" uid="uid://caamtiy47wxpi" path="res://assets/characters/enemies/Duck/Idle/0003.png" id="4_wcsn1"]
-[ext_resource type="Texture2D" uid="uid://de7ulii8h74vf" path="res://assets/characters/enemies/Duck/Idle/0002.png" id="5_8qmgw"]
-[ext_resource type="Texture2D" uid="uid://cuioeel6sccen" path="res://assets/characters/enemies/Duck/Idle/0004.png" id="5_ogr5e"]
-[ext_resource type="Texture2D" uid="uid://1sv576nu5ngb" path="res://assets/characters/enemies/Duck/Idle/0005.png" id="6_okaul"]
-[ext_resource type="Texture2D" uid="uid://dc4o6fagyyibo" path="res://assets/characters/enemies/Duck/Idle/0006.png" id="7_5prqj"]
-[ext_resource type="Texture2D" uid="uid://c6ysf7fptq7sm" path="res://assets/characters/enemies/Duck/Idle/0007.png" id="8_u7v2u"]
-[ext_resource type="Texture2D" uid="uid://bxr61pbixvl2m" path="res://assets/characters/enemies/Duck/Idle/0008.png" id="9_37asm"]
-[ext_resource type="Texture2D" uid="uid://s4mee30in3el" path="res://assets/characters/enemies/Duck/Idle/0009.png" id="10_wgit4"]
-[ext_resource type="Texture2D" uid="uid://cmh13hhfqo2tf" path="res://assets/characters/enemies/Duck/Idle/0010.png" id="11_8kcbt"]
-[ext_resource type="Texture2D" uid="uid://easbei4runo5" path="res://assets/characters/enemies/Duck/Idle/0011.png" id="12_lc7g2"]
-[ext_resource type="Texture2D" uid="uid://bg30nmt5h2iat" path="res://assets/characters/enemies/Duck/Idle/0012.png" id="13_kc7pm"]
-[ext_resource type="Texture2D" uid="uid://bifpffmluw35q" path="res://assets/characters/enemies/Duck/Idle/0013.png" id="14_ugrfh"]
-[ext_resource type="Texture2D" uid="uid://12o8blkkw673" path="res://assets/characters/enemies/Duck/Idle/0014.png" id="15_tbuex"]
-[ext_resource type="Texture2D" uid="uid://mnt0xcxfes7m" path="res://assets/characters/enemies/Duck/Idle/0015.png" id="16_jti3c"]
-[ext_resource type="Texture2D" uid="uid://dr7nepmc1r051" path="res://assets/characters/enemies/Duck/Idle/0016.png" id="17_0kolv"]
-[ext_resource type="Texture2D" uid="uid://bamfp1ij80qr8" path="res://assets/characters/enemies/Duck/Idle/0017.png" id="18_1ldf2"]
-[ext_resource type="Texture2D" uid="uid://mcdw8vatqwue" path="res://assets/characters/enemies/Duck/Idle/0018.png" id="19_ffl3d"]
-[ext_resource type="Texture2D" uid="uid://blkcl744o7ths" path="res://assets/characters/enemies/Duck/Idle/0019.png" id="20_twqd1"]
-[ext_resource type="Texture2D" uid="uid://cak4nkjugxlvk" path="res://assets/characters/enemies/Duck/Idle/0020.png" id="21_b6jg5"]
-[ext_resource type="Texture2D" uid="uid://cr01tjfpmrnso" path="res://assets/characters/enemies/Duck/Idle/0021.png" id="22_j1ryf"]
-[ext_resource type="Texture2D" uid="uid://bd8o2jbr0vsnb" path="res://assets/characters/enemies/Duck/Idle/0022.png" id="23_7tuls"]
-[ext_resource type="Texture2D" uid="uid://drjwkb38q51sl" path="res://assets/characters/enemies/Duck/Idle/0023.png" id="24_8bmpk"]
-[ext_resource type="Texture2D" uid="uid://covfo3sjbxhb" path="res://assets/characters/enemies/Duck/Idle/0024.png" id="25_lfy6a"]
-[ext_resource type="Texture2D" uid="uid://dktjxeknnr7ji" path="res://assets/characters/enemies/Duck/Post_Attack/0001.png" id="26_7qd27"]
+[ext_resource type="Texture2D" uid="uid://dixlcg6i7nrnf" path="res://assets/characters/enemies/Duck/Idle/0001.png" id="4_ak1n0"]
+[ext_resource type="Texture2D" uid="uid://d043kbngd1pys" path="res://assets/characters/enemies/Duck/Idle/0003.png" id="4_wcsn1"]
+[ext_resource type="Texture2D" uid="uid://bodmbvxcgdqyr" path="res://assets/characters/enemies/Duck/Idle/0002.png" id="5_8qmgw"]
+[ext_resource type="Texture2D" uid="uid://wrbj4loeytyu" path="res://assets/characters/enemies/Duck/Idle/0004.png" id="5_ogr5e"]
+[ext_resource type="Texture2D" uid="uid://clk6vaxfpsytq" path="res://assets/characters/enemies/Duck/Idle/0005.png" id="6_okaul"]
+[ext_resource type="Texture2D" uid="uid://diyai0ksix6ls" path="res://assets/characters/enemies/Duck/Idle/0006.png" id="7_5prqj"]
+[ext_resource type="Texture2D" uid="uid://dh7lcyqxq6eae" path="res://assets/characters/enemies/Duck/Idle/0007.png" id="8_u7v2u"]
+[ext_resource type="Texture2D" uid="uid://vujgcntgd3ck" path="res://assets/characters/enemies/Duck/Idle/0008.png" id="9_37asm"]
+[ext_resource type="Texture2D" uid="uid://du6v3c1p3uaaa" path="res://assets/characters/enemies/Duck/Idle/0009.png" id="10_wgit4"]
+[ext_resource type="Texture2D" uid="uid://d0ov6ajaagu13" path="res://assets/characters/enemies/Duck/Idle/0010.png" id="11_8kcbt"]
+[ext_resource type="Texture2D" uid="uid://c5mlf4s31vrk7" path="res://assets/characters/enemies/Duck/Idle/0011.png" id="12_lc7g2"]
+[ext_resource type="Texture2D" uid="uid://b5mxaesv8kfu5" path="res://assets/characters/enemies/Duck/Idle/0012.png" id="13_kc7pm"]
+[ext_resource type="Texture2D" uid="uid://y5ah6l87dqkt" path="res://assets/characters/enemies/Duck/Idle/0013.png" id="14_ugrfh"]
+[ext_resource type="Texture2D" uid="uid://c15uan4pepcjv" path="res://assets/characters/enemies/Duck/Idle/0014.png" id="15_tbuex"]
+[ext_resource type="Texture2D" uid="uid://bn2sc36e3r6" path="res://assets/characters/enemies/Duck/Idle/0015.png" id="16_jti3c"]
 [ext_resource type="Texture2D" uid="uid://7m4w7d85ueb7" path="res://assets/characters/enemies/Duck/Post_Attack/0002.png" id="27_kfqnb"]
 [ext_resource type="Texture2D" uid="uid://chbhftkkywnjx" path="res://assets/characters/enemies/Duck/Post_Attack/0003.png" id="28_jm7h7"]
 [ext_resource type="Texture2D" uid="uid://b4f628tewqkgw" path="res://assets/characters/enemies/Duck/Post_Attack/0004.png" id="29_d0faj"]
@@ -96,81 +86,201 @@
 [ext_resource type="Texture2D" uid="uid://dkofh0xpdddkf" path="res://assets/characters/enemies/Duck/Pre_Attack/0045.png" id="92_tew0q"]
 [ext_resource type="Texture2D" uid="uid://doj32jojs4rq0" path="res://assets/characters/enemies/Duck/Pre_Attack/0046.png" id="93_gb6qk"]
 [ext_resource type="Texture2D" uid="uid://x0tq1ydnlhnc" path="res://assets/characters/enemies/Duck/Pre_Attack/0047.png" id="94_vgbek"]
+[ext_resource type="Texture2D" uid="uid://bw315am85hy3r" path="res://assets/characters/enemies/Duck/Walk/0001.png" id="97_wcsn1"]
+[ext_resource type="Texture2D" uid="uid://blfkirgdgl3jg" path="res://assets/characters/enemies/Duck/Walk/0002.png" id="98_ogr5e"]
+[ext_resource type="Texture2D" uid="uid://dyglapfab4rw7" path="res://assets/characters/enemies/Duck/Walk/0003.png" id="99_okaul"]
+[ext_resource type="Texture2D" uid="uid://dgrfkyrgbkdsg" path="res://assets/characters/enemies/Duck/Walk/0004.png" id="100_5prqj"]
+[ext_resource type="Texture2D" uid="uid://dh5k8wol06u1x" path="res://assets/characters/enemies/Duck/Walk/0005.png" id="101_u7v2u"]
+[ext_resource type="Texture2D" uid="uid://bq3wr5qvm24pd" path="res://assets/characters/enemies/Duck/Walk/0006.png" id="102_37asm"]
+[ext_resource type="Texture2D" uid="uid://5b77f5e50cv8" path="res://assets/characters/enemies/Duck/Walk/0007.png" id="103_wgit4"]
+[ext_resource type="Texture2D" uid="uid://bm0alwagvd6l4" path="res://assets/characters/enemies/Duck/Walk/0008.png" id="104_8kcbt"]
+[ext_resource type="Texture2D" uid="uid://dl11jx54asui" path="res://assets/characters/enemies/Duck/Walk/0009.png" id="105_lc7g2"]
+[ext_resource type="Texture2D" uid="uid://dhf38ytg54b0c" path="res://assets/characters/enemies/Duck/Walk/0010.png" id="106_kc7pm"]
+[ext_resource type="Texture2D" uid="uid://cbh23kqgxahaf" path="res://assets/characters/enemies/Duck/Walk/0011.png" id="107_ugrfh"]
+[ext_resource type="Texture2D" uid="uid://tw58mnkgfrt" path="res://assets/characters/enemies/Duck/Walk/0012.png" id="108_tbuex"]
+[ext_resource type="Texture2D" uid="uid://omhert331ffg" path="res://assets/characters/enemies/Duck/Walk/0013.png" id="109_jti3c"]
+[ext_resource type="Texture2D" uid="uid://cu2avdgyghiae" path="res://assets/characters/enemies/Duck/Walk/0014.png" id="110_0kolv"]
+[ext_resource type="Texture2D" uid="uid://c17my0trxfxy3" path="res://assets/characters/enemies/Duck/Walk/0015.png" id="111_1ldf2"]
+[ext_resource type="Texture2D" uid="uid://c40124kjovd6" path="res://assets/characters/enemies/Duck/Walk/0016.png" id="112_ffl3d"]
+[ext_resource type="Texture2D" uid="uid://cof5ivsurlfed" path="res://assets/characters/enemies/Duck/Walk/0017.png" id="113_twqd1"]
+[ext_resource type="Texture2D" uid="uid://dvr6wx52rrp0b" path="res://assets/characters/enemies/Duck/Walk/0018.png" id="114_b6jg5"]
+[ext_resource type="Texture2D" uid="uid://bs6raom0w0k5s" path="res://assets/characters/enemies/Duck/Walk/0019.png" id="115_j1ryf"]
+[ext_resource type="Texture2D" uid="uid://dnsejrbh5achr" path="res://assets/characters/enemies/Duck/Walk/0020.png" id="116_7tuls"]
+[ext_resource type="Texture2D" uid="uid://ce75ycuqv3rn4" path="res://assets/characters/enemies/Duck/Walk/0021.png" id="117_8bmpk"]
+[ext_resource type="Texture2D" uid="uid://ckwck6b6yp536" path="res://assets/characters/enemies/Duck/Walk/0022.png" id="118_lfy6a"]
+[ext_resource type="Texture2D" uid="uid://d3ul3nlr2i3oy" path="res://assets/characters/enemies/Duck/Walk/0023.png" id="119_7qd27"]
+[ext_resource type="Texture2D" uid="uid://vmsjegv5j7xq" path="res://assets/characters/enemies/Duck/Walk/0024.png" id="120_kfqnb"]
+[ext_resource type="Texture2D" uid="uid://nflhc0ulvv0l" path="res://assets/characters/enemies/Duck/Walk/0025.png" id="121_jm7h7"]
+[ext_resource type="Texture2D" uid="uid://doxa7isj1fyjp" path="res://assets/characters/enemies/Duck/Walk/0026.png" id="122_d0faj"]
+[ext_resource type="Texture2D" uid="uid://tjnayj60ws5e" path="res://assets/characters/enemies/Duck/Walk/0027.png" id="123_ti0x5"]
+[ext_resource type="Texture2D" uid="uid://dflfja0vv7v53" path="res://assets/characters/enemies/Duck/Walk/0028.png" id="124_6wssi"]
+[ext_resource type="Texture2D" uid="uid://daonxmjv4qan7" path="res://assets/characters/enemies/Duck/Walk/0029.png" id="125_l6c7f"]
+[ext_resource type="Texture2D" uid="uid://c8rmtse1288na" path="res://assets/characters/enemies/Duck/Walk/0030.png" id="126_v78gc"]
+[ext_resource type="Texture2D" uid="uid://de7tgw4g7f5ib" path="res://assets/characters/enemies/Duck/Walk/0031.png" id="127_5eiky"]
+[ext_resource type="Texture2D" uid="uid://bdl2ri4ogvs2x" path="res://assets/characters/enemies/Duck/Walk/0032.png" id="128_23ka6"]
+[ext_resource type="Texture2D" uid="uid://bpqjjlx55nbnb" path="res://assets/characters/enemies/Duck/Walk/0033.png" id="129_ydp8w"]
+[ext_resource type="Texture2D" uid="uid://biu4gatddca1y" path="res://assets/characters/enemies/Duck/Walk/0034.png" id="130_qw48d"]
+[ext_resource type="Texture2D" uid="uid://ykc25plf08px" path="res://assets/characters/enemies/Duck/Walk/0035.png" id="131_tq4hm"]
+[ext_resource type="Texture2D" uid="uid://cln4lsxx0sj76" path="res://assets/characters/enemies/Duck/Walk/0036.png" id="132_tkej4"]
+[ext_resource type="Texture2D" uid="uid://bs0khxoawoojb" path="res://assets/characters/enemies/Duck/Walk/0037.png" id="133_rgp7n"]
+[ext_resource type="Texture2D" uid="uid://u47cv8tfeuk2" path="res://assets/characters/enemies/Duck/Walk/0038.png" id="134_k7ngj"]
+[ext_resource type="Texture2D" uid="uid://xtjlm8i2mc2g" path="res://assets/characters/enemies/Duck/Walk/0039.png" id="135_bmmdv"]
+[ext_resource type="Texture2D" uid="uid://bxucxq62fc33e" path="res://assets/characters/enemies/Duck/Walk/0040.png" id="136_0fhvk"]
+[ext_resource type="Texture2D" uid="uid://djgs514j7sgwk" path="res://assets/characters/enemies/Duck/Walk/0041.png" id="137_gratp"]
+[ext_resource type="Texture2D" uid="uid://bp5dc174ea0v0" path="res://assets/characters/enemies/Duck/Walk/0042.png" id="138_qmuiu"]
+[ext_resource type="Texture2D" uid="uid://ponoqd0webvm" path="res://assets/characters/enemies/Duck/Walk/0043.png" id="139_ja57d"]
+[ext_resource type="Texture2D" uid="uid://bky8wirfjhx7r" path="res://assets/characters/enemies/Duck/Walk/0044.png" id="140_v2qme"]
+[ext_resource type="Texture2D" uid="uid://bchha5em36s6a" path="res://assets/characters/enemies/Duck/Walk/0045.png" id="141_dgubc"]
+[ext_resource type="Texture2D" uid="uid://n4cod3jbia76" path="res://assets/characters/enemies/Duck/Walk/0046.png" id="142_lwiw3"]
+[ext_resource type="Texture2D" uid="uid://b2lh2a1vtqcim" path="res://assets/characters/enemies/Duck/Walk/0047.png" id="143_r4jmv"]
+[ext_resource type="Texture2D" uid="uid://b3mooowaix6gj" path="res://assets/characters/enemies/Duck/Walk/0048.png" id="144_ogr5e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2dgci"]
+load_path = "res://.godot/imported/0001.png-4da17e12d7ecbd74feaac9e26884c0c6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6puyy"]
+load_path = "res://.godot/imported/0002.png-6ec100234814dc9590c0e349a85d9969.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7j7ha"]
+load_path = "res://.godot/imported/0003.png-b76ef5e631dbd4cf3ba2aeaa3d52b416.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p0sa7"]
+load_path = "res://.godot/imported/0004.png-08b26a7772550bae25e80b872b389365.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6omk"]
+load_path = "res://.godot/imported/0005.png-ec0e48ee7388e6299313fdbad26e9a7b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jc0bu"]
+load_path = "res://.godot/imported/0006.png-13403232e5dec2b5037706eda1b24276.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fyunv"]
+load_path = "res://.godot/imported/0007.png-a097c26241cf642e0a034a99f4483ad5.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xo4bp"]
+load_path = "res://.godot/imported/0008.png-d5ea391fbaabae12804c7e781b4861c8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v3r3w"]
+load_path = "res://.godot/imported/0009.png-45bd214a3b1342cf1e8a48b11f843c3e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wcsn1"]
+load_path = "res://.godot/imported/0010.png-310862457a6bf293cc2c0529e2890125.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ogr5e"]
+load_path = "res://.godot/imported/0011.png-351148943566f6ec92c8e2bbcc9d083b.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_okaul"]
+load_path = "res://.godot/imported/0012.png-2d3ac0cdee7e1ddb66440f6945275fb0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5prqj"]
+load_path = "res://.godot/imported/0013.png-c17e7ecbe0d4400ab591d31bd4903957.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u7v2u"]
+load_path = "res://.godot/imported/0014.png-51fe1060a542d1804304761bd9fe13d6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_37asm"]
+load_path = "res://.godot/imported/0015.png-840aeb75a827ade172b208c88371ac79.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wgit4"]
+load_path = "res://.godot/imported/0016.png-4bec4bf17fd5b164c9173b5a8b29149f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8kcbt"]
+load_path = "res://.godot/imported/0017.png-5911d15d50e55889c6d342f498b48d1a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lc7g2"]
+load_path = "res://.godot/imported/0018.png-bb87baf30a76b560fa9cc04ac77a984d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kc7pm"]
+load_path = "res://.godot/imported/0019.png-4d9d6a3851135de21de5b19899fd5520.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ugrfh"]
+load_path = "res://.godot/imported/0020.png-3d1a0918a596f018676faeaa0a93fe06.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tbuex"]
+load_path = "res://.godot/imported/0021.png-ca618e9862fe58b81a6743960ed860fe.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jti3c"]
+load_path = "res://.godot/imported/0022.png-754a5bd1339f820a1a3f290e770b57e1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0kolv"]
+load_path = "res://.godot/imported/0023.png-0691bff2e5d1ff382add1aba5ae48fd6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ldf2"]
+load_path = "res://.godot/imported/0024.png-a6ec20c313f9536cf3fc9f3924e180d4.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6di4g"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ak1n0")
+"texture": SubResource("CompressedTexture2D_2dgci")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8qmgw")
+"texture": SubResource("CompressedTexture2D_6puyy")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_wcsn1")
+"texture": SubResource("CompressedTexture2D_7j7ha")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ogr5e")
+"texture": SubResource("CompressedTexture2D_p0sa7")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_okaul")
+"texture": SubResource("CompressedTexture2D_x6omk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_5prqj")
+"texture": SubResource("CompressedTexture2D_jc0bu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_u7v2u")
+"texture": SubResource("CompressedTexture2D_fyunv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_37asm")
+"texture": SubResource("CompressedTexture2D_xo4bp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_wgit4")
+"texture": SubResource("CompressedTexture2D_v3r3w")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_8kcbt")
+"texture": SubResource("CompressedTexture2D_wcsn1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_lc7g2")
+"texture": SubResource("CompressedTexture2D_ogr5e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_kc7pm")
+"texture": SubResource("CompressedTexture2D_okaul")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_ugrfh")
+"texture": SubResource("CompressedTexture2D_5prqj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_tbuex")
+"texture": SubResource("CompressedTexture2D_u7v2u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_jti3c")
+"texture": SubResource("CompressedTexture2D_37asm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_0kolv")
+"texture": SubResource("CompressedTexture2D_wgit4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_1ldf2")
+"texture": SubResource("CompressedTexture2D_8kcbt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_ffl3d")
+"texture": SubResource("CompressedTexture2D_lc7g2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("20_twqd1")
+"texture": SubResource("CompressedTexture2D_kc7pm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_b6jg5")
+"texture": SubResource("CompressedTexture2D_ugrfh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_j1ryf")
+"texture": SubResource("CompressedTexture2D_tbuex")
 }, {
 "duration": 1.0,
-"texture": ExtResource("23_7tuls")
+"texture": SubResource("CompressedTexture2D_jti3c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("24_8bmpk")
+"texture": SubResource("CompressedTexture2D_0kolv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("25_lfy6a")
+"texture": SubResource("CompressedTexture2D_1ldf2")
 }],
 "loop": true,
 "name": &"attack",
@@ -221,37 +331,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_jti3c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_0kolv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_1ldf2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_ffl3d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_twqd1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_b6jg5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_j1ryf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_7tuls")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_8bmpk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_lfy6a")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -316,9 +399,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("47_v2qme")
-}, {
-"duration": 1.0,
-"texture": ExtResource("26_7qd27")
 }],
 "loop": true,
 "name": &"post_attack",
@@ -515,42 +595,159 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_jti3c")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_0kolv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_1ldf2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_ffl3d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_twqd1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_b6jg5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_j1ryf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_7tuls")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_8bmpk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_lfy6a")
 }],
 "loop": true,
 "name": &"stun",
-"speed": 5.0
+"speed": 15.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("97_wcsn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_ogr5e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_okaul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_5prqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_u7v2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_37asm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_wgit4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_8kcbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_lc7g2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_kc7pm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_ugrfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_tbuex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_jti3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_0kolv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_1ldf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("112_ffl3d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_twqd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_b6jg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_j1ryf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_7tuls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_8bmpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_lfy6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_7qd27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_kfqnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_jm7h7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_d0faj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_ti0x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("124_6wssi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_l6c7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_v78gc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_5eiky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_23ka6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_ydp8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_qw48d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_tq4hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_tkej4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_rgp7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_k7ngj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_bmmdv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_0fhvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_gratp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_qmuiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_ja57d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_v2qme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_dgubc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_lwiw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_r4jmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_ogr5e")
+}],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 30.0
 }]
 
 [node name="CharacterBody2D" instance=ExtResource("1_6di4g")]
@@ -558,9 +755,7 @@ range_attacks = Array[ExtResource("2_wcsn1")]([ExtResource("3_ogr5e")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_6di4g")
-animation = &"pre_attack"
-frame = 21
-frame_progress = 0.88136363
+frame_progress = 0.39616698
 flip_h = true
 
 [node name="Collision" parent="." index="2"]

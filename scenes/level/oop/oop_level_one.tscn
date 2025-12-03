@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=39 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
 [ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="19_8mc05"]
+[ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="19_b46tw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -2762,8 +2763,14 @@ position = Vector2(1507, 406)
 [node name="Coin5" parent="." instance=ExtResource("18_swoql")]
 position = Vector2(3048, 746)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("19_8mc05")]
-position = Vector2(200, 66)
+[node name="Duck_1" parent="." instance=ExtResource("19_8mc05")]
+position = Vector2(613, 389)
+scale = Vector2(0.65, 0.65)
+collision_layer = 4
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(271.00003, 78)
+scale = Vector2(0.65, 0.65)
 collision_layer = 4
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
