@@ -153,7 +153,7 @@ func _physics_process(delta: float) -> void:
 		handle_dash()
 
 	#Handle Crouching
-	if Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
+	if is_crouching_allowed and Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
 		handle_crouching()
 	else:
 		stop_crouching()
