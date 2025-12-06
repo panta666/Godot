@@ -448,6 +448,9 @@ func received_damage(_damage: int) -> void:
 
 	knockback_timer = knockback_length
 
+	if "tutorial" in scene_name:
+		health.set_health(100)
+
 #Apply Knockback on Hit taken
 func apply_knockback(delta: float):
 	if is_taking_damage:

@@ -48,7 +48,7 @@ func change_size():
 		fireball_sprite.scale = Vector2(0.147, 0.062)
 		fireball_sprite.position = Vector2(-23, -1)
 	else:
-		fireball_sprite.flip_h = (direction < 0)
+		fireball_sprite.flip_h = (direction > 0)
 		fireball_sprite.scale = Vector2(1, 1)
 		fireball_sprite.position = Vector2(0, 0)
 

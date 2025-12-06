@@ -935,7 +935,7 @@ position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
 animation = &"run_climbing"
-frame_progress = 0.557756
+frame_progress = 0.4800085
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 root_node = NodePath("../..")
