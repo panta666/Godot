@@ -60547,8 +60547,6 @@ occluder = SubResource("OccluderPolygon2D_hsbjd")
 [node name="Area2D_Dialog" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Dialog"]
-light_mask = 3
-visibility_layer = 3
 position = Vector2(-3, 113)
 shape = SubResource("RectangleShape2D_h2lpy")
 
