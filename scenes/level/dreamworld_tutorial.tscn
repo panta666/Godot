@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c1e450qelo0gk" path="res://scenes/platform_up.tscn" id="9_sbfx0"]
 [ext_resource type="Texture2D" uid="uid://7n7m5wbnwb4g" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tree-Assets.png" id="9_y8p36"]
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="10_sblmw"]
-[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="12_y8p36"]
+[ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="15_iu4jq"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="16_iu4jq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ify"]
@@ -2035,8 +2035,8 @@ collision_mask = 3
 position = Vector2(2153, -114.5)
 shape = SubResource("RectangleShape2D_y8p36")
 
-[node name="Enemy" parent="." instance=ExtResource("12_y8p36")]
-position = Vector2(2390, 129)
+[node name="CharacterBody2D" parent="." instance=ExtResource("15_iu4jq")]
+position = Vector2(2396, 126.999985)
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 2162.0
