@@ -14,15 +14,17 @@ var healthbar
 
 const SPEED = 50.0
 
-const STUN_TIME = 0.5
+const STUN_TIME = 0.35
 
 const DASH_SPEED = 300.0
 
 const RANGE = 250
 
-const ATTACK_RANGE_FAR = 200
+const ATTACK_RANGE_FAR = 166
 
-const ATTACK_RANGE_NEAR = 150
+const ATTACK_RANGE_NEAR = 165
+
+const ATTACK_RANGE = 260
 
 const HEALTH_BAR_POSITION = Vector2(0, -30)
 
@@ -33,8 +35,6 @@ var is_walking = 1
 var dashing = false
 
 var stunned = false
-
-var dash_allowed = true
 
 var is_attacking = false
 
@@ -53,6 +53,8 @@ var player: Node2D = null
 @onready var front_vision = $Vision_Front
 
 @onready var tracking_box = $Tracking_Box
+
+@onready var attack_cooldown_timer = $Attack_Cooldown
 
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
@@ -121,7 +123,6 @@ func _stun():
 	var frames: SpriteFrames = sprite.sprite_frames
 	var frame_number = frames.get_frame_count("stun")
 	var anim_speed = frame_number / STUN_TIME
-	print(anim_speed)
 	frames.set_animation_speed("stun", anim_speed)
 	sprite.play("stun")
 	await get_tree().create_timer(STUN_TIME).timeout
@@ -143,13 +144,17 @@ func track_player(player_position: Vector2):
 		ray_cast_right.target_position.x = abs(ray_cast_right.target_position.x) * direction
 		
 func _start_attack():
+	if attack_allowed and !is_attacking:
+		attack_allowed = false
+		attack_cooldown_timer.start()
 		if player != null:
 			if range_attacks.is_empty():
 				var r  = randi_range(0, attacks.size() - 1)	
 				_attack(attacks[r])
 			elif attacks.is_empty():
-				var r  = randi_range(0, range_attacks.size() - 1)
-				_range_attack(range_attacks[r])
+				if player.global_position.distance_to(global_position) < ATTACK_RANGE:
+					var r  = randi_range(0, range_attacks.size() - 1)
+					_range_attack(range_attacks[r])
 			else:
 				if player.global_position.distance_to(global_position) > ATTACK_RANGE_FAR:
 					var r  = randi_range(0, range_attacks.size() - 1)
@@ -178,16 +183,16 @@ func _attack(attack: Attack):
 	
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
 	is_walking = 1
-	sprite.play("walk")
+	#sprite.play("walk")
 	var attack_duration = attack.hitbox_duration
 	
 	match attack.movement:
 		attack.movement_type.DASH:
+			print("is it dashing: ", dashing)
 			_start_dash()
 			attack_duration = $DashingTimer.wait_time
 		attack.movement_type.NONE:
 			is_walking = 0
-			print("idle2")
 			sprite.play("idle")
 	
 	hitbox.disabled = false
@@ -215,26 +220,37 @@ func _attack(attack: Attack):
 
 func _range_attack(attack: Range_Attack):
 	is_attacking = true
+	var frames: SpriteFrames = sprite.sprite_frames
 	
 	is_walking = 0
-	print("idle3")
-	sprite.play("idle")
+	
+	var frame_number = frames.get_frame_count(attack.pre_animation_name)
+	var anim_speed = frame_number / attack.pre_attack_duration
+	frames.set_animation_speed(attack.pre_animation_name, anim_speed)
+	sprite.play(attack.pre_animation_name)
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
 
 	var projectile = projectile_object.instantiate()
-	projectile.get_node("HitBox").damage = 10
+	projectile.get_node("HitBox").damage = attack.damage
 	projectile.position = position + attack.projectile_offset * direction
 	projectile.direction = Vector2.RIGHT * direction
+	projectile._set_exception(self)
 	get_tree().current_scene.add_child(projectile)
 	
+	
+	frame_number = frames.get_frame_count(attack.post_animation_name)
+	anim_speed = frame_number / attack.post_attack_duration
+	frames.set_animation_speed(attack.post_animation_name, anim_speed)
+	sprite.play(attack.post_animation_name)
 	await get_tree().create_timer(attack.post_attack_duration).timeout
+	
 	is_walking = 1
 	sprite.play("walk")
 	is_attacking = false	
 
 	
 func _start_dash():
-	if dash_allowed and !dashing:
+	if !dashing:
 		dashing = true
 		$DashingTimer.start()
 
@@ -250,12 +266,7 @@ func _on_health_depleted() -> void:
 	
 func _on_dashing_timer_timeout() -> void:
 	dashing = false
-	$DashingCoolDownTimer.start()
-	dash_allowed = false
 
-
-func _on_dashing_cool_down_timer_timeout() -> void:
-	dash_allowed = true
 	
 func _on_hurt_box_received_damage(damage: int) -> void:
 	healthbar.update()

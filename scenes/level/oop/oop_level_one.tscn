@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=71 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="7_rwgd0"]
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="8_vu5gk"]
 [ext_resource type="PackedScene" uid="uid://71w0wye5dpch" path="res://scenes/death_collider.tscn" id="9_vu5gk"]
-[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="10_hrsau"]
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="11_67yw2"]
 [ext_resource type="Texture2D" uid="uid://cu0eatkkyeru" path="res://scenes/level/oop/oop_assets/ladder.png" id="12_06ovp"]
 [ext_resource type="Texture2D" uid="uid://cyoj8qn8dpvjh" path="res://assets/oop_level/traps_and_ducks.png" id="13_6k28a"]
@@ -21,9 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
 [ext_resource type="PackedScene" uid="uid://b5wwjaw1ono3a" path="res://scenes/level/oop/oop_assets/platform_down.tscn" id="19_8mc05"]
+[ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="19_b46tw"]
 [ext_resource type="Texture2D" uid="uid://cl78wmbroa6b" path="res://scenes/level/oop/oop_assets/oop_boss_background.png" id="20_2lnip"]
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
+[ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="25_s8ccv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3055,36 +3056,6 @@ position = Vector2(35, 72)
 position = Vector2(156, 1300)
 shape = SubResource("WorldBoundaryShape2D_hrsau")
 
-[node name="Enemy" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(788, 416)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy2" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(1313, 640)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy4" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(1328, -366)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy5" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(2947, 754)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
-[node name="Enemy6" parent="." instance=ExtResource("10_hrsau")]
-position = Vector2(2878.9998, 191)
-scale = Vector2(0.55, 0.55)
-collision_layer = 4
-collision_mask = 9
-
 [node name="Platform Up" parent="." instance=ExtResource("15_67yw2")]
 position = Vector2(3699, 350)
 
@@ -3206,5 +3177,25 @@ libraries = {
 &"": SubResource("AnimationLibrary_clmav")
 }
 autoplay = "move"
+
+[node name="Duck_1" parent="." instance=ExtResource("19_8mc05")]
+position = Vector2(613, 389)
+scale = Vector2(0.65, 0.65)
+collision_layer = 4
+
+[node name="Bug1" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(877.00006, 69)
+scale = Vector2(0.43219286, 0.47272727)
+
+[node name="Bug2" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(857, 396.00003)
+scale = Vector2(0.43219286, 0.47272727)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("25_s8ccv")]
+position = Vector2(1341, 627)
+scale = Vector2(0.43836156, 0.5626694)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(2952, 751)
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
