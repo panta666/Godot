@@ -107,6 +107,8 @@ func _ready() -> void:
 
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
+	hurt_box.received_damage.connect(_on_player_received_damage)
+
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
 		velocity = Vector2.ZERO
@@ -423,10 +425,11 @@ func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
 		sprite.visible = false
 	)
 
-
+func _on_player_received_damage(damage: int, attacker_pos: Vector2):
+	received_damage(damage, attacker_pos)
 
 #Handle Take Damage
-func received_damage(_damage: int) -> void:
+func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	if is_dashing:
 		return
 	if is_taking_damage:
@@ -437,12 +440,11 @@ func received_damage(_damage: int) -> void:
 
 	hit_flash_animation.play("hit_flash")
 
-	# Knockbackrichtung
-	var knock_dir = -sign(last_facing_direction)
+	# Knockback: Immer weg vom Gegner!
+	var knock_dir = sign(global_position.x - attacker_pos.x)
 	if knock_dir == 0:
-		knock_dir = -1
+		knock_dir = 1
 
-	# Rückstoßgeschwindigkeit
 	velocity.x = knock_dir * 250.0
 	velocity.y = -80.0
 
