@@ -216,6 +216,8 @@ size = Vector2(39, 20)
 script = ExtResource("1_qaphm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-13.000004, -9.536743e-07)
+scale = Vector2(0.58433735, 0.5555556)
 sprite_frames = SubResource("SpriteFrames_0rtms")
 animation = &"run"
 

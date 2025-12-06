@@ -900,7 +900,6 @@ size = Vector2(14, 39)
 [node name="Player_Dreamworld" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_fd23n")
-coyote_time = null
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_t3ro2")
