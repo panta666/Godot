@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=3 uid="uid://dttdsxr6qrhe0"]
+[gd_scene load_steps=164 format=3 uid="uid://dttdsxr6qrhe0"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_6di4g"]
 [ext_resource type="Script" uid="uid://cdshcdgrunfvm" path="res://scripts/range_attack.gd" id="2_wcsn1"]
@@ -125,9 +125,13 @@
 [ext_resource type="Texture2D" uid="uid://bs0khxoawoojb" path="res://assets/characters/enemies/Duck/Walk/0037.png" id="133_rgp7n"]
 [ext_resource type="Texture2D" uid="uid://u47cv8tfeuk2" path="res://assets/characters/enemies/Duck/Walk/0038.png" id="134_k7ngj"]
 [ext_resource type="Texture2D" uid="uid://xtjlm8i2mc2g" path="res://assets/characters/enemies/Duck/Walk/0039.png" id="135_bmmdv"]
+[ext_resource type="AudioStream" uid="uid://ckmxqfg07nakr" path="res://assets/sfx/Enemies/duck/shoot egg/341868__edschaefer__plop.wav" id="135_x6omk"]
 [ext_resource type="Texture2D" uid="uid://bxucxq62fc33e" path="res://assets/characters/enemies/Duck/Walk/0040.png" id="136_0fhvk"]
+[ext_resource type="AudioStream" uid="uid://dol7416r8s7ch" path="res://assets/sfx/Enemies/duck/hit quack/719113__owennewo__duck-quacking-quietly-twice.wav" id="136_jc0bu"]
+[ext_resource type="AudioStream" uid="uid://bk45ks8xg88y0" path="res://assets/sfx/Enemies/duck/death/365133__gibarroule__duck-quack.wav" id="137_fyunv"]
 [ext_resource type="Texture2D" uid="uid://djgs514j7sgwk" path="res://assets/characters/enemies/Duck/Walk/0041.png" id="137_gratp"]
 [ext_resource type="Texture2D" uid="uid://bp5dc174ea0v0" path="res://assets/characters/enemies/Duck/Walk/0042.png" id="138_qmuiu"]
+[ext_resource type="AudioStream" uid="uid://3pi5cjx41m12" path="res://assets/sfx/Enemies/duck/flapping/719107__owennewo__duck-flapping-wings.wav" id="138_xo4bp"]
 [ext_resource type="Texture2D" uid="uid://ponoqd0webvm" path="res://assets/characters/enemies/Duck/Walk/0043.png" id="139_ja57d"]
 [ext_resource type="Texture2D" uid="uid://bky8wirfjhx7r" path="res://assets/characters/enemies/Duck/Walk/0044.png" id="140_v2qme"]
 [ext_resource type="Texture2D" uid="uid://bchha5em36s6a" path="res://assets/characters/enemies/Duck/Walk/0045.png" id="141_dgubc"]
@@ -181,31 +185,22 @@ load_path = "res://.godot/imported/0014.png-51fe1060a542d1804304761bd9fe13d6.cte
 load_path = "res://.godot/imported/0015.png-840aeb75a827ade172b208c88371ac79.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wgit4"]
-load_path = "res://.godot/imported/0016.png-4bec4bf17fd5b164c9173b5a8b29149f.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8kcbt"]
-load_path = "res://.godot/imported/0017.png-5911d15d50e55889c6d342f498b48d1a.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lc7g2"]
-load_path = "res://.godot/imported/0018.png-bb87baf30a76b560fa9cc04ac77a984d.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kc7pm"]
-load_path = "res://.godot/imported/0019.png-4d9d6a3851135de21de5b19899fd5520.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ugrfh"]
-load_path = "res://.godot/imported/0020.png-3d1a0918a596f018676faeaa0a93fe06.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tbuex"]
-load_path = "res://.godot/imported/0021.png-ca618e9862fe58b81a6743960ed860fe.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jti3c"]
-load_path = "res://.godot/imported/0022.png-754a5bd1339f820a1a3f290e770b57e1.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0kolv"]
-load_path = "res://.godot/imported/0023.png-0691bff2e5d1ff382add1aba5ae48fd6.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ldf2"]
-load_path = "res://.godot/imported/0024.png-a6ec20c313f9536cf3fc9f3924e180d4.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6di4g"]
 animations = [{
@@ -755,7 +750,7 @@ range_attacks = Array[ExtResource("2_wcsn1")]([ExtResource("3_ogr5e")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_6di4g")
-frame_progress = 0.39616698
+animation = &"pre_attack"
 flip_h = true
 
 [node name="Collision" parent="." index="2"]
@@ -774,3 +769,9 @@ scale = Vector2(0.9999995, 0.9999995)
 
 [node name="Attack_Cooldown" parent="." index="11"]
 wait_time = 4.0
+
+[node name="EnemySoundPlayer" parent="." index="12"]
+sound_attack = ExtResource("135_x6omk")
+sound_get_hit = ExtResource("136_jc0bu")
+sound_die = ExtResource("137_fyunv")
+sound_pre_attack = ExtResource("138_xo4bp")

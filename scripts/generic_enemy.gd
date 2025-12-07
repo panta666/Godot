@@ -56,6 +56,9 @@ var player: Node2D = null
 
 @onready var attack_cooldown_timer = $Attack_Cooldown
 
+@onready var enemy_sound_player: Node2D = $EnemySoundPlayer
+
+
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
 
@@ -89,11 +92,13 @@ func _physics_process(delta: float) -> void:
 								if sprite.animation != "idle":
 									print("idle1")
 									sprite.play("idle")
+									enemy_sound_player.stop_move_sound()
 						else:
 							player = null
 					else:
 						is_walking = 1
 						sprite.play("walk")
+						enemy_sound_player.play_sound(Enemysound.soundtype.WALK)
 		if !stunned:
 			if dashing:
 				velocity.x = direction * DASH_SPEED * is_walking
@@ -148,6 +153,7 @@ func _start_attack():
 		attack_allowed = false
 		attack_cooldown_timer.start()
 		if player != null:
+			enemy_sound_player.play_sound(Enemysound.soundtype.ATTACK)
 			if range_attacks.is_empty():
 				var r  = randi_range(0, attacks.size() - 1)	
 				_attack(attacks[r])
@@ -224,12 +230,15 @@ func _range_attack(attack: Range_Attack):
 	
 	is_walking = 0
 	
+	enemy_sound_player.play_sound(Enemysound.soundtype.PRE_ATTAK)
 	var frame_number = frames.get_frame_count(attack.pre_animation_name)
 	var anim_speed = frame_number / attack.pre_attack_duration
 	frames.set_animation_speed(attack.pre_animation_name, anim_speed)
 	sprite.play(attack.pre_animation_name)
 	await get_tree().create_timer(attack.pre_attack_duration).timeout
-
+	# enemy_sound_player.stop()
+	
+	enemy_sound_player.play_sound(Enemysound.soundtype.ATTACK)
 	var projectile = projectile_object.instantiate()
 	projectile.get_node("HitBox").damage = attack.damage
 	projectile.position = position + attack.projectile_offset * direction
