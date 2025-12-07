@@ -107,6 +107,8 @@ func _ready() -> void:
 
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
+	hurt_box.received_damage.connect(_on_player_received_damage)
+
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
 		velocity = Vector2.ZERO
@@ -153,7 +155,7 @@ func _physics_process(delta: float) -> void:
 		handle_dash()
 
 	#Handle Crouching
-	if Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
+	if is_crouching_allowed and Input.is_action_pressed("crouch") or forced_crouch and is_on_floor():
 		handle_crouching()
 	else:
 		stop_crouching()
@@ -195,7 +197,7 @@ func _physics_process(delta: float) -> void:
 	if on_ladder:
 		if Input.is_action_pressed("move_down"):
 			velocity.y = SPEED*delta*40
-		elif Input.is_action_pressed("jump"):
+		elif Input.is_action_pressed("move_up"):
 			velocity.y = -SPEED*delta*40
 		else:
 			velocity.y = 0
@@ -247,6 +249,8 @@ func handle_coyote_time(delta: float):
 
 #Handle Jump and Double Jump
 func handle_jump():
+	if on_ladder:
+		return
 	# Erster Sprung / Coyote Time
 	if is_on_floor() or coyote_timer > 0.0:
 		velocity.y = JUMP_VELOCITY
@@ -265,7 +269,7 @@ func handle_jump():
 
 #Handle Dash
 func handle_dash():
-	if is_dash_allowed:
+	if is_dash_allowed and not on_ladder:
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction == 0:	#Dash in Blickrichtung
 			direction = last_facing_direction
@@ -279,7 +283,7 @@ func handle_dash():
 		dash_timer = DASH_DURATION
 
 func handle_crouching():
-	if not is_dashing and is_crouching_allowed:
+	if not is_dashing and is_crouching_allowed and not on_ladder:
 		is_crouching = true
 		collision_shape.shape.size = Vector2(14.0, 29.0)
 		collision_shape.position = Vector2(0.0, 6.0)
@@ -308,7 +312,7 @@ func stop_dashing(delta: float):
 
 #Handle Attack
 func handle_attack():
-	if is_attacking or not can_attack:
+	if is_attacking or not can_attack or on_ladder:
 		return
 
 	is_attacking = true
@@ -331,6 +335,9 @@ func handle_range_attack():
 		return
 	
 	if not is_range_attack_allowed:
+		return
+	
+	if on_ladder:
 		return
 	
 	if current_range_attack <= 0:
@@ -418,10 +425,11 @@ func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
 		sprite.visible = false
 	)
 
-
+func _on_player_received_damage(damage: int, attacker_pos: Vector2):
+	received_damage(damage, attacker_pos)
 
 #Handle Take Damage
-func received_damage(_damage: int) -> void:
+func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	if is_dashing:
 		return
 	if is_taking_damage:
@@ -432,16 +440,18 @@ func received_damage(_damage: int) -> void:
 
 	hit_flash_animation.play("hit_flash")
 
-	# Knockbackrichtung
-	var knock_dir = -sign(last_facing_direction)
+	# Knockback: Immer weg vom Gegner!
+	var knock_dir = sign(global_position.x - attacker_pos.x)
 	if knock_dir == 0:
-		knock_dir = -1
+		knock_dir = 1
 
-	# Rückstoßgeschwindigkeit
 	velocity.x = knock_dir * 250.0
 	velocity.y = -80.0
 
 	knockback_timer = knockback_length
+
+	if "tutorial" in scene_name:
+		health.set_health(100)
 
 #Apply Knockback on Hit taken
 func apply_knockback(delta: float):
@@ -504,6 +514,17 @@ func update_animation():
 		if player_sprite.animation != "take_damage":
 			player_sprite.play("take_damage")
 		return
+
+	if on_ladder:
+		# Keine Schwerkraft-Animationen verwenden
+		if abs(velocity.y) > 0 or abs(velocity.x) > 10:
+			if player_sprite.animation != "run_climbing":
+				player_sprite.play("run_climbing")
+		else:
+			if player_sprite.animation != "idle_climbing":
+				player_sprite.play("idle_climbing")
+		return
+
 
 	# Double Jump Animation läuft
 	if is_double_jumping:

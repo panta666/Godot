@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=186 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/DreamWorldPlayer/player_dreamworld.gd" id="1_fd23n"]
 [ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="2_3pffi"]
@@ -52,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://c51bjjle58ubj" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_006.png" id="50_nql4e"]
 [ext_resource type="Texture2D" uid="uid://cxsawqh7doa4b" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_007.png" id="51_2sfiy"]
 [ext_resource type="Texture2D" uid="uid://dkb16f20gr2ym" path="res://assets/plattformer_character/animations/jumping-1/east/frame_005.png" id="52_1nu7t"]
+[ext_resource type="Texture2D" uid="uid://dwjvvhpfatkd1" path="res://assets/plattformer_character/animations/climbing/climbing_1.png" id="52_d4r3j"]
 [ext_resource type="Texture2D" uid="uid://cj1j5xnuwqn5d" path="res://assets/plattformer_character/animations/jumping-1/east/frame_006.png" id="53_hx7ju"]
 [ext_resource type="Texture2D" uid="uid://dnrgl7uvlcxrn" path="res://assets/plattformer_character/animations/jumping-1/east/frame_007.png" id="54_heo88"]
 [ext_resource type="Texture2D" uid="uid://bbgh5e0tmb6hm" path="res://assets/plattformer_character/animations/jumping-1/east/frame_008.png" id="55_uypmy"]
@@ -69,7 +70,10 @@
 [ext_resource type="Texture2D" uid="uid://dqjsfcbkjwexy" path="res://assets/plattformer_character/animations/running-6-frames/east/frame_005.png" id="67_0h3h5"]
 [ext_resource type="Texture2D" uid="uid://diadbgeush3nc" path="res://assets/plattformer_character/animations/taking-punch/east/frame_000.png" id="68_bmad1"]
 [ext_resource type="Texture2D" uid="uid://v8h1snb53wwe" path="res://assets/plattformer_character/animations/taking-punch/east/frame_001.png" id="69_dxdp8"]
+[ext_resource type="Texture2D" uid="uid://bg8en3pp77ko0" path="res://assets/plattformer_character/animations/climbing/climbing_2.png" id="69_uyd2q"]
 [ext_resource type="Texture2D" uid="uid://y5rhrs3wjml3" path="res://assets/plattformer_character/animations/taking-punch/east/frame_002.png" id="70_1i7m2"]
+[ext_resource type="Texture2D" uid="uid://b7m6xgrpj1kiy" path="res://assets/plattformer_character/animations/climbing/climbing_3.png" id="70_oa2cp"]
+[ext_resource type="Texture2D" uid="uid://bbhaoemhldhi3" path="res://assets/plattformer_character/animations/climbing/climbing_4.png" id="71_c70g4"]
 [ext_resource type="Texture2D" uid="uid://cuymn6q8x0ees" path="res://assets/plattformer_character/animations/taking-punch/east/frame_003.png" id="71_hj6lv"]
 [ext_resource type="Texture2D" uid="uid://dc8jt76j5q84q" path="res://assets/plattformer_character/animations/taking-punch/east/frame_004.png" id="72_53q24"]
 [ext_resource type="Texture2D" uid="uid://cod3uuuqbijii" path="res://assets/plattformer_character/animations/taking-punch/east/frame_005.png" id="73_0jkkk"]
@@ -281,6 +285,10 @@ region = Rect2(0, 0, 48, 48)
 atlas = ExtResource("51_2sfiy")
 region = Rect2(0, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f16g"]
+atlas = ExtResource("52_d4r3j")
+region = Rect2(0, 0, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_50cf0"]
 atlas = ExtResource("10_ghbo8")
 region = Rect2(0, 0, 48, 48)
@@ -339,6 +347,22 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_07iq0"]
 atlas = ExtResource("67_0h3h5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxyod"]
+atlas = ExtResource("52_d4r3j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcatj"]
+atlas = ExtResource("69_uyd2q")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ill3"]
+atlas = ExtResource("70_oa2cp")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bhuo"]
+atlas = ExtResource("71_c70g4")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kd6hn"]
@@ -588,6 +612,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7f16g")
+}],
+"loop": true,
+"name": &"idle_climbing",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_50cf0")
 }, {
 "duration": 1.0,
@@ -663,6 +695,23 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxyod")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcatj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ill3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bhuo")
+}],
+"loop": true,
+"name": &"run_climbing",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -885,7 +934,8 @@ material = SubResource("ShaderMaterial_ku5kx")
 position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = SubResource("SpriteFrames_w3ag3")
-animation = &"throw"
+animation = &"run_climbing"
+frame_progress = 0.4800085
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 root_node = NodePath("../..")

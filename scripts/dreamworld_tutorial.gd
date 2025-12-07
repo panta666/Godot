@@ -55,7 +55,7 @@ func _ready():
 func _on_cutscene_1_entered(body: Node) -> void:
 	if cutscene_1_played:
 		return
-	_ddddddddart_cutscene(body, timeline_1)
+	_start_cutscene(body, timeline_1)
 	cutscene_1_played = true
 
 func _on_cutscene_2_entered(body: Node) -> void:

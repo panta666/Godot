@@ -29,7 +29,7 @@ metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(11.250002, -5.000001)
 scale = Vector2(0.60833335, 0.60833335)
-animation = &"stun"
+animation = &""
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(-3.749999, 4.3749995)

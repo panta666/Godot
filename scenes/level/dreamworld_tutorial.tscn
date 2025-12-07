@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://btc75g6p7i2mg"]
+[gd_scene load_steps=40 format=4 uid="uid://btc75g6p7i2mg"]
 
 [ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_0hkcn"]
 [ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="1_0u1q0"]
@@ -1878,9 +1878,6 @@ shadow_color = Color(0, 0, 0, 0.78431374)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8p36"]
 size = Vector2(40.5, 535)
 
-[sub_resource type="LabelSettings" id="LabelSettings_y8p36"]
-font_size = 12
-
 [sub_resource type="LabelSettings" id="LabelSettings_bly7i"]
 font_size = 7
 shadow_color = Color(0.6509804, 0, 0, 0.73333335)
@@ -2037,14 +2034,6 @@ shape = SubResource("RectangleShape2D_y8p36")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_iu4jq")]
 position = Vector2(2396, 126.999985)
-
-[node name="Label2" type="Label" parent="."]
-offset_left = 2162.0
-offset_top = -15.0
-offset_right = 2622.0
-offset_bottom = 41.0
-text = "BUG: Range Attack soll im Tutorial keinen Schaden machen."
-label_settings = SubResource("LabelSettings_y8p36")
 
 [node name="Label3" type="Label" parent="."]
 offset_left = 2659.0

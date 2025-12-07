@@ -268,7 +268,7 @@ func _on_dashing_timer_timeout() -> void:
 	dashing = false
 
 	
-func _on_hurt_box_received_damage(damage: int) -> void:
+func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 	healthbar.update()
 	_stun()
 
