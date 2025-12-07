@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://chn72gotg061q"]
+[gd_scene load_steps=10 format=3 uid="uid://chn72gotg061q"]
 
 [ext_resource type="Script" uid="uid://cmqa42vk1r6ay" path="res://scripts/generic_enemy.gd" id="1_3o17i"]
+[ext_resource type="Script" uid="uid://bjacxmyhs0kwh" path="res://scripts/Enemysounds/enemy_sound_player.gd" id="5_bxjce"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="49_t4mn2"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://scenes/components/health.gd" id="50_5sdct"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="51_80wx8"]
@@ -97,6 +98,13 @@ disabled = true
 [node name="Attack_Cooldown" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="EnemySoundPlayer" type="Node2D" parent="."]
+script = ExtResource("5_bxjce")
+
+[node name="AudioMove" type="AudioStreamPlayer2D" parent="EnemySoundPlayer"]
+
+[node name="AudioAction" type="AudioStreamPlayer2D" parent="EnemySoundPlayer"]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]
