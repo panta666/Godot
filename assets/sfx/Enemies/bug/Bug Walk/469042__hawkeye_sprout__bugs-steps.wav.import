@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv07rnxlmnquo"
+path="res://.godot/imported/469042__hawkeye_sprout__bugs-steps.wav-318c3d4f573b5f54fa81acdf882057b2.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Enemies/bug/Bug Walk/469042__hawkeye_sprout__bugs-steps.wav"
+dest_files=["res://.godot/imported/469042__hawkeye_sprout__bugs-steps.wav-318c3d4f573b5f54fa81acdf882057b2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
