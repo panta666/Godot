@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://duk4xd1ppix7e"
+path="res://.godot/imported/791895__ultra-edward__breaking-eggs.wav-801261c6b7cfb362764c0289616e4944.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Enemies/duck/egg hit/791895__ultra-edward__breaking-eggs.wav"
+dest_files=["res://.godot/imported/791895__ultra-edward__breaking-eggs.wav-801261c6b7cfb362764c0289616e4944.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
