@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0wwclfi0opvd"]
+
+[ext_resource type="Script" uid="uid://c2y2gn8l5tmx4" path="res://scripts/java_trap.gd" id="1_eofq5"]
+[ext_resource type="Texture2D" uid="uid://c51fxukih3ngs" path="res://assets/oop_level/java_trap.png" id="1_sxk85"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eofq5"]
+size = Vector2(16, 16.5)
+
+[node name="Java_trap" type="Node2D"]
+script = ExtResource("1_eofq5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sxk85")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_eofq5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
