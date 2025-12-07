@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=78 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="25_s8ccv"]
+[ext_resource type="PackedScene" uid="uid://gljlcysdxo1t" path="res://scenes/level/oop/oop_assets/error_trap.tscn" id="26_wvco0"]
+[ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="27_2cn7s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3021,6 +3023,42 @@ _data = {
 &"move": SubResource("Animation_2n5n7")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7igvv"]
+atlas = ExtResource("27_2cn7s")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wblk"]
+atlas = ExtResource("27_2cn7s")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2n5n7"]
+atlas = ExtResource("27_2cn7s")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67tlp"]
+atlas = ExtResource("27_2cn7s")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wnclc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7igvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wblk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2n5n7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67tlp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="OOPLevelOne" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
@@ -3197,5 +3235,15 @@ scale = Vector2(0.43836156, 0.5626694)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("19_b46tw")]
 position = Vector2(2952, 751)
+
+[node name="ErrorTrap" parent="." instance=ExtResource("26_wvco0")]
+position = Vector2(505, -48)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(486, -16)
+sprite_frames = SubResource("SpriteFrames_wnclc")
+autoplay = "default"
+frame = 3
+frame_progress = 0.45119083
 
 [connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
