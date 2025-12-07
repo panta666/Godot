@@ -103,8 +103,10 @@ one_shot = true
 script = ExtResource("5_bxjce")
 
 [node name="AudioMove" type="AudioStreamPlayer2D" parent="EnemySoundPlayer"]
+max_distance = 250.0
 
 [node name="AudioAction" type="AudioStreamPlayer2D" parent="EnemySoundPlayer"]
+max_distance = 250.0
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]
