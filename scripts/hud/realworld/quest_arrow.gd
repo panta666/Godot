@@ -12,6 +12,8 @@ var pulse_time: float = 0.0  # Für Animation
 func _ready() -> void:
 	arrow_sprite = $ArrowSprite if has_node("ArrowSprite") else null
 	player = get_parent()
+	
+	QuestManager.quest_changed.connect(_on_quest_changed)
 
 	if not player and arrow_sprite:
 		arrow_sprite.visible = false
@@ -19,7 +21,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if not player or not target or not arrow_sprite:
-		if arrow_sprite: arrow_sprite.visible = false
+		if arrow_sprite:
+			arrow_sprite.visible = false
 		return
 
 	# Szene prüfen
@@ -37,32 +40,69 @@ func _process(delta: float) -> void:
 
 	# ---- Farbverlauf: Nah = grün, weit = rot ----
 	var t = clamp((dist - min_distance) / (max_distance - min_distance), 0.0, 1.0)
-
 	var r = lerp(0.0, 1.0, t)
 	var g = lerp(1.0, 0.0, t)
 	arrow_sprite.modulate = Color(r, g, 0.0, 1.0)
 
-	# ---- Größenanimation (Puls-Effekt) ----
-	pulse_time += delta * 4.0  # Geschwindigkeit
+	# ---- Puls-Effekt ----
+	pulse_time += delta * 4.0
 	var pulse = 0.2 + sin(pulse_time) * 0.01
 	arrow_sprite.scale = Vector2(pulse, pulse)
 
-	# ---- Glow-Effekt, wenn sehr nah ----
-	if dist < min_distance * 3:
-		arrow_sprite.self_modulate = Color(1.0, 1.0, 1.0, 1.0) # heller
-	else:
-		arrow_sprite.self_modulate = Color(0.9, 0.9, 0.9, 1.0)
+	# ---- Glow-Effekt ----
+	arrow_sprite.self_modulate = Color(1,1,1,1) if dist < min_distance * 3 else Color(0.9,0.9,0.9,1)
 
-	# ---- optional: Blinken wenn extrem weit ----
-	if dist > max_distance * 0.9:
-		arrow_sprite.modulate.a = 0.7 + sin(pulse_time) * 0.3
-	else:
-		arrow_sprite.modulate.a = 1.0
+	# ---- Alpha für sehr weit ----
+	arrow_sprite.modulate.a = 0.7 + sin(pulse_time) * 0.3 if dist > max_distance * 0.9 else 1.0
 
-	# ---- Ausblenden wenn direkt am Ziel ----
+	# ---- Ziel erreicht ----
 	if dist <= min_distance:
 		arrow_sprite.visible = false
+		target = null
+		_complete_quest()
 
 
-func set_target(new_target: Node2D) -> void:
-	target = new_target
+func _on_quest_changed(quest: QuestData) -> void:
+	if quest == null or quest.target_node_path == "":
+		target = null
+		print("[QuestArrow] Keine Quest aktiv")
+		if arrow_sprite:
+			arrow_sprite.visible = false
+		return
+
+	var root = get_tree().current_scene
+	print("[QuestArrow] Aktuelle Szene:", root.name)
+	print("[QuestArrow] Quest-Ziel-Szene:", quest.target_scene)
+	print("[QuestArrow] Ziel-Pfad:", quest.target_node_path)
+
+	if root.name != quest.target_scene:
+		target = null
+		print("[QuestArrow] Zielszene stimmt nicht, Arrow ausgeblendet")
+		if arrow_sprite:
+			arrow_sprite.visible = false
+		return
+
+	var node = root.get_node_or_null(quest.target_node_path)
+	target = node
+	print("[QuestArrow] Gefundene Node:", node)
+
+
+func _complete_quest() -> void:
+	var hud = get_tree().root.get_node_or_null("QuestHud")
+	if hud:
+		var tween = Tween.new()
+		hud.add_child(tween)
+		
+		# Erst kurz aufleuchten
+		tween.tween_property(hud, "modulate", Color(1,1,0,1), 0.2)
+		# Danach ausblenden
+		tween.tween_property(hud, "modulate", Color(1,1,1,0), 0.3)
+		
+		tween.start()
+		tween.connect("finished", Callable(self, "_clear_quest_hud"))
+	else:
+		_clear_quest_hud()
+
+
+func _clear_quest_hud() -> void:
+	QuestManager.clear_quest()

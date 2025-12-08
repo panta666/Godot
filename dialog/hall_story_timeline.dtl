@@ -1,0 +1,3 @@
+[style name="platformer_style"]
+player: I need to find the Lecture Room quick!
+[signal arg="cutscene_end"]

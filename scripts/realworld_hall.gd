@@ -3,7 +3,7 @@ extends RealworldScenes
 var next_scene_from_door: String = ""
 const PLAYER_SPAWN_POS_ONE := Vector2(184, 420)
 const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
-const PLAYER_SPAWN_POS_HOME := Vector2(434, 1118)
+const PLAYER_SPAWN_POS_HOME := Vector2(434, 1190)
 @onready var door_closed_player: AudioStreamPlayer = $SFX/DoorClosedPlayer
 @onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
 
@@ -21,6 +21,7 @@ func _ready() -> void:
 	player_spawn = Vector2(567, 416) # Standardposition
 	previous_scene_spawn = Vector2.ZERO
 	super._ready()
+	Dialogic.signal_event.connect(_on_dialogic_signal)
 
 	# Player direkt an Tür setzen
 	if GlobalScript.previous_scene == "realworld_classroom_one":
@@ -79,3 +80,15 @@ func _on_door_closed_2_body_entered(body: Node2D) -> void:
 func _on_door_closed_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:
 		door_closed_player.play()
+
+
+func _on_dialogic_signal(event_name: String) -> void:
+	var player = GlobalScript.player
+	if not player:
+		return
+
+	# --- Cutscene Ende ---
+	if event_name.begins_with("cutscene_end"):
+		if player.has_method("cutscene_end"):
+			player.cutscene_end()
+			print("Cutscene beendet, Spieler freigegeben!")
