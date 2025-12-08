@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=78 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -17,8 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://cyoj8qn8dpvjh" path="res://assets/oop_level/traps_and_ducks.png" id="13_6k28a"]
 [ext_resource type="Texture2D" uid="uid://c5wh8jrspuyvj" path="res://assets/oop_level/HSD_assets.png" id="14_0wblk"]
 [ext_resource type="PackedScene" uid="uid://c1e450qelo0gk" path="res://scenes/platform_up.tscn" id="15_67yw2"]
-[ext_resource type="Script" uid="uid://dvegcwxxgc673" path="res://scenes/level/oop/test_level_finish.gd" id="16_q7fde"]
-[ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="17_uhr7g"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
 [ext_resource type="PackedScene" uid="uid://b5wwjaw1ono3a" path="res://scenes/level/oop/oop_assets/platform_down.tscn" id="19_8mc05"]
 [ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="19_b46tw"]
@@ -26,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="25_s8ccv"]
+[ext_resource type="PackedScene" uid="uid://c354yps3u21j" path="res://scenes/Enemies/Boss_Enemy.tscn" id="26_7igvv"]
 [ext_resource type="PackedScene" uid="uid://gljlcysdxo1t" path="res://scenes/level/oop/oop_assets/error_trap.tscn" id="26_wvco0"]
 [ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="27_2cn7s"]
 [ext_resource type="PackedScene" uid="uid://b0wwclfi0opvd" path="res://scenes/level/oop/oop_assets/java_trap.tscn" id="28_7igvv"]
@@ -2789,12 +2788,6 @@ _data = {
 &"move": SubResource("Animation_3661e")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhr7g"]
-size = Vector2(106, 88)
-
-[sub_resource type="LabelSettings" id="LabelSettings_swoql"]
-font_size = 8
-
 [sub_resource type="Animation" id="Animation_b46tw"]
 length = 0.001
 tracks/0/type = "value"
@@ -3124,7 +3117,7 @@ tile_set = SubResource("TileSet_x23ky")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 z_index = 2
-position = Vector2(35, 72)
+position = Vector2(36, 69)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
@@ -3140,29 +3133,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_mb4d8")
 }
 autoplay = "move"
-
-[node name="TestLevelFinished" type="Area2D" parent="."]
-collision_layer = 7
-collision_mask = 7
-script = ExtResource("16_q7fde")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestLevelFinished"]
-position = Vector2(725, -175)
-shape = SubResource("RectangleShape2D_uhr7g")
-
-[node name="Sprite2D" type="Sprite2D" parent="TestLevelFinished"]
-position = Vector2(726, -174.50003)
-scale = Vector2(0.7968744, 0.69531214)
-texture = ExtResource("17_uhr7g")
-
-[node name="Label" type="Label" parent="TestLevelFinished"]
-offset_left = 708.0
-offset_top = -110.0
-offset_right = 747.0
-offset_bottom = -83.0
-text = "Level 1
-finish test"
-label_settings = SubResource("LabelSettings_swoql")
 
 [node name="Coin" parent="." instance=ExtResource("18_swoql")]
 position = Vector2(3315, -267)
@@ -3267,12 +3237,15 @@ scale = Vector2(0.43219286, 0.47272727)
 position = Vector2(857, 396.00003)
 scale = Vector2(0.43219286, 0.47272727)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("25_s8ccv")]
-position = Vector2(1341, 627)
+[node name="Duck1" parent="." instance=ExtResource("25_s8ccv")]
+position = Vector2(1368, 620)
 scale = Vector2(0.43836156, 0.5626694)
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("19_b46tw")]
+[node name="Bug3" parent="." instance=ExtResource("19_b46tw")]
 position = Vector2(2952, 751)
+
+[node name="Boss" parent="." instance=ExtResource("26_7igvv")]
+position = Vector2(3947.9998, 354.99997)
 
 [node name="Traps" type="Node" parent="."]
 
@@ -3309,4 +3282,5 @@ frame_progress = 0.45119083
 [node name="Java_trap" parent="Traps" instance=ExtResource("28_7igvv")]
 position = Vector2(862, 191)
 
-[connection signal="body_entered" from="TestLevelFinished" to="TestLevelFinished" method="_on_body_entered"]
+[node name="BossTrap" parent="Traps" instance=ExtResource("26_wvco0")]
+position = Vector2(4233, 324)

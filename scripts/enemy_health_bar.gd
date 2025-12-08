@@ -21,7 +21,7 @@ func update():
 	
 func _process(_delta: float) -> void:
 	if enemy != null:
-		global_position = enemy.global_position + enemy.HEALTH_BAR_POSITION
+		global_position = enemy.global_position + enemy.health_bar_position
 		
 func _deplete():
 	queue_free()

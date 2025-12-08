@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ntlhas5fsvb4"]
+
+[ext_resource type="Script" uid="uid://bpcg7uth6qt8w" path="res://scripts/boss_health_bar.gd" id="1_8ivmk"]
+[ext_resource type="Texture2D" uid="uid://chpm4en8t1lcb" path="res://assets/characters/enemies/healthbar/healthbar_under.png" id="1_gr1b1"]
+[ext_resource type="Texture2D" uid="uid://bylcvwqlpi3s5" path="res://assets/characters/enemies/healthbar/healthbar_over.png" id="2_8ivmk"]
+[ext_resource type="Texture2D" uid="uid://ceh0kux1rshrp" path="res://assets/characters/enemies/healthbar/healthbar_progress.png" id="3_fsdjk"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 362.0
+offset_bottom = 150.0
+script = ExtResource("1_8ivmk")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 262.0
+offset_bottom = 50.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_gr1b1")
+texture_over = ExtResource("2_8ivmk")
+texture_progress = ExtResource("3_fsdjk")
