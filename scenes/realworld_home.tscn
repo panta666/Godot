@@ -60467,6 +60467,9 @@ polygon = PackedVector2Array(-114, 0, -114, 196, 80, 196, 81, 127, 144, 127, 144
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Collisions"]
 polygon = PackedVector2Array(-82, 2, -82, 18, -110, 18, -110, 2, -112, 2, -112, -14, -78, -14, -78, 2)
 
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions"]
+polygon = PackedVector2Array(543, 79, 774, 78, 775, 22, 537, 25)
+
 [node name="Y-Sort" type="Node2D" parent="."]
 y_sort_enabled = true
 

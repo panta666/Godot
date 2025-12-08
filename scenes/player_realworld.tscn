@@ -525,6 +525,7 @@ bus = &"SFX"
 occluder = SubResource("OccluderPolygon2D_hu31r")
 
 [node name="QuestArrow" parent="." instance=ExtResource("7_pu3xt")]
+z_index = 8
 position = Vector2(0, -28.000002)
 scale = Vector2(0.12738973, 0.17500016)
 max_distance = 1000.0
