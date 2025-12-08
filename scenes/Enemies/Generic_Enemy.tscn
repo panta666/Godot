@@ -6,13 +6,13 @@
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="51_80wx8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o17i"]
-size = Vector2(46.875023, 246.87509)
+size = Vector2(60.937546, 39.062534)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6fs8"]
-size = Vector2(1117.5024, 283.7506)
+size = Vector2(1125.0022, 255.0005)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go3w4"]
-size = Vector2(42.50004, 197.50009)
+size = Vector2(42.500015, 21.250015)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80wx8"]
 size = Vector2(16.250011, 5.78125)
