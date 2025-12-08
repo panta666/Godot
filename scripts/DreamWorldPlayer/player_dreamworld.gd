@@ -593,6 +593,7 @@ func _on_hit_box_down_body_entered(body: Node2D) -> void:
 		velocity.y = JUMP_VELOCITY
 		is_double_jumping = true
 
+#Drop
 func _input(event: InputEvent):
 	if(event.is_action_pressed("move_down") && is_on_floor()):
 		position.y += 1
