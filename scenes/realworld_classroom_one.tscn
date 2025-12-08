@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=29 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="10_fktbd"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="12_4xjni"]
 [ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://scenes/blinking.tscn" id="13_j8bsy"]
+[ext_resource type="PackedScene" uid="uid://lwfs7n2rkj2y" path="res://scenes/quest_trigger.tscn" id="14_x7s6t"]
+[ext_resource type="Resource" uid="uid://mb66mg8wjduu" path="res://quests/quest_03.tres" id="15_5fllp"]
+[ext_resource type="Resource" uid="uid://hjhlqdqnrxd1" path="res://quests/quest_04.tres" id="16_5fllp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xjni"]
 polygon = PackedVector2Array(-16, -22, 10, -22, 10, 10, 8, 10, 8, 20, 2, 20, 2, 14, -8, 14, -8, 20, -14, 20, -14, 10, -16, 10)
@@ -4674,3 +4677,15 @@ z_index = 4
 position = Vector2(584, 196.99998)
 scale = Vector2(0.062, 0.153)
 chosen_type = 1
+
+[node name="QuestTrigger" parent="." instance=ExtResource("14_x7s6t")]
+position = Vector2(567, 376)
+scale = Vector2(2.5982633, 2.103895)
+quest = ExtResource("15_5fllp")
+auto_start_dialog = "speak_with_dahm"
+
+[node name="QuestTrigger2" parent="." instance=ExtResource("14_x7s6t")]
+position = Vector2(232, 262.00003)
+scale = Vector2(0.93827236, 18.904602)
+quest = ExtResource("16_5fllp")
+auto_start_dialog = "enter_chair"

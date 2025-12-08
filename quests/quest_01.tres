@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://dq3a48lvrbb7y"]
+
+[ext_resource type="Script" uid="uid://dtkruuvwmngx7" path="res://quests/quest_data.gd" id="1_nwtqu"]
+
+[resource]
+script = ExtResource("1_nwtqu")
+id = "1"
+title = "Let's start the Day!"
+description = "Exit your House and go to the Campus"
+target_scene = "Realworld_Home"
+target_node_path = "Blinking"
+metadata/_custom_type_script = "uid://dtkruuvwmngx7"

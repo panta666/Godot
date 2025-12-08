@@ -277,15 +277,6 @@ func change_scene(new_scene: String) -> void:
 	current_scene = new_scene
 
 	move_player_to_current_scene()
-	
-	# ------------------------
-	# Questziel direkt nach Szenenwechsel setzen
-	# ------------------------
-	if new_scene == "realworld_hall":
-		var door = new_scene_instance.get_node_or_null("Classroom_One_Door")
-		if door and GlobalScript.player:
-			GlobalScript.player.set_quest_target(door)
-
 
 # ==========================================================
 #                     ESC-MENÜ SYSTEM

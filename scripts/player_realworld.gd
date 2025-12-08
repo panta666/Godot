@@ -15,9 +15,6 @@ var can_move: bool = true
 var can_interact: bool = true
 var is_busy: bool = false
 
-# --- Quest Tracker ---
-@onready var quest_arrow: Node2D = $QuestArrow
-
 # --- Handy Callback ---
 var _mobile_callback: Callable
 
@@ -49,18 +46,6 @@ func _ready() -> void:
 	set_process(true)
 	set_physics_process(true)
 	
-	# --------------------------
-	# TEST: Questziel setzen
-	# --------------------------
-	# Prüfen, ob die Node existiert
-	var classroom_door_path = "Classroom_Door_One" # relativ zum Root deiner Szene
-	if get_tree().current_scene.has_node(classroom_door_path):
-		var classroom_door = get_tree().current_scene.get_node(classroom_door_path)
-		set_quest_target(classroom_door)
-		print("[TEST] Questziel Classroom_Door_One gesetzt:", classroom_door)
-	else:
-		print("[TEST] Classroom_Door_One existiert nicht in dieser Szene")
-
 # --------------------------
 # Bewegung & Animation
 # --------------------------
@@ -249,10 +234,3 @@ func cutscene_end() -> void:
 	can_move = true
 	can_interact = true
 	is_busy = false
-
-# ===========================
-# QUEST ARROW DYNAMISCH
-# ===========================
-func set_quest_target(target_node: Node2D) -> void:
-	if quest_arrow:
-		quest_arrow.set_target(target_node)
