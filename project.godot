@@ -43,6 +43,7 @@ directories/dtl_directory={
 "enter_chair": "res://dialog/enter_chair.dtl",
 "hall_story_timeline": "res://dialog/hall_story_timeline.dtl",
 "home_timeline": "res://dialog/home_timeline.dtl",
+"level_one_timeline": "res://dialog/level_one_timeline.dtl",
 "npc_henry_timeline": "res://dialog/npc_henry_timeline.dtl",
 "speak_with_dahm": "res://dialog/speak_with_dahm.dtl",
 "tutorial_fifth_cutscene_timeline": "res://dialog/tutorial_fifth_cutscene_timeline.dtl",

@@ -519,6 +519,9 @@ script = ExtResource("2_nfnda")
 attacks = Array[ExtResource("3_lory0")]([ExtResource("4_audnc")])
 health_bar_position = Vector2(0, -90)
 
+[node name="Health" parent="." index="0"]
+max_health = 250
+
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_gkw0u")
 animation = &"post_attack"

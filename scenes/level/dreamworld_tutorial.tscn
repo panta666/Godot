@@ -1863,7 +1863,7 @@ size = Vector2(63.5, 160)
 size = Vector2(37, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbfx0"]
-size = Vector2(32, 50)
+size = Vector2(32, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4kyq"]
 size = Vector2(22, 181)
@@ -1876,14 +1876,14 @@ font_size = 3
 shadow_color = Color(0, 0, 0, 0.78431374)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y8p36"]
-size = Vector2(40.5, 535)
+size = Vector2(5.25, 535)
 
 [sub_resource type="LabelSettings" id="LabelSettings_bly7i"]
 font_size = 7
 shadow_color = Color(0.6509804, 0, 0, 0.73333335)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5gyw"]
-size = Vector2(20, 169)
+size = Vector2(12, 169)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu4jq"]
 size = Vector2(345, 164)
@@ -1996,7 +1996,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Cutscene3"]
-position = Vector2(196, -6)
+position = Vector2(196, -19)
 shape = SubResource("RectangleShape2D_sbfx0")
 
 [node name="Area2D_Cutscene4" type="Area2D" parent="."]
@@ -2029,11 +2029,11 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Cutscene5"]
-position = Vector2(2153, -114.5)
+position = Vector2(2206, -80)
 shape = SubResource("RectangleShape2D_y8p36")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_iu4jq")]
-position = Vector2(2396, 126.999985)
+position = Vector2(2305, 128)
 
 [node name="Label3" type="Label" parent="."]
 offset_left = 2659.0
@@ -2070,7 +2070,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Cutscene6"]
-position = Vector2(2622, 74.5)
+position = Vector2(2626, 74.5)
 shape = SubResource("RectangleShape2D_j5gyw")
 
 [node name="Area2D_Cutscene7" type="Area2D" parent="."]
