@@ -1,7 +1,6 @@
-extends CharacterBody2D
+extends "res://scripts/generic_enemy.gd"
 
-class_name Enemy
-
+"""
 @export var attacks: Array[Attack] = []
 
 @export var range_attacks: Array[Range_Attack] = []
@@ -26,7 +25,7 @@ const ATTACK_RANGE_NEAR = 165 #165
 
 const ATTACK_RANGE = 260 #260
 
-@export var health_bar_position = Vector2(0, -30) #  Vector2(0, -30)
+const HEALTH_BAR_POSITION = Vector2(0, -30) #  Vector2(0, -30)
 
 var direction = 1
 
@@ -55,6 +54,10 @@ var player: Node2D = null
 @onready var tracking_box = $Tracking_Box
 
 @onready var attack_cooldown_timer = $Attack_Cooldown
+
+"""
+
+#var healthbar_boss_object = preload("res://scenes/Enemies/boss_health_bar.tscn")
 
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
@@ -85,20 +88,18 @@ func _physics_process(delta: float) -> void:
 						if player in bodies:
 							if !dashing:
 								track_player(player.position)
-								is_walking = 0
-								if sprite.animation != "idle":
-									print("idle1")
-									sprite.play("idle")
+								if !is_attacking:
+									_start_attack()
 						else:
 							player = null
 					else:
 						is_walking = 1
-						sprite.play("walk")
+						sprite.play("idle")
 		if !stunned:
 			if dashing:
-				velocity.x = direction * DASH_SPEED * is_walking
+				velocity.x = direction * DASH_SPEED * is_walking * 0
 			else:
-				velocity.x = direction * SPEED * is_walking
+				velocity.x = direction * SPEED * is_walking * 0
 		
 	move_and_slide()
 
@@ -262,7 +263,24 @@ func _spawn_healthbar():
 
 func _on_health_depleted() -> void:
 	healthbar._deplete()
+	print("Level One Bereich betreten! OOP Level 2 freischalten.")
+
+	# Level 2 für OOP freischalten
+	GlobalScript.oop_level_unlocked[1] = true
+	
+	# LevelUI aktualisieren, falls vorhanden
+	var classroom = get_tree().current_scene
+	if classroom.has_node("LevelUI"):
+		var level_ui = classroom.get_node("LevelUI") as CanvasLayer
+		# level_ui muss die unlock Funktion oder update_level_button nutzen
+		if "unlock_oop_level" in level_ui:
+			level_ui.unlock_oop_level(1)
+		else:
+			level_ui.update_level_button()
+			
+	await _return_to_classroom()
 	queue_free()
+	
 	
 func _on_dashing_timer_timeout() -> void:
 	dashing = false
@@ -274,3 +292,10 @@ func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 
 func _on_attack_cooldown_timeout() -> void:
 	attack_allowed = true
+	
+func _return_to_classroom() -> void:
+	# Kurze Wartezeit
+	await get_tree().create_timer(0.2).timeout
+	print("change scene")
+	# Szenenwechsel zurück
+	GlobalScript.change_scene("realworld_classroom_one")
