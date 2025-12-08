@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=78 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="25_s8ccv"]
-[ext_resource type="PackedScene" uid="uid://c354yps3u21j" path="res://scenes/Enemies/Boss_Enemy.tscn" id="26_wvco0"]
+[ext_resource type="PackedScene" uid="uid://c354yps3u21j" path="res://scenes/Enemies/Boss_Enemy.tscn" id="26_7igvv"]
 [ext_resource type="PackedScene" uid="uid://gljlcysdxo1t" path="res://scenes/level/oop/oop_assets/error_trap.tscn" id="26_wvco0"]
 [ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="27_2cn7s"]
 [ext_resource type="PackedScene" uid="uid://b0wwclfi0opvd" path="res://scenes/level/oop/oop_assets/java_trap.tscn" id="28_7igvv"]
@@ -3117,7 +3117,7 @@ tile_set = SubResource("TileSet_x23ky")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 z_index = 2
-position = Vector2(3562, 384)
+position = Vector2(36, 69)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
@@ -3237,17 +3237,16 @@ scale = Vector2(0.43219286, 0.47272727)
 position = Vector2(857, 396.00003)
 scale = Vector2(0.43219286, 0.47272727)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("25_s8ccv")]
+[node name="Duck1" parent="." instance=ExtResource("25_s8ccv")]
 position = Vector2(1368, 620)
 scale = Vector2(0.43836156, 0.5626694)
 
-[node name="CharacterBody2D2" parent="." instance=ExtResource("19_b46tw")]
+[node name="Bug3" parent="." instance=ExtResource("19_b46tw")]
 position = Vector2(2952, 751)
 
-[node name="CharacterBody2D3" parent="." instance=ExtResource("26_wvco0")]
-position = Vector2(4233, 324)
-scale = Vector2(1, 1)
-collision_layer = 2
+[node name="Boss" parent="." instance=ExtResource("26_7igvv")]
+position = Vector2(3947.9998, 354.99997)
+
 [node name="Traps" type="Node" parent="."]
 
 [node name="ErrorTrap" parent="Traps" instance=ExtResource("26_wvco0")]
@@ -3282,3 +3281,6 @@ frame_progress = 0.45119083
 
 [node name="Java_trap" parent="Traps" instance=ExtResource("28_7igvv")]
 position = Vector2(862, 191)
+
+[node name="BossTrap" parent="Traps" instance=ExtResource("26_wvco0")]
+position = Vector2(4233, 324)
