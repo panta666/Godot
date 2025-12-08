@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=79 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -3090,6 +3090,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7igvv"]
+size = Vector2(13, 111.5)
+
 [node name="OOPLevelOne" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
@@ -3234,7 +3237,7 @@ position = Vector2(877.00006, 69)
 scale = Vector2(0.43219286, 0.47272727)
 
 [node name="Bug2" parent="." instance=ExtResource("19_b46tw")]
-position = Vector2(857, 396.00003)
+position = Vector2(840.00006, 422.99997)
 scale = Vector2(0.43219286, 0.47272727)
 
 [node name="Duck1" parent="." instance=ExtResource("25_s8ccv")]
@@ -3284,3 +3287,11 @@ position = Vector2(862, 191)
 
 [node name="BossTrap" parent="Traps" instance=ExtResource("26_wvco0")]
 position = Vector2(4233, 324)
+
+[node name="DialogTrigger" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger"]
+position = Vector2(108, 50)
+shape = SubResource("RectangleShape2D_7igvv")

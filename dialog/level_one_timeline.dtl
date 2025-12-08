@@ -1,0 +1,5 @@
+[style name="platformer_style"]
+player: Huh..i..am...dreaming again?
+player: I should find an Exit. Iam missing the Lecture..
+[signal arg="get_doublejump"]
+[signal arg="cutscene_end"]
