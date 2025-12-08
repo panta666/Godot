@@ -6,14 +6,15 @@ extends Node
 enum MusicType {
 	NONE,    # Repräsentiert keine Musik (Stille)
 	MENU,    # Hauptmenü-Theme
-	HUB      # Hubworld-Theme
-	# TODO: Zukünftige Tracks hier hinzufügen (z.B. DREAMWORLD)
+	HUB,      # Hubworld-Theme
+	DREAMWORLD # Dreamworld-Theme
 }
 
 # Bildet die MusicType-Enums auf die vorgeladenen AudioStream-Ressourcen ab.
 const TRACKS = {
 	MusicType.MENU: preload("res://assets/music/MainMenuTheme.wav"),
-	MusicType.HUB: preload("res://assets/music/Hubworld theme.mp3")
+	MusicType.HUB: preload("res://assets/music/Hubworld theme.mp3"),
+	MusicType.DREAMWORLD: preload("res://assets/music/DreamworldTheme.mp3")
 }
 
 var music_player: AudioStreamPlayer

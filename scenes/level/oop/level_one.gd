@@ -7,4 +7,4 @@ func _ready() -> void:
 	
 	# Speichert die aktuelle Szene für continue
 	SaveManager.update_current_scene()
-	MusicManager.stop_music()
+	MusicManager.playMusic(MusicManager.MusicType.DREAMWORLD)
