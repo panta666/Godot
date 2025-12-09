@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://6wx15xs4nxry"]
+[gd_scene load_steps=147 format=3 uid="uid://6wx15xs4nxry"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_no7e0"]
 [ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_5ratu"]
@@ -139,8 +139,12 @@
 [ext_resource type="Texture2D" uid="uid://cu3v72fp83jos" path="res://assets/characters/enemies/Bug/Walk_Cycle/0042.png" id="139_nqpeb"]
 [ext_resource type="Texture2D" uid="uid://b7dnpalhputuf" path="res://assets/characters/enemies/Bug/Walk_Cycle/0043.png" id="140_e46ru"]
 [ext_resource type="Texture2D" uid="uid://vbt3bo1t3o3u" path="res://assets/characters/enemies/Bug/Walk_Cycle/0044.png" id="141_pr0tf"]
+[ext_resource type="AudioStream" uid="uid://cxkx6owx0ph2c" path="res://assets/sfx/Enemies/bug/Bug Attack/84552__vegemyte__bug12.wav" id="142_jthae"]
 [ext_resource type="Texture2D" uid="uid://l4chc7fwvb1i" path="res://assets/characters/enemies/Bug/Walk_Cycle/0045.png" id="142_omban"]
 [ext_resource type="Texture2D" uid="uid://bi8yd41bc5ok3" path="res://assets/characters/enemies/Bug/Walk_Cycle/0046.png" id="143_vv1gp"]
+[ext_resource type="AudioStream" uid="uid://c3y1lnag6r4w8" path="res://assets/sfx/Enemies/bug/Bug Hurt/35640__sandyrb__bug-04.wav" id="143_yi54r"]
+[ext_resource type="AudioStream" uid="uid://cki7sd3n6r4dk" path="res://assets/sfx/Enemies/bug/Bug Death/266535__gcastanera__smashed-bug.wav" id="144_yoq71"]
+[ext_resource type="AudioStream" uid="uid://bv07rnxlmnquo" path="res://assets/sfx/Enemies/bug/Bug Walk/469042__hawkeye_sprout__bugs-steps.wav" id="145_81reo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_no7e0"]
 animations = [{
@@ -735,5 +739,11 @@ attacks = Array[ExtResource("2_5ratu")]([ExtResource("3_y0ijw")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_no7e0")
-animation = &"attack"
-frame_progress = 0.56362677
+animation = &"stun"
+
+[node name="EnemySoundPlayer" parent="." index="12"]
+sound_attack = ExtResource("142_jthae")
+sound_get_hit = ExtResource("143_yi54r")
+sound_die = ExtResource("144_yoq71")
+sound_pre_attack = ExtResource("144_yoq71")
+sound_walk = Array[AudioStream]([ExtResource("145_81reo")])

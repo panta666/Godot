@@ -8,11 +8,11 @@ var cutscene_played := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
-	
+
 	dialog_trigger.body_entered.connect(_on_dialog_trigger_entered)
 	# Speichert die aktuelle Szene für continue
 	SaveManager.update_current_scene()
-	MusicManager.stop_music()
+	MusicManager.playMusic(MusicManager.MusicType.DREAMWORLD)
 
 func _on_dialog_trigger_entered(body: Node) -> void:
 	# 1. Ist der Body selbst der Player?
@@ -50,7 +50,7 @@ func _start_cutscene(body: Node, timeline_name: String) -> void:
 		body.is_cutscene_active = false
 		return
 	print("Cutscene erfolgreich gestartet:", timeline_name)
-	
+
 func _on_dialogic_signal(event_name: String) -> void:
 	if event_name.begins_with("cutscene_end"):
 		var player = get_node_or_null("Player_Dreamworld")

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cxkx6owx0ph2c"
+path="res://.godot/imported/84552__vegemyte__bug12.wav-7a9a33bd469e6d1b8d602d4acac57b55.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Enemies/bug/Bug Attack/84552__vegemyte__bug12.wav"
+dest_files=["res://.godot/imported/84552__vegemyte__bug12.wav-7a9a33bd469e6d1b8d602d4acac57b55.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

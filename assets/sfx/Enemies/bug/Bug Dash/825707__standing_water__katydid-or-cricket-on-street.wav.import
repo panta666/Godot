@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bk24ap5loqsk7"
+path="res://.godot/imported/825707__standing_water__katydid-or-cricket-on-street.wav-c34f6f3c926b06d44edcbe28cdaf1a73.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Enemies/bug/Bug Dash/825707__standing_water__katydid-or-cricket-on-street.wav"
+dest_files=["res://.godot/imported/825707__standing_water__katydid-or-cricket-on-street.wav-c34f6f3c926b06d44edcbe28cdaf1a73.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
