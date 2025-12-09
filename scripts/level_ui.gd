@@ -241,6 +241,7 @@ func hide_phone():
 	phone_off.visible = false
 	phone_state = PhoneState.OFF
 	hide_enter_button()
+	blinking.visible = false
 
 func hide_enter_button():
 	enter_level_button.visible = false
