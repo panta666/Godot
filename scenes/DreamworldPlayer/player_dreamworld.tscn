@@ -1,4 +1,4 @@
-[gd_scene load_steps=186 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=195 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://scripts/DreamWorldPlayer/player_dreamworld.gd" id="1_fd23n"]
 [ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="2_3pffi"]
@@ -91,6 +91,15 @@
 [ext_resource type="Texture2D" uid="uid://bmwxdlg0u62if" path="res://assets/plattformer_character/animations/throw-object/east/frame_005.png" id="79_uyd2q"]
 [ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://scenes/HUD/dreamworld/hund_coin.tscn" id="80_ku5kx"]
 [ext_resource type="Texture2D" uid="uid://2baq6i52cdio" path="res://assets/plattformer_character/animations/throw-object/east/frame_006.png" id="80_oa2cp"]
+[ext_resource type="Script" uid="uid://b8ib7chc7er6p" path="res://scripts/DreamWorldPlayer/audio_player.gd" id="92_uyd2q"]
+[ext_resource type="AudioStream" uid="uid://c6ipsxxk354ln" path="res://assets/sfx/DreamwolrdPlayerSounds/punchAttack/83976__theredshore__punch.mp3" id="93_on6mk"]
+[ext_resource type="AudioStream" uid="uid://4k6m8dvfogpo" path="res://assets/sfx/DreamwolrdPlayerSounds/getHit/216783__castironcarousel__punch-8.mp3" id="94_51uo2"]
+[ext_resource type="AudioStream" uid="uid://dg7e8p2u4gptj" path="res://assets/sfx/DreamwolrdPlayerSounds/death/udead.mp3" id="95_01t1s"]
+[ext_resource type="AudioStream" uid="uid://cl5ceahnux4hm" path="res://assets/sfx/DreamwolrdPlayerSounds/rangeAttack/421703__bolkmar__sfx-lo-fi-shoot.wav" id="96_bdibv"]
+[ext_resource type="AudioStream" uid="uid://p0xajkej1osa" path="res://assets/sfx/DreamwolrdPlayerSounds/jump/802608__jelloapocalypse__snes-jump-tinyfarts.mp3" id="97_igi5t"]
+[ext_resource type="AudioStream" uid="uid://bi0dttdaiat6" path="res://assets/sfx/kenney_impact-sounds/Audio/footstep_concrete_000.ogg" id="98_7f16g"]
+[ext_resource type="AudioStream" uid="uid://wfu714c3ehum" path="res://assets/sfx/DreamwolrdPlayerSounds/dash/611474__jwsounddesign__woosh-mediumblast.mp3" id="98_igi5t"]
+[ext_resource type="AudioStream" uid="uid://h0mtxbkjdmdd" path="res://assets/sfx/kenney_impact-sounds/Audio/footstep_concrete_001.ogg" id="99_fxyod"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t3ro2"]
 particles_animation = true
@@ -1067,6 +1076,20 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3pffi")
+
+[node name="AudioPlayer" type="Node2D" parent="."]
+script = ExtResource("92_uyd2q")
+sound_attack = ExtResource("93_on6mk")
+sound_get_hit = ExtResource("94_51uo2")
+sound_die = ExtResource("95_01t1s")
+sound_range_attack = ExtResource("96_bdibv")
+sound_jump = ExtResource("97_igi5t")
+sound_dash = ExtResource("98_igi5t")
+sound_walk = Array[AudioStream]([ExtResource("98_7f16g"), ExtResource("99_fxyod")])
+
+[node name="AudioMove" type="AudioStreamPlayer2D" parent="AudioPlayer"]
+
+[node name="AudioAction" type="AudioStreamPlayer2D" parent="AudioPlayer"]
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
