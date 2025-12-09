@@ -9,7 +9,8 @@ func _physics_process(delta: float) -> void:
 
 #Level wird bei Treffer neu gestartet
 func _on_hitbox_area_entered(_area: Area2D) -> void:
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+	print("trap")
 
 #Erkennen des Spielers in der Nähe und Auslösen der Falle
 func _on_player_detect_area_entered(_area: Area2D) -> void:
