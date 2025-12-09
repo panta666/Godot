@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://gljlcysdxo1t"]
+[gd_scene load_steps=5 format=3 uid="uid://gljlcysdxo1t"]
 
 [ext_resource type="Script" uid="uid://c16gwjdwjqlly" path="res://scripts/error_trap.gd" id="1_ywpsg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i74a5"]
-size = Vector2(5.75, 37)
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="2_i74a5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xh5vd"]
 size = Vector2(63, 145)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i74a5"]
+size = Vector2(9, 37)
 
 [node name="ErrorTrap" type="Node2D"]
 script = ExtResource("1_ywpsg")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = 6.0
 offset_top = -3.0
 offset_right = 27.0
@@ -21,15 +21,6 @@ rotation = 1.5707964
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Exception"
-
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 64
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 15.5)
-shape = SubResource("RectangleShape2D_i74a5")
 
 [node name="PlayerDetect" type="Area2D" parent="."]
 collision_layer = 64
@@ -40,5 +31,15 @@ monitorable = false
 position = Vector2(-26.5, 69.5)
 shape = SubResource("RectangleShape2D_xh5vd")
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="HitBox2" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 13
+script = ExtResource("2_i74a5")
+damage = 10
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox2"]
+position = Vector2(-0.5, 15.5)
+shape = SubResource("RectangleShape2D_i74a5")
+
 [connection signal="area_entered" from="PlayerDetect" to="." method="_on_player_detect_area_entered"]

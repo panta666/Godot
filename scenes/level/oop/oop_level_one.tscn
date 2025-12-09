@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=81 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://scenes/level/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://gljlcysdxo1t" path="res://scenes/level/oop/oop_assets/error_trap.tscn" id="26_wvco0"]
 [ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="27_2cn7s"]
 [ext_resource type="PackedScene" uid="uid://b0wwclfi0opvd" path="res://scenes/level/oop/oop_assets/java_trap.tscn" id="28_7igvv"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="29_0wblk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3093,6 +3094,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igvv"]
 size = Vector2(13, 111.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wblk"]
+size = Vector2(16.250011, 19.640644)
+
 [node name="OOPLevelOne" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
@@ -3295,3 +3299,17 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger"]
 position = Vector2(108, 50)
 shape = SubResource("RectangleShape2D_7igvv")
+
+[node name="HitBox" type="Area2D" parent="."]
+process_mode = 4
+position = Vector2(277, 81)
+collision_layer = 12
+collision_mask = 13
+script = ExtResource("29_0wblk")
+damage = 20
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(31.25, -3.1796875)
+scale = Vector2(0.9999992, 0.9999992)
+shape = SubResource("RectangleShape2D_0wblk")
