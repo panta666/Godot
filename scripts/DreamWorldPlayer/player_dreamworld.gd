@@ -88,6 +88,9 @@ var scene_name
 #Variable für Cutscenes
 var is_cutscene_active: bool = false
 
+# Sound
+@onready var audio_player: PlayerDreamworldSoundPlayer = $AudioPlayer
+
 
 func _ready() -> void:
 	current_scene = get_tree().current_scene
@@ -254,16 +257,19 @@ func handle_jump():
 	# Erster Sprung / Coyote Time
 	if is_on_floor() or coyote_timer > 0.0:
 		velocity.y = JUMP_VELOCITY
+		audio_player.play_sound(PlayreDreamworldSounds.soundtype.JUMP)
 		jump_count = 1
 		coyote_timer = 0.0		#Coyote Time aufbrauchen
 	# Zweiter Sprung wenn erlaubt
 	elif is_double_jump_allowed:
 		if jump_count == 0:		#Falls man runterfällt (nur ein luft jump)
 			velocity.y = JUMP_VELOCITY
+			audio_player.play_sound(PlayreDreamworldSounds.soundtype.JUMP)
 			jump_count = 2
 			is_double_jumping = true
 		elif jump_count == 1:	#Einfacher double jump
 			velocity.y = JUMP_VELOCITY
+			audio_player.play_sound(PlayreDreamworldSounds.soundtype.JUMP)
 			jump_count = 2
 			is_double_jumping = true
 
@@ -280,6 +286,7 @@ func handle_dash():
 		dash_count = 0
 		can_dash = false
 		velocity.x = direction * DASH_SPEED
+		audio_player.play_sound(PlayreDreamworldSounds.soundtype.DASH)
 		dash_timer = DASH_DURATION
 
 func handle_crouching():
@@ -318,7 +325,7 @@ func handle_attack():
 	is_attacking = true
 	can_attack = false
 	attack_timer = ATTACK_COOLDOWN
-
+	audio_player.play_sound(PlayreDreamworldSounds.soundtype.ATTACK)
 	if Input.is_action_pressed("move_up"):
 		play_slash(sprite_up_hitbox, hit_box_up)
 	elif Input.is_action_pressed("move_down") and not is_on_floor():
@@ -345,7 +352,7 @@ func handle_range_attack():
 		return
 
 	is_attacking = true
-
+	audio_player.play_sound(PlayreDreamworldSounds.soundtype.RANGE_ATTACK)
 	await player_sprite.animation_finished
 
 	is_attacking = false
@@ -437,7 +444,7 @@ func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
-
+	audio_player.play_sound(PlayreDreamworldSounds.soundtype.GET_HIT)
 	hit_flash_animation.play("hit_flash")
 
 	# Knockback: Immer weg vom Gegner!
@@ -475,7 +482,7 @@ func _on_health_depleted() -> void:
 	velocity = Vector2.ZERO
 
 	print("dead")
-
+	audio_player.play_sound(PlayreDreamworldSounds.soundtype.DIE)
 	player_sprite.play("die")
 	await get_tree().create_timer(0.7).timeout
 	player_sprite.position.y = 15.0
