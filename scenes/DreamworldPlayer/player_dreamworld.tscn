@@ -1088,8 +1088,10 @@ sound_dash = ExtResource("98_igi5t")
 sound_walk = Array[AudioStream]([ExtResource("98_7f16g"), ExtResource("99_fxyod")])
 
 [node name="AudioMove" type="AudioStreamPlayer2D" parent="AudioPlayer"]
+bus = &"SFX"
 
 [node name="AudioAction" type="AudioStreamPlayer2D" parent="AudioPlayer"]
+bus = &"SFX"
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]

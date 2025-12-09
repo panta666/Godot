@@ -193,6 +193,8 @@ func _physics_process(delta: float) -> void:
 		increase_range_attack_charges()
 
 	update_animation()
+	if player_sprite.animation == "run" and player_sprite.frame in [2,5]:
+					audio_player.play_sound(PlayreDreamworldSounds.soundtype.WALK)
 
 	move_and_slide()
 
