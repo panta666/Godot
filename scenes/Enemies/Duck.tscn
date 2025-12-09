@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://dttdsxr6qrhe0"]
+[gd_scene load_steps=168 format=3 uid="uid://dttdsxr6qrhe0"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_6di4g"]
 [ext_resource type="Script" uid="uid://cdshcdgrunfvm" path="res://scripts/range_attack.gd" id="2_wcsn1"]
@@ -745,6 +745,18 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6omk"]
+size = Vector2(60.937546, 39.062534)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jc0bu"]
+size = Vector2(1125.0022, 255.0005)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyunv"]
+size = Vector2(42.500015, 21.250015)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xo4bp"]
+size = Vector2(16.250011, 5.78125)
+
 [node name="CharacterBody2D" instance=ExtResource("1_6di4g")]
 range_attacks = Array[ExtResource("2_wcsn1")]([ExtResource("3_ogr5e")])
 
@@ -756,6 +768,7 @@ flip_h = true
 [node name="Collision" parent="." index="2"]
 position = Vector2(8.124999, 14.374997)
 scale = Vector2(0.79999924, 0.79999924)
+shape = SubResource("RectangleShape2D_x6omk")
 
 [node name="RayCastRight" parent="." index="3"]
 target_position = Vector2(29.6875, 1.9073486e-06)
@@ -763,9 +776,16 @@ target_position = Vector2(29.6875, 1.9073486e-06)
 [node name="RaycastDownRight" parent="." index="4"]
 target_position = Vector2(0, 37.5)
 
+[node name="CollisionShape2D" parent="Tracking_Box" index="0"]
+shape = SubResource("RectangleShape2D_jc0bu")
+
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(7.5, 8.75)
 scale = Vector2(0.9999995, 0.9999995)
+shape = SubResource("RectangleShape2D_fyunv")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_xo4bp")
 
 [node name="Attack_Cooldown" parent="." index="11"]
 wait_time = 4.0

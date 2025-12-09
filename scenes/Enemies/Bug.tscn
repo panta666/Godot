@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://6wx15xs4nxry"]
+[gd_scene load_steps=151 format=3 uid="uid://6wx15xs4nxry"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_no7e0"]
 [ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_5ratu"]
@@ -734,12 +734,36 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jthae"]
+size = Vector2(60.937546, 39.062534)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yi54r"]
+size = Vector2(1125.0022, 255.0005)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoq71"]
+size = Vector2(42.500015, 21.250015)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81reo"]
+size = Vector2(16.250011, 5.78125)
+
 [node name="CharacterBody2D" instance=ExtResource("1_no7e0")]
 attacks = Array[ExtResource("2_5ratu")]([ExtResource("3_y0ijw")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_no7e0")
 animation = &"stun"
+
+[node name="Collision" parent="." index="2"]
+shape = SubResource("RectangleShape2D_jthae")
+
+[node name="CollisionShape2D" parent="Tracking_Box" index="0"]
+shape = SubResource("RectangleShape2D_yi54r")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_yoq71")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_81reo")
 
 [node name="EnemySoundPlayer" parent="." index="12"]
 sound_attack = ExtResource("142_jthae")
