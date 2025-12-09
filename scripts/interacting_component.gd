@@ -1,8 +1,8 @@
 extends Node2D
 @onready var interact_ui: Control = $InteractUI
-@onready var label_left: Label = $InteractUI/HBoxContainer/LabelLeft
-@onready var key_icon: AnimatedSprite2D = $InteractUI/HBoxContainer/AnimatedSprite2D
-@onready var label_right: Label = $InteractUI/HBoxContainer/LabelRight
+@onready var label_left: Label = $InteractUI/LabelLeft
+@onready var key_icon: AnimatedSprite2D = $InteractUI/AnimatedSprite2D
+@onready var label_right: Label = $InteractUI/LabelRight
 
 
 
