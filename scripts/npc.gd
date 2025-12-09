@@ -36,7 +36,7 @@ func _ready() -> void:
 	_set_facing(start_dir)
 
 	if npc_data.can_talk:
-		interactable.interact_name = "Press F to talk"
+		interactable.interact_name = "to talk"
 		interactable.interact = _on_interact
 		interactable.is_interactable = false
 		interact_range.connect("body_entered", Callable(self, "_on_range_entered"))

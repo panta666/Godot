@@ -1,6 +1,10 @@
 extends Node2D
+@onready var interact_ui: Control = $InteractUI
+@onready var label_left: Label = $InteractUI/HBoxContainer/LabelLeft
+@onready var key_icon: AnimatedSprite2D = $InteractUI/HBoxContainer/AnimatedSprite2D
+@onready var label_right: Label = $InteractUI/HBoxContainer/LabelRight
 
-@onready var interact_label: Label = $InteractLabel
+
 
 var current_interactions := []
 var can_interact := true
@@ -15,7 +19,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed('interact') and can_interact:
 		if current_interactions.size() > 0:
 			can_interact = false
-			interact_label.hide()
+			interact_ui.hide()
 			
 			# Interaktion ausführen
 			current_interactions[0].interact.call()
@@ -27,17 +31,17 @@ func _process(_delta: float) -> void:
 	var esc_menu = GlobalScript.esc_menu_instance
 	# Menü offen → keine Anzeige
 	if esc_menu and (esc_menu.menu_container.visible or esc_menu.options_container.visible):
-		interact_label.hide()
+		interact_ui.hide()
 		return
 
 	# Interaktionen sortieren und Label anzeigen
 	if current_interactions and can_interact:
 		current_interactions.sort_custom(_sort_by_nearest)
 		if current_interactions[0].is_interactable:
-			interact_label.text = current_interactions[0].interact_name
-			interact_label.show()
+			label_right.text = current_interactions[0].interact_name
+			interact_ui.show()
 	else:
-		interact_label.hide()
+		interact_ui.hide()
 		
 func _sort_by_nearest(area1, area2):
 	var area1_dist = global_position.distance_to(area1.global_position)
