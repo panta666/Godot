@@ -62,6 +62,8 @@ var knockback_timer = 0.0
 
 var knockback_length = 0.2
 
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
+
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
 
@@ -281,6 +283,7 @@ func _on_dashing_timer_timeout() -> void:
 
 	
 func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
+	flash_animation.play("flash")
 	apply_knockback(attacker_pos)
 	healthbar.update()
 	_stun()
