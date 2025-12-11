@@ -58,6 +58,11 @@ var player: Node2D = null
 
 @onready var enemy_sound_player: Node2D = $EnemySoundPlayer
 
+var knockback_timer = 0.0
+
+var knockback_length = 0.2
+
+@onready var flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
@@ -277,9 +282,22 @@ func _on_dashing_timer_timeout() -> void:
 	dashing = false
 
 	
-func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
+func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
+	flash_animation.play("flash")
+	apply_knockback(attacker_pos)
 	healthbar.update()
 	_stun()
 
 func _on_attack_cooldown_timeout() -> void:
 	attack_allowed = true
+
+func apply_knockback(attacker_pos: Vector2) -> void:
+	# Knockback: Immer weg vom Gegner!
+	var knock_dir = sign(global_position.x - attacker_pos.x)
+	if knock_dir == 0:
+		knock_dir = 1
+
+	velocity.x = knock_dir * 200.0
+	velocity.y = -80.0
+
+	knockback_timer = knockback_length

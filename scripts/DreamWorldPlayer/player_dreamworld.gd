@@ -72,7 +72,7 @@ var recharge_timer = 0.0
 var is_taking_damage: bool = false
 var knockback_timer = 0.0
 var knockback_length = 0.2
-@onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
+@onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
 #HP
 var is_alive: bool = true
