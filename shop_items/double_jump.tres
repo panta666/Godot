@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=2 format=3 uid="uid://dhu401et8q56x"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="1_jyg20"]
+
+[resource]
+script = ExtResource("1_jyg20")
+item_name = "Double Jump"
+price = 2
+powerup_name = "double_jump"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"
