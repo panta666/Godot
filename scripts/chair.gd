@@ -38,9 +38,9 @@ func _process(_delta: float) -> void:
 	var player = GlobalScript.player
 	if player and interactable.is_interactable:
 		if not player.sitting:
-			interactable.interact_name = "Press F to sit"
+			interactable.interact_name = "to sit"
 		else:
-			interactable.interact_name = "Press F to stand up"
+			interactable.interact_name = "to stand up"
 
 
 # ----------------------------------------------

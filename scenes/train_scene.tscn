@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://xnykv3jipun8"]
+[gd_scene load_steps=11 format=4 uid="uid://xnykv3jipun8"]
 
 [ext_resource type="Texture2D" uid="uid://cecii67wnthxn" path="res://assets/tilemap/32x32/train.png" id="1_7prj5"]
 [ext_resource type="Script" uid="uid://ixtcem62crla" path="res://scripts/train_scene.gd" id="1_mlpd5"]
 [ext_resource type="Texture2D" uid="uid://bdcw8nn60lfm2" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_mlpd5"]
 [ext_resource type="Texture2D" uid="uid://ixdgku1cm3f3" path="res://assets/tilemap/32x32/traintracks.png" id="2_ohkuq"]
+[ext_resource type="PackedScene" uid="uid://dvbwb53kbyq0y" path="res://scenes/skip_scene.tscn" id="5_uaq5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7prj5"]
 texture = ExtResource("2_ohkuq")
@@ -157,3 +158,6 @@ position = Vector2(513, -96)
 libraries = {
 &"": SubResource("AnimationLibrary_l2ydy")
 }
+
+[node name="Skip_Scene" parent="." instance=ExtResource("5_uaq5e")]
+next_scene = "uid://dqloihqvrxpgp"
