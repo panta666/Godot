@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=3 format=3 uid="uid://ddbdgs4gv4dn2"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="1_cpcct"]
+[ext_resource type="SpriteFrames" uid="uid://kb280kulwyvl" path="res://assets/plattformer_character/animations/range_attack.tres" id="2_51wks"]
+
+[resource]
+script = ExtResource("1_cpcct")
+item_name = "Range_Attack"
+sprite_frames = ExtResource("2_51wks")
+price = 2
+description = "You can shoot Projectiles with the 'RMB' RightMouseButton"
+powerup_name = "range_attack"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Shop
 
 @export var shop_items: Array[ShopData] = []
 
@@ -11,6 +12,9 @@ func _ready() -> void:
 	# Interaktion registrieren
 	interactable.interact = _on_interact
 	interactable.is_interactable = true
+	
+	#ShopUI referenz
+	shop_ui.shop = self
 
 
 func _process(_delta: float) -> void:
@@ -34,7 +38,7 @@ func _on_interact() -> void:
 		interactable.is_interactable = false
 
 		# ShopUI erscheint
-		shop_ui.show()
+		shop_ui.open_shop_ui()
 		get_node("ShopUI/AnimationPlayer").play("transition_in")
 
 	# ------------------------------------------
@@ -46,3 +50,13 @@ func _on_interact() -> void:
 
 		# ShopUI schließt sich
 		get_node("ShopUI/AnimationPlayer").play("transition_out")
+
+# ------------------------------------------
+	# Helperfunction für shop_ui
+	# ------------------------------------------
+func buttonCloseHelper() -> void:
+	GlobalScript.player.close_shop()
+	interactable.is_interactable = true
+
+	# ShopUI schließt sich
+	get_node("ShopUI/AnimationPlayer").play("transition_out")

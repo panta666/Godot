@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=36 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://scripts/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -17,6 +17,12 @@
 [ext_resource type="Resource" uid="uid://mb66mg8wjduu" path="res://quests/quest_03.tres" id="15_5fllp"]
 [ext_resource type="Resource" uid="uid://hjhlqdqnrxd1" path="res://quests/quest_04.tres" id="16_5fllp"]
 [ext_resource type="PackedScene" uid="uid://cvhfm0xb6cg35" path="res://scenes/shop.tscn" id="17_a7seg"]
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="18_7rigo"]
+[ext_resource type="Resource" uid="uid://b7qxgj2pbxsyx" path="res://shop_items/dash.tres" id="19_l3xm6"]
+[ext_resource type="Resource" uid="uid://d36jdnhyi1ohy" path="res://shop_items/crouching.tres" id="20_3e74t"]
+[ext_resource type="Resource" uid="uid://dhu401et8q56x" path="res://shop_items/double_jump.tres" id="21_c2u28"]
+[ext_resource type="Resource" uid="uid://ddbdgs4gv4dn2" path="res://shop_items/range_attack.tres" id="22_okp6d"]
+[ext_resource type="Resource" uid="uid://baftcvns6tuvu" path="res://shop_items/range_attack_increase.tres" id="23_ljb5t"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xjni"]
 polygon = PackedVector2Array(-16, -22, 10, -22, 10, 10, 8, 10, 8, 20, 2, 20, 2, 14, -8, 14, -8, 20, -14, 20, -14, 10, -16, 10)
@@ -4694,3 +4700,4 @@ auto_start_dialog = "enter_chair"
 [node name="Shop" parent="." instance=ExtResource("17_a7seg")]
 position = Vector2(531, 178)
 scale = Vector2(1.2639892, 1.0896187)
+shop_items = Array[ExtResource("18_7rigo")]([ExtResource("19_l3xm6"), ExtResource("20_3e74t"), ExtResource("21_c2u28"), ExtResource("22_okp6d"), ExtResource("23_ljb5t")])

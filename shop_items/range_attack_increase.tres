@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=3 format=3 uid="uid://baftcvns6tuvu"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="1_yy42l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yy42l"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"range_attack_increase",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_yy42l")
+item_name = "Range_Attack_Increase"
+sprite_frames = SubResource("SpriteFrames_yy42l")
+price = 3
+description = "You can increase the Number of Projectiles you can shoot at Enemies"
+powerup_name = "range_attack_increase"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"
