@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	# UI Text setzen
 	if interactable.is_interactable:
 		if shop_open:
-			interactable.interact_name = ""
+			interactable.interact_name = "hop"
 		else:
 			interactable.interact_name = "to open the shop"
 
@@ -50,13 +50,3 @@ func _on_interact() -> void:
 
 		# ShopUI schließt sich
 		get_node("ShopUI/AnimationPlayer").play("transition_out")
-
-# ------------------------------------------
-	# Helperfunction für shop_ui
-	# ------------------------------------------
-func buttonCloseHelper() -> void:
-	GlobalScript.player.close_shop()
-	interactable.is_interactable = true
-
-	# ShopUI schließt sich
-	get_node("ShopUI/AnimationPlayer").play("transition_out")

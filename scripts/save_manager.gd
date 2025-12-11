@@ -21,7 +21,7 @@ var save_data = {
 		"double_jump": false,
 		"dash": false,
 		"range_attack": false,
-		"crouch": false,
+		"crouching": false,
 		"range_attack_increase": false
 	}
 }

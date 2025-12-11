@@ -39,11 +39,6 @@ func show_item(index: int) -> void:
 	item_name_label.text = data.item_name
 	item_desc_label.text = data.description
 
-func _on_close_pressed() -> void:
-	if shop:
-		shop.buttonCloseHelper()
-
-
 func _on_prev_pressed() -> void:
 	show_item((current_item - 1 + shop.shop_items.size()) % shop.shop_items.size())
 
