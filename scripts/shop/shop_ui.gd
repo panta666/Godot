@@ -57,28 +57,13 @@ func _on_buy_pressed() -> void:
 		return
 
 	var data: ShopData = shop.shop_items[current_item]
-	print("Kaufe:", data.item_name, "für", data.price, "Coins")
 
-	# -----------------------------
-	# Powerup aktivieren
-	# -----------------------------
-	var player = GlobalScript.player
-	if player and data.powerup_name != "":
-		match data.powerup_name:
-			"double_jump":
-				player.activate_double_jump()
-				print("Powerup gekauft:", data.powerup_name)
-			"dash":
-				player.activate_dash()
-				print("Powerup gekauft:", data.powerup_name)
-			"range_attack":
-				player.activate_range_attack()
-				print("Powerup gekauft:", data.powerup_name)
-			"range_attack_incrase":
-				player.increase_range_attack_charges()
-				print("Powerup gekauft:", data.powerup_name)
-			"crouching":
-				player.activate_crouching()
-				print("Powerup gekauft:", data.powerup_name)
-			_:
-				print("Unbekanntes Powerup:", data.powerup_name)
+	# Upgrade merken
+	var key = data.powerup_name
+
+	if key in SaveManager.save_data["player_stats"]:
+		SaveManager.save_data["player_stats"][key] = true
+		SaveManager.save_game()
+		print("Upgrade gespeichert:", key)
+	else:
+		print("Fehler: Upgrade existiert nicht im SaveManager:", key)

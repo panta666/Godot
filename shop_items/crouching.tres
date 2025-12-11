@@ -30,7 +30,7 @@ animations = [{
 "texture": ExtResource("7_cokgj")
 }],
 "loop": true,
-"name": &"crouching",
+"name": &"default",
 "speed": 5.0
 }]
 
