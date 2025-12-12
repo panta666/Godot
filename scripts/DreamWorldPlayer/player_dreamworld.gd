@@ -111,6 +111,28 @@ func _ready() -> void:
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
 	hurt_box.received_damage.connect(_on_player_received_damage)
+	
+	
+	#SAVEMANAGER STATES
+	# Double Jump
+	if SaveManager.save_data["player_stats"]["double_jump"]:
+		activate_double_jump()
+
+	# Dash
+	if SaveManager.save_data["player_stats"]["dash"]:
+		activate_dash()
+
+	# Range Attack
+	if SaveManager.save_data["player_stats"]["range_attack"]:
+		activate_range_attack()
+
+	# Range Attack Increase
+	if SaveManager.save_data["player_stats"]["range_attack_increase"]:
+		increase_range_attack_charges()
+
+	# Crouch
+	if SaveManager.save_data["player_stats"]["crouching"]:
+		activate_crouching()
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:

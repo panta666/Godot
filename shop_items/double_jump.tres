@@ -1,0 +1,80 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=18 format=3 uid="uid://dhu401et8q56x"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="1_jyg20"]
+[ext_resource type="Texture2D" uid="uid://cifk0bu4cxdgy" path="res://assets/plattformer_character/animations/jumping-1/east/frame_004.png" id="1_vgiw4"]
+[ext_resource type="Texture2D" uid="uid://dhlllp4kgj02d" path="res://assets/plattformer_character/animations/jumping-1/east/frame_000.png" id="2_mmkmm"]
+[ext_resource type="Texture2D" uid="uid://dspiab6navni5" path="res://assets/plattformer_character/animations/jumping-1/east/frame_001.png" id="3_mcjb6"]
+[ext_resource type="Texture2D" uid="uid://bqlwljt45wyaj" path="res://assets/plattformer_character/animations/jumping-1/east/frame_002.png" id="4_ydmg4"]
+[ext_resource type="Texture2D" uid="uid://dyiolwjd22yk0" path="res://assets/plattformer_character/animations/jumping-1/east/frame_003.png" id="5_6vpyb"]
+[ext_resource type="Texture2D" uid="uid://dftx030yhq70l" path="res://assets/plattformer_character/animations/front-flip/east/frame_000.png" id="7_cj1xs"]
+[ext_resource type="Texture2D" uid="uid://dhwy3rkm0hca3" path="res://assets/plattformer_character/animations/front-flip/east/frame_001.png" id="8_l5iqm"]
+[ext_resource type="Texture2D" uid="uid://bi6uhasekvvp0" path="res://assets/plattformer_character/animations/front-flip/east/frame_002.png" id="9_lwocx"]
+[ext_resource type="Texture2D" uid="uid://bqqpryrxfxalp" path="res://assets/plattformer_character/animations/front-flip/east/frame_003.png" id="10_7la2n"]
+[ext_resource type="Texture2D" uid="uid://cqt3km4sweo6c" path="res://assets/plattformer_character/animations/front-flip/east/frame_004.png" id="11_47kaw"]
+[ext_resource type="Texture2D" uid="uid://dkb16f20gr2ym" path="res://assets/plattformer_character/animations/jumping-1/east/frame_005.png" id="12_xveuu"]
+[ext_resource type="Texture2D" uid="uid://cj1j5xnuwqn5d" path="res://assets/plattformer_character/animations/jumping-1/east/frame_006.png" id="13_0r2lb"]
+[ext_resource type="Texture2D" uid="uid://dnrgl7uvlcxrn" path="res://assets/plattformer_character/animations/jumping-1/east/frame_007.png" id="14_xhhsa"]
+[ext_resource type="Texture2D" uid="uid://bbgh5e0tmb6hm" path="res://assets/plattformer_character/animations/jumping-1/east/frame_008.png" id="15_fgbn0"]
+[ext_resource type="Texture2D" uid="uid://74gh2tjxlv0k" path="res://assets/plattformer_character/animations/front-flip/east/frame_005.png" id="16_u3wsj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s61hv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mmkmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mcjb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ydmg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6vpyb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_vgiw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cj1xs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l5iqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lwocx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7la2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_47kaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xveuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0r2lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xhhsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_fgbn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_u3wsj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_jyg20")
+item_name = "Double Jump"
+sprite_frames = SubResource("SpriteFrames_s61hv")
+price = 2
+description = "You can Jump twice Midair!"
+powerup_name = "double_jump"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dm73fd4swjb6j"]
+
+[ext_resource type="Texture2D" uid="uid://c2r0jrrek3wb8" path="res://assets/plattformer_character/animations/pushing/east/frame_000.png" id="21_us2wt"]
+[ext_resource type="Texture2D" uid="uid://c2kf1j45ghrof" path="res://assets/plattformer_character/animations/pushing/east/frame_001.png" id="22_58kjx"]
+[ext_resource type="Texture2D" uid="uid://cb3beibal3j3b" path="res://assets/plattformer_character/animations/pushing/east/frame_002.png" id="23_5jy6v"]
+[ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="24_jtuje"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_us2wt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_58kjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_5jy6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jtuje")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

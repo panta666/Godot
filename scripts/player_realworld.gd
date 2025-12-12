@@ -15,6 +15,9 @@ var can_move: bool = true
 var can_interact: bool = true
 var is_busy: bool = false
 
+# --- Shop Flags ---
+var is_shopping: bool = false
+
 # --- Handy Callback ---
 var _mobile_callback: Callable
 
@@ -189,7 +192,24 @@ func stand_up(target_pos: Vector2) -> void:
 	is_busy = false
 	global_position = target_pos
 	animated_sprite_2d.play("idle_down")
+	
+	
+# --------------------------
+# Shop-Logik
+# --------------------------
+func open_shop() -> void:
+	is_shopping = true
+	can_move = false
+	can_interact = false
+	is_busy = true
+	animated_sprite_2d.play("idle_up")
 
+func close_shop() -> void:
+	is_shopping = false
+	can_move = true
+	can_interact = true
+	is_busy = false
+	animated_sprite_2d.play("idle_down")
 # --------------------------
 # MainMenu Aktivierung/Deaktivierung
 # --------------------------

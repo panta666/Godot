@@ -505,6 +505,7 @@ animation = &"idle_down"
 shape = SubResource("CircleShape2D_8bn08")
 
 [node name="InteractingComponent" parent="." instance=ExtResource("4_so0tf")]
+z_index = 20
 position = Vector2(5, 2)
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -17,7 +17,12 @@ var save_data = {
 		"is_muted": false
 	},
 	"player_stats": {
-		"coins": 0 # Vorbereitet für die Zukunft
+		"coins": 0,
+		"double_jump": false,
+		"dash": false,
+		"range_attack": false,
+		"crouching": false,
+		"range_attack_increase": false
 	}
 }
 
