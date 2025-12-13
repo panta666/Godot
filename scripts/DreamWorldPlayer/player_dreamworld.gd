@@ -93,6 +93,7 @@ var is_cutscene_active: bool = false
 
 
 func _ready() -> void:
+	
 	current_scene = get_tree().current_scene
 	scene_name = current_scene.name.to_lower()
 
