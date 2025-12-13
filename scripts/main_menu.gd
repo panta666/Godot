@@ -35,7 +35,7 @@ func _ready() -> void:
 # --- Neues Spiel starten ---
 func _on_new_game_pressed() -> void:
 	print("Starte neues Spiel - Gehe zur Hubworld")
-
+	SaveManager.reset_game()
 	GlobalScript.game_first_loading = true
 	GlobalScript.current_scene = "dreamworld_tutorial"
 	GlobalScript.transition_scene = false

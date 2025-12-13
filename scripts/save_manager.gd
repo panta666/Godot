@@ -26,12 +26,38 @@ var save_data = {
 	}
 }
 
+const default_values = {
+	"game_progress": {
+		"current_scene_path": "MainMenu" # Standard-Startszene (passe dies an)
+	},
+	"audio_settings": {
+		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
+		"Music": -13.0,
+		"SFX": 0.0,
+		"is_muted": false
+	},
+	"player_stats": {
+		"coins": 0,
+		"double_jump": false,
+		"dash": false,
+		"range_attack": false,
+		"crouching": false,
+		"range_attack_increase": false
+	}
+}
+
 
 # Wird aufgerufen, sobald das Spiel startet (dank Autoload).
 func _ready():
 	# Lädt das Spiel und wendet die Soundeinstellungen sofort an.
 	load_game()
+	validate_data(save_data, default_values)
 
+func reset_game():
+	var audio_settings = get_audio_settings()
+	save_data = default_values.duplicate(true)
+	save_data["audio_settings"] = audio_settings.duplicate()
+	save_game()
 
 ## ----------------------------------------------------------------
 ## KERNFUNKTIONEN: Speichern und Laden (Intern)
@@ -78,7 +104,18 @@ func load_game():
 
 	# Wendet die geladenen Audioeinstellungen sofort an.
 	apply_audio_settings()
+	
+	check_for_player_settings()
 
+func check_for_player_settings():
+	if save_data.has("player_stats") == false:
+		save_data["player_stats"]["double_jump"] = false
+		save_data["player_stats"]["coins"] = 0
+		save_data["player_stats"]["double_jump"] = false
+		save_data["player_stats"]["dash"] = false
+		save_data["player_stats"]["range_attack"] = false
+		save_data["player_stats"]["crouching"] = false
+		save_data["player_stats"]["range_attack_increase"] = false
 
 # Wendet die im 'save_data'-Dictionary gespeicherten Audioeinstellungen an.
 func apply_audio_settings():
@@ -147,3 +184,39 @@ func get_audio_settings() -> Dictionary:
 # (Vorbereitet für die Zukunft)
 # func get_coins() -> int:
 #    return save_data["player_stats"]["coins"]
+
+# ----------------------------------------------------------------
+# VALIDIERUNGS-LOGIK (Rekursiv)
+# ----------------------------------------------------------------
+
+# Diese Funktion prüft 'target' gegen 'defaults'.
+# Wenn Keys in 'target' fehlen, werden sie aus 'defaults' kopiert.
+# Wenn ein Wert ein Dictionary ist, wird rekursiv geprüft.
+func validate_data(target: Dictionary, defaults: Dictionary) -> void:
+	for key in defaults:
+		# 1. Existiert der Key im geladenen Dictionary?
+		if not target.has(key):
+			print("SaveManager: Fehlender Key gefunden: '", key, "'. Füge Default hinzu.")
+			# Key fehlt -> Wert aus Default kopieren
+			# WICHTIG: Bei Arrays/Dicts 'duplicate' nutzen, um Referenzen zu vermeiden
+			var default_val = defaults[key]
+			if default_val is Dictionary or default_val is Array:
+				target[key] = default_val.duplicate(true)
+			else:
+				target[key] = default_val
+
+		# Da wir ihn gerade frisch hinzugefügt haben, müssen wir nicht tiefer prüfen
+			continue
+
+		# 2. Key existiert. Ist es ein Dictionary, das wir tiefer prüfen müssen?
+		var target_val = target[key]
+		var default_val = defaults[key]
+
+		# Wenn BEIDES Dictionaries sind -> Rekursion!
+		if target_val is Dictionary and default_val is Dictionary:
+			validate_data(target_val, default_val)
+
+		# Optional: Typ-Sicherheit prüfen (Wenn im Save 'coins' plötzlich ein String ist)
+		elif typeof(target_val) != typeof(default_val) and default_val != null:
+			print("SaveManager: Falscher Datentyp für '", key, "'. Setze auf Default zurück.")
+			target[key] = default_val
