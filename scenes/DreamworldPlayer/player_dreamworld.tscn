@@ -1064,6 +1064,7 @@ shape = SubResource("RectangleShape2D_agpj8")
 zoom = Vector2(2.5, 2.5)
 
 [node name="HundCoin" parent="." instance=ExtResource("80_ku5kx")]
+z_index = 10
 offset_left = 142.0
 offset_top = -116.0
 offset_right = 142.0
