@@ -19,7 +19,9 @@ func _ready() -> void:
 	master_volume.value = audio_settings["Master"]
 	music_volume.value = audio_settings["Music"]
 	sfx_volume.value = audio_settings["SFX"]
-	mv_mute.button_pressed = audio_settings["is_muted"]
+	mv_mute.button_pressed = audio_settings["Master_is_muted"]
+	mu_mute.button_pressed = audio_settings["Music_is_muted"]
+	sv_mute.button_pressed = audio_settings["SFX_is_muted"]
 
 
 # --------------------------
@@ -32,7 +34,7 @@ func _on_music_volume_value_changed(value: float) -> void:
 
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(MASTER_BUS, toggled_on)
-	SaveManager.update_is_muted(toggled_on)
+	SaveManager.update_is_muted(MASTER_BUS, toggled_on)
 
 
 func _on_master_volume_drag_ended(_value_changed: bool) -> void:
@@ -52,7 +54,9 @@ func _on_sfx_volume_drag_ended(_value_changed: bool) -> void:
 
 func _on_sv_mute_check_box_3_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(SFX_BUS, toggled_on)
+	SaveManager.update_is_muted(SFX_BUS, toggled_on)
 
 
 func _on_mu_v_mute_check_box_2_toggled(toggled_on: bool) -> void:
 	AudioServer.set_bus_mute(MUSIC_BUS, toggled_on)
+	SaveManager.update_is_muted(MUSIC_BUS, toggled_on)
