@@ -4,6 +4,7 @@ extends Area2D
 @onready var pickup_sound_player: AudioStreamPlayer2D = $PickupSoundPlayer
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var player_dreamworld: CharacterBody2D = %Player_Dreamworld
 
 @export var classroom = ""
 
@@ -11,7 +12,7 @@ extends Area2D
 func _on_body_entered(_body: Node2D) -> void:
 	if classroom == "":
 		printerr("Nicht angegeben in welchem Classroom, coin wird nicht aufgesammelt!")
-	else:
+	elif _body == player_dreamworld:
 		collect_coin()
 
 func collect_coin():
