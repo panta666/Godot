@@ -24,6 +24,7 @@ func collect_coin():
 	
 	# Alle visuals aus.
 	hide()
+	print("name des coins: ",self.name)
 	GlobalScript.add_coin_for_classroom(classroom)
 	pickup_sound_player.play()
 	# Warte bis der Sound vorbei ist, da sonst kein Sound kommt.
