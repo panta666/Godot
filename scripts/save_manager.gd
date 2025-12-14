@@ -32,9 +32,11 @@ const default_values = {
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
+		"Master_is_muted": false,
 		"Music": -13.0,
+		"Music_is_muted": false,
 		"SFX": 0.0,
-		"is_muted": false
+		"SFX_is_muted": false
 	},
 	"player_stats": {
 		"coins": 0,
@@ -102,6 +104,8 @@ func load_game():
 	else:
 		push_error("SaveManager: Speicherdatei ist korrupt.")
 
+	# Wenn neue Einstellungen zum speichern dazukommen überschreibe mit defautl.
+	validate_data(save_data, default_values)
 	# Wendet die geladenen Audioeinstellungen sofort an.
 	apply_audio_settings()
 	
@@ -125,7 +129,9 @@ func apply_audio_settings():
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), settings["Master"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), settings["Music"])
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), settings["SFX"])
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), settings["is_muted"])
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), settings["Master_is_muted"])
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), settings["Music_is_muted"])
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), settings["SFX_is_muted"])
 	print("SaveManager: Audioeinstellungen angewendet.")
 
 
@@ -141,8 +147,9 @@ func update_bus_volume(audio_bus_id: int, volume: float):
 		push_error("Bus unknown!")
 
 
-func update_is_muted(is_muted: bool):
-	save_data["audio_settings"]["is_muted"] = is_muted
+func update_is_muted(audio_bus_id: int,is_muted: bool):
+	var bus_is_muted = Global.AUDIO_BUSES[audio_bus_id] + "_is_muted"
+	save_data["audio_settings"][bus_is_muted] = is_muted
 	save_game()
 
 
