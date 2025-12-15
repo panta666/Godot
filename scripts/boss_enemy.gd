@@ -8,7 +8,6 @@ func _on_health_depleted() -> void:
 
 	# Level 2 für OOP freischalten
 	GlobalScript.oop_level_unlocked[1] = true
-	GlobalScript.save_coins_for_level(boss_of_level)
 
 	# LevelUI aktualisieren, falls vorhanden
 	var classroom = get_tree().current_scene
@@ -25,6 +24,7 @@ func _on_health_depleted() -> void:
 
 
 func _return_to_classroom() -> void:
+	GlobalScript.save_coins_for_level(boss_of_level)
 	# Kurze Wartezeit
 	await get_tree().create_timer(0.2).timeout
 	print("change scene")
