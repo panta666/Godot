@@ -10,6 +10,9 @@ const CLIMB_SPEED = 200
 var on_ladder: bool
 var climbing: bool
 
+#Wasser
+var in_water: bool
+
 #Variablen für Collision anpassung
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var head_check: RayCast2D = $HeadCheck
@@ -660,7 +663,6 @@ func cutscene_end() -> void:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	on_ladder = true
-
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	on_ladder = false
