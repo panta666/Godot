@@ -8,7 +8,12 @@ const SAVE_PATH = "user://game_save.dat"
 # Hier werden die Standardwerte für ein neues Spiel definiert.
 var save_data = {
 	"game_progress": {
-		"current_scene_path": "MainMenu" # Standard-Startszene (passe dies an)
+		"current_scene_path": "MainMenu", # Standard-Startszene (passe dies an)
+		"coins" : {
+			"realworld": 0,
+			"oop_level_one": [], #Szenenname des coins speichern
+			"mathe_level_one": []
+		}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -28,7 +33,12 @@ var save_data = {
 
 const default_values = {
 	"game_progress": {
-		"current_scene_path": "MainMenu" # Standard-Startszene (passe dies an)
+		"current_scene_path": "MainMenu", # Standard-Startszene
+		"coins" : {
+			"realworld": 0,
+			"oop_level_one": [], #Szenenname des coins speichern
+			"mathe_level_one": []
+		}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -78,6 +88,23 @@ func save_game():
 	file.close()
 	print("SaveManager: Spiel gespeichert.")
 
+func save_coin(coins: Array, level: String):
+	for coin in coins:
+		print("save coin", coin)
+		save_data["game_progress"]["coins"][level].append(coin)
+
+func save_realworld_coin(value: int):
+	save_data["game_progress"]["coins"]["realworld"] = value
+
+func get_realworld_coins():
+	return save_data["game_progress"]["coins"]["realworld"]
+
+func coin_is_collected(level: String, coin_name: String) -> bool:
+	var is_collected = false
+	if save_data["game_progress"]["coins"].has(level) == true:
+		if coin_name in save_data["game_progress"]["coins"][level]:
+			is_collected = true
+	return is_collected
 
 # Lädt die Daten aus der Datei und wendet die Audio-Einstellungen an.
 func load_game():

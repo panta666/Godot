@@ -1962,6 +1962,7 @@ position = Vector2(-249, 60)
 shape = SubResource("RectangleShape2D_aqo6v")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("7_qm84e")]
+unique_name_in_owner = true
 position = Vector2(-254, 126)
 
 [node name="Area2D_Cutscene2" type="Area2D" parent="."]
@@ -2081,25 +2082,25 @@ collision_mask = 3
 position = Vector2(3138, 87)
 shape = SubResource("RectangleShape2D_iu4jq")
 
-[node name="Coin" parent="." instance=ExtResource("16_iu4jq")]
+[node name="Tutorial_Coin" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(256, -76)
-classroom = "oop"
+classroom = "tutorial"
 
-[node name="Coin2" parent="." instance=ExtResource("16_iu4jq")]
+[node name="Tutorial_Coin2" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(314, -77)
-classroom = "oop"
+classroom = "tutorial"
 
-[node name="Coin3" parent="." instance=ExtResource("16_iu4jq")]
+[node name="Tutorial_Coin3" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(771, 127)
-classroom = "oop"
+classroom = "tutorial"
 
-[node name="Coin4" parent="." instance=ExtResource("16_iu4jq")]
+[node name="Tutorial_Coin4" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(1817, 130)
-classroom = "oop"
+classroom = "tutorial"
 
-[node name="Coin5" parent="." instance=ExtResource("16_iu4jq")]
+[node name="Tutorial_Coin5" parent="." instance=ExtResource("16_iu4jq")]
 position = Vector2(2755, 96)
-classroom = "oop"
+classroom = "tutorial"
 
 [node name="Area2D_Cutscene8" type="Area2D" parent="."]
 collision_layer = 3
