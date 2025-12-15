@@ -88,8 +88,23 @@ func save_game():
 	file.close()
 	print("SaveManager: Spiel gespeichert.")
 
-func save_coin(coin_name, level):
-	print("Speicher " , coin_name , " aus level ", level)
+func save_coin(coins: Array, level: String):
+	for coin in coins:
+		print("save coin", coin)
+		save_data["game_progress"]["coins"][level].append(coin)
+
+func save_realworld_coin(value: int):
+	save_data["game_progress"]["coins"]["realworld"] = value
+
+func get_realworld_coins():
+	return save_data["game_progress"]["coins"]["realworld"]
+
+func coin_is_collected(level: String, coin_name: String) -> bool:
+	var is_collected = false
+	if save_data["game_progress"]["coins"].has(level) == true:
+		if coin_name in save_data["game_progress"]["coins"][level]:
+			is_collected = true
+	return is_collected
 
 # Lädt die Daten aus der Datei und wendet die Audio-Einstellungen an.
 func load_game():
