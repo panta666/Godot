@@ -3328,11 +3328,6 @@ position = Vector2(1175.0001, -372)
 scale = Vector2(0.43836156, 0.5626694)
 collision_layer = 4
 
-[node name="Boss" parent="." instance=ExtResource("26_7igvv")]
-position = Vector2(3936.9998, 336)
-collision_layer = 4
-boss_of_level = "oop_level_one"
-
 [node name="Traps" type="Node" parent="."]
 
 [node name="ErrorTrap" parent="Traps" instance=ExtResource("26_wvco0")]
@@ -3391,5 +3386,6 @@ position = Vector2(2940, 738)
 scale = Vector2(1, 1)
 collision_layer = 4
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("19_wnclc")]
+[node name="Boss" parent="." instance=ExtResource("19_wnclc")]
 position = Vector2(3978, 331)
+boss_of_level = "oop_level_one"
