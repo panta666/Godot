@@ -70,27 +70,57 @@ var resolutions = {
 }
 
 # Gesammelte Coins pro classroom.
-var coins = {"oop_level_one": 0, "oop_level_two":0}
+var coins = {"realworld": 0, "oop_level_one": [], "oop_level_two":[]}
+
+func get_coins_realworld():
+	return coins["realworld"]
+
+func decrease_realworld_coins(value: int) -> bool:
+	var available_funds = false
+	if coins["realworld"] - value >= 0:
+		coins["realworld"] = coins["realworld"] - value
+		available_funds = true
+	return available_funds
+
+func set_realworld_coins():
+	coins["realworld"] = SaveManager.get_realworld_coins()
+
+func update_realworld_coins():
+	if coins.has("realworld"):
+		coins["realworld"] = coins["realworld"] +1
+	else:
+		coins["realworld"] = 1
 
 # Gibt an wie viele coins in einem Classroom gesammelt wurden.
 func get_coins_for_classroom(classroom: String) -> int:
-	return coins[classroom]
+	return len(coins[classroom])
 
 """
 Inkrementiert die gesammelten coins eines classrooms und gibt diese zurück.
 """
-func add_coin_for_classroom(classroom: String) -> int:
+func add_coin_for_classroom(classroom: String, coin_name: String) -> Array:
 	print("coin add")
 	# 1. Sicherstellen, dass der Eintrag im Dictionary existiert (für neue Level)
 	if not coins.has(classroom):
-		coins[classroom] = 0
-	coins[classroom] += 1
+		coins[classroom] = [coin_name]
+	else:
+		coins[classroom].append(coin_name)
 	# Signal senden (mit Level-Info und neuem Stand)
-	coin_collected.emit(classroom, coins[classroom])
+	coin_collected.emit(classroom, get_coins_for_classroom(classroom))
+	update_realworld_coins()
 	return coins[classroom]
 
-func set_coins(_coins: Dictionary):
-	coins = _coins
+
+func save_coins_for_level(classroom: String):
+	"""
+	Diese Methode wird gecallt wenn ein Boss eines Classroom levels besiegt wurde.
+	Speichert die gesammelten Coins.
+	"""
+	print("save_coins_for_level: ",coins[classroom])
+	SaveManager.save_coin(coins[classroom], classroom)
+	SaveManager.save_realworld_coin(get_coins_realworld())
+	#for coin in coins[classroom]:
+	#	SaveManager.save_coin(coin, classroom)
 
 # -------------------------
 # Neues Spiel starten
