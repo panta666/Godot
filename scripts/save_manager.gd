@@ -10,8 +10,9 @@ var save_data = {
 	"game_progress": {
 		"current_scene_path": "MainMenu", # Standard-Startszene (passe dies an)
 		"coins" : {
-			"oop": [], #Szenenname des coins speichern
-			"mathe": []
+			"realworld": 0,
+			"oop_level_one": [], #Szenenname des coins speichern
+			"mathe_level_one": []
 		}
 	},
 	"audio_settings": {
@@ -35,8 +36,8 @@ const default_values = {
 		"current_scene_path": "MainMenu", # Standard-Startszene
 		"coins" : {
 			"realworld": 0,
-			"oop": [], #Szenenname des coins speichern
-			"mathe": []
+			"oop_level_one": [], #Szenenname des coins speichern
+			"mathe_level_one": []
 		}
 	},
 	"audio_settings": {
