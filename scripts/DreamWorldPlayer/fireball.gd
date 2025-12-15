@@ -13,7 +13,7 @@ var is_dead = false
 
 func _ready():
 	current_scene = get_tree().current_scene
-	scene_name = current_scene.name.to_lower()
+	scene_name = current_scene.get_name().to_lower()
 	
 	change_size()
 
