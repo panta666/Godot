@@ -14,7 +14,7 @@ func _ready() -> void:
 	if SaveManager.coin_is_collected(classroom, self.name):
 		disable_coin()
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(_body: CharacterBody2D) -> void:
 	if classroom == "":
 		printerr("Nicht angegeben in welchem Classroom, coin wird nicht aufgesammelt!")
 	elif _body == player_dreamworld || _body == player_dreamworld_tutorial:
