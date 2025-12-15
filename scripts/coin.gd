@@ -8,6 +8,9 @@ extends Area2D
 
 @export var classroom = ""
 
+func _ready() -> void:
+	if SaveManager.coin_is_collected(classroom, self.name):
+		disable_coin()
 
 func _on_body_entered(_body: Node2D) -> void:
 	if classroom == "":
