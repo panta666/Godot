@@ -3341,6 +3341,7 @@ collision_layer = 2
 position = Vector2(492, -35)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Traps"]
+visible = false
 position = Vector2(486, -16)
 sprite_frames = SubResource("SpriteFrames_wnclc")
 autoplay = "default"
@@ -3351,6 +3352,7 @@ frame_progress = 0.45119083
 position = Vector2(1211, 59)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Traps"]
+visible = false
 position = Vector2(1204, 78)
 sprite_frames = SubResource("SpriteFrames_wnclc")
 autoplay = "default"
@@ -3361,6 +3363,7 @@ frame_progress = 0.45119083
 position = Vector2(2071, 296)
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Traps"]
+visible = false
 position = Vector2(2065, 320)
 sprite_frames = SubResource("SpriteFrames_wnclc")
 autoplay = "default"
