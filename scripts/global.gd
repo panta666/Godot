@@ -143,6 +143,8 @@ func start_from_menu() -> void:
 	# Scene wechseln - Player wird erst nach SceneReady erzeugt
 	SaveManager.load_last_scene()
 	
+	set_realworld_coins()
+	
 	# Player deferred instanziieren
 	call_deferred("spawn_player")
 
