@@ -15,6 +15,12 @@ func _on_body_entered(_body: Node2D) -> void:
 	elif _body == player_dreamworld:
 		collect_coin()
 
+func disable_coin():
+	collision_shape_2d.set_deferred("disabled", true)
+	
+	# Alle visuals aus.
+	hide()
+
 func collect_coin():
 	"""
 	Kollision sofort deaktivieren.
