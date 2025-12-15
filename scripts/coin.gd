@@ -30,12 +30,8 @@ func collect_coin():
 	set_deferred muss benutzt werden, da wir uns mitten in einem Physik-Callback
 	befinden. Direkte Änderung würde Fehler werfen.
 	"""
-	collision_shape_2d.set_deferred("disabled", true)
-	
-	# Alle visuals aus.
-	hide()
-	print("name des coins: ",self.name)
-	GlobalScript.add_coin_for_classroom(classroom)
+	disable_coin()
+	GlobalScript.add_coin_for_classroom(classroom, self.name)
 	pickup_sound_player.play()
 	# Warte bis der Sound vorbei ist, da sonst kein Sound kommt.
 	await pickup_sound_player.finished
