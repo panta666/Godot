@@ -5,8 +5,10 @@ extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player_dreamworld: CharacterBody2D = %Player_Dreamworld
+@onready var player_dreamworld_tutorial: CharacterBody2D = %Player_Dreamworld
 
 @export var classroom = ""
+
 
 func _ready() -> void:
 	if SaveManager.coin_is_collected(classroom, self.name):
@@ -15,7 +17,7 @@ func _ready() -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	if classroom == "":
 		printerr("Nicht angegeben in welchem Classroom, coin wird nicht aufgesammelt!")
-	elif _body == player_dreamworld:
+	elif _body == player_dreamworld || _body == player_dreamworld_tutorial:
 		collect_coin()
 
 func disable_coin():

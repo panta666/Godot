@@ -72,6 +72,9 @@ var resolutions = {
 # Gesammelte Coins pro classroom.
 var coins = {"realworld": 0, "oop_level_one": [], "oop_level_two":[]}
 
+func reset_coins_after_tutorial():
+	coins = {"realworld": 0, "oop_level_one": [], "oop_level_two":[]}
+
 func get_coins_realworld():
 	return coins["realworld"]
 
@@ -107,7 +110,8 @@ func add_coin_for_classroom(classroom: String, coin_name: String) -> Array:
 		coins[classroom].append(coin_name)
 	# Signal senden (mit Level-Info und neuem Stand)
 	coin_collected.emit(classroom, get_coins_for_classroom(classroom))
-	update_realworld_coins()
+	if(classroom != "tutorial"):
+		update_realworld_coins()
 	return coins[classroom]
 
 
