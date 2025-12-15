@@ -20,11 +20,11 @@
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="18_swoql"]
 [ext_resource type="PackedScene" uid="uid://b5wwjaw1ono3a" path="res://scenes/level/oop/oop_assets/platform_down.tscn" id="19_8mc05"]
 [ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="19_b46tw"]
+[ext_resource type="PackedScene" uid="uid://c354yps3u21j" path="res://scenes/Enemies/Boss_Enemy.tscn" id="19_wnclc"]
 [ext_resource type="Texture2D" uid="uid://cl78wmbroa6b" path="res://scenes/level/oop/oop_assets/oop_boss_background.png" id="20_2lnip"]
 [ext_resource type="PackedScene" uid="uid://b225ml4tngy" path="res://scenes/level/oop/oop_assets/platform_right.tscn" id="21_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://bsmuu486f51eq" path="res://scenes/level/oop/oop_assets/platform_left.tscn" id="22_oyg0e"]
 [ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://scenes/Enemies/Duck.tscn" id="25_s8ccv"]
-[ext_resource type="PackedScene" uid="uid://c354yps3u21j" path="res://scenes/Enemies/Boss_Enemy.tscn" id="26_7igvv"]
 [ext_resource type="PackedScene" uid="uid://gljlcysdxo1t" path="res://scenes/level/oop/oop_assets/error_trap.tscn" id="26_wvco0"]
 [ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="27_2cn7s"]
 [ext_resource type="PackedScene" uid="uid://b0wwclfi0opvd" path="res://scenes/level/oop/oop_assets/java_trap.tscn" id="28_7igvv"]
@@ -3189,7 +3189,7 @@ tile_set = SubResource("TileSet_x23ky")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 z_index = 2
-position = Vector2(36, 69)
+position = Vector2(60, 59)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
@@ -3305,35 +3305,27 @@ collision_layer = 2
 [node name="Bug1" parent="." instance=ExtResource("19_b46tw")]
 position = Vector2(877.00006, 69)
 scale = Vector2(0.43219286, 0.47272727)
-collision_layer = 2
+collision_layer = 4
 
 [node name="Bug2" parent="." instance=ExtResource("19_b46tw")]
-position = Vector2(840.00006, 422.99997)
+position = Vector2(815.00006, 415.99997)
 scale = Vector2(0.43219286, 0.47272727)
-collision_layer = 2
+collision_layer = 4
 
 [node name="Bug4" parent="." instance=ExtResource("19_b46tw")]
 position = Vector2(3145.0002, -236)
 scale = Vector2(0.43219286, 0.47272727)
-collision_layer = 2
+collision_layer = 4
 
 [node name="Duck1" parent="." instance=ExtResource("25_s8ccv")]
 position = Vector2(1368, 620)
 scale = Vector2(0.43836156, 0.5626694)
-collision_layer = 2
+collision_layer = 4
 
 [node name="Duck2" parent="." instance=ExtResource("25_s8ccv")]
 position = Vector2(1175.0001, -372)
 scale = Vector2(0.43836156, 0.5626694)
-collision_layer = 2
-
-[node name="Bug3" parent="." instance=ExtResource("19_b46tw")]
-position = Vector2(2952, 751)
-collision_layer = 2
-
-[node name="Boss" parent="." instance=ExtResource("26_7igvv")]
-position = Vector2(3936.9998, 336)
-collision_layer = 2
+collision_layer = 4
 
 [node name="Traps" type="Node" parent="."]
 
@@ -3387,3 +3379,11 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger"]
 position = Vector2(108, 50)
 shape = SubResource("RectangleShape2D_7igvv")
+
+[node name="Bug3" parent="." instance=ExtResource("19_b46tw")]
+position = Vector2(2940, 738)
+scale = Vector2(1, 1)
+collision_layer = 4
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("19_wnclc")]
+position = Vector2(3978, 331)

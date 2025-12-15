@@ -1,9 +1,10 @@
-[gd_scene load_steps=168 format=3 uid="uid://dttdsxr6qrhe0"]
+[gd_scene load_steps=170 format=3 uid="uid://dttdsxr6qrhe0"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_6di4g"]
 [ext_resource type="Script" uid="uid://cdshcdgrunfvm" path="res://scripts/range_attack.gd" id="2_wcsn1"]
 [ext_resource type="Resource" uid="uid://cpbkme3shpy64" path="res://scenes/Enemies/Duck_Projectile.tres" id="3_ogr5e"]
 [ext_resource type="Texture2D" uid="uid://dixlcg6i7nrnf" path="res://assets/characters/enemies/Duck/Idle/0001.png" id="4_ak1n0"]
+[ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://scenes/Enemies/Generic_Enemy.gdshader" id="4_jc0bu"]
 [ext_resource type="Texture2D" uid="uid://d043kbngd1pys" path="res://assets/characters/enemies/Duck/Idle/0003.png" id="4_wcsn1"]
 [ext_resource type="Texture2D" uid="uid://bodmbvxcgdqyr" path="res://assets/characters/enemies/Duck/Idle/0002.png" id="5_8qmgw"]
 [ext_resource type="Texture2D" uid="uid://wrbj4loeytyu" path="res://assets/characters/enemies/Duck/Idle/0004.png" id="5_ogr5e"]
@@ -138,6 +139,12 @@
 [ext_resource type="Texture2D" uid="uid://n4cod3jbia76" path="res://assets/characters/enemies/Duck/Walk/0046.png" id="142_lwiw3"]
 [ext_resource type="Texture2D" uid="uid://b2lh2a1vtqcim" path="res://assets/characters/enemies/Duck/Walk/0047.png" id="143_r4jmv"]
 [ext_resource type="Texture2D" uid="uid://b3mooowaix6gj" path="res://assets/characters/enemies/Duck/Walk/0048.png" id="144_ogr5e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyunv"]
+resource_local_to_scene = true
+shader = ExtResource("4_jc0bu")
+shader_parameter/flash_color = Color(0.78431374, 0, 0, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2dgci"]
 load_path = "res://.godot/imported/0001.png-4da17e12d7ecbd74feaac9e26884c0c6.ctex"
@@ -761,6 +768,7 @@ size = Vector2(16.250011, 5.78125)
 range_attacks = Array[ExtResource("2_wcsn1")]([ExtResource("3_ogr5e")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_fyunv")
 sprite_frames = SubResource("SpriteFrames_6di4g")
 animation = &"pre_attack"
 flip_h = true
@@ -788,7 +796,7 @@ shape = SubResource("RectangleShape2D_fyunv")
 shape = SubResource("RectangleShape2D_xo4bp")
 
 [node name="Attack_Cooldown" parent="." index="11"]
-wait_time = 4.0
+wait_time = 0.1
 
 [node name="EnemySoundPlayer" parent="." index="12"]
 sound_attack = ExtResource("135_x6omk")

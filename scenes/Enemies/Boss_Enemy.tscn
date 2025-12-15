@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://c354yps3u21j"]
+[gd_scene load_steps=86 format=3 uid="uid://c354yps3u21j"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_x44s7"]
 [ext_resource type="Script" uid="uid://blox88rn1v5np" path="res://scripts/boss_enemy.gd" id="2_nfnda"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c5li0nd5vv0vo" path="res://scenes/Enemies/Boss_Hit.tres" id="4_audnc"]
 [ext_resource type="Texture2D" uid="uid://dg727v2cpcsnx" path="res://assets/characters/enemies/Boss/Attack/0002.png0002.png" id="4_lory0"]
 [ext_resource type="Texture2D" uid="uid://d260yeo8yb643" path="res://assets/characters/enemies/Boss/Attack/0002.png0003.png" id="5_audnc"]
+[ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://scenes/Enemies/Generic_Enemy.gdshader" id="5_lory0"]
 [ext_resource type="Texture2D" uid="uid://mgkmsvlslsst" path="res://assets/characters/enemies/Boss/Attack/0002.png0004.png" id="6_odusm"]
 [ext_resource type="Texture2D" uid="uid://blrq1s2ba00ln" path="res://assets/characters/enemies/Boss/Attack/0002.png0005.png" id="7_bc0da"]
 [ext_resource type="Texture2D" uid="uid://c03afjsdu8ti" path="res://assets/characters/enemies/Boss/Attack/0002.png0006.png" id="8_yvl28"]
@@ -78,6 +79,12 @@
 [ext_resource type="Texture2D" uid="uid://gh2huk8l8n0k" path="res://assets/characters/enemies/Boss/Pre_Attack/0018.png" id="74_udovp"]
 [ext_resource type="Texture2D" uid="uid://7hkrpktp5n4n" path="res://assets/characters/enemies/Boss/Pre_Attack/0019.png" id="75_585gi"]
 [ext_resource type="Texture2D" uid="uid://c0d0cfqyynlib" path="res://assets/characters/enemies/Boss/Pre_Attack/0020.png" id="76_l0kbn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_audnc"]
+resource_local_to_scene = true
+shader = ExtResource("5_lory0")
+shader_parameter/flash_color = Color(0.78431374, 0, 0, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gkw0u"]
 animations = [{
@@ -529,21 +536,25 @@ size = Vector2(16.250011, 5.78125)
 [node name="CharacterBody2D" instance=ExtResource("1_x44s7")]
 script = ExtResource("2_nfnda")
 attacks = Array[ExtResource("3_lory0")]([ExtResource("4_audnc")])
-health_bar_position = Vector2(0, -90)
 
 [node name="Health" parent="." index="0"]
 max_health = 250
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_audnc")
 sprite_frames = SubResource("SpriteFrames_gkw0u")
 animation = &"post_attack"
-frame_progress = 0.17706813
+frame_progress = 0.7838312
 flip_h = true
 
 [node name="Collision" parent="." index="2"]
 position = Vector2(-13.125, 32.499996)
 scale = Vector2(0.7999992, 0.7999992)
 shape = SubResource("RectangleShape2D_rsppg")
+
+[node name="RayCastRight" parent="." index="3"]
+position = Vector2(25, -20)
+target_position = Vector2(33.115, 0)
 
 [node name="RaycastDownRight" parent="." index="4"]
 position = Vector2(60, 97)
@@ -566,3 +577,6 @@ shape = SubResource("RectangleShape2D_audnc")
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_odusm")
+
+[node name="Attack_Cooldown" parent="." index="11"]
+wait_time = 0.75

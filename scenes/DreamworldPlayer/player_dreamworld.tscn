@@ -183,7 +183,7 @@ size = Vector2(15, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pffi"]
 size = Vector2(14, 39)
 
-[node name="Player_Dreamworld" type="CharacterBody2D"]
+[node name="Player_Dreamworld" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_fd23n")
 shake = true
