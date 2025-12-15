@@ -3189,7 +3189,7 @@ tile_set = SubResource("TileSet_x23ky")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 z_index = 2
-position = Vector2(4066, -481)
+position = Vector2(60, 59)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
@@ -3386,5 +3386,4 @@ scale = Vector2(1, 1)
 collision_layer = 4
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("19_wnclc")]
-position = Vector2(4212, -525)
-scale = Vector2(0.6, 0.6)
+position = Vector2(3978, 331)
