@@ -74,6 +74,13 @@ var knockback_timer = 0.0
 var knockback_length = 0.2
 @onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
+#Shake Effekt bei Damage nehmen
+@export var shake = false
+var shake_phase := 0.0
+@export var shake_duration := 0.3
+var shake_timer := 0.0
+var normal_offset
+
 #HP
 var is_alive: bool = true
 @onready var health_wave: Control = $Healthwave/HealthWave
@@ -95,7 +102,9 @@ var is_cutscene_active: bool = false
 func _ready() -> void:
 	
 	current_scene = get_tree().current_scene
-	scene_name = current_scene.name.to_lower()
+	scene_name = current_scene.get_name().to_lower()
+
+	normal_offset = camera_2d.offset
 
 	deactivate_hitboxes()
 
@@ -148,6 +157,7 @@ func _physics_process(delta: float) -> void:
 	if is_taking_damage:
 		add_gravity(delta)
 		apply_knockback(delta)
+		handle_shake(delta)
 		player_sprite.flip_h = (last_facing_direction < 0)
 		update_animation()
 		move_and_slide()
@@ -156,6 +166,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Add gravity
 	add_gravity(delta)
+
+	handle_shake(delta)
 
 	#Coyote Timer neu setzen/ runterzählen
 	handle_coyote_time(delta)
@@ -466,10 +478,13 @@ func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 		return
 	if is_taking_damage:
 		return
+
+	start_shake()
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
 	audio_player.play_sound(PlayreDreamworldSounds.soundtype.GET_HIT)
+
 	hit_flash_animation.play("hit_flash")
 
 	# Knockback: Immer weg vom Gegner!
@@ -493,6 +508,24 @@ func apply_knockback(delta: float):
 			is_taking_damage = false
 			velocity.x = 0
 			stop_dashing(delta)
+
+func start_shake():
+	shake_timer = shake_duration
+
+#Handle Shake
+func handle_shake(delta: float):
+	if shake_timer > 0:
+		shake_timer -= delta
+		shake_phase += delta * 60.0   # Geschwindigkeit des Zitterns
+		var strength = shake_timer / shake_duration
+		var offset = Vector2(
+			randf_range(-1, 1),
+			randf_range(-1, 1)
+		) * 2.0 * strength
+		camera_2d.offset = normal_offset + offset
+	else:
+		camera_2d.offset = normal_offset
+
 
 #Handle Death
 func _on_health_depleted() -> void:

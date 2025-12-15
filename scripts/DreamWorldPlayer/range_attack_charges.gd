@@ -29,7 +29,7 @@ func update_recharge_progress(progress: float):
 
 func set_attack_texture():
 	var current_scene = get_tree().current_scene
-	var scene_name = current_scene.name.to_lower()
+	var scene_name = current_scene.get_name().to_lower()
 	if "oop" in scene_name.to_lower():
 		texture_normal = ATTACK_ICONS["oop_capsule"]
 	elif "math" in scene_name.to_lower():
