@@ -22,6 +22,12 @@ func _ready() -> void:
 	mv_mute.button_pressed = audio_settings["Master_is_muted"]
 	mu_mute.button_pressed = audio_settings["Music_is_muted"]
 	sv_mute.button_pressed = audio_settings["SFX_is_muted"]
+	
+	# Muss erst in ready connected werden weil sonst was falsches gespeichert wird beim laden.
+	mv_mute.connect("toggled", _on_check_box_toggled)
+	mu_mute.connect("toggled", _on_mu_v_mute_check_box_2_toggled)
+	sv_mute.connect('toggled', _on_sv_mute_check_box_3_toggled)
+	
 
 
 # --------------------------
