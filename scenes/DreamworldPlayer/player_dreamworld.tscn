@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://2puypr5ol8x8" path="res://scenes/DreamworldPlayer/range_attack_charges.tscn" id="4_bydnf"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://scenes/DreamworldPlayer/health_wave.tscn" id="5_060o7"]
 [ext_resource type="Shader" uid="uid://l5jshm6m8b1x" path="res://scenes/components/hit_flash.gdshader" id="6_tg0uq"]
-[ext_resource type="SpriteFrames" path="res://scenes/DreamworldPlayer/player_dreamworld.tres" id="7_nt51a"]
+[ext_resource type="SpriteFrames" uid="uid://hariq7g2xi0r" path="res://scenes/DreamworldPlayer/player_dreamworld.tres" id="7_nt51a"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="74_3kc26"]
 [ext_resource type="Texture2D" uid="uid://d1atpo45f7fum" path="res://assets/plattformer_character/animations/melee_slash/NPT100.png" id="75_w18fs"]
 [ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="76_ekknv"]
@@ -183,7 +183,7 @@ size = Vector2(15, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pffi"]
 size = Vector2(14, 39)
 
-[node name="Player_Dreamworld" type="CharacterBody2D"]
+[node name="Player_Dreamworld" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_fd23n")
 

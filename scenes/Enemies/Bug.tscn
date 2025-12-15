@@ -1,8 +1,9 @@
-[gd_scene load_steps=151 format=3 uid="uid://6wx15xs4nxry"]
+[gd_scene load_steps=153 format=3 uid="uid://6wx15xs4nxry"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://scenes/Enemies/Generic_Enemy.tscn" id="1_no7e0"]
 [ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://scripts/attack.gd" id="2_5ratu"]
 [ext_resource type="Resource" uid="uid://ou55octuf0rv" path="res://scenes/Enemies/slash_attack_bug.tres" id="3_y0ijw"]
+[ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://scenes/Enemies/Generic_Enemy.gdshader" id="4_yi54r"]
 [ext_resource type="Texture2D" uid="uid://dkyposv7q7mhk" path="res://assets/characters/enemies/Bug/Attack/0001.png" id="6_1ax7u"]
 [ext_resource type="Texture2D" uid="uid://dahgqa1gbucu0" path="res://assets/characters/enemies/Bug/Attack/0002.png" id="7_egypa"]
 [ext_resource type="Texture2D" uid="uid://cm0c25lhmsi6" path="res://assets/characters/enemies/Bug/Attack/0003.png" id="8_jthae"]
@@ -145,6 +146,12 @@
 [ext_resource type="AudioStream" uid="uid://c3y1lnag6r4w8" path="res://assets/sfx/Enemies/bug/Bug Hurt/35640__sandyrb__bug-04.wav" id="143_yi54r"]
 [ext_resource type="AudioStream" uid="uid://cki7sd3n6r4dk" path="res://assets/sfx/Enemies/bug/Bug Death/266535__gcastanera__smashed-bug.wav" id="144_yoq71"]
 [ext_resource type="AudioStream" uid="uid://bv07rnxlmnquo" path="res://assets/sfx/Enemies/bug/Bug Walk/469042__hawkeye_sprout__bugs-steps.wav" id="145_81reo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yoq71"]
+resource_local_to_scene = true
+shader = ExtResource("4_yi54r")
+shader_parameter/flash_color = Color(0.78431374, 0, 0, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_no7e0"]
 animations = [{
@@ -750,11 +757,16 @@ size = Vector2(16.250011, 5.78125)
 attacks = Array[ExtResource("2_5ratu")]([ExtResource("3_y0ijw")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_yoq71")
 sprite_frames = SubResource("SpriteFrames_no7e0")
-animation = &"stun"
+animation = &"walk"
+frame_progress = 0.66581583
 
 [node name="Collision" parent="." index="2"]
 shape = SubResource("RectangleShape2D_jthae")
+
+[node name="RayCastRight" parent="." index="3"]
+position = Vector2(20, -7.5)
 
 [node name="CollisionShape2D" parent="Tracking_Box" index="0"]
 shape = SubResource("RectangleShape2D_yi54r")
@@ -764,6 +776,9 @@ shape = SubResource("RectangleShape2D_yoq71")
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_81reo")
+
+[node name="Attack_Cooldown" parent="." index="11"]
+wait_time = 0.5
 
 [node name="EnemySoundPlayer" parent="." index="12"]
 sound_attack = ExtResource("142_jthae")
