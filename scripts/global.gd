@@ -8,6 +8,7 @@ class_name Global
 # Signal coins
 # -------------------------
 signal coin_collected(level_name: String, total_coins: int)
+signal realworld_coins_update(value: int)
 
 # -------------------------
 # Signal Tutorial
