@@ -340,14 +340,6 @@ shape = SubResource("RectangleShape2D_agpj8")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 
-[node name="HundCoin" parent="." instance=ExtResource("80_ku5kx")]
-z_index = 10
-offset_left = 146.0
-offset_top = -118.0
-offset_right = 146.0
-offset_bottom = -118.0
-scale = Vector2(0.6927869, 0.72448313)
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 64
@@ -371,6 +363,16 @@ bus = &"SFX"
 
 [node name="AudioAction" type="AudioStreamPlayer2D" parent="AudioPlayer"]
 bus = &"SFX"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HundCoin" parent="HUD" instance=ExtResource("80_ku5kx")]
+z_index = 10
+offset_left = 940.0
+offset_top = 9.0
+offset_right = 940.0
+offset_bottom = 9.0
+scale = Vector2(0.074411206, 0.054683987)
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
