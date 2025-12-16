@@ -9,6 +9,7 @@ var already_triggered := false
 
 func _ready():
 	connect("body_entered", Callable(self, "_on_body_entered"))
+	already_triggered = SaveManager.get_quest_already_triggered(quest.id)
 
 func _on_body_entered(body):
 	if not (body is PlayerRealworld):
@@ -18,6 +19,7 @@ func _on_body_entered(body):
 		return
 
 	already_triggered = true
+	SaveManager.set_quest_triggered(quest.id)
 
 	# 1. Quest aktivieren
 	if quest:
