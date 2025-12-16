@@ -13,7 +13,8 @@ var save_data = {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
 			"mathe_level_one": []
-		}
+		},
+		"quests": []
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -38,7 +39,8 @@ const default_values = {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
 			"mathe_level_one": []
-		}
+		},
+		"quests": []
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -69,6 +71,14 @@ func reset_game():
 	var audio_settings = get_audio_settings()
 	save_data = default_values.duplicate(true)
 	save_data["audio_settings"] = audio_settings.duplicate()
+	save_game()
+
+# Gibt wieder ob ein Quest bereits getriggerd wurde.
+func get_quest_already_triggered(id: String) -> bool:
+	return save_data["game_progress"]["quests"].has(id)
+
+func set_quest_triggered(id: String):
+	save_data["game_progress"]["quests"].append(id)
 	save_game()
 
 ## ----------------------------------------------------------------
