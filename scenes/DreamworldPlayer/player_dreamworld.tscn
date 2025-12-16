@@ -372,12 +372,6 @@ bus = &"SFX"
 bus = &"SFX"
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
-[connection signal="area_entered" from="HitBoxRight" to="." method="_on_hit_box_up_body_entered"]
-[connection signal="body_entered" from="HitBoxRight" to="." method="_on_hit_box_up_body_entered"]
-[connection signal="area_entered" from="HitBoxLeft" to="." method="_on_hit_box_up_body_entered"]
-[connection signal="body_entered" from="HitBoxLeft" to="." method="_on_hit_box_up_body_entered"]
-[connection signal="area_entered" from="HitBoxUp" to="." method="_on_hit_box_up_body_entered"]
-[connection signal="body_entered" from="HitBoxUp" to="." method="_on_hit_box_up_body_entered"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="body_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
 [connection signal="received_damage" from="HurtBox" to="." method="received_damage"]
