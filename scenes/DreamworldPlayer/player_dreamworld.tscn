@@ -200,22 +200,6 @@ script = ExtResource("3_rxbup")
 max_health = 100
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
-[node name="RangeAttackCharges" type="CanvasLayer" parent="."]
-
-[node name="RangeAttackCharges" parent="RangeAttackCharges" instance=ExtResource("4_bydnf")]
-offset_left = 131.0
-offset_top = 23.0
-offset_right = 171.0
-offset_bottom = 63.0
-
-[node name="Healthwave" type="CanvasLayer" parent="."]
-
-[node name="HealthWave" parent="Healthwave" instance=ExtResource("5_060o7")]
-offset_left = 16.0
-offset_top = 19.0
-offset_right = 111.0
-offset_bottom = 72.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ku5kx")
 position = Vector2(-2.0000005, 0)
@@ -340,13 +324,6 @@ shape = SubResource("RectangleShape2D_agpj8")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
 
-[node name="HundCoin" parent="." instance=ExtResource("80_ku5kx")]
-z_index = 10
-offset_left = 142.0
-offset_top = -116.0
-offset_right = 142.0
-offset_bottom = -116.0
-
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 64
@@ -370,6 +347,28 @@ bus = &"SFX"
 
 [node name="AudioAction" type="AudioStreamPlayer2D" parent="AudioPlayer"]
 bus = &"SFX"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HundCoin" parent="HUD" instance=ExtResource("80_ku5kx")]
+z_index = 10
+offset_left = 940.0
+offset_top = 9.0
+offset_right = 940.0
+offset_bottom = 9.0
+scale = Vector2(0.074411206, 0.054683987)
+
+[node name="RangeAttackCharges" parent="HUD" instance=ExtResource("4_bydnf")]
+offset_left = 131.0
+offset_top = 23.0
+offset_right = 171.0
+offset_bottom = 63.0
+
+[node name="HealthWave" parent="HUD" instance=ExtResource("5_060o7")]
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 111.0
+offset_bottom = 72.0
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]

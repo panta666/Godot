@@ -69,7 +69,7 @@ var max_range_attack = 1 #Wie viele Charges man hat
 var current_range_attack = 0
 const RANGE_ATTACK_RECHARGE_TIME = 5.0
 var recharge_timer = 0.0
-@onready var range_attack_charges: TextureButton = $RangeAttackCharges/RangeAttackCharges
+@onready var range_attack_charges: TextureButton = $HUD/RangeAttackCharges
 
 #Variablen für Damage nehmen/ Knockback
 var is_taking_damage: bool = false
@@ -86,7 +86,7 @@ var normal_offset
 
 #HP
 var is_alive: bool = true
-@onready var health_wave: Control = $Healthwave/HealthWave
+@onready var health_wave: Control = $HUD/HealthWave
 @onready var health: Health = $Health
 var blink_overlay_scene = preload("res://scenes/components/blink_overlay.tscn")
 

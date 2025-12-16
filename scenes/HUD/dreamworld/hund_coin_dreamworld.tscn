@@ -12,7 +12,9 @@ grow_vertical = 2
 
 [node name="CoinLabel" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 4.000061
+offset_right = 80.00006
 offset_bottom = 23.0
-text = "Coins: 0"
+scale = Vector2(13.351408, 25.668163)
+text = "Coins: 0/5"
 script = ExtResource("1_xqhhy")
