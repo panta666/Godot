@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="78_rhhck"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://scenes/components/hurtbox.gd" id="79_84bjp"]
 [ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://scenes/HUD/dreamworld/hund_coin_dreamworld.tscn" id="80_ku5kx"]
-[ext_resource type="Script" path="res://scripts/DreamWorldPlayer/audio_player.gd" id="92_uyd2q"]
+[ext_resource type="Script" uid="uid://b8ib7chc7er6p" path="res://scripts/DreamWorldPlayer/audio_player.gd" id="92_uyd2q"]
 [ext_resource type="AudioStream" uid="uid://c6ipsxxk354ln" path="res://assets/sfx/DreamwolrdPlayerSounds/punchAttack/83976__theredshore__punch.mp3" id="93_on6mk"]
 [ext_resource type="AudioStream" uid="uid://4k6m8dvfogpo" path="res://assets/sfx/DreamwolrdPlayerSounds/getHit/216783__castironcarousel__punch-8.mp3" id="94_51uo2"]
 [ext_resource type="AudioStream" uid="uid://dg7e8p2u4gptj" path="res://assets/sfx/DreamwolrdPlayerSounds/death/udead.mp3" id="95_01t1s"]

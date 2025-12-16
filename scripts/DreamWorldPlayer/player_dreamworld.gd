@@ -244,6 +244,9 @@ func _physics_process(delta: float) -> void:
 			velocity.y = -SPEED*delta*40
 		else:
 			velocity.y = 0
+			
+	if in_water:
+		water_damage(delta)
 
 func deactivate_hitboxes():
 	hit_box_left.monitoring = false
@@ -695,7 +698,20 @@ func cutscene_end() -> void:
 	is_cutscene_active = false
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
-	on_ladder = true
+	if _body is TileMapLayer and _body.name == "Ladder":
+		print(_body.name)
+		on_ladder = true
+	if _body is TileMapLayer and _body.name == "Water":
+		print(_body.name)
+		in_water = true
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
-	on_ladder = false
+	if _body is TileMapLayer and _body.name == "Ladder":
+		#print(_body.name)
+		on_ladder = false
+	if _body is TileMapLayer and _body.name == "Water":
+		#print(_body.name)
+		in_water = false
+		
+func water_damage(_delta):
+	health.health -= 1
