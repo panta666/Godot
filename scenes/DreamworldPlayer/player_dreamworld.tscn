@@ -342,10 +342,11 @@ zoom = Vector2(2.5, 2.5)
 
 [node name="HundCoin" parent="." instance=ExtResource("80_ku5kx")]
 z_index = 10
-offset_left = 142.0
-offset_top = -116.0
-offset_right = 142.0
-offset_bottom = -116.0
+offset_left = 146.0
+offset_top = -118.0
+offset_right = 146.0
+offset_bottom = -118.0
+scale = Vector2(0.6927869, 0.72448313)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 64
