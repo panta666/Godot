@@ -124,6 +124,7 @@ folder_colors={
 
 enemy=""
 player=""
+boss=""
 
 [gui]
 

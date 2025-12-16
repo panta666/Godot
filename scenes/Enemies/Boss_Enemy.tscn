@@ -535,6 +535,7 @@ size = Vector2(16.250011, 5.78125)
 
 [node name="CharacterBody2D" instance=ExtResource("1_x44s7")]
 script = ExtResource("2_nfnda")
+boss_of_level = ""
 attacks = Array[ExtResource("3_lory0")]([ExtResource("4_audnc")])
 
 [node name="Health" parent="." index="0"]
@@ -569,6 +570,8 @@ position = Vector2(-1.25, 80)
 position = Vector2(1.25, 3.750001)
 scale = Vector2(0.9999976, 0.9999976)
 shape = SubResource("RectangleShape2D_lory0")
+
+[node name="HurtBox" parent="." index="8" groups=["boss"]]
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-12.499998, 15.625005)
