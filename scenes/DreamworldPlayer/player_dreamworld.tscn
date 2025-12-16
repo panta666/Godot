@@ -200,22 +200,6 @@ script = ExtResource("3_rxbup")
 max_health = 100
 metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
 
-[node name="RangeAttackCharges" type="CanvasLayer" parent="."]
-
-[node name="RangeAttackCharges" parent="RangeAttackCharges" instance=ExtResource("4_bydnf")]
-offset_left = 131.0
-offset_top = 23.0
-offset_right = 171.0
-offset_bottom = 63.0
-
-[node name="Healthwave" type="CanvasLayer" parent="."]
-
-[node name="HealthWave" parent="Healthwave" instance=ExtResource("5_060o7")]
-offset_left = 16.0
-offset_top = 19.0
-offset_right = 111.0
-offset_bottom = 72.0
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ku5kx")
 position = Vector2(-2.0000005, 0)
@@ -373,6 +357,18 @@ offset_top = 9.0
 offset_right = 940.0
 offset_bottom = 9.0
 scale = Vector2(0.074411206, 0.054683987)
+
+[node name="RangeAttackCharges" parent="HUD" instance=ExtResource("4_bydnf")]
+offset_left = 131.0
+offset_top = 23.0
+offset_right = 171.0
+offset_bottom = 63.0
+
+[node name="HealthWave" parent="HUD" instance=ExtResource("5_060o7")]
+offset_left = 16.0
+offset_top = 19.0
+offset_right = 111.0
+offset_bottom = 72.0
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
