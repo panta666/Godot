@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export_file("*.tscn") var next_scene : String
+@export var next_scene : String
 @export var skip_key := "K"
 
 func _ready() -> void:
@@ -13,7 +13,6 @@ func _process(_delta: float) -> void:
 		_skip()
 
 func _skip() -> void:
-	if next_scene != "":
-		get_tree().change_scene_to_file(next_scene)
-	else:
-		push_warning("No next_scene set on skip_scene!")
+	# Zielszene setzen & wechseln
+	GlobalScript.current_scene = "train_scene"
+	GlobalScript.change_scene("realworld_hall")

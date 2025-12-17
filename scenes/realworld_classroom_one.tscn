@@ -4622,7 +4622,7 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(180, 327)
 sit_position = Vector2(185, 337)
-stand_position = Vector2(160, 310)
+stand_position = Vector2(190, 345)
 
 [node name="Door" parent="." instance=ExtResource("5_4xjni")]
 z_index = 7
