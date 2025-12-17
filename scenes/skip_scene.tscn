@@ -31,6 +31,7 @@ animations = [{
 
 [node name="Skip_Scene" type="CanvasLayer"]
 script = ExtResource("1_rxqd1")
+next_scene = "realworld_hall"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
