@@ -13,7 +13,7 @@ var save_data = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"mathe_level_one": []
+			"math_level_one": []
 		},
 		"quests": [],
 		"unlocked_doors": {},
@@ -41,7 +41,7 @@ const default_values = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"mathe_level_one": []
+			"math_level_one": []
 		},
 		"quests": [],
 		"unlocked_doors": {},

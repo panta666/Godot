@@ -3,6 +3,7 @@ extends CanvasLayer
 var shop: Shop
 var current_item := 0
 var pending_purchase_item: ShopData = null
+var coin_category: String = "" # oop oder math
 
 # UI-Elemente
 @onready var item_icon: AnimatedSprite2D = $Control/AnimatedSprite2D
@@ -12,6 +13,7 @@ var pending_purchase_item: ShopData = null
 @onready var prev_button: Button = $Control/Prev
 @onready var next_button: Button = $Control/Next
 @onready var confirm_popup: AcceptDialog = $Control/ConfirmPopup
+@onready var coins_label: Label = $Control/CoinsLabel
 
 func _ready() -> void:
 	if shop:
@@ -22,6 +24,7 @@ func _ready() -> void:
 # Shop öffnen
 func open_shop_ui():
 	update_shop_items()
+	update_coin_display()
 	if shop.shop_items.size() > 0:
 		show_item(0)
 	else:
@@ -66,6 +69,9 @@ func show_item(index: int) -> void:
 	buy_button.show()
 	prev_button.show()
 	next_button.show()
+	
+	var can_afford = get_category_coin_count() >= data.price
+	buy_button.disabled = not can_afford
 
 # Navigation
 func _on_prev_pressed() -> void:
@@ -82,12 +88,21 @@ func _on_next_pressed() -> void:
 func _on_buy_pressed() -> void:
 	if not shop or shop.shop_items.size() == 0:
 		return
-
+	
 	# Item merken
 	pending_purchase_item = shop.shop_items[current_item]
 
 	# Text im Popup setzen
 	confirm_popup.dialog_text = "Do you want to buy " + pending_purchase_item.item_name + " for " + str(pending_purchase_item.price) + " coins?"
+	
+	var price = pending_purchase_item.price
+	var current_coins = get_category_coin_count()
+
+	if current_coins < price:
+		confirm_popup.dialog_text = "You don't have enough coins."
+		confirm_popup.popup_centered()
+		pending_purchase_item = null
+		return
 	
 	# Popup anzeigen
 	confirm_popup.popup_centered()
@@ -95,8 +110,15 @@ func _on_buy_pressed() -> void:
 func _on_confirm_popup_confirmed() -> void:
 	if pending_purchase_item == null:
 		return
-
+	
+	var price = pending_purchase_item.price
 	var key = pending_purchase_item.powerup_name
+	
+	# Coins abziehen
+	if not spend_category_coins(price):
+		print("Nicht genug Coins")
+		pending_purchase_item = null
+		return
 
 	if key in SaveManager.save_data["player_stats"] and not SaveManager.save_data["player_stats"][key]:
 		# Power-Up kaufen
@@ -119,3 +141,42 @@ func _on_confirm_popup_confirmed() -> void:
 
 	# Kauf abgeschlossen
 	pending_purchase_item = null
+	update_coin_display()
+
+#Coins pro OOP oder MATH zusammenzählen
+func get_category_coin_count() -> int:
+	var total := 0
+	var coins_dict = SaveManager.save_data["game_progress"]["coins"]
+
+	for key in coins_dict.keys():
+		if key.begins_with(coin_category + "_"):
+			if coins_dict[key] is Array:
+				total += coins_dict[key].size()
+
+	return total
+	
+func update_coin_display() -> void:
+	var coins = get_category_coin_count()
+	coins_label.text = "Coins: " + str(coins)
+	
+func spend_category_coins(amount: int) -> bool:
+	var coins_dict = SaveManager.save_data["game_progress"]["coins"]
+	var remaining := amount
+
+	for key in coins_dict.keys():
+		if not key.begins_with(coin_category + "_"):
+			continue
+
+		if coins_dict[key] is Array:
+			while coins_dict[key].size() > 0 and remaining > 0:
+				coins_dict[key].pop_back()
+				remaining -= 1
+
+		if remaining <= 0:
+			break
+
+	if remaining > 0:
+		return false # nicht genug Coins
+
+	SaveManager.save_game()
+	return true
