@@ -15566,11 +15566,14 @@ polygon = PackedVector2Array(33, 177.7143, 974, 175.7143, 977, 620.7143, 31, 620
 z_index = 1
 position = Vector2(183, 371)
 next_scene = "realworld_classroom_one"
+door_id = "realworld_oop_door"
 
 [node name="Classroom_Two_Door" parent="." instance=ExtResource("6_snpmh")]
 z_index = 1
 position = Vector2(279, 371)
 next_scene = "realworld_classroom_two"
+door_id = "realworld_math_door"
+needs_unlock = true
 
 [node name="door_closed" type="Area2D" parent="."]
 

@@ -14,7 +14,10 @@ var save_data = {
 			"oop_level_one": [], #Szenenname des coins speichern
 			"mathe_level_one": []
 		},
-		"quests": []
+		"quests": [],
+		"unlocked_doors": {
+			"realworld_math_door": true,
+		}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -40,7 +43,8 @@ const default_values = {
 			"oop_level_one": [], #Szenenname des coins speichern
 			"mathe_level_one": []
 		},
-		"quests": []
+		"quests": [],
+		"unlocked_doors": {}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -201,6 +205,14 @@ func update_current_scene():
 #    save_data["player_stats"]["coins"] = amount
 #    save_game()
 
+# Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
+func unlock_door(door_id: String):
+	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
+		save_data["game_progress"]["unlocked_doors"][door_id] = true
+		save_game()
+
+func is_door_unlocked(door_id: String) -> bool:
+	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten
