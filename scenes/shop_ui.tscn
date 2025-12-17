@@ -195,6 +195,16 @@ offset_bottom = 416.5
 text = "Press           to close the Shop"
 label_settings = SubResource("LabelSettings_bidp2")
 
+[node name="ConfirmPopup" type="AcceptDialog" parent="Control"]
+oversampling_override = 1.0
+title = "Are you sure?"
+initial_position = 1
+size = Vector2i(101, 80)
+borderless = true
+unfocusable = true
+ok_button_text = "Yes, buy!"
+
 [connection signal="pressed" from="Control/Prev" to="." method="_on_prev_pressed"]
 [connection signal="pressed" from="Control/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="Control/Buy" to="." method="_on_buy_pressed"]
+[connection signal="confirmed" from="Control/ConfirmPopup" to="." method="_on_confirm_popup_confirmed"]
