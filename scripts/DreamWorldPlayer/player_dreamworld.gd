@@ -13,6 +13,10 @@ var climbing: bool
 #Wasser
 var in_water: bool
 
+# Wasser-Damage-Timer
+var water_damage_timer := 0.0
+const WATER_DAMAGE_TICK := 1.0 # 1 Sekunde
+
 #Variablen für Collision anpassung
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var head_check: RayCast2D = $HeadCheck
@@ -247,6 +251,8 @@ func _physics_process(delta: float) -> void:
 			
 	if in_water:
 		water_damage(delta)
+	else:
+		water_damage_timer = 0.0 # reset, wenn man nicht im Wasser ist
 
 func deactivate_hitboxes():
 	hit_box_left.monitoring = false
@@ -713,5 +719,11 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 		#print(_body.name)
 		in_water = false
 		
-func water_damage(_delta):
-	health.health -= 1
+#Schaden in Wasser
+#Timer wird hochgezählt
+func water_damage(delta: float) -> void:
+	water_damage_timer += delta
+
+	if water_damage_timer >= WATER_DAMAGE_TICK:
+		water_damage_timer = 0.0
+		health.health -= 5
