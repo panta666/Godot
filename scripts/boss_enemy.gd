@@ -8,6 +8,10 @@ func _on_health_depleted() -> void:
 
 	# Level 2 für OOP freischalten
 	GlobalScript.oop_level_unlocked[1] = true
+	
+	# TEST MEDG Room freischalten
+	# BITTE ENTFERNEN UND IN BOSS FÜR LEVEL 2 HINZUFÜGEN
+	SaveManager.unlock_door("realworld_math_door")
 
 	# LevelUI aktualisieren, falls vorhanden
 	var classroom = get_tree().current_scene

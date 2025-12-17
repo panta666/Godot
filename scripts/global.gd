@@ -47,7 +47,7 @@ const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 # Freigeschaltete Level (global)
 # -------------------------
 var oop_level_unlocked := [true, false, false]
-var medg_level_unlocked := [false, false, false]
+var medg_level_unlocked := [true, false, false]
 
 # -------------------------
 # Tutorial steurung (global)
