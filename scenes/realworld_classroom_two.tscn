@@ -4662,4 +4662,5 @@ scale = Vector2(22.27431, -8.603439)
 energy = 1.78
 
 [node name="Shop" parent="." instance=ExtResource("14_odrkh")]
-position = Vector2(1148, 486)
+position = Vector2(1149, 486)
+coin_category = "math"

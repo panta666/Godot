@@ -2,7 +2,7 @@ extends Node2D
 class_name Shop
 
 @export var shop_items: Array[ShopData] = []
-
+@export var coin_category: String = "" # mögliche Werte: "oop", "math"
 @onready var interactable: Area2D = $Interactable
 @onready var shop_ui: CanvasLayer = $ShopUI
 
@@ -18,6 +18,8 @@ func _ready() -> void:
 	
 	#ShopUI referenz
 	shop_ui.shop = self
+	
+	shop_ui.coin_category = coin_category
 	
 	# Auf Signal hören, wenn Shop freigeschaltet wird
 	SaveManager.connect("shop_unlocked_signal", Callable(self, "_on_shop_unlocked"))
