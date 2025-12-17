@@ -153,8 +153,14 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
-		velocity = Vector2.ZERO
-		player_sprite.play("idle")
+		# Gravity weiter laufen lassen
+		add_gravity(delta)
+
+		# Keine horizontale Bewegung
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+		update_animation()
+		move_and_slide()
 		return
 
 	if not is_alive:
