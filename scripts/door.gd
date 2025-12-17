@@ -20,6 +20,7 @@ func _on_body_entered(body):
 		return
 
 	is_opening = true
+	GlobalScript.player.can_move = false
 	set_transition_center(body.global_position)
 	await play_door_animation(body)
 
@@ -58,6 +59,7 @@ func play_door_animation(_player_node):
 		GlobalScript.change_scene(next_scene)
 
 	is_opening = false
+	GlobalScript.player.can_move = true
 
 # ------------------------------------------------------
 # Türanimation
