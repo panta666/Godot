@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=19 format=3 uid="uid://cnru41iad6e14"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=20 format=3 uid="uid://cnru41iad6e14"]
 
+[ext_resource type="Resource" uid="uid://dnposii38cfrq" path="res://dialog/characters/jens.dch" id="1_170i7"]
 [ext_resource type="Script" uid="uid://bclj33y315xbn" path="res://scripts/npc_data.gd" id="1_n7b3g"]
 [ext_resource type="Texture2D" uid="uid://bmqoqukjd65pr" path="res://assets/characters/npc_stylesheets/trchar178.png" id="2_170i7"]
 
@@ -143,9 +144,10 @@ animations = [{
 
 [resource]
 script = ExtResource("1_n7b3g")
-npc_name = "Dennis"
+npc_name = "Jens"
 sprite_frames = SubResource("SpriteFrames_ywt1j")
 start_facing = "side"
-can_talk = false
+dialog_timeline_path = "npc_jens_timeline"
+dialogic_character = ExtResource("1_170i7")
 behavior_type = 2
 metadata/_custom_type_script = "uid://bclj33y315xbn"

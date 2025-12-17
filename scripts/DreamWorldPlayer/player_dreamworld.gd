@@ -103,7 +103,7 @@ var is_cutscene_active: bool = false
 
 
 func _ready() -> void:
-	
+	GlobalScript.player_dw = self
 	current_scene = get_tree().current_scene
 	scene_name = current_scene.get_name().to_lower()
 
@@ -558,7 +558,6 @@ func show_death_screen():
 	var scene = preload("res://scenes/components/death_screen.tscn")
 	var death_screen = scene.instantiate() as CanvasLayer
 	get_tree().root.add_child(death_screen)
-
 	await death_screen.play_screen()
 	await get_tree().create_timer(1.0).timeout
 
@@ -667,6 +666,9 @@ func _input(event: InputEvent):
 		position.y += 1
 
 func player():
+	pass
+	
+func player_dreamworld():
 	pass
 
 func activate_crouching():

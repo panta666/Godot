@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=33 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://scripts/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="2_1lbkm"]
@@ -13,6 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://scenes/classroom_ambiance_player.tscn" id="11_1lbkm"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://scenes/chair.tscn" id="12_kvmm4"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://scenes/components/sunlight.tscn" id="13_7iy3m"]
+[ext_resource type="PackedScene" uid="uid://cvhfm0xb6cg35" path="res://scenes/shop.tscn" id="14_npa15"]
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="15_6r6jj"]
+[ext_resource type="Resource" uid="uid://b7qxgj2pbxsyx" path="res://shop_items/dash.tres" id="16_2ql7k"]
+[ext_resource type="Resource" uid="uid://d36jdnhyi1ohy" path="res://shop_items/crouching.tres" id="17_pj12r"]
+[ext_resource type="Resource" uid="uid://dhu401et8q56x" path="res://shop_items/double_jump.tres" id="18_lvyo4"]
+[ext_resource type="Resource" uid="uid://ddbdgs4gv4dn2" path="res://shop_items/range_attack.tres" id="19_0jema"]
+[ext_resource type="Resource" uid="uid://baftcvns6tuvu" path="res://shop_items/range_attack_increase.tres" id="20_ktf6i"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvmm4"]
 polygon = PackedVector2Array(-26, -22, 0, -22, 0, -8, 12, -8, 12, -22, 18, -22, 18, 16, 12, 16, 12, 12, 2, 12, 2, 16, 0, 16, 0, 18, -2, 18, -2, 20, -8, 20, -8, 14, -18, 14, -18, 20, -24, 20, -24, 10, -26, 10)
@@ -4659,3 +4666,7 @@ flip_player_on_sit = true
 position = Vector2(1339, 365)
 scale = Vector2(22.27431, -8.603439)
 energy = 1.78
+
+[node name="Shop" parent="." instance=ExtResource("14_npa15")]
+position = Vector2(1150, 491)
+shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("18_lvyo4"), ExtResource("19_0jema"), ExtResource("20_ktf6i")])

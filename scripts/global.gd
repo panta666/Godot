@@ -29,14 +29,15 @@ var last_door_for_transition: Node = null
 # Spieler-Infos
 # -------------------------
 var player_positions := {
-	"realworld_classroom_one": Vector2(504, 340),
+	"realworld_classroom_one": Vector2(563, 353),
 	"realworld_classroom_two": Vector2(1140, 691),
 	"realworld_hall": Vector2(567, 416),
 	"realworld_home": Vector2(368, 170),
 	"train_scene": Vector2(1140, 691),
 }
 
-var player: Node = null
+var player: Node = null #Realworld Player
+var player_dw: Node = null #Dreamworld Player
 
 var game_first_loading: bool = true
 
@@ -52,7 +53,6 @@ var medg_level_unlocked := [false, false, false]
 # Tutorial steurung (global)
 # -------------------------
 var tutorial_on := true
-
 
 # -------------------------
 # Possible Resolutions for the Game (global)
@@ -324,13 +324,20 @@ var esc_menu_instance: CanvasLayer = null
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc_menu"):
 		var _player = GlobalScript.player
-		if not _player:
+		var _player_dw = GlobalScript.player_dw
+
+		# Kein Player vorhanden
+		if (not _player or not is_instance_valid(_player)) and (not _player_dw or not is_instance_valid(_player_dw)):
 			print("[ESC_MENU] Kein Player gefunden")
 			return
-		if _player.is_busy:
+
+		# Realworld-Player prüfen
+		if _player and is_instance_valid(_player) and _player.is_busy:
 			return
-		else:
-			_toggle_esc_menu()
+
+		# Dreamworld-Player muss nicht auf is_busy geprüft werden
+
+		_toggle_esc_menu()
 
 func _toggle_esc_menu() -> void:
 	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":

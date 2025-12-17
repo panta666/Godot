@@ -30,6 +30,10 @@ var cutscene_8_played := false
 var platforms: Array = []
 
 func _ready():
+	if GlobalScript.player != null:
+		GlobalScript.player = null
+		print("[Dreamworld] Realworld-Player entfernt")
+	
 	# Dialogic-Signal global verbinden
 	Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
 
