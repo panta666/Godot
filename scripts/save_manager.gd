@@ -1,5 +1,6 @@
 # SaveManager.gd
 extends Node
+signal shop_unlocked_signal
 
 # Der Pfad, unter dem die Speicherdatei abgelegt wird.
 const SAVE_PATH = "user://game_save.dat"
@@ -15,9 +16,8 @@ var save_data = {
 			"mathe_level_one": []
 		},
 		"quests": [],
-		"unlocked_doors": {
-			"realworld_math_door": true,
-		}
+		"unlocked_doors": {},
+		"shop_unlocked": false
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -44,7 +44,8 @@ const default_values = {
 			"mathe_level_one": []
 		},
 		"quests": [],
-		"unlocked_doors": {}
+		"unlocked_doors": {},
+		"shop_unlocked": false
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -213,6 +214,16 @@ func unlock_door(door_id: String):
 
 func is_door_unlocked(door_id: String) -> bool:
 	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
+	
+# Shop Unlock
+func unlock_shop():
+	if not save_data["game_progress"]["shop_unlocked"]:
+		save_data["game_progress"]["shop_unlocked"] = true
+		save_game()
+		emit_signal("shop_unlocked_signal")  # Signal aussenden!
+
+func is_shop_unlocked() -> bool:
+	return save_data["game_progress"]["shop_unlocked"]
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten
