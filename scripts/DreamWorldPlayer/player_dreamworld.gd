@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	forced_crouch = head_check.is_colliding()
-	
+
 	# Add gravity
 	add_gravity(delta)
 

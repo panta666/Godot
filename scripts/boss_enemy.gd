@@ -30,3 +30,7 @@ func _return_to_classroom() -> void:
 	print("change scene")
 	# Szenenwechsel zurück
 	GlobalScript.change_scene("realworld_classroom_one")
+
+func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
+	healthbar.update()
+	flash_anim.play("flash")
