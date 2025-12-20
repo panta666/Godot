@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=36 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://scripts/level/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://scenes/DreamworldPlayer/player_dreamworld.tscn" id="1_q4fl0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d27haqayg0mty" path="res://assets/tilemap/math_tilemap/stone_packed.png" id="5_k3sex"]
 [ext_resource type="Texture2D" uid="uid://cr3l02pdffdli" path="res://assets/tilemap/math_tilemap/marble_packed.png" id="6_14ga8"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://scenes/coin.tscn" id="11_14ga8"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://scenes/components/hitbox.gd" id="11_h36qc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h36qc"]
 texture = ExtResource("3_grcn0")
@@ -4640,8 +4641,14 @@ size = Vector2(97, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q8nht"]
 size = Vector2(1472, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i56lp"]
+size = Vector2(1496, 52)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrlm"]
 size = Vector2(675.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbntu"]
+size = Vector2(684, 36)
 
 [node name="MathLevelOne" type="Node2D" node_paths=PackedStringArray("teleport_target")]
 script = ExtResource("1_k3sex")
@@ -4824,6 +4831,17 @@ collision_mask = 7
 position = Vector2(1326, 705)
 shape = SubResource("RectangleShape2D_q8nht")
 
+[node name="HitBox" type="Area2D" parent="Fall_Damage"]
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("11_h36qc")
+damage = 10
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_Damage/HitBox"]
+position = Vector2(1331, 714)
+shape = SubResource("RectangleShape2D_i56lp")
+
 [node name="Label" type="Label" parent="."]
 offset_left = 3473.0
 offset_top = 818.0
@@ -4839,6 +4857,18 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_Damage2"]
 position = Vector2(3279, 436)
 shape = SubResource("RectangleShape2D_qfrlm")
+
+[node name="HitBox" type="Area2D" parent="Fall_Damage2"]
+position = Vector2(2571.5, 652)
+collision_layer = 12
+collision_mask = 12
+script = ExtResource("11_h36qc")
+damage = 10
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fall_Damage2/HitBox"]
+position = Vector2(706.5, -210)
+shape = SubResource("RectangleShape2D_wbntu")
 
 [node name="Coin" parent="." instance=ExtResource("11_14ga8")]
 position = Vector2(4460, 399)
