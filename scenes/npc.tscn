@@ -58,6 +58,7 @@ shape = SubResource("CircleShape2D_abqhh")
 
 [node name="NameLabel" type="Label" parent="."]
 visible = false
+z_index = 7
 offset_left = -21.249998
 offset_top = -53.749996
 offset_right = 25.750002

@@ -34,6 +34,7 @@ QuestManager="*res://scripts/quest_manager.gd"
 
 directories/dch_directory={
 "dahm": "res://dialog/characters/dahm.dch",
+"jens": "res://dialog/characters/jens.dch",
 "narrator": "res://dialog/characters/narrator.dch",
 "npc_henry": "res://dialog/characters/npc_henry.dch",
 "player": "res://dialog/characters/player.dch"
@@ -45,6 +46,7 @@ directories/dtl_directory={
 "home_timeline": "res://dialog/home_timeline.dtl",
 "level_one_timeline": "res://dialog/level_one_timeline.dtl",
 "npc_henry_timeline": "res://dialog/npc_henry_timeline.dtl",
+"npc_jens_timeline": "res://dialog/npc_jens_timeline.dtl",
 "speak_with_dahm": "res://dialog/speak_with_dahm.dtl",
 "tutorial_fifth_cutscene_timeline": "res://dialog/tutorial_fifth_cutscene_timeline.dtl",
 "tutorial_fourth_cutscene_timeline": "res://dialog/tutorial_fourth_cutscene_timeline.dtl",

@@ -1891,7 +1891,7 @@ size = Vector2(345, 164)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sblmw"]
 size = Vector2(54.625, 162.25)
 
-[node name="Dreamworld_Tutorial" type="Node2D"]
+[node name="dreamworld_tutorial" type="Node2D"]
 script = ExtResource("1_qm84e")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]

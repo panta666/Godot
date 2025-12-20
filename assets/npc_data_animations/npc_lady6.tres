@@ -146,6 +146,7 @@ script = ExtResource("1_gjyb1")
 npc_name = "Lara"
 sprite_frames = SubResource("SpriteFrames_d2hsf")
 start_facing = "up"
+can_talk = false
 behavior_type = 2
 move_speed = 55.0
 wander_interval = 3.3
