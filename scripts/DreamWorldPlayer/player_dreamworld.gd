@@ -84,6 +84,11 @@ var knockback_timer = 0.0
 var knockback_length = 0.2
 @onready var hit_flash_animation: AnimationPlayer = $AnimatedSprite2D/FlashAnimation
 
+# Invincibility nach Schaden
+var is_invincible: bool = false
+const INVINCIBILITY_TIME := 1.0 # Sekunden
+
+
 #Shake Effekt bei Damage nehmen
 @export var shake = false
 var shake_phase := 0.0
@@ -497,6 +502,8 @@ func _on_player_received_damage(damage: int, attacker_pos: Vector2):
 
 #Handle Take Damage
 func received_damage(_damage: int, attacker_pos: Vector2) -> void:
+	if is_invincible:
+		return
 	if is_dashing:
 		return
 	if is_taking_damage:
@@ -506,6 +513,9 @@ func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	is_taking_damage = true
 	is_attacking = false
 	is_crouching = false
+
+	start_invincibility()
+
 	audio_player.play_sound(PlayreDreamworldSounds.soundtype.GET_HIT)
 
 	hit_flash_animation.play("hit_flash")
@@ -520,6 +530,9 @@ func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 
 	knockback_timer = knockback_length
 
+	await get_tree().create_timer(INVINCIBILITY_TIME).timeout
+	stop_invincibility()
+
 	if "tutorial" in scene_name:
 		health.set_health(100)
 
@@ -531,6 +544,18 @@ func apply_knockback(delta: float):
 			is_taking_damage = false
 			velocity.x = 0
 			stop_dashing(delta)
+
+func start_invincibility():
+	is_invincible = true
+	hurt_box.collision_layer = 0
+	hurt_box.collision_mask = 0
+
+func stop_invincibility():
+	hurt_box.collision_layer = 3
+	hurt_box.collision_layer = 4
+	hurt_box.collision_mask = 3
+	hurt_box.collision_mask = 4
+	is_invincible = false
 
 func start_shake():
 	shake_timer = shake_duration

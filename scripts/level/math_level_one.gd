@@ -100,10 +100,6 @@ func _on_fall_damage_body_entered(body: Node2D) -> void:
 	if not body.has_method("player"):
 		return
 
-	# Spieler soll hier wieder Schaden erhalten, funktioniert aber nicht, pls FIX
-	if body.has_method("received_damage"):
-		body.received_damage(10, global_position)
-
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
 	body.call_deferred("set_global_position", Vector2(650, 560))
@@ -112,10 +108,6 @@ func _on_fall_damage_body_entered(body: Node2D) -> void:
 func _on_fall_damage_2_body_entered(body: Node2D) -> void:
 	if not body.has_method("player"):
 		return
-
-	# Spieler soll hier wieder Schaden erhalten, funktioniert aber nicht, pls FIX
-	if body.has_method("received_damage"):
-		body.received_damage(10, global_position)
 
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
