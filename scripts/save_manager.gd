@@ -1,5 +1,6 @@
 # SaveManager.gd
 extends Node
+signal shop_unlocked_signal
 
 # Der Pfad, unter dem die Speicherdatei abgelegt wird.
 const SAVE_PATH = "user://game_save.dat"
@@ -12,18 +13,21 @@ var save_data = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"mathe_level_one": []
+			"math_level_one": []
 		},
-		"quests": []
+		"quests": [],
+		"unlocked_doors": {},
+		"shop_unlocked": false
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
+		"Master_is_muted": false,
 		"Music": -13.0,
+		"Music_is_muted": false,
 		"SFX": 0.0,
-		"is_muted": false
+		"SFX_is_muted": false
 	},
 	"player_stats": {
-		"coins": 0,
 		"double_jump": false,
 		"dash": false,
 		"range_attack": false,
@@ -38,9 +42,11 @@ const default_values = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"mathe_level_one": []
+			"math_level_one": []
 		},
-		"quests": []
+		"quests": [],
+		"unlocked_doors": {},
+		"shop_unlocked": false
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -51,7 +57,6 @@ const default_values = {
 		"SFX_is_muted": false
 	},
 	"player_stats": {
-		"coins": 0,
 		"double_jump": false,
 		"dash": false,
 		"range_attack": false,
@@ -105,9 +110,24 @@ func save_coin(coins: Array, level: String):
 
 func save_realworld_coin(value: int):
 	save_data["game_progress"]["coins"]["realworld"] = value
+	save_game()
 
 func get_realworld_coins():
 	return save_data["game_progress"]["coins"]["realworld"]
+
+func get_dreamworld_coins(level:String = ""):
+	if level == "":
+		return save_data["game_progress"]["coins"]
+	elif save_data["game_progress"]["coins"].has(level):
+		return save_data["game_progress"]["coins"][level]
+	else:
+		return 0
+
+func get_ammount_dreamworld_coins(level:String):
+	if save_data["game_progress"]["coins"].has(level):
+		return len(save_data["game_progress"]["coins"][level])
+	else:
+		return 0
 
 func coin_is_collected(level: String, coin_name: String) -> bool:
 	var is_collected = false
@@ -126,12 +146,12 @@ func load_game():
 
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
-		push_error("SaveManager: Fehler beim Öffnen der Speicherdatei zum Lesen.")
+		print("SaveManager: Fehler beim Öffnen der Speicherdatei zum Lesen.")
 		return
 
 	var content = file.get_as_text()
 	file.close()
-
+	
 	var parse_result = JSON.parse_string(content)
 	if parse_result is Dictionary:
 		# Führt die geladenen Daten mit den Standarddaten zusammen.
@@ -139,8 +159,7 @@ func load_game():
 		save_data.merge(parse_result, true)
 		print("SaveManager: Spielstand geladen.")
 	else:
-		push_error("SaveManager: Speicherdatei ist korrupt.")
-
+		print("SaveManager: Speicherdatei ist korrupt.")
 	# Wenn neue Einstellungen zum speichern dazukommen überschreibe mit defautl.
 	validate_data(save_data, default_values)
 	# Wendet die geladenen Audioeinstellungen sofort an.
@@ -201,6 +220,24 @@ func update_current_scene():
 #    save_data["player_stats"]["coins"] = amount
 #    save_game()
 
+# Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
+func unlock_door(door_id: String):
+	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
+		save_data["game_progress"]["unlocked_doors"][door_id] = true
+		save_game()
+
+func is_door_unlocked(door_id: String) -> bool:
+	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
+	
+# Shop Unlock
+func unlock_shop():
+	if not save_data["game_progress"]["shop_unlocked"]:
+		save_data["game_progress"]["shop_unlocked"] = true
+		save_game()
+		emit_signal("shop_unlocked_signal")  # Signal aussenden!
+
+func is_shop_unlocked() -> bool:
+	return save_data["game_progress"]["shop_unlocked"]
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten
@@ -259,6 +296,12 @@ func validate_data(target: Dictionary, defaults: Dictionary) -> void:
 		# Wenn BEIDES Dictionaries sind -> Rekursion!
 		if target_val is Dictionary and default_val is Dictionary:
 			validate_data(target_val, default_val)
+
+		# 3. TYP-KORREKTUR (Das ist der neue Teil für dein Problem)
+		# Wenn Default ein INT ist, aber JSON uns einen FLOAT gegeben hat -> Umwandeln!
+		elif typeof(default_val) == TYPE_INT and typeof(target_val) == TYPE_FLOAT:
+			target[key] = int(target_val)
+			print("SaveManager: Fixed float->int für", key)
 
 		# Optional: Typ-Sicherheit prüfen (Wenn im Save 'coins' plötzlich ein String ist)
 		elif typeof(target_val) != typeof(default_val) and default_val != null:

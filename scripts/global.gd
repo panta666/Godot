@@ -47,7 +47,7 @@ const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 # Freigeschaltete Level (global)
 # -------------------------
 var oop_level_unlocked := [true, false, false]
-var medg_level_unlocked := [false, false, false]
+var medg_level_unlocked := [true, false, false]
 
 # -------------------------
 # Tutorial steurung (global)
@@ -83,6 +83,8 @@ func decrease_realworld_coins(value: int) -> bool:
 	if coins["realworld"] - value >= 0:
 		coins["realworld"] = coins["realworld"] - value
 		available_funds = true
+		realworld_coins_update.emit(coins["realworld"])
+		SaveManager.save_realworld_coin(coins["realworld"])
 	return available_funds
 
 func set_realworld_coins():

@@ -4622,7 +4622,7 @@ z_index = 1
 y_sort_enabled = true
 position = Vector2(180, 327)
 sit_position = Vector2(185, 337)
-stand_position = Vector2(160, 310)
+stand_position = Vector2(190, 345)
 
 [node name="Door" parent="." instance=ExtResource("5_4xjni")]
 z_index = 7
@@ -4701,3 +4701,4 @@ auto_start_dialog = "enter_chair"
 position = Vector2(531, 178)
 scale = Vector2(1.2639892, 1.0896187)
 shop_items = Array[ExtResource("18_7rigo")]([ExtResource("19_l3xm6"), ExtResource("20_3e74t"), ExtResource("21_c2u28"), ExtResource("22_okp6d"), ExtResource("23_ljb5t")])
+coin_category = "oop"

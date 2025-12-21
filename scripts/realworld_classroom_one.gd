@@ -5,7 +5,7 @@ extends RealworldScenes
 func _ready() -> void:
 	classroom_ambiance_player.play()
 	scene_name = "realworld_classroom_one"
-	player_spawn = Vector2(504, 340)        # Standardposition
+	player_spawn = Vector2(190, 345) # Position wenn aus Traumwelt kommt
 	previous_scene_spawn = Vector2(568, 362) # Position, wenn aus Hall kommt
 	super._ready()  # Basisklasse _ready aufrufen
 	Dialogic.signal_event.connect(_on_dialogic_signal)

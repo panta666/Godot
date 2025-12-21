@@ -2,7 +2,7 @@ extends Node2D
 class_name Shop
 
 @export var shop_items: Array[ShopData] = []
-
+@export var coin_category: String = "" # mögliche Werte: "oop", "math"
 @onready var interactable: Area2D = $Interactable
 @onready var shop_ui: CanvasLayer = $ShopUI
 
@@ -11,10 +11,18 @@ var shop_open := false
 func _ready() -> void:
 	# Interaktion registrieren
 	interactable.interact = _on_interact
-	interactable.is_interactable = true
+	
+	#Interaktion nur erlauben, wenn Shop unlocked
+	interactable.is_interactable = SaveManager.is_shop_unlocked()
+	update_interact_text()
 	
 	#ShopUI referenz
 	shop_ui.shop = self
+	
+	shop_ui.coin_category = coin_category
+	
+	# Auf Signal hören, wenn Shop freigeschaltet wird
+	SaveManager.connect("shop_unlocked_signal", Callable(self, "_on_shop_unlocked"))
 
 
 func _process(_delta: float) -> void:
@@ -26,7 +34,16 @@ func _process(_delta: float) -> void:
 			interactable.interact_name = "to open the shop"
 
 
+func update_interact_text() -> void:
+	if interactable.is_interactable:
+		interactable.interact_name = "to open the shop"
+	else:
+		interactable.interact_name = "" # Text komplett ausblenden
+
 func _on_interact() -> void:
+	if not SaveManager.is_shop_unlocked():
+		return # Shop noch gesperrt
+	
 	var player = GlobalScript.player
 	if not player:
 		return

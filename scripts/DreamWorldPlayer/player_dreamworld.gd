@@ -65,6 +65,9 @@ var can_attack = true
 @onready var sprite_left_hitbox: AnimatedSprite2D = $HitBoxLeft/SpriteLeftHitbox
 @onready var sprite_up_hitbox: AnimatedSprite2D = $HitBoxUp/SpriteUpHitbox
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
+@onready var hund_coin: Control = $HUD/HundCoin
+
+
 
 #Variablen für Range Attacke
 var is_range_attack_allowed: bool = false
@@ -150,11 +153,19 @@ func _ready() -> void:
 	# Crouch
 	if SaveManager.save_data["player_stats"]["crouching"]:
 		activate_crouching()
+		
+	hund_coin.set_scene(current_scene.get_name())
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
-		velocity = Vector2.ZERO
-		player_sprite.play("idle")
+		# Gravity weiter laufen lassen
+		add_gravity(delta)
+
+		# Keine horizontale Bewegung
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+		update_animation()
+		move_and_slide()
 		return
 
 	if not is_alive:
@@ -689,12 +700,14 @@ func activate_range_attack():
 func activate_double_jump():
 	is_double_jump_allowed = true
 
+func deactivate_double_jump():
+	is_double_jump_allowed = false
+
 func activate_dash():
 	is_dash_allowed = true
 
 func increase_range_attack_charges():
 	max_range_attack += 1
-
 
 # --- Cutscene Methoden ---
 func cutscene_start() -> void:

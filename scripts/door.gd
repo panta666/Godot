@@ -5,23 +5,41 @@ extends Area2D
 @onready var transition_rect: ColorRect = transition.get_node("ColorRect")
 @onready var shader_mat: ShaderMaterial = transition_rect.material
 @onready var door_open_player: AudioStreamPlayer = $DoorOpenPlayer
+@onready var door_closed_player: AudioStreamPlayer = $DoorClosedPlayer
 @export var next_scene: String = ""  # Name der Szene, zu der gewechselt wird
+
+@export var door_id: String = "" # z.B. "math_room"
+@export var needs_unlock := false
 
 var is_opening := false
 
 func _ready():
 	if not is_connected("body_entered", Callable(self, "_on_body_entered")):
 		connect("body_entered", Callable(self, "_on_body_entered"))
+		
 
 func _on_body_entered(body):
 	if is_opening:
 		return
 	if body != GlobalScript.player:
 		return
-
+	
+	# Locked Absicherung
+	if needs_unlock and not SaveManager.is_door_unlocked(door_id):
+		_show_locked_feedback()
+		return
+		
 	is_opening = true
+	GlobalScript.player.can_move = false
 	set_transition_center(body.global_position)
 	await play_door_animation(body)
+
+func _show_locked_feedback():
+	if not door_closed_player.playing:
+		door_closed_player.play()
+
+func _on_boss_defeated():
+	SaveManager.unlock_door("math_room")
 
 func set_transition_center(player_pos: Vector2):
 	var viewport = get_viewport()
@@ -58,6 +76,7 @@ func play_door_animation(_player_node):
 		GlobalScript.change_scene(next_scene)
 
 	is_opening = false
+	GlobalScript.player.can_move = true
 
 # ------------------------------------------------------
 # Türanimation

@@ -3097,7 +3097,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igvv"]
 size = Vector2(13, 111.5)
 
-[node name="OOPLevelOne" type="Node2D"]
+[node name="oop_level_one" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
 [node name="Background" type="TileMapLayer" parent="."]

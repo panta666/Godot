@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://08swwximjkt"]
+[gd_scene load_steps=31 format=3 uid="uid://08swwximjkt"]
 
 [ext_resource type="Script" uid="uid://br05g51v7a807" path="res://scripts/shop/shop_ui.gd" id="1_fs6yy"]
 [ext_resource type="Texture2D" uid="uid://chqpicboyq0fr" path="res://assets/tilemap/32x32/interior_32x32/shop_ui.png" id="2_oixfk"]
 [ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="3_18xnp"]
+[ext_resource type="Texture2D" uid="uid://blxvrtqvatume" path="res://assets/oop_level/5coins.png" id="4_crtus"]
 
 [sub_resource type="Animation" id="Animation_18xnp"]
 length = 0.001
@@ -99,6 +100,109 @@ shadow_size = 7
 shadow_color = Color(0, 0, 0, 0.8627451)
 shadow_offset = Vector2(3, 3)
 
+[sub_resource type="LabelSettings" id="LabelSettings_epbsd"]
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+outline_size = 7
+outline_color = Color(0.279967, 0.27990925, 4.813075e-08, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.40784314)
+shadow_offset = Vector2(3, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usj2y"]
+atlas = ExtResource("4_crtus")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bidp2"]
+atlas = ExtResource("4_crtus")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obwu6"]
+atlas = ExtResource("4_crtus")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3xdf"]
+atlas = ExtResource("4_crtus")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yw5g"]
+atlas = ExtResource("4_crtus")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s287r"]
+atlas = ExtResource("4_crtus")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrnm2"]
+atlas = ExtResource("4_crtus")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4j81"]
+atlas = ExtResource("4_crtus")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijxsd"]
+atlas = ExtResource("4_crtus")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytm40"]
+atlas = ExtResource("4_crtus")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2t8e"]
+atlas = ExtResource("4_crtus")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5g6y"]
+atlas = ExtResource("4_crtus")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsbvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usj2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bidp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obwu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3xdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yw5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s287r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrnm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4j81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijxsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytm40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2t8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5g6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxprq"]
+
 [node name="ShopUI" type="CanvasLayer"]
 offset = Vector2(0, -350)
 transform = Transform2D(1, 0, 0, 1, 0, -350)
@@ -109,7 +213,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_18xnp")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TafelSprite2D" type="Sprite2D" parent="."]
 position = Vector2(511, 236)
 scale = Vector2(14.726799, 14.726799)
 texture = ExtResource("2_oixfk")
@@ -122,7 +226,7 @@ offset_top = -29.0
 offset_right = 806.0
 offset_bottom = 265.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+[node name="ItemIconAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(300, 107)
 sprite_frames = SubResource("SpriteFrames_oixfk")
 
@@ -179,7 +283,7 @@ offset_right = 335.0
 offset_bottom = 275.0
 text = "Purchase"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
+[node name="ClosebuttonAnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(185, 375.5)
 scale = Vector2(5.8125, 5.8125)
 sprite_frames = SubResource("SpriteFrames_usj2y")
@@ -195,6 +299,35 @@ offset_bottom = 416.5
 text = "Press           to close the Shop"
 label_settings = SubResource("LabelSettings_bidp2")
 
+[node name="ConfirmPopup" type="AcceptDialog" parent="Control"]
+oversampling_override = 1.0
+title = "Are you sure?"
+initial_position = 1
+size = Vector2i(101, 80)
+unfocusable = true
+popup_window = true
+ok_button_text = "Yes, buy!"
+
+[node name="CoinsLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -49.0
+offset_right = 75.0
+offset_bottom = -7.125
+text = "0"
+label_settings = SubResource("LabelSettings_epbsd")
+
+[node name="CoinAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(7, -29)
+scale = Vector2(3.3940392, 3.3940392)
+sprite_frames = SubResource("SpriteFrames_jsbvm")
+autoplay = "default"
+frame_progress = 0.98295254
+
+[node name="CoinCollisionShape2D" type="CollisionShape2D" parent="Control/CoinAnimatedSprite2D"]
+shape = SubResource("CircleShape2D_uxprq")
+
 [connection signal="pressed" from="Control/Prev" to="." method="_on_prev_pressed"]
 [connection signal="pressed" from="Control/Next" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="Control/Buy" to="." method="_on_buy_pressed"]
+[connection signal="confirmed" from="Control/ConfirmPopup" to="." method="_on_confirm_popup_confirmed"]

@@ -4670,3 +4670,4 @@ energy = 1.78
 [node name="Shop" parent="." instance=ExtResource("14_npa15")]
 position = Vector2(1150, 491)
 shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("18_lvyo4"), ExtResource("19_0jema"), ExtResource("20_ktf6i")])
+coin_category = "math"

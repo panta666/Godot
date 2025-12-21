@@ -28,8 +28,9 @@ func _on_train_animation_finished(anim_name: String) -> void:
 		await _fade_out_transition()
 
 	# Zielszene setzen & wechseln
-	GlobalScript.previous_scene = "train_scene"
+	GlobalScript.current_scene = "train_scene"
 	GlobalScript.change_scene("realworld_hall")
+	
 
 
 

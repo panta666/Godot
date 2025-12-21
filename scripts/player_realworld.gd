@@ -6,6 +6,7 @@ const SCALE_FACTOR = 1.5
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var hud_coin: Control = $HUD/HudCoin
 
 var facing_direction: String = "down"
 var sitting: bool = false
@@ -220,6 +221,7 @@ func disable_player() -> void:
 	set_physics_process(false)
 	animated_sprite_2d.stop()
 	visible = false
+	hud_coin.visible = false
 
 func enable_player() -> void:
 	can_move = true
@@ -227,6 +229,7 @@ func enable_player() -> void:
 	set_process(true)
 	set_physics_process(true)
 	visible = true
+	hud_coin.visible = true
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:

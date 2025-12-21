@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4061oanmcyqa"]
+[gd_scene load_steps=11 format=3 uid="uid://c4061oanmcyqa"]
 
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="1_hpvv5"]
 [ext_resource type="Script" uid="uid://7dbmvehs4dig" path="res://scripts/door.gd" id="1_uvdjg"]
 [ext_resource type="Shader" uid="uid://dpqucclpp7hht" path="res://scenes/components/door_transition.gdshader" id="3_83dcw"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://scenes/door_open_player.tscn" id="4_la1wf"]
+[ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://scenes/door_closed_player.tscn" id="5_18pbm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvdjg"]
 atlas = ExtResource("1_hpvv5")
@@ -64,6 +65,8 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="DoorOpenPlayer" parent="." instance=ExtResource("4_la1wf")]
+
+[node name="DoorClosedPlayer" parent="." instance=ExtResource("5_18pbm")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
