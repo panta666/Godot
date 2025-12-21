@@ -70,7 +70,7 @@ func show_item(index: int) -> void:
 	prev_button.show()
 	next_button.show()
 	
-	var can_afford = get_category_coin_count() >= data.price
+	var can_afford = GlobalScript.get_coins_realworld() >= data.price
 	buy_button.disabled = not can_afford
 
 # Navigation
@@ -96,7 +96,7 @@ func _on_buy_pressed() -> void:
 	confirm_popup.dialog_text = "Do you want to buy " + pending_purchase_item.item_name + " for " + str(pending_purchase_item.price) + " coins?"
 	
 	var price = pending_purchase_item.price
-	var current_coins = get_category_coin_count()
+	var current_coins = GlobalScript.get_coins_realworld()
 
 	if current_coins < price:
 		confirm_popup.dialog_text = "You don't have enough coins."
@@ -115,7 +115,7 @@ func _on_confirm_popup_confirmed() -> void:
 	var key = pending_purchase_item.powerup_name
 	
 	# Coins abziehen
-	if not spend_category_coins(price):
+	if not GlobalScript.decrease_realworld_coins(price):
 		print("Nicht genug Coins")
 		pending_purchase_item = null
 		return
@@ -144,39 +144,39 @@ func _on_confirm_popup_confirmed() -> void:
 	update_coin_display()
 
 #Coins pro OOP oder MATH zusammenzählen
-func get_category_coin_count() -> int:
-	var total := 0
-	var coins_dict = SaveManager.save_data["game_progress"]["coins"]
-
-	for key in coins_dict.keys():
-		if key.begins_with(coin_category + "_"):
-			if coins_dict[key] is Array:
-				total += coins_dict[key].size()
-
-	return total
+#func get_category_coin_count() -> int:
+	#var total := 0
+	#var coins_dict = SaveManager.save_data["game_progress"]["coins"]
+#
+	#for key in coins_dict.keys():
+		#if key.begins_with(coin_category + "_"):
+			#if coins_dict[key] is Array:
+				#total += coins_dict[key].size()
+#
+	#return total
 	
 func update_coin_display() -> void:
-	var coins = get_category_coin_count()
+	var coins = GlobalScript.get_coins_realworld()
 	coins_label.text = "Coins: " + str(coins)
 	
-func spend_category_coins(amount: int) -> bool:
-	var coins_dict = SaveManager.save_data["game_progress"]["coins"]
-	var remaining := amount
-
-	for key in coins_dict.keys():
-		if not key.begins_with(coin_category + "_"):
-			continue
-
-		if coins_dict[key] is Array:
-			while coins_dict[key].size() > 0 and remaining > 0:
-				coins_dict[key].pop_back()
-				remaining -= 1
-
-		if remaining <= 0:
-			break
-
-	if remaining > 0:
-		return false # nicht genug Coins
-
-	SaveManager.save_game()
-	return true
+#func spend_category_coins(amount: int) -> bool:
+	#var coins_dict = SaveManager.save_data["game_progress"]["coins"]
+	#var remaining := amount
+#
+	#for key in coins_dict.keys():
+		#if not key.begins_with(coin_category + "_"):
+			#continue
+#
+		#if coins_dict[key] is Array:
+			#while coins_dict[key].size() > 0 and remaining > 0:
+				#coins_dict[key].pop_back()
+				#remaining -= 1
+#
+		#if remaining <= 0:
+			#break
+#
+	#if remaining > 0:
+		#return false # nicht genug Coins
+#
+	#SaveManager.save_game()
+	#return true
