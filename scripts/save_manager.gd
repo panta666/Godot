@@ -28,7 +28,6 @@ var save_data = {
 		"SFX_is_muted": false
 	},
 	"player_stats": {
-		"coins": 0,
 		"double_jump": false,
 		"dash": false,
 		"range_attack": false,
@@ -58,7 +57,6 @@ const default_values = {
 		"SFX_is_muted": false
 	},
 	"player_stats": {
-		"coins": 0,
 		"double_jump": false,
 		"dash": false,
 		"range_attack": false,
