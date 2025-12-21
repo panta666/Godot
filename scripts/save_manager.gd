@@ -112,6 +112,7 @@ func save_coin(coins: Array, level: String):
 
 func save_realworld_coin(value: int):
 	save_data["game_progress"]["coins"]["realworld"] = value
+	save_game()
 
 func get_realworld_coins():
 	return save_data["game_progress"]["coins"]["realworld"]
