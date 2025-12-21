@@ -298,6 +298,12 @@ func validate_data(target: Dictionary, defaults: Dictionary) -> void:
 		if target_val is Dictionary and default_val is Dictionary:
 			validate_data(target_val, default_val)
 
+		# 3. TYP-KORREKTUR (Das ist der neue Teil für dein Problem)
+		# Wenn Default ein INT ist, aber JSON uns einen FLOAT gegeben hat -> Umwandeln!
+		elif typeof(default_val) == TYPE_INT and typeof(target_val) == TYPE_FLOAT:
+			target[key] = int(target_val)
+			print("SaveManager: Fixed float->int für", key)
+
 		# Optional: Typ-Sicherheit prüfen (Wenn im Save 'coins' plötzlich ein String ist)
 		elif typeof(target_val) != typeof(default_val) and default_val != null:
 			print("SaveManager: Falscher Datentyp für '", key, "'. Setze auf Default zurück.")
