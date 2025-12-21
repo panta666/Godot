@@ -114,6 +114,20 @@ func save_realworld_coin(value: int):
 func get_realworld_coins():
 	return save_data["game_progress"]["coins"]["realworld"]
 
+func get_dreamworld_coins(level:String = ""):
+	if level == "":
+		return save_data["game_progress"]["coins"]
+	elif save_data["game_progress"]["coins"].has(level):
+		return save_data["game_progress"]["coins"][level]
+	else:
+		return 0
+
+func get_ammount_dreamworld_coins(level:String):
+	if save_data["game_progress"]["coins"].has(level):
+		return len(save_data["game_progress"]["coins"][level])
+	else:
+		return 0
+
 func coin_is_collected(level: String, coin_name: String) -> bool:
 	var is_collected = false
 	if save_data["game_progress"]["coins"].has(level) == true:
