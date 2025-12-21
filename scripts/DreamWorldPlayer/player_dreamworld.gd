@@ -65,6 +65,9 @@ var can_attack = true
 @onready var sprite_left_hitbox: AnimatedSprite2D = $HitBoxLeft/SpriteLeftHitbox
 @onready var sprite_up_hitbox: AnimatedSprite2D = $HitBoxUp/SpriteUpHitbox
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
+@onready var hund_coin: Control = $HUD/HundCoin
+
+
 
 #Variablen für Range Attacke
 var is_range_attack_allowed: bool = false
@@ -150,6 +153,8 @@ func _ready() -> void:
 	# Crouch
 	if SaveManager.save_data["player_stats"]["crouching"]:
 		activate_crouching()
+		
+	hund_coin.set_scene(current_scene.get_name())
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
