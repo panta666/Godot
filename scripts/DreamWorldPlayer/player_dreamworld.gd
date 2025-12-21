@@ -700,12 +700,14 @@ func activate_range_attack():
 func activate_double_jump():
 	is_double_jump_allowed = true
 
+func deactivate_double_jump():
+	is_double_jump_allowed = false
+
 func activate_dash():
 	is_dash_allowed = true
 
 func increase_range_attack_charges():
 	max_range_attack += 1
-
 
 # --- Cutscene Methoden ---
 func cutscene_start() -> void:

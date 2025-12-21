@@ -208,6 +208,7 @@ func _wake_up_transition() -> void:
 	GlobalScript.reset_coins_after_tutorial()
 	# Spieler von der Dreamworld entfernen
 	var player = get_node_or_null("Player_Dreamworld")
+	player.deactivate_double_jump()
 	if player and player.has_method("cutscene_end"):
 		player.cutscene_end()
 
