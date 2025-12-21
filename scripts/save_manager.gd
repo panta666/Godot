@@ -21,9 +21,11 @@ var save_data = {
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
+		"Master_is_muted": false,
 		"Music": -13.0,
+		"Music_is_muted": false,
 		"SFX": 0.0,
-		"is_muted": false
+		"SFX_is_muted": false
 	},
 	"player_stats": {
 		"coins": 0,
