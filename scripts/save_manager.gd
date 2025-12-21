@@ -147,12 +147,12 @@ func load_game():
 
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
-		push_error("SaveManager: Fehler beim Öffnen der Speicherdatei zum Lesen.")
+		print("SaveManager: Fehler beim Öffnen der Speicherdatei zum Lesen.")
 		return
 
 	var content = file.get_as_text()
 	file.close()
-
+	
 	var parse_result = JSON.parse_string(content)
 	if parse_result is Dictionary:
 		# Führt die geladenen Daten mit den Standarddaten zusammen.
@@ -160,8 +160,7 @@ func load_game():
 		save_data.merge(parse_result, true)
 		print("SaveManager: Spielstand geladen.")
 	else:
-		push_error("SaveManager: Speicherdatei ist korrupt.")
-
+		print("SaveManager: Speicherdatei ist korrupt.")
 	# Wenn neue Einstellungen zum speichern dazukommen überschreibe mit defautl.
 	validate_data(save_data, default_values)
 	# Wendet die geladenen Audioeinstellungen sofort an.
