@@ -213,7 +213,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_18xnp")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="TafelSprite2D" type="Sprite2D" parent="."]
 position = Vector2(511, 236)
 scale = Vector2(14.726799, 14.726799)
 texture = ExtResource("2_oixfk")
@@ -226,7 +226,7 @@ offset_top = -29.0
 offset_right = 806.0
 offset_bottom = 265.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+[node name="ItemIconAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(300, 107)
 sprite_frames = SubResource("SpriteFrames_oixfk")
 
@@ -283,7 +283,7 @@ offset_right = 335.0
 offset_bottom = 275.0
 text = "Purchase"
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
+[node name="ClosebuttonAnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(185, 375.5)
 scale = Vector2(5.8125, 5.8125)
 sprite_frames = SubResource("SpriteFrames_usj2y")
@@ -317,14 +317,14 @@ offset_bottom = -7.125
 text = "0"
 label_settings = SubResource("LabelSettings_epbsd")
 
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control"]
+[node name="CoinAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
 position = Vector2(7, -29)
 scale = Vector2(3.3940392, 3.3940392)
 sprite_frames = SubResource("SpriteFrames_jsbvm")
 autoplay = "default"
 frame_progress = 0.98295254
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/AnimatedSprite2D3"]
+[node name="CoinCollisionShape2D" type="CollisionShape2D" parent="Control/CoinAnimatedSprite2D"]
 shape = SubResource("CircleShape2D_uxprq")
 
 [connection signal="pressed" from="Control/Prev" to="." method="_on_prev_pressed"]

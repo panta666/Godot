@@ -6,7 +6,7 @@ var pending_purchase_item: ShopData = null
 var coin_category: String = "" # oop oder math
 
 # UI-Elemente
-@onready var item_icon: AnimatedSprite2D = $Control/AnimatedSprite2D
+@onready var item_icon: AnimatedSprite2D = $Control/ItemIconAnimatedSprite2D
 @onready var item_name_label: Label = $Control/Name
 @onready var item_desc_label: Label = $Control/Desc
 @onready var buy_button: Button = $Control/Buy
