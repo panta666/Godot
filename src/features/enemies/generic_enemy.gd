@@ -336,11 +336,7 @@ func _apply_knockback(attacker_pos: Vector2) -> void:
 
 func _on_health_depleted() -> void:
 	healthbar._deplete()
-	if carried_item != null:
-		print("drop")
-		var item = carried_item.instantiate()
-		get_parent().add_child(item)
-		item.global_position = global_position
+	call_deferred("drop_item")
 	queue_free()
 
 func _on_dashing_timer_timeout() -> void:
@@ -351,3 +347,10 @@ func _on_attack_cooldown_timeout() -> void:
 	
 func give_item(item_scene):
 	carried_item = item_scene
+	
+func drop_item():
+	if carried_item != null:
+		print("drop")
+		var item = carried_item.instantiate()
+		get_parent().add_child(item)
+		item.global_position = global_position
