@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://be7j4nn2hia0b"]
+[gd_scene load_steps=31 format=4 uid="uid://be7j4nn2hia0b"]
 
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://scripts/drop_manager.gd" id="1_6qlke"]
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="1_ai55v"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="7_vqyb8"]
 [ext_resource type="Texture2D" uid="uid://cu0eatkkyeru" path="res://scenes/level/oop/oop_assets/ladder.png" id="8_und7l"]
 [ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://scenes/Enemies/Bug.tscn" id="12_vqyb8"]
+[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://scenes/boss_door.tscn" id="14_0hj1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_und7l"]
 texture = ExtResource("2_lpkye")
@@ -576,5 +577,8 @@ collision_layer = 2
 position = Vector2(1300, 131.00003)
 scale = Vector2(0.43219286, 0.47272727)
 collision_layer = 2
+
+[node name="Boss_door" parent="." instance=ExtResource("14_0hj1e")]
+position = Vector2(2072, 1405)
 
 [connection signal="body_entered" from="Level 3 test" to="Level 3 test" method="_on_body_entered"]
