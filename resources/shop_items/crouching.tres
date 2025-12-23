@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=9 format=3 uid="uid://d36jdnhyi1ohy"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://src/features/shop/shop_data.gd" id="1_tlvwg"]
+[ext_resource type="Texture2D" uid="uid://xsrd2urdv8w6" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_000.png" id="1_v4mwb"]
+[ext_resource type="Texture2D" uid="uid://i3q16a0rsnnj" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_001.png" id="3_b37p5"]
+[ext_resource type="Texture2D" uid="uid://dj0h8yfp43ojb" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_002.png" id="4_anhxw"]
+[ext_resource type="Texture2D" uid="uid://cg0frg13ehtl1" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_003.png" id="5_h6ogb"]
+[ext_resource type="Texture2D" uid="uid://cc13j7psxrll2" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_004.png" id="6_pno8j"]
+[ext_resource type="Texture2D" uid="uid://dltnyvr7828et" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_005.png" id="7_cokgj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhmbq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v4mwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b37p5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_anhxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h6ogb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pno8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cokgj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_tlvwg")
+item_name = "Crouching"
+sprite_frames = SubResource("SpriteFrames_nhmbq")
+price = 1
+description = "You can press or hold 'S' or Arrow Key Down to crouch."
+powerup_name = "crouching"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvbwb53kbyq0y"]
+
+[ext_resource type="Script" uid="uid://b355gj575nuf8" path="res://src/shared/components/skip_scene.gd" id="1_rxqd1"]
+[ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="2_evbvr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rxqd1"]
+font_size = 27
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxqd1"]
+atlas = ExtResource("2_evbvr")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evbvr"]
+atlas = ExtResource("2_evbvr")
+region = Rect2(32, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mq8e5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxqd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evbvr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Skip_Scene" type="CanvasLayer"]
+script = ExtResource("1_rxqd1")
+next_scene = "realworld_hall"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 14.0
+offset_top = 561.0
+offset_right = 54.0
+offset_bottom = 601.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = -9.0
+offset_right = 208.0
+offset_bottom = 28.6875
+text = "Press        to Skip"
+label_settings = SubResource("LabelSettings_rxqd1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(99, 9)
+scale = Vector2(2.9375005, 2.9375005)
+sprite_frames = SubResource("SpriteFrames_mq8e5")
+autoplay = "default"
+frame_progress = 0.2828774
