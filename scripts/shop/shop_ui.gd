@@ -122,8 +122,7 @@ func _on_confirm_popup_confirmed() -> void:
 
 	if key in SaveManager.save_data["player_stats"] and not SaveManager.save_data["player_stats"][key]:
 		# Power-Up kaufen
-		SaveManager.save_data["player_stats"][key] = true
-		SaveManager.save_game()
+		SaveManager.set_player_unlock(key)
 		print("Upgrade gespeichert:", key)
 
 		# Aus Shop-Liste entfernen
