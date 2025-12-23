@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=32 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://scripts/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://scenes/door.tscn" id="2_1lbkm"]
@@ -17,7 +17,6 @@
 [ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://scripts/shop/shop_data.gd" id="15_6r6jj"]
 [ext_resource type="Resource" uid="uid://b7qxgj2pbxsyx" path="res://shop_items/dash.tres" id="16_2ql7k"]
 [ext_resource type="Resource" uid="uid://d36jdnhyi1ohy" path="res://shop_items/crouching.tres" id="17_pj12r"]
-[ext_resource type="Resource" uid="uid://dhu401et8q56x" path="res://shop_items/double_jump.tres" id="18_lvyo4"]
 [ext_resource type="Resource" uid="uid://ddbdgs4gv4dn2" path="res://shop_items/range_attack.tres" id="19_0jema"]
 [ext_resource type="Resource" uid="uid://baftcvns6tuvu" path="res://shop_items/range_attack_increase.tres" id="20_ktf6i"]
 
@@ -4669,5 +4668,5 @@ energy = 1.78
 
 [node name="Shop" parent="." instance=ExtResource("14_npa15")]
 position = Vector2(1150, 491)
-shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("18_lvyo4"), ExtResource("19_0jema"), ExtResource("20_ktf6i")])
+shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("19_0jema"), ExtResource("20_ktf6i")])
 coin_category = "math"

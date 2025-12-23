@@ -62,4 +62,5 @@ func _on_dialogic_signal(event_name: String) -> void:
 		var player = get_node_or_null("Player_Dreamworld")
 		if player and player.has_method("activate_double_jump"):
 			player.activate_double_jump()
+			SaveManager.set_player_unlock("double_jump")
 			print("Double Jump für Spieler aktiviert!")
