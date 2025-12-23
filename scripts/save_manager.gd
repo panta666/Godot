@@ -225,6 +225,10 @@ func unlock_door(door_id: String):
 		save_data["game_progress"]["unlocked_doors"][door_id] = true
 		save_game()
 
+func set_player_unlock(stat: String, unlocked: bool = true):
+	save_data["player_stats"][stat] = unlocked
+	save_game()
+
 func is_door_unlocked(door_id: String) -> bool:
 	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
 	
