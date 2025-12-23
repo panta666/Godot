@@ -8,3 +8,4 @@ export/Linux/BattleForBachelor.*
 export/Windows/BattleForBachelor.*
 export/MacOS/BattleForBachelor.*
 *.tmp
+/wiki/

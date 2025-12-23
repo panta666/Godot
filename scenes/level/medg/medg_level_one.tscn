@@ -4655,6 +4655,7 @@ script = ExtResource("1_k3sex")
 teleport_target = NodePath("Marker2D")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_q4fl0")]
+unique_name_in_owner = true
 position = Vector2(77, 122)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
