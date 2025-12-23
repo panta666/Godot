@@ -171,7 +171,6 @@ func check_for_player_settings():
 	if save_data.has("player_stats") == false:
 		save_data["player_stats"]["double_jump"] = false
 		save_data["player_stats"]["coins"] = 0
-		save_data["player_stats"]["double_jump"] = false
 		save_data["player_stats"]["dash"] = false
 		save_data["player_stats"]["range_attack"] = false
 		save_data["player_stats"]["crouching"] = false
