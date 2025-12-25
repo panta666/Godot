@@ -1,16 +1,16 @@
 [gd_scene load_steps=35 format=4 uid="uid://bwn4djhak6niv"]
 
-[ext_resource type="Script" uid="uid://c1frkxga1481x" path="res://src/worlds/realworld/realworld_classroom_one.gd" id="1_tf4s0"]
+[ext_resource type="Script" uid="uid://i76gbsnxvpv7" path="res://src/worlds/realworld/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_onpry"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="4_55vsv"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="5_4xjni"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://src/features/interactables/chair.tscn" id="5_onpry"]
-[ext_resource type="Resource" uid="uid://dkwhe3yvc7m7p" path="res://assets/npc_data_animations/npc_typ1.tres" id="7_p60gb"]
-[ext_resource type="Resource" uid="uid://bfgu0b8j8frw2" path="res://assets/npc_data_animations/dahm.tres" id="7_qgh3e"]
-[ext_resource type="Resource" uid="uid://bannmav44g0an" path="res://assets/npc_data_animations/npc_lady1.tres" id="9_6ftnj"]
-[ext_resource type="Resource" uid="uid://bk5m7wfr5ivs5" path="res://assets/npc_data_animations/npc_typ2.tres" id="9_p60gb"]
+[ext_resource type="Resource" uid="uid://q282qgjr156l" path="res://resources/npc_data/boy_01.tres" id="7_cnr06"]
+[ext_resource type="Resource" uid="uid://b14la5ecqm60s" path="res://resources/npc_data/dahm.tres" id="7_mjg30"]
+[ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="9_ijvys"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="10_fktbd"]
+[ext_resource type="Resource" uid="uid://cr2vr22q5uhev" path="res://resources/npc_data/boy_03.tres" id="10_ftchy"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://src/shared/components/sunlight.tscn" id="12_4xjni"]
 [ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://src/shared/components/blinking.tscn" id="13_j8bsy"]
 [ext_resource type="PackedScene" uid="uid://lwfs7n2rkj2y" path="res://src/features/quests/quest_trigger.tscn" id="14_x7s6t"]
@@ -4635,11 +4635,11 @@ polygon = PackedVector2Array(95, 126, 625, 126, 624, 410, 585, 410, 585, 427, 54
 
 [node name="NPC" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(145, 196)
-npc_data = ExtResource("7_p60gb")
+npc_data = ExtResource("7_cnr06")
 
 [node name="NPC2" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(583, 249)
-npc_data = ExtResource("7_qgh3e")
+npc_data = ExtResource("7_mjg30")
 
 [node name="PatrolPath" type="Path2D" parent="."]
 y_sort_enabled = true
@@ -4657,11 +4657,11 @@ loop = false
 position = Vector2(-11.248978, 0.15200806)
 rotation = -1.584309
 scale = Vector2(1.0000001, 1.0000001)
-npc_data = ExtResource("9_6ftnj")
+npc_data = ExtResource("9_ijvys")
 
 [node name="NPC3" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(280, 112)
-npc_data = ExtResource("9_p60gb")
+npc_data = ExtResource("10_ftchy")
 
 [node name="SFX" type="Node" parent="."]
 

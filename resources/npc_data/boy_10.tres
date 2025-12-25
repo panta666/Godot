@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="NPCData" load_steps=3 format=3 uid="uid://cfbhcut044l71"]
+
+[ext_resource type="Script" uid="uid://j0bl253043i7" path="res://src/features/interactables/npc_data.gd" id="1_2ut2e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ut2e"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_side",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle_up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_side",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_2ut2e")
+npc_name = "Sebastian"
+sprite_frames = SubResource("SpriteFrames_2ut2e")
+can_talk = false
+move_speed = 56.0
+wander_interval = 2.8
+metadata/_custom_type_script = "uid://j0bl253043i7"
