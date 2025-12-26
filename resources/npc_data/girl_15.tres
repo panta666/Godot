@@ -171,7 +171,7 @@ region = Rect2(320, 128, 32, 64)
 atlas = ExtResource("2_ky64o")
 region = Rect2(352, 128, 32, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5gxcv"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sm84n"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -337,6 +337,6 @@ animations = [{
 
 [resource]
 script = ExtResource("1_5gxcv")
-sprite_frames = SubResource("SpriteFrames_5gxcv")
+sprite_frames = SubResource("SpriteFrames_sm84n")
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

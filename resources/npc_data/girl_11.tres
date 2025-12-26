@@ -339,4 +339,6 @@ animations = [{
 script = ExtResource("1_8hh0s")
 sprite_frames = SubResource("SpriteFrames_8hh0s")
 can_talk = false
+behavior_type = 3
+path_node = NodePath("../..")
 metadata/_custom_type_script = "uid://j0bl253043i7"

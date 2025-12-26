@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bwn4djhak6niv"]
+[gd_scene load_steps=36 format=4 uid="uid://bwn4djhak6niv"]
 
 [ext_resource type="Script" uid="uid://i76gbsnxvpv7" path="res://src/worlds/realworld/realworld_classroom_one.gd" id="1_tf4s0"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_sdypo"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://src/features/interactables/chair.tscn" id="5_onpry"]
 [ext_resource type="Resource" uid="uid://q282qgjr156l" path="res://resources/npc_data/boy_01.tres" id="7_cnr06"]
 [ext_resource type="Resource" uid="uid://b14la5ecqm60s" path="res://resources/npc_data/dahm.tres" id="7_mjg30"]
-[ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="9_ijvys"]
+[ext_resource type="Resource" uid="uid://6ykf026yhjxq" path="res://resources/npc_data/girl_11.tres" id="9_cnr06"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="10_fktbd"]
 [ext_resource type="Resource" uid="uid://cr2vr22q5uhev" path="res://resources/npc_data/boy_03.tres" id="10_ftchy"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://src/shared/components/sunlight.tscn" id="12_4xjni"]
@@ -21,6 +21,7 @@
 [ext_resource type="Resource" uid="uid://b7qxgj2pbxsyx" path="res://resources/shop_items/dash.tres" id="19_l3xm6"]
 [ext_resource type="Resource" uid="uid://d36jdnhyi1ohy" path="res://resources/shop_items/crouching.tres" id="20_3e74t"]
 [ext_resource type="Resource" uid="uid://ddbdgs4gv4dn2" path="res://resources/shop_items/range_attack.tres" id="22_okp6d"]
+[ext_resource type="Resource" uid="uid://bx727ua7daihh" path="res://resources/npc_data/boy_05.tres" id="23_ijvys"]
 [ext_resource type="Resource" uid="uid://baftcvns6tuvu" path="res://resources/shop_items/range_attack_increase.tres" id="23_ljb5t"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4xjni"]
@@ -4637,6 +4638,14 @@ polygon = PackedVector2Array(95, 126, 625, 126, 624, 410, 585, 410, 585, 427, 54
 position = Vector2(145, 196)
 npc_data = ExtResource("7_cnr06")
 
+[node name="NPC4" parent="." instance=ExtResource("4_55vsv")]
+position = Vector2(255, 250)
+npc_data = ExtResource("23_ijvys")
+
+[node name="NPC3" parent="." instance=ExtResource("4_55vsv")]
+position = Vector2(280, 112)
+npc_data = ExtResource("10_ftchy")
+
 [node name="NPC2" parent="." instance=ExtResource("4_55vsv")]
 position = Vector2(583, 249)
 npc_data = ExtResource("7_mjg30")
@@ -4657,11 +4666,7 @@ loop = false
 position = Vector2(-11.248978, 0.15200806)
 rotation = -1.584309
 scale = Vector2(1.0000001, 1.0000001)
-npc_data = ExtResource("9_ijvys")
-
-[node name="NPC3" parent="." instance=ExtResource("4_55vsv")]
-position = Vector2(280, 112)
-npc_data = ExtResource("10_ftchy")
+npc_data = ExtResource("9_cnr06")
 
 [node name="SFX" type="Node" parent="."]
 

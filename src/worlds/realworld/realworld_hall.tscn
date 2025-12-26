@@ -1,24 +1,59 @@
-[gd_scene load_steps=128 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=163 format=4 uid="uid://dqloihqvrxpgp"]
 
-[ext_resource type="Script" uid="uid://dk5vsksec6wud" path="res://src/worlds/realworld/realworld_hall.gd" id="1_je2ly"]
+[ext_resource type="Script" uid="uid://rx0fqlfipfpo" path="res://src/worlds/realworld/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://src/worlds/realworld/door_open_player.tscn" id="4_6r254"]
-[ext_resource type="Texture2D" uid="uid://10pmppui1eeq" path="res://assets/npc_data_animations/npc_portraits/dahm.png" id="4_je2ly"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="5_2ufs1"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="5_3x2cr"]
 [ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://src/worlds/realworld/door_closed_player.tscn" id="5_752cd"]
-[ext_resource type="Resource" uid="uid://cttvf6qpmdlt7" path="res://assets/npc_data_animations/npc_typ3.tres" id="6_1ug8t"]
+[ext_resource type="Resource" uid="uid://q282qgjr156l" path="res://resources/npc_data/boy_01.tres" id="6_sjtf8"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="6_snpmh"]
-[ext_resource type="Resource" uid="uid://cd70y3dlb8mhy" path="res://assets/npc_data_animations/npc_typ4.tres" id="7_opuva"]
-[ext_resource type="Resource" uid="uid://boksf2fwaf0p0" path="res://assets/npc_data_animations/npc_lady4.tres" id="8_7ax41"]
-[ext_resource type="Resource" uid="uid://natb34qu7bfr" path="res://assets/npc_data_animations/npc_lady5.tres" id="9_w26c5"]
-[ext_resource type="Resource" uid="uid://coirwlyfbwyvn" path="res://assets/npc_data_animations/npc_typ5.tres" id="10_snpmh"]
-[ext_resource type="Resource" uid="uid://bscgws4thhpl2" path="res://assets/npc_data_animations/npc_lady2.tres" id="11_ldiki"]
+[ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="7_gu2pk"]
+[ext_resource type="Resource" uid="uid://cr2vr22q5uhev" path="res://resources/npc_data/boy_03.tres" id="8_sxpdh"]
+[ext_resource type="Resource" uid="uid://ch7mbvek1qm5d" path="res://resources/npc_data/boy_04.tres" id="9_gn28l"]
+[ext_resource type="Resource" uid="uid://bx727ua7daihh" path="res://resources/npc_data/boy_05.tres" id="10_cvnav"]
+[ext_resource type="Resource" uid="uid://bk6glds7ly75n" path="res://resources/npc_data/boy_06.tres" id="11_a2fbr"]
+[ext_resource type="Resource" uid="uid://dhk3eei1h5xbs" path="res://resources/npc_data/boy_07.tres" id="12_vux2c"]
+[ext_resource type="Resource" uid="uid://bkhn3edef1aal" path="res://resources/npc_data/boy_09.tres" id="13_ndawl"]
+[ext_resource type="Resource" uid="uid://dqgq8qsk780eh" path="res://resources/npc_data/girl_01.tres" id="14_sa4eq"]
+[ext_resource type="Resource" uid="uid://7sidw3336glc" path="res://resources/npc_data/boy_08.tres" id="15_ga1li"]
+[ext_resource type="Resource" uid="uid://b2ct7i2a1tgi1" path="res://resources/npc_data/girl_02.tres" id="16_oahrd"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://src/shared/components/sunlight.tscn" id="16_snpmh"]
+[ext_resource type="Resource" uid="uid://clx5pfnnfp834" path="res://resources/npc_data/boy_13.tres" id="17_flvwn"]
 [ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://src/shared/components/blinking.tscn" id="17_ldiki"]
 [ext_resource type="PackedScene" uid="uid://lwfs7n2rkj2y" path="res://src/features/quests/quest_trigger.tscn" id="18_o55gb"]
+[ext_resource type="Resource" uid="uid://s6pvqvw1bsrj" path="res://resources/npc_data/girl_03.tres" id="18_sx144"]
 [ext_resource type="Resource" uid="uid://c5gel36462yci" path="res://resources/quests/quest_02.tres" id="19_7us8e"]
+[ext_resource type="Resource" uid="uid://blclswoijdsju" path="res://resources/npc_data/girl_05.tres" id="19_csmof"]
+[ext_resource type="Resource" uid="uid://ccapd6j8v1em7" path="res://resources/npc_data/girl_06.tres" id="20_ni671"]
+[ext_resource type="Resource" uid="uid://b166r0p7cfk20" path="res://resources/npc_data/boy_14.tres" id="21_5qu6y"]
+[ext_resource type="Resource" uid="uid://w3lt8semynxk" path="res://resources/npc_data/girl_07.tres" id="22_yuxhh"]
+[ext_resource type="Resource" uid="uid://bqi4j6e861yyj" path="res://resources/npc_data/boy_15.tres" id="23_fyfcd"]
+[ext_resource type="Resource" uid="uid://c1h0pfe1yeqbv" path="res://resources/npc_data/boy_16.tres" id="24_v2nlh"]
+[ext_resource type="Resource" uid="uid://cm4b0lidenxjk" path="res://resources/npc_data/boy_18.tres" id="25_r445l"]
+[ext_resource type="Resource" uid="uid://bnrcixjncyole" path="res://resources/npc_data/boy_21.tres" id="26_kq4tn"]
+[ext_resource type="Resource" uid="uid://yxkxfuevudd5" path="res://resources/npc_data/girl_08.tres" id="27_idogc"]
+[ext_resource type="Resource" uid="uid://bib4xcaonrg44" path="res://resources/npc_data/girl_09.tres" id="28_hvqik"]
+[ext_resource type="Resource" uid="uid://dh5wqvdcbmgl7" path="res://resources/npc_data/girl_10.tres" id="29_q0nfu"]
+[ext_resource type="Resource" uid="uid://b1j4bgbfj8eeh" path="res://resources/npc_data/boy_24.tres" id="30_wjmc3"]
+[ext_resource type="Resource" uid="uid://vjhjihyx7x1a" path="res://resources/npc_data/boy_25.tres" id="31_gyoco"]
+[ext_resource type="Resource" uid="uid://c7ru3mnvg1pny" path="res://resources/npc_data/boy_26.tres" id="32_tcj8f"]
+[ext_resource type="Resource" uid="uid://6ykf026yhjxq" path="res://resources/npc_data/girl_11.tres" id="33_x82mj"]
+[ext_resource type="Resource" uid="uid://dcycncriw5x5p" path="res://resources/npc_data/girl_12.tres" id="34_ch1np"]
+[ext_resource type="Resource" uid="uid://ba3n04c8uhpe3" path="res://resources/npc_data/girl_13.tres" id="35_jml0d"]
+[ext_resource type="Resource" uid="uid://3mqwcrl18vqy" path="res://resources/npc_data/girl_14.tres" id="36_jlm6c"]
+[ext_resource type="Resource" uid="uid://t3w67p42mu4w" path="res://resources/npc_data/boy_11.tres" id="38_buojq"]
+[ext_resource type="Resource" uid="uid://cfbhcut044l71" path="res://resources/npc_data/boy_10.tres" id="39_ahis8"]
+[ext_resource type="Resource" uid="uid://dc33cs0pcg78m" path="res://resources/npc_data/girl_16.tres" id="40_4dsqf"]
+[ext_resource type="Resource" uid="uid://cv0ulqs88memv" path="res://resources/npc_data/girl_17.tres" id="41_6tvo5"]
+[ext_resource type="Resource" uid="uid://bji18l4djwn1o" path="res://resources/npc_data/girl_18.tres" id="42_ud5ra"]
+[ext_resource type="Resource" uid="uid://ctg5s8rydjcyf" path="res://resources/npc_data/girl_19.tres" id="43_mx20b"]
+[ext_resource type="Resource" uid="uid://du66aygkv27dc" path="res://resources/npc_data/girl_20.tres" id="44_4ahfs"]
+[ext_resource type="Resource" uid="uid://fqa61ap17ga0" path="res://resources/npc_data/girl_21.tres" id="45_xse40"]
+[ext_resource type="Resource" uid="uid://dgenpfl7ghqe5" path="res://resources/npc_data/boy_19.tres" id="46_ep1jl"]
+[ext_resource type="Resource" uid="uid://c4e0316hqgwf3" path="res://resources/npc_data/boy_12.tres" id="47_o4ta8"]
+[ext_resource type="Resource" uid="uid://bieotjr26xdld" path="res://resources/npc_data/boy_17.tres" id="48_6eqbu"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sep4y"]
 polygon = PackedVector2Array(-2, -6, 8, -6, 8, 8, -2, 8)
@@ -15523,7 +15558,6 @@ light_mask = 0
 z_index = 2
 position = Vector2(-275, 21)
 scale = Vector2(0.4285711, 0.4285711)
-texture = ExtResource("4_je2ly")
 
 [node name="Wall_side" type="TileMapLayer" parent="Hall"]
 z_index = 4
@@ -15641,27 +15675,32 @@ position = Vector2(-513, 2)
 
 [node name="NPC" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1919, 704)
-npc_data = ExtResource("6_1ug8t")
+npc_data = ExtResource("6_sjtf8")
 
 [node name="NPC2" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(-103.99994, 371)
-npc_data = ExtResource("7_opuva")
+npc_data = ExtResource("7_gu2pk")
 
 [node name="NPC3" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(942, 701)
-npc_data = ExtResource("8_7ax41")
+npc_data = ExtResource("8_sxpdh")
 
 [node name="NPC4" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2304, 1012.99994)
-npc_data = ExtResource("9_w26c5")
+npc_data = ExtResource("9_gn28l")
 
 [node name="NPC5" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(590, 395)
-npc_data = ExtResource("10_snpmh")
+npc_data = ExtResource("10_cvnav")
 
 [node name="NPC6" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2176, 393)
-npc_data = ExtResource("11_ldiki")
+npc_data = ExtResource("11_a2fbr")
+
+[node name="NPC7_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(94, 448)
+npc_data = ExtResource("12_vux2c")
 
 [node name="Ground_Objects" type="TileMapLayer" parent="YSort"]
 z_index = 2
@@ -15683,6 +15722,205 @@ y_sort_enabled = true
 position = Vector2(936, 342.2857)
 tile_map_data = PackedByteArray("AAAHAC8AAAAAAFAAAAAHADAAAAAAAFEAAAAIAC8AAAABAFAAAAAIADAAAAABAFEAAAATAC0AAAACAFAAAAATAC4AAAACAFEAAAAUAC0AAAADAFAAAAAUAC4AAAADAFEAAAAxAC8AAAACAFAAAAAxADAAAAACAFEAAAAyAC8AAAADAFAAAAAyADAAAAADAFEAAABUAC0AAAAAAFAAAABUAC4AAAAAAFEAAABVAC0AAAABAFAAAABVAC4AAAABAFEAAADj/wYAAAAAAFAAAADj/wcAAAAAAFEAAADk/wYAAAABAFAAAADk/wcAAAABAFEAAAC+/wgAAAAAAFAAAAC+/wkAAAAAAFEAAAC//wgAAAABAFAAAAC//wkAAAABAFEAAAC+/xYAAAAAAFAAAAC+/xcAAAAAAFEAAAC//xYAAAABAFAAAAC//xcAAAABAFEAAAC+/w8AAAAUAEcAAAC+/xAAAAAUAEgAAAC+/xEAAAAUAEkAAAC//w8AAAAVAEcAAAC//xAAAAAVAEgAAAC//xEAAAAVAEkAAAC+/xwAAAAUAEcAAAC+/x0AAAAUAEgAAAC+/x4AAAAUAEkAAAC//xwAAAAVAEcAAAC//x0AAAAVAEgAAAC//x4AAAAVAEkAAAC+/ywAAAAUAEcAAAC+/y0AAAAUAEgAAAC+/y4AAAAUAEkAAAC//ywAAAAVAEcAAAC//y0AAAAVAEgAAAC//y4AAAAVAEkAAAAbAC4AAAAYABoAAAAbAC8AAAAYABsAAAAcAC4AAAAZABoAAAAcAC8AAAAZABsAAAAlAC8AAAAWABgAAAAlADAAAAAWABkAAAAmAC8AAAAXABgAAAAmADAAAAAXABkAAAA7AC4AAAAWABwAAAA7AC8AAAAWAB0AAAA8AC4AAAAXABwAAAA8AC8AAAAXAB0AAADM/wYAAAAWABwAAADM/wcAAAAWAB0AAADN/wYAAAAXABwAAADN/wcAAAAXAB0AAAC+/xoAAAAWABwAAAC+/xsAAAAWAB0AAAC//xoAAAAXABwAAAC//xsAAAAXAB0AAADO/y4AAAAYABoAAADO/y8AAAAYABsAAADP/y4AAAAZABoAAADP/y8AAAAZABsAAADG/y0AAAAYABwAAADG/y4AAAAYAB0AAADH/y0AAAAZABwAAADH/y4AAAAZAB0AAAA=")
 tile_set = SubResource("TileSet_w26c5")
+
+[node name="NPC8_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(194, 450)
+npc_data = ExtResource("13_ndawl")
+
+[node name="NPC9_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(288, 446)
+npc_data = ExtResource("14_sa4eq")
+
+[node name="NPC10_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(385, 447)
+npc_data = ExtResource("15_ga1li")
+
+[node name="NPC11_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(512, 442)
+npc_data = ExtResource("16_oahrd")
+
+[node name="NPC12_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(560, 444)
+npc_data = ExtResource("12_vux2c")
+
+[node name="NPC13_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-78, 673)
+npc_data = ExtResource("17_flvwn")
+
+[node name="NPC14_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-76, 531)
+npc_data = ExtResource("18_sx144")
+
+[node name="NPC15_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-80, 764)
+npc_data = ExtResource("19_csmof")
+
+[node name="NPC16_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-78, 818)
+npc_data = ExtResource("20_ni671")
+
+[node name="NPC17_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-79, 591)
+npc_data = ExtResource("21_5qu6y")
+
+[node name="NPC18_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(-5, 1083)
+npc_data = ExtResource("22_yuxhh")
+
+[node name="NPC19_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(128, 1070)
+npc_data = ExtResource("23_fyfcd")
+
+[node name="NPC20_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(254, 1082)
+npc_data = ExtResource("24_v2nlh")
+
+[node name="NPC21" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1037, 1096)
+npc_data = ExtResource("25_r445l")
+
+[node name="NPC22" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1230, 1067)
+npc_data = ExtResource("26_kq4tn")
+
+[node name="NPC23" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1283, 1066)
+npc_data = ExtResource("26_kq4tn")
+
+[node name="NPC24" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1410, 1083)
+npc_data = ExtResource("27_idogc")
+
+[node name="NPC25" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1358, 1081)
+npc_data = ExtResource("27_idogc")
+
+[node name="NPC26" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1517, 1094)
+npc_data = ExtResource("28_hvqik")
+
+[node name="NPC27" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1711, 1097)
+npc_data = ExtResource("29_q0nfu")
+
+[node name="NPC28" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1872, 1084)
+npc_data = ExtResource("30_wjmc3")
+
+[node name="NPC29" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(1986, 1082)
+npc_data = ExtResource("31_gyoco")
+
+[node name="NPC30_sit_bis_hier" parent="YSort" instance=ExtResource("5_3x2cr")]
+z_index = 3
+position = Vector2(2271, 1067)
+npc_data = ExtResource("32_tcj8f")
+
+[node name="NPC31" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(2315, 975)
+npc_data = ExtResource("33_x82mj")
+
+[node name="NPC32" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(2288, 983)
+npc_data = ExtResource("34_ch1np")
+
+[node name="NPC33" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(1956, 714)
+npc_data = ExtResource("34_ch1np")
+
+[node name="NPC34" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(2179, 421)
+npc_data = ExtResource("35_jml0d")
+
+[node name="NPC35" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(1161, 387)
+npc_data = ExtResource("36_jlm6c")
+
+[node name="NPC36" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(1202, 389)
+npc_data = ExtResource("20_ni671")
+
+[node name="NPC37" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(1174, 414)
+npc_data = ExtResource("38_buojq")
+
+[node name="NPC38" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(901, 426)
+npc_data = ExtResource("39_ahis8")
+
+[node name="NPC39" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(781, 956)
+npc_data = ExtResource("40_4dsqf")
+
+[node name="NPC40" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(818, 955)
+npc_data = ExtResource("41_6tvo5")
+
+[node name="NPC41" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(763, 988)
+npc_data = ExtResource("42_ud5ra")
+
+[node name="NPC42" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(819, 995)
+npc_data = ExtResource("43_mx20b")
+
+[node name="NPC43" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(954, 888)
+npc_data = ExtResource("44_4ahfs")
+
+[node name="NPC44" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(929, 896)
+npc_data = ExtResource("45_xse40")
+
+[node name="NPC45" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(43, 255)
+npc_data = ExtResource("17_flvwn")
+
+[node name="NPC46" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(124, 273)
+npc_data = ExtResource("46_ep1jl")
+
+[node name="NPC47" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(96, 291)
+npc_data = ExtResource("47_o4ta8")
+
+[node name="NPC48" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(-73, 370)
+npc_data = ExtResource("38_buojq")
+
+[node name="NPC49" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(2175, 955)
+npc_data = ExtResource("48_6eqbu")
+
+[node name="NPC50" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(2097, 964)
+npc_data = ExtResource("23_fyfcd")
+
+[node name="NPC51" parent="YSort" instance=ExtResource("5_3x2cr")]
+position = Vector2(1089, 972)
+npc_data = ExtResource("47_o4ta8")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -15711,24 +15949,29 @@ occluder = SubResource("OccluderPolygon2D_37fdl")
 [node name="Sunlight" parent="Light" instance=ExtResource("16_snpmh")]
 position = Vector2(1802, 403.00003)
 energy = 0.22
+metadata/_edit_lock_ = true
 
 [node name="Sunlight2" parent="Light" instance=ExtResource("16_snpmh")]
 position = Vector2(-730.5, 736)
 scale = Vector2(8.140625, 22.281248)
 color = Color(1, 1, 1, 0.1882353)
 energy = 3.78
+metadata/_edit_lock_ = true
 
 [node name="Sunlight3" parent="Light" instance=ExtResource("16_snpmh")]
 position = Vector2(729.00006, 695)
 scale = Vector2(11.515626, 6.8000007)
+metadata/_edit_lock_ = true
 
 [node name="Sunlight4" parent="Light" instance=ExtResource("16_snpmh")]
 position = Vector2(1914.0001, 1047)
 scale = Vector2(10.56, 10.528125)
+metadata/_edit_lock_ = true
 
 [node name="Sunlight5" parent="Light" instance=ExtResource("16_snpmh")]
 position = Vector2(1083, 697)
 scale = Vector2(13.576875, 6.8000007)
+metadata/_edit_lock_ = true
 
 [node name="Blinking" parent="." instance=ExtResource("17_ldiki")]
 z_index = 5

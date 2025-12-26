@@ -339,4 +339,5 @@ animations = [{
 script = ExtResource("1_eyykt")
 sprite_frames = SubResource("SpriteFrames_glv2j")
 can_talk = false
+behavior_type = 2
 metadata/_custom_type_script = "uid://j0bl253043i7"

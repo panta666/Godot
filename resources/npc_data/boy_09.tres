@@ -339,5 +339,6 @@ animations = [{
 script = ExtResource("1_ov3iy")
 npc_name = "Henry"
 sprite_frames = SubResource("SpriteFrames_7gbe3")
+can_sit = true
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

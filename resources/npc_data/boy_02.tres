@@ -339,5 +339,6 @@ animations = [{
 script = ExtResource("1_edc4o")
 npc_name = "Dominik"
 sprite_frames = SubResource("SpriteFrames_sypg7")
+start_facing = "right"
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

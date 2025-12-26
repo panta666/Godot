@@ -340,4 +340,6 @@ script = ExtResource("1_2mntk")
 npc_name = "Clemens"
 sprite_frames = SubResource("SpriteFrames_gouq0")
 can_talk = false
+move_speed = 88.0
+wander_interval = 6.2
 metadata/_custom_type_script = "uid://j0bl253043i7"

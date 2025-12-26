@@ -1,15 +1,15 @@
 [gd_scene load_steps=32 format=4 uid="uid://dgbxaknj4cqq"]
 
-[ext_resource type="Script" uid="uid://c00ylunrl68o1" path="res://src/worlds/realworld/realworld_classroom_two.gd" id="1_w6gge"]
+[ext_resource type="Script" uid="uid://gs0ak4an6e2p" path="res://src/worlds/realworld/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="2_1lbkm"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="3_cwmjx"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="4_4bt26"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="5_fd6lo"]
-[ext_resource type="Resource" uid="uid://bjavbrck7r783" path="res://assets/npc_data_animations/npc_prof_female.tres" id="6_cwmjx"]
-[ext_resource type="Resource" uid="uid://dw3xbx10bg8ob" path="res://assets/npc_data_animations/npc_typ6.tres" id="6_qpp87"]
-[ext_resource type="Resource" uid="uid://bndxfw16cb177" path="res://assets/npc_data_animations/npc_typ7.tres" id="7_p33au"]
-[ext_resource type="Resource" uid="uid://cnru41iad6e14" path="res://assets/npc_data_animations/npc_typ8.tres" id="8_1lbkm"]
-[ext_resource type="Resource" uid="uid://djd3jjjpykij8" path="res://assets/npc_data_animations/npc_lady6.tres" id="9_kvmm4"]
+[ext_resource type="Resource" uid="uid://yptso82draw0" path="res://resources/npc_data/sokalski.tres" id="6_833nl"]
+[ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="7_rwi0m"]
+[ext_resource type="Resource" uid="uid://bieotjr26xdld" path="res://resources/npc_data/boy_17.tres" id="8_0sw6t"]
+[ext_resource type="Resource" uid="uid://ccapd6j8v1em7" path="res://resources/npc_data/girl_06.tres" id="9_ftahd"]
+[ext_resource type="Resource" uid="uid://b2ct7i2a1tgi1" path="res://resources/npc_data/girl_02.tres" id="10_810fd"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="11_1lbkm"]
 [ext_resource type="PackedScene" uid="uid://cva5te8iig3gn" path="res://src/features/interactables/chair.tscn" id="12_kvmm4"]
 [ext_resource type="PackedScene" uid="uid://bhq1ghdmad0p7" path="res://src/shared/components/sunlight.tscn" id="13_7iy3m"]
@@ -4629,23 +4629,23 @@ tile_set = SubResource("TileSet_x23ky")
 
 [node name="NPC" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1118, 549)
-npc_data = ExtResource("6_cwmjx")
+npc_data = ExtResource("6_833nl")
 
 [node name="NPC2" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1324, 682)
-npc_data = ExtResource("6_qpp87")
+npc_data = ExtResource("7_rwi0m")
 
 [node name="NPC3" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1589, 544)
-npc_data = ExtResource("7_p33au")
+npc_data = ExtResource("8_0sw6t")
 
 [node name="NPC4" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1254, 510)
-npc_data = ExtResource("8_1lbkm")
+npc_data = ExtResource("9_ftahd")
 
 [node name="NPC5" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1579, 684)
-npc_data = ExtResource("9_kvmm4")
+npc_data = ExtResource("10_810fd")
 
 [node name="SFX" type="Node" parent="."]
 

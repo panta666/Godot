@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cva5te8iig3gn"]
 
-[ext_resource type="Script" uid="uid://blcm4u7bxsnta" path="res://src/features/interactables/chair.gd" id="1_hxd06"]
+[ext_resource type="Script" uid="uid://bqev6tqmmwry3" path="res://src/features/interactables/chair.gd" id="1_hxd06"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="1_i2o7u"]
 [ext_resource type="PackedScene" uid="uid://bwhbcvxs678ed" path="res://src/features/interactables/interactable.tscn" id="3_dhd05"]
 [ext_resource type="AudioStream" uid="uid://eryv6ukpfias" path="res://assets/sfx/slide-char-back-and-forth.wav" id="4_dhd05"]

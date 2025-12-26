@@ -338,5 +338,6 @@ animations = [{
 [resource]
 script = ExtResource("1_u2mqw")
 sprite_frames = SubResource("SpriteFrames_u2mqw")
+start_facing = "up"
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

@@ -341,4 +341,6 @@ npc_name = "Georg"
 sprite_frames = SubResource("SpriteFrames_po7dv")
 start_facing = "up"
 can_talk = false
+behavior_type = 2
+wander_interval = 6.9
 metadata/_custom_type_script = "uid://j0bl253043i7"
