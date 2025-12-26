@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4061oanmcyqa"]
 
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="1_hpvv5"]
-[ext_resource type="Script" uid="uid://7dbmvehs4dig" path="res://src/worlds/realworld/door.gd" id="1_uvdjg"]
+[ext_resource type="Script" uid="uid://p7t7is8pl8wa" path="res://src/worlds/realworld/door.gd" id="1_uvdjg"]
 [ext_resource type="Shader" uid="uid://dpqucclpp7hht" path="res://src/shared/components/door_transition.gdshader" id="3_83dcw"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://src/worlds/realworld/door_open_player.tscn" id="4_la1wf"]
 [ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://src/worlds/realworld/door_closed_player.tscn" id="5_18pbm"]

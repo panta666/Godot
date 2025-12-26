@@ -336,6 +336,7 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8s6yi")
 sprite_frames = SubResource("SpriteFrames_8s6yi")
 can_sit = true

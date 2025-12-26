@@ -338,5 +338,6 @@ animations = [{
 [resource]
 script = ExtResource("1_bo1o7")
 sprite_frames = SubResource("SpriteFrames_qcvue")
+can_sit = true
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

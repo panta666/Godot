@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="NPCData" load_steps=46 format=3 uid="uid://q282qgjr156l"]
+[gd_resource type="Resource" script_class="NPCData" load_steps=47 format=3 uid="uid://q282qgjr156l"]
 
 [ext_resource type="Script" uid="uid://j0bl253043i7" path="res://src/features/interactables/npc_data.gd" id="1_3jtss"]
+[ext_resource type="Resource" uid="uid://bjk5ukmy8op3t" path="res://src/features/dialogue/characters/npc_henry.dch" id="1_alce3"]
 [ext_resource type="Texture2D" uid="uid://cpbav47f1l3vm" path="res://assets/characters/npc_stylesheets/boy_01.png" id="2_xpchf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alce3"]
@@ -336,9 +337,11 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_3jtss")
-npc_name = "Thomas"
+npc_name = "Henry"
 sprite_frames = SubResource("SpriteFrames_kseh8")
-can_talk = false
+dialog_timeline_path = "npc_henry_timeline"
+dialogic_character = ExtResource("1_alce3")
 move_speed = 65.0
 metadata/_custom_type_script = "uid://j0bl253043i7"

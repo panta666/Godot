@@ -338,5 +338,7 @@ animations = [{
 [resource]
 script = ExtResource("1_hccoy")
 sprite_frames = SubResource("SpriteFrames_hccoy")
+can_sit = true
+sit_direction = 1
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

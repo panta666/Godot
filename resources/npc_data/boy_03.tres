@@ -336,6 +336,7 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_igvw5")
 npc_name = "Georg"
 sprite_frames = SubResource("SpriteFrames_po7dv")

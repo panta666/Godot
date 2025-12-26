@@ -20,7 +20,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7vdml"]
-radius = 12.0
+radius = 9.519715
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nh2m4"]
 
@@ -40,7 +40,7 @@ script = ExtResource("1_nh2m4")
 sprite_frames = SubResource("SpriteFrames_4i5ef")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 20)
+position = Vector2(0, 22.5)
 shape = SubResource("CircleShape2D_7vdml")
 
 [node name="Interactable" type="Area2D" parent="."]
@@ -67,4 +67,5 @@ scale = Vector2(0.93908566, 0.93908566)
 text = "Name"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, 1.25)
 occluder = SubResource("OccluderPolygon2D_tl2vt")

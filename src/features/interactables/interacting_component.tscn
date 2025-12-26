@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bnyiexpv6yii2"]
 
-[ext_resource type="Script" uid="uid://ggdm63to7" path="res://src/features/interactables/interacting_component.gd" id="1_ofc3v"]
+[ext_resource type="Script" uid="uid://brxx5m5ehmxs2" path="res://src/features/interactables/interacting_component.gd" id="1_ofc3v"]
 [ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="2_syslh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omdnv"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lwfs7n2rkj2y"]
 
-[ext_resource type="Script" uid="uid://6ps2mxcr47hn" path="res://src/features/quests/quest_trigger.gd" id="1_6vbmo"]
+[ext_resource type="Script" uid="uid://c5fry3ifmy8t0" path="res://src/features/quests/quest_trigger.gd" id="1_6vbmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odejw"]
 

@@ -336,9 +336,11 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_gyulc")
 npc_name = "Jens"
 sprite_frames = SubResource("SpriteFrames_r6m4u")
+can_sit = true
 start_facing = "up"
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

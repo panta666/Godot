@@ -336,7 +336,11 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_sn03i")
 sprite_frames = SubResource("SpriteFrames_dl35o")
+can_sit = true
+start_facing = "up"
 can_talk = false
+behavior_type = 2
 metadata/_custom_type_script = "uid://j0bl253043i7"

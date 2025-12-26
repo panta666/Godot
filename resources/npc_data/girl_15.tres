@@ -336,7 +336,9 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_5gxcv")
 sprite_frames = SubResource("SpriteFrames_sm84n")
+can_sit = true
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"

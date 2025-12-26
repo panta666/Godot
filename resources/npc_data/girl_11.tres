@@ -336,6 +336,7 @@ animations = [{
 }]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8hh0s")
 sprite_frames = SubResource("SpriteFrames_8hh0s")
 can_talk = false

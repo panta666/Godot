@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://wmoc125k61vb" path="res://src/shared/components/blinking.gdshader" id="1_vjbpe"]
 [ext_resource type="Texture2D" uid="uid://ced4y4j6i7r73" path="res://assets/VFX/orange_circle.png" id="2_tqcdi"]
-[ext_resource type="Script" uid="uid://l5oml33jtn2t" path="res://src/shared/components/blinking.gd" id="3_tqcdi"]
+[ext_resource type="Script" uid="uid://c1mewxn46b5rx" path="res://src/shared/components/blinking.gd" id="3_tqcdi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bvdh"]
 shader = ExtResource("1_vjbpe")

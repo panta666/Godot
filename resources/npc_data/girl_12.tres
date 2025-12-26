@@ -338,6 +338,9 @@ animations = [{
 [resource]
 script = ExtResource("1_mpjxn")
 sprite_frames = SubResource("SpriteFrames_mpjxn")
-start_facing = "left"
+start_facing = "right"
 can_talk = false
+behavior_type = 3
+move_speed = 82.0
+path_node = NodePath("../..")
 metadata/_custom_type_script = "uid://j0bl253043i7"

@@ -1,6 +1,6 @@
 [gd_scene load_steps=148 format=3 uid="uid://rkc21geb74i1"]
 
-[ext_resource type="Script" uid="uid://ciwcno1t7dw4d" path="res://src/shared/ui/level_ui.gd" id="1_exbfu"]
+[ext_resource type="Script" uid="uid://dlj5fwba31k6f" path="res://src/shared/ui/level_ui.gd" id="1_exbfu"]
 [ext_resource type="Texture2D" uid="uid://okvy2yv1mlo3" path="res://assets/Phone/mobile_phone_background/frame0000.png" id="2_di37k"]
 [ext_resource type="Texture2D" uid="uid://c7qbren4uddpe" path="res://assets/Phone/empty.png" id="2_qvfhj"]
 [ext_resource type="Texture2D" uid="uid://c11lhd57k6yod" path="res://assets/Phone/mobile_phone_background/frame0001.png" id="3_llhc3"]
