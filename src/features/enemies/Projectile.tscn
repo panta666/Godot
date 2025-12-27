@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4gmwtpwtbdcr"]
+
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="1_falb5"]
+[ext_resource type="Script" uid="uid://dwhwbtus0gksr" path="res://src/features/enemies/projectile.gd" id="2_qt4qw"]
+[ext_resource type="Texture2D" uid="uid://67fkl52lqjyh" path="res://assets/characters/enemies/projectiles/Egg.png" id="3_dg14v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg14v"]
+radius = 6.0
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 15
+collision_mask = 15
+script = ExtResource("2_qt4qw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dg14v")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_falb5")
+damage = 10
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_dg14v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.3841858e-07, 1)
+rotation = -1.5707964
+scale = Vector2(0.23334928, 0.21288837)
+texture = ExtResource("3_dg14v")
+region_rect = Rect2(0, 0, 10, 10)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

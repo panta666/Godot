@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7oijmtbv4yxw"]
+
+[ext_resource type="Shader" uid="uid://x77vfc71j4h3" path="res://src/shared/components/blink_overlay.gdshader" id="1_0mfmw"]
+[ext_resource type="Script" uid="uid://p4r4cs3o5wcp" path="res://src/shared/components/blink_overlay.gd" id="2_gko3c"]
+[ext_resource type="AudioStream" uid="uid://ds81a4a5d4i7n" path="res://assets/sfx/157303__husky70__yawning-man.mp3" id="3_oda0c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gko3c"]
+shader = ExtResource("1_0mfmw")
+shader_parameter/blur_strength = 0.0
+shader_parameter/blink_progress = 0.0
+shader_parameter/resolution = Vector2(0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Blink_Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_gko3c")
+offset_left = -51.0
+offset_top = -25.0
+offset_right = 1245.0
+offset_bottom = 670.0
+color = Color(0.078431375, 0.078431375, 0.078431375, 0)
+script = ExtResource("2_gko3c")
+
+[node name="YawningPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oda0c")
+bus = &"SFX"

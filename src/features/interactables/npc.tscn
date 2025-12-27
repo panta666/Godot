@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bpw2kucamlx24"]
+
+[ext_resource type="Script" uid="uid://doeawy01l8ldw" path="res://src/features/interactables/npc.gd" id="1_nh2m4"]
+[ext_resource type="Script" uid="uid://di4yehokraff6" path="res://src/features/interactables/interactable.gd" id="2_abqhh"]
+[ext_resource type="Texture2D" uid="uid://cpbav47f1l3vm" path="res://assets/characters/npc_stylesheets/boy_01.png" id="2_fb5pg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cn7o"]
+atlas = ExtResource("2_fb5pg")
+region = Rect2(576, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4i5ef"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cn7o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7vdml"]
+radius = 9.519715
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nh2m4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abqhh"]
+radius = 40.019524
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tl2vt"]
+polygon = PackedVector2Array(-6.2499995, -16.249998, -14.999998, -8.749999, -16.249998, 6.2499995, -13.749999, 9.999999, -12.499999, 13.749999, -16.249998, 22.499998, -9.999999, 23.749998, -8.749999, 32.499996, -3.7499995, 32.499996, -1.2499999, 28.749998, 1.2499999, 28.749998, 3.7499995, 32.499996, 8.749999, 32.499996, 9.999999, 23.749998, 16.249998, 21.249998, 11.249999, 13.749999, 13.749999, 9.999999, 16.249998, 6.2499995, 14.999998, -9.999999, 6.2499995, -16.249998)
+
+[node name="NPC" type="CharacterBody2D"]
+z_index = 2
+y_sort_enabled = true
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_nh2m4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4i5ef")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22.5)
+shape = SubResource("CircleShape2D_7vdml")
+
+[node name="Interactable" type="Area2D" parent="."]
+script = ExtResource("2_abqhh")
+interact_name = "talk_to"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+scale = Vector2(4.852579, 4.852579)
+shape = SubResource("CircleShape2D_nh2m4")
+
+[node name="InteractRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRange"]
+shape = SubResource("CircleShape2D_abqhh")
+
+[node name="NameLabel" type="Label" parent="."]
+visible = false
+z_index = 7
+offset_left = -21.249998
+offset_top = -53.749996
+offset_right = 25.750002
+offset_bottom = -30.749996
+scale = Vector2(0.93908566, 0.93908566)
+text = "Name"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, 1.25)
+occluder = SubResource("OccluderPolygon2D_tl2vt")

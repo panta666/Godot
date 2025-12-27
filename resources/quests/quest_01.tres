@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://dq3a48lvrbb7y"]
+
+[ext_resource type="Script" uid="uid://dmq1os3w0lmng" path="res://src/features/quests/quest_data.gd" id="1_nwtqu"]
+
+[resource]
+script = ExtResource("1_nwtqu")
+id = "1"
+title = "Catch the Train"
+description = "Leave your Home and catch the Train to get to your first Class!"
+target_scene = "Realworld_Home"
+target_node_path = "Door"

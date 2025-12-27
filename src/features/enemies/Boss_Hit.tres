@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://c5li0nd5vv0vo"]
+
+[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://src/features/enemies/attack.gd" id="1_55lht"]
+
+[resource]
+script = ExtResource("1_55lht")
+damage = 40
+pre_attack_duration = 1.0
+post_attack_duration = 0.5
+animation_name = "attack"
+pre_animation_name = "pre_attack"
+post_animation_name = "post_attack"
+movement = 1
+hitbox_offset = Vector2(80, 0)
+hitbox_size = Vector2(50, 20)
+hitbox_duration = 0.3
+metadata/_custom_type_script = "uid://d2iv1cx41gku0"
