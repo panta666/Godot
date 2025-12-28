@@ -281,6 +281,16 @@ func get_audio_settings() -> Dictionary:
 # Wenn Keys in 'target' fehlen, werden sie aus 'defaults' kopiert.
 # Wenn ein Wert ein Dictionary ist, wird rekursiv geprüft.
 func validate_data(target: Dictionary, defaults: Dictionary) -> void:
+	# JSON-Fix: Konvertiert String-Keys zurück zu Integern, falls die Defaults Integer-Keys erwarten.
+	# JSON unterstützt nur Strings als Keys, Godot Dictionaries aber beliebige Typen.
+	for d_key in defaults.keys():
+		if d_key is int:
+			var s_key = str(d_key)
+			if target.has(s_key) and not target.has(d_key):
+				target[d_key] = target[s_key]
+				target.erase(s_key)
+				print("SaveManager: String-Key '", s_key, "' zu Int konvertiert.")
+
 	for key in defaults:
 		# 1. Existiert der Key im geladenen Dictionary?
 		if not target.has(key):
