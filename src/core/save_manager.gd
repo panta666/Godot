@@ -17,7 +17,8 @@ var save_data = {
 		},
 		"quests": [],
 		"unlocked_doors": {},
-		"shop_unlocked": false
+		"shop_unlocked": false,
+		"unlocked_levels": {0:1}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -46,7 +47,8 @@ const default_values = {
 		},
 		"quests": [],
 		"unlocked_doors": {},
-		"shop_unlocked": false
+		"shop_unlocked": false,
+		"unlocked_levels": {0:1}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -102,6 +104,13 @@ func save_game():
 	file.store_string(json_string)
 	file.close()
 	print("SaveManager: Spiel gespeichert.")
+
+func save_level_unlock(unlocked_levels: Dictionary):
+	save_data["game_progress"]["unlocked_levels"] = unlocked_levels.duplicate()
+	save_game()
+
+func get_level_unlocks() -> Dictionary:
+	return save_data["game_progress"]["unlocked_levels"]
 
 func save_coin(coins: Array, level: String):
 	for coin in coins:
@@ -214,11 +223,6 @@ func update_current_scene():
 	save_data["game_progress"]["current_scene_path"] = GlobalScript.current_scene
 	save_game()
 
-# (Vorbereitet für die Zukunft)
-# func update_coins(amount: int):
-#    save_data["player_stats"]["coins"] = amount
-#    save_game()
-
 # Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
 func unlock_door(door_id: String):
 	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
@@ -277,6 +281,16 @@ func get_audio_settings() -> Dictionary:
 # Wenn Keys in 'target' fehlen, werden sie aus 'defaults' kopiert.
 # Wenn ein Wert ein Dictionary ist, wird rekursiv geprüft.
 func validate_data(target: Dictionary, defaults: Dictionary) -> void:
+	# JSON-Fix: Konvertiert String-Keys zurück zu Integern, falls die Defaults Integer-Keys erwarten.
+	# JSON unterstützt nur Strings als Keys, Godot Dictionaries aber beliebige Typen.
+	for d_key in defaults.keys():
+		if d_key is int:
+			var s_key = str(d_key)
+			if target.has(s_key) and not target.has(d_key):
+				target[d_key] = target[s_key]
+				target.erase(s_key)
+				print("SaveManager: String-Key '", s_key, "' zu Int konvertiert.")
+
 	for key in defaults:
 		# 1. Existiert der Key im geladenen Dictionary?
 		if not target.has(key):
@@ -304,7 +318,7 @@ func validate_data(target: Dictionary, defaults: Dictionary) -> void:
 		# Wenn Default ein INT ist, aber JSON uns einen FLOAT gegeben hat -> Umwandeln!
 		elif typeof(default_val) == TYPE_INT and typeof(target_val) == TYPE_FLOAT:
 			target[key] = int(target_val)
-			print("SaveManager: Fixed float->int für", key)
+			print("SaveManager: Fixed float->int für ", key)
 
 		# Optional: Typ-Sicherheit prüfen (Wenn im Save 'coins' plötzlich ein String ist)
 		elif typeof(target_val) != typeof(default_val) and default_val != null:

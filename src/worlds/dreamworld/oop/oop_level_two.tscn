@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c5wh8jrspuyvj" path="res://assets/oop_level/HSD_assets.png" id="5_2k4ab"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="5_lua1s"]
 [ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="6_d672o"]
-[ext_resource type="Script" uid="uid://8in0jd3f1x2o" path="res://src/worlds/dreamworld/oop/level_3_test.gd" id="6_lpkye"]
+[ext_resource type="Script" uid="uid://8in0jd3f1x2o" path="res://src/worlds/dreamworld/oop/level_2_test.gd" id="6_lpkye"]
 [ext_resource type="Texture2D" uid="uid://cyoj8qn8dpvjh" path="res://assets/oop_level/traps_and_ducks.png" id="6_und7l"]
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="7_vqyb8"]
 [ext_resource type="Texture2D" uid="uid://cu0eatkkyeru" path="res://src/worlds/dreamworld/oop/oop_assets/ladder.png" id="8_und7l"]

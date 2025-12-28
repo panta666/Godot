@@ -46,8 +46,12 @@ const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 # -------------------------
 # Freigeschaltete Level (global)
 # -------------------------
-var oop_level_unlocked := [true, false, false]
-var medg_level_unlocked := [true, false, false]
+var unlocked_levels = { classrooms.oop:1 }
+
+enum classrooms {
+	oop,
+	mathe
+}
 
 # -------------------------
 # Tutorial steurung (global)
@@ -71,6 +75,23 @@ var resolutions = {
 
 # Gesammelte Coins pro classroom.
 var coins = {"realworld": 0, "oop_level_one": [], "oop_level_two":[]}
+
+func unlock_level(classroom: classrooms, level: int) -> bool:
+	if level > 0 and level < 4:
+		if unlocked_levels.has(classroom):
+			unlocked_levels[classroom] += 1
+		else:
+			unlocked_levels[classroom] = 1
+		SaveManager.save_level_unlock(unlocked_levels)
+		return true
+	print("Level nicht in range.")
+	return false
+
+func is_level_unlocked(classroom: classrooms, level: int) -> bool:
+	return unlocked_levels.has(classroom) and unlocked_levels[classroom] >= level
+
+func set_level_unlocks():
+	unlocked_levels = SaveManager.get_level_unlocks().duplicate()
 
 func reset_coins_after_tutorial():
 	coins = {"realworld": 0, "oop_level_one": [], "oop_level_two":[]}
@@ -148,7 +169,7 @@ func start_from_menu() -> void:
 	
 	# Scene wechseln - Player wird erst nach SceneReady erzeugt
 	SaveManager.load_last_scene()
-	
+	set_level_unlocks()
 	set_realworld_coins()
 	
 	# Player deferred instanziieren
