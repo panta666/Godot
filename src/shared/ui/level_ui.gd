@@ -32,9 +32,6 @@ var phone_state: PhoneState = PhoneState.OFF
 # ------------------------------------------------------
 @export var current_room: String = "OOP"
 
-var oop_level_unlocked := [true, false, false]
-var medg_level_unlocked := [false, false, false]
-
 # ------------------------------------------------------
 # Drag & Drop
 # ------------------------------------------------------
@@ -53,9 +50,6 @@ func _ready():
 	
 	blinking.visible = false
 
-	# Unlock-Arrays aus Global übernehmen
-	oop_level_unlocked = GlobalScript.oop_level_unlocked.duplicate()
-	medg_level_unlocked = GlobalScript.medg_level_unlocked.duplicate()
 
 	# Buttons verbinden
 	enter_level_button.connect("pressed", Callable(self, "_on_enter_level1_pressed"))
@@ -100,30 +94,30 @@ func update_level_button():
 
 
 func _update_oop_buttons():
-	enter_level_button.visible = oop_level_unlocked[0]
-	enter_level_button.disabled = not oop_level_unlocked[0]
+	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1)
+	enter_level_button.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1)
 	enter_level_button.text = "OOP Level 1"
 
-	enter_level_button2.visible = oop_level_unlocked[1]
-	enter_level_button2.disabled = not oop_level_unlocked[1]
+	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2)
+	enter_level_button2.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2)
 	enter_level_button2.text = "OOP Level 2"
 
-	enter_level_button3.visible = oop_level_unlocked[2]
-	enter_level_button3.disabled = not oop_level_unlocked[2]
+	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
+	enter_level_button3.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
 	enter_level_button3.text = "OOP Level 3"
 
 
 func _update_medg_buttons():
-	enter_level_button.visible = medg_level_unlocked[0]
-	enter_level_button.disabled = not medg_level_unlocked[0]
+	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
+	enter_level_button.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
 	enter_level_button.text = "MEDG Level 1"
 
-	enter_level_button2.visible = medg_level_unlocked[1]
-	enter_level_button2.disabled = not medg_level_unlocked[1]
+	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
+	enter_level_button2.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
 	enter_level_button2.text = "MEDG Level 2"
 
-	enter_level_button3.visible = medg_level_unlocked[2]
-	enter_level_button3.disabled = not medg_level_unlocked[2]
+	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
+	enter_level_button3.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
 	enter_level_button3.text = "MEDG Level 3"
 
 
