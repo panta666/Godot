@@ -7,7 +7,7 @@ func _on_health_depleted() -> void:
 	print("Level One Bereich betreten! OOP Level 2 freischalten.")
 
 	# Level 2 für OOP freischalten
-	GlobalScript.oop_level_unlocked[1] = true
+	GlobalScript.unlock_level(GlobalScript.classrooms.oop, 2)
 	#Shop freischalten in Realworld
 	SaveManager.unlock_shop()
 	
