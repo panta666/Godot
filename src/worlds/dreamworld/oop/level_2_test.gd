@@ -18,7 +18,7 @@ func _on_body_entered(body: Node) -> void:
 	print("Level Two Bereich betreten! OOP Level 3 freischalten.")
 
 	# Level 3 für OOP freischalten
-	GlobalScript.unlock_level(GlobalScript.classrooms.mathe, 1)
+	GlobalScript.unlock_level(GlobalScript.classrooms.oop, 3)
 	
 	# LevelUI aktualisieren, falls vorhanden
 	var classroom = get_tree().current_scene
