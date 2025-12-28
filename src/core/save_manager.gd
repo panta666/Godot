@@ -223,11 +223,6 @@ func update_current_scene():
 	save_data["game_progress"]["current_scene_path"] = GlobalScript.current_scene
 	save_game()
 
-# (Vorbereitet für die Zukunft)
-# func update_coins(amount: int):
-#    save_data["player_stats"]["coins"] = amount
-#    save_game()
-
 # Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
 func unlock_door(door_id: String):
 	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
