@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://71w0wye5dpch"]
+
+[ext_resource type="Script" uid="uid://cv5mkv76lbuy" path="res://src/shared/components/death_collider.gd" id="1_jqxqi"]
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_jqxqi")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,333 @@
+[gd_scene load_steps=31 format=3 uid="uid://08swwximjkt"]
+
+[ext_resource type="Script" uid="uid://br05g51v7a807" path="res://src/features/shop/shop_ui.gd" id="1_fs6yy"]
+[ext_resource type="Texture2D" uid="uid://chqpicboyq0fr" path="res://assets/tilemap/32x32/interior_32x32/shop_ui.png" id="2_oixfk"]
+[ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="3_18xnp"]
+[ext_resource type="Texture2D" uid="uid://blxvrtqvatume" path="res://assets/oop_level/5coins.png" id="4_crtus"]
+
+[sub_resource type="Animation" id="Animation_18xnp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -350)]
+}
+
+[sub_resource type="Animation" id="Animation_fs6yy"]
+resource_name = "transition_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -450), Vector2(0, 150)]
+}
+
+[sub_resource type="Animation" id="Animation_oixfk"]
+resource_name = "transition_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 150), Vector2(0, 850)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_18xnp"]
+_data = {
+&"RESET": SubResource("Animation_18xnp"),
+&"transition_in": SubResource("Animation_fs6yy"),
+&"transition_out": SubResource("Animation_oixfk")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oixfk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oixfk"]
+font_size = 33
+font_color = Color(1, 0.7058824, 0.11372549, 1)
+outline_size = 4
+outline_color = Color(0.731198, 0.41690087, 1.92523e-07, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.8039216)
+
+[sub_resource type="LabelSettings" id="LabelSettings_18xnp"]
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6745098)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crtus"]
+atlas = ExtResource("3_18xnp")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epbsd"]
+atlas = ExtResource("3_18xnp")
+region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_usj2y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crtus")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epbsd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bidp2"]
+font_size = 40
+shadow_size = 7
+shadow_color = Color(0, 0, 0, 0.8627451)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="LabelSettings" id="LabelSettings_epbsd"]
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+outline_size = 7
+outline_color = Color(0.279967, 0.27990925, 4.813075e-08, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.40784314)
+shadow_offset = Vector2(3, 2)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usj2y"]
+atlas = ExtResource("4_crtus")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bidp2"]
+atlas = ExtResource("4_crtus")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obwu6"]
+atlas = ExtResource("4_crtus")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3xdf"]
+atlas = ExtResource("4_crtus")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yw5g"]
+atlas = ExtResource("4_crtus")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s287r"]
+atlas = ExtResource("4_crtus")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrnm2"]
+atlas = ExtResource("4_crtus")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4j81"]
+atlas = ExtResource("4_crtus")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijxsd"]
+atlas = ExtResource("4_crtus")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytm40"]
+atlas = ExtResource("4_crtus")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2t8e"]
+atlas = ExtResource("4_crtus")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5g6y"]
+atlas = ExtResource("4_crtus")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsbvm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usj2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bidp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_obwu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3xdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yw5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s287r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrnm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4j81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijxsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytm40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2t8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5g6y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uxprq"]
+
+[node name="ShopUI" type="CanvasLayer"]
+offset = Vector2(0, -350)
+transform = Transform2D(1, 0, 0, 1, 0, -350)
+script = ExtResource("1_fs6yy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_18xnp")
+}
+
+[node name="TafelSprite2D" type="Sprite2D" parent="."]
+position = Vector2(511, 236)
+scale = Vector2(14.726799, 14.726799)
+texture = ExtResource("2_oixfk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 216.0
+offset_top = -29.0
+offset_right = 806.0
+offset_bottom = 265.0
+
+[node name="ItemIconAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(300, 107)
+sprite_frames = SubResource("SpriteFrames_oixfk")
+
+[node name="Name" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 14.0
+offset_right = 590.0
+offset_bottom = 60.0625
+text = "Name"
+label_settings = SubResource("LabelSettings_oixfk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Desc" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 147.0
+offset_right = 561.0
+offset_bottom = 230.0
+text = "Beschreibung des Items"
+label_settings = SubResource("LabelSettings_18xnp")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Prev" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.625
+anchor_bottom = -0.625
+offset_left = 173.0
+offset_top = 270.75
+offset_right = 196.0
+offset_bottom = 304.75
+text = "<"
+
+[node name="Next" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.625
+anchor_bottom = -0.625
+offset_left = 397.0
+offset_top = 270.75
+offset_right = 420.0
+offset_bottom = 304.75
+text = ">"
+
+[node name="Buy" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = 244.0
+offset_right = 335.0
+offset_bottom = 275.0
+text = "Purchase"
+
+[node name="ClosebuttonAnimatedSprite2D2" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(185, 375.5)
+scale = Vector2(5.8125, 5.8125)
+sprite_frames = SubResource("SpriteFrames_usj2y")
+autoplay = "default"
+frame_progress = 0.6470133
+
+[node name="PressLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 353.5
+offset_right = 652.0
+offset_bottom = 416.5
+text = "Press           to close the Shop"
+label_settings = SubResource("LabelSettings_bidp2")
+
+[node name="ConfirmPopup" type="AcceptDialog" parent="Control"]
+oversampling_override = 1.0
+title = "Are you sure?"
+initial_position = 1
+size = Vector2i(101, 80)
+unfocusable = true
+popup_window = true
+ok_button_text = "Yes, buy!"
+
+[node name="CoinsLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -49.0
+offset_right = 75.0
+offset_bottom = -7.125
+text = "0"
+label_settings = SubResource("LabelSettings_epbsd")
+
+[node name="CoinAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(7, -29)
+scale = Vector2(3.3940392, 3.3940392)
+sprite_frames = SubResource("SpriteFrames_jsbvm")
+autoplay = "default"
+frame_progress = 0.98295254
+
+[node name="CoinCollisionShape2D" type="CollisionShape2D" parent="Control/CoinAnimatedSprite2D"]
+shape = SubResource("CircleShape2D_uxprq")
+
+[connection signal="pressed" from="Control/Prev" to="." method="_on_prev_pressed"]
+[connection signal="pressed" from="Control/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Control/Buy" to="." method="_on_buy_pressed"]
+[connection signal="confirmed" from="Control/ConfirmPopup" to="." method="_on_confirm_popup_confirmed"]

@@ -23,48 +23,48 @@ config/windows_native_icon="res://assets/programm/Windwos/BfB_icon.ico"
 
 [autoload]
 
-GlobalScript="*res://scripts/global.gd"
+GlobalScript="*res://src/core/global.gd"
 Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
-Player_Realworld="*res://scenes/player_realworld.tscn"
-MusicManager="*res://scripts/music_manager.gd"
-SaveManager="*res://scripts/save_manager.gd"
-QuestManager="*res://scripts/quest_manager.gd"
+Player_Realworld="*res://src/features/player/player_realworld.tscn"
+MusicManager="*res://src/core/music_manager.gd"
+SaveManager="*res://src/core/save_manager.gd"
+QuestManager="*res://src/features/quests/quest_manager.gd"
 
 [dialogic]
 
 directories/dch_directory={
-"dahm": "res://dialog/characters/dahm.dch",
-"jens": "res://dialog/characters/jens.dch",
-"narrator": "res://dialog/characters/narrator.dch",
-"npc_henry": "res://dialog/characters/npc_henry.dch",
-"player": "res://dialog/characters/player.dch"
+"dahm": "res://src/features/dialogue/characters/dahm.dch",
+"jens": "res://src/features/dialogue/characters/jens.dch",
+"narrator": "res://src/features/dialogue/characters/narrator.dch",
+"npc_henry": "res://src/features/dialogue/characters/npc_henry.dch",
+"player": "res://src/features/dialogue/characters/player.dch"
 }
 directories/dtl_directory={
-"dahm_timeline": "res://dialog/dahm_timeline.dtl",
-"enter_chair": "res://dialog/enter_chair.dtl",
-"hall_story_timeline": "res://dialog/hall_story_timeline.dtl",
-"home_timeline": "res://dialog/home_timeline.dtl",
-"level_one_timeline": "res://dialog/level_one_timeline.dtl",
-"npc_henry_timeline": "res://dialog/npc_henry_timeline.dtl",
-"npc_jens_timeline": "res://dialog/npc_jens_timeline.dtl",
-"speak_with_dahm": "res://dialog/speak_with_dahm.dtl",
-"tutorial_fifth_cutscene_timeline": "res://dialog/tutorial_fifth_cutscene_timeline.dtl",
-"tutorial_fourth_cutscene_timeline": "res://dialog/tutorial_fourth_cutscene_timeline.dtl",
-"tutorial_second_cutscene_timeline": "res://dialog/tutorial_second_cutscene_timeline.dtl",
-"tutorial_seventh_cutscene_timeline": "res://dialog/tutorial_seventh_cutscene_timeline.dtl",
-"tutorial_sixth_cutscene_timeline": "res://dialog/tutorial_sixth_cutscene_timeline.dtl",
-"tutorial_skip_timeline": "res://dialog/tutorial_skip_timeline.dtl",
-"tutorial_start_cutscene_timeline": "res://dialog/tutorial_start_cutscene_timeline.dtl",
-"tutorial_third_cutscene_timeline": "res://dialog/tutorial_third_cutscene_timeline.dtl"
+"dahm_timeline": "res://src/features/dialogue/dahm_timeline.dtl",
+"enter_chair": "res://src/features/dialogue/enter_chair.dtl",
+"hall_story_timeline": "res://src/features/dialogue/hall_story_timeline.dtl",
+"home_timeline": "res://src/features/dialogue/home_timeline.dtl",
+"level_one_timeline": "res://src/features/dialogue/level_one_timeline.dtl",
+"npc_henry_timeline": "res://src/features/dialogue/npc_henry_timeline.dtl",
+"npc_jens_timeline": "res://src/features/dialogue/npc_jens_timeline.dtl",
+"speak_with_dahm": "res://src/features/dialogue/speak_with_dahm.dtl",
+"tutorial_fifth_cutscene_timeline": "res://src/features/dialogue/tutorial_fifth_cutscene_timeline.dtl",
+"tutorial_fourth_cutscene_timeline": "res://src/features/dialogue/tutorial_fourth_cutscene_timeline.dtl",
+"tutorial_second_cutscene_timeline": "res://src/features/dialogue/tutorial_second_cutscene_timeline.dtl",
+"tutorial_seventh_cutscene_timeline": "res://src/features/dialogue/tutorial_seventh_cutscene_timeline.dtl",
+"tutorial_sixth_cutscene_timeline": "res://src/features/dialogue/tutorial_sixth_cutscene_timeline.dtl",
+"tutorial_skip_timeline": "res://src/features/dialogue/tutorial_skip_timeline.dtl",
+"tutorial_start_cutscene_timeline": "res://src/features/dialogue/tutorial_start_cutscene_timeline.dtl",
+"tutorial_third_cutscene_timeline": "res://src/features/dialogue/tutorial_third_cutscene_timeline.dtl"
 }
 layout/style_directory={
-"": "res://dialog/styles/custom_style.tres",
-"custom_style": "res://dialog/styles/custom_style.tres",
-"platformer_style": "res://dialog/styles/platformer_style.tres"
+"": "res://src/features/dialogue/styles/custom_style.tres",
+"custom_style": "res://src/features/dialogue/styles/custom_style.tres",
+"platformer_style": "res://src/features/dialogue/styles/platformer_style.tres"
 }
 glossary/default_case_sensitive=true
-layout/style_list=["res://dialog/styles/custom_style.tres", "res://dialog/styles/platformer_style.tres"]
-layout/default_style="res://dialog/styles/custom_style.tres"
+layout/style_list=["res://src/features/dialogue/styles/custom_style.tres", "res://src/features/dialogue/styles/platformer_style.tres"]
+layout/default_style="res://src/features/dialogue/styles/custom_style.tres"
 variables={}
 extensions_folder="res://addons/dialogic_additions"
 text/letter_speed=0.01
