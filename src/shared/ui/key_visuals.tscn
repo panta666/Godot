@@ -1,0 +1,163 @@
+[gd_scene load_steps=22 format=3 uid="uid://d46ibheny51y"]
+
+[ext_resource type="Script" uid="uid://2ibixwf0t1es" path="res://src/shared/ui/key_visuals.gd" id="1_8f7ka"]
+[ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="2_6bsj8"]
+[ext_resource type="Texture2D" uid="uid://dk8rn35ayx7tv" path="res://assets/hud/Keyboard Extras.png" id="3_hh5ul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d4gg"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(96, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr30r"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(96, 176, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8hjj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d4gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr30r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp3un"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14ay6"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8alc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp3un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14ay6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3uwd"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(32, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uds6"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(32, 176, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fwmhx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3uwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uds6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7conj"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omgeo"]
+atlas = ExtResource("2_6bsj8")
+region = Rect2(48, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7kwdk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7conj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omgeo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbecl"]
+atlas = ExtResource("3_hh5ul")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4qtu"]
+atlas = ExtResource("3_hh5ul")
+region = Rect2(0, 80, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hst31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbecl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4qtu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf5l8"]
+atlas = ExtResource("3_hh5ul")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbs1m"]
+atlas = ExtResource("3_hh5ul")
+region = Rect2(64, 96, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cfnsp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf5l8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbs1m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KeyVisuals" type="Node2D"]
+script = ExtResource("1_8f7ka")
+
+[node name="KEY_W" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_o8hjj")
+
+[node name="KEY_A" type="AnimatedSprite2D" parent="."]
+position = Vector2(-15, 0)
+sprite_frames = SubResource("SpriteFrames_q8alc")
+
+[node name="KEY_S" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fwmhx")
+
+[node name="KEY_D" type="AnimatedSprite2D" parent="."]
+position = Vector2(15, 0)
+sprite_frames = SubResource("SpriteFrames_7kwdk")
+
+[node name="KEY_SHIFT" type="AnimatedSprite2D" parent="."]
+position = Vector2(-38, 0)
+sprite_frames = SubResource("SpriteFrames_hst31")
+
+[node name="KEY_SPACE" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, 15)
+sprite_frames = SubResource("SpriteFrames_cfnsp")

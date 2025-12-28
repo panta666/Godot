@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=37 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cr3l02pdffdli" path="res://assets/tilemap/math_tilemap/marble_packed.png" id="6_14ga8"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://src/shared/components/coin.tscn" id="11_14ga8"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="11_h36qc"]
+[ext_resource type="PackedScene" uid="uid://d46ibheny51y" path="res://src/shared/ui/key_visuals.tscn" id="13_ria7j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h36qc"]
 texture = ExtResource("3_grcn0")
@@ -4895,6 +4896,14 @@ classroom = "math_level_one"
 [node name="Coin6" parent="." instance=ExtResource("11_14ga8")]
 position = Vector2(521, 342)
 classroom = "mathe_level_one"
+
+[node name="KeyVisuals" parent="." instance=ExtResource("13_ria7j")]
+position = Vector2(478, 90)
+show_w = true
+show_a = true
+show_s = true
+show_d = true
+animate_s = true
 
 [connection signal="body_entered" from="Fall_Damage" to="." method="_on_fall_damage_body_entered"]
 [connection signal="body_entered" from="Fall_Damage2" to="." method="_on_fall_damage_2_body_entered"]
