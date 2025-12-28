@@ -105,6 +105,13 @@ func save_game():
 	file.close()
 	print("SaveManager: Spiel gespeichert.")
 
+func save_level_unlock(unlocked_levels: Dictionary):
+	save_data["game_progress"]["unlocked_levels"] = unlocked_levels.duplicate()
+	save_game()
+
+func get_level_unlocks() -> Dictionary:
+	return save_data["game_progress"]["unlocked_levels"]
+
 func save_coin(coins: Array, level: String):
 	for coin in coins:
 		print("save coin", coin)
