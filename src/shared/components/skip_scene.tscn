@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvbwb53kbyq0y"]
 
-[ext_resource type="Script" uid="uid://b355gj575nuf8" path="res://src/shared/components/skip_scene.gd" id="1_rxqd1"]
+[ext_resource type="Script" uid="uid://clq8roo8l7jem" path="res://src/shared/components/skip_scene.gd" id="1_rxqd1"]
 [ext_resource type="Texture2D" uid="uid://c5lhtslhtc7pq" path="res://assets/hud/Keyboard Letters and Symbols.png" id="2_evbvr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rxqd1"]

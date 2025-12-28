@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://chn72gotg061q"]
 
-[ext_resource type="Script" uid="uid://cmqa42vk1r6ay" path="res://src/features/enemies/generic_enemy.gd" id="1_3o17i"]
+[ext_resource type="Script" uid="uid://b1d181poax4t4" path="res://src/features/enemies/generic_enemy.gd" id="1_3o17i"]
 [ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="3_df741"]
 [ext_resource type="Script" uid="uid://bjacxmyhs0kwh" path="res://src/features/enemies/enemy_sound_player.gd" id="5_bxjce"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="49_t4mn2"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=153 format=3 uid="uid://6wx15xs4nxry"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_no7e0"]
-[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://src/features/enemies/attack.gd" id="2_5ratu"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="2_5ratu"]
 [ext_resource type="Resource" uid="uid://ou55octuf0rv" path="res://src/features/enemies/slash_attack_bug.tres" id="3_y0ijw"]
 [ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="4_yi54r"]
 [ext_resource type="Texture2D" uid="uid://dkyposv7q7mhk" path="res://assets/characters/enemies/Bug/Attack/0001.png" id="6_1ax7u"]

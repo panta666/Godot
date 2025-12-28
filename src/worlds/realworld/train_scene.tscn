@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://xnykv3jipun8"]
 
 [ext_resource type="Texture2D" uid="uid://cecii67wnthxn" path="res://assets/tilemap/32x32/train.png" id="1_7prj5"]
-[ext_resource type="Script" uid="uid://ixtcem62crla" path="res://src/worlds/realworld/train_scene.gd" id="1_mlpd5"]
+[ext_resource type="Script" uid="uid://bsi33qfph8bct" path="res://src/worlds/realworld/train_scene.gd" id="1_mlpd5"]
 [ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="2_13m65"]
 [ext_resource type="Texture2D" uid="uid://ixdgku1cm3f3" path="res://assets/tilemap/32x32/traintracks.png" id="2_ohkuq"]
 [ext_resource type="Texture2D" uid="uid://londnksu0ohw" path="res://assets/Parallax_BG/2.png" id="3_4l6ny"]

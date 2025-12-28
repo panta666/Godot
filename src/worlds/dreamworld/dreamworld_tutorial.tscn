@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c6l8id2k6xgbn" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_0hkcn"]
 [ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="1_0u1q0"]
-[ext_resource type="Script" uid="uid://o2u3bg7wh2t6" path="res://src/worlds/dreamworld/dreamworld_tutorial.gd" id="1_qm84e"]
+[ext_resource type="Script" uid="uid://b3ujwrtn15rbh" path="res://src/worlds/dreamworld/dreamworld_tutorial.gd" id="1_qm84e"]
 [ext_resource type="Texture2D" uid="uid://londnksu0ohw" path="res://assets/Parallax_BG/2.png" id="2_5ylfl"]
 [ext_resource type="Texture2D" uid="uid://b6opbo4nkvgs8" path="res://assets/Parallax_BG/3.png" id="3_aqo6v"]
 [ext_resource type="Texture2D" uid="uid://7pflni7yxeg3" path="res://assets/Parallax_BG/5.png" id="4_qm84e"]

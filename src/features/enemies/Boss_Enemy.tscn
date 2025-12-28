@@ -1,8 +1,8 @@
 [gd_scene load_steps=86 format=3 uid="uid://c354yps3u21j"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_x44s7"]
-[ext_resource type="Script" uid="uid://blox88rn1v5np" path="res://src/features/enemies/boss_enemy.gd" id="2_nfnda"]
-[ext_resource type="Script" uid="uid://d2iv1cx41gku0" path="res://src/features/enemies/attack.gd" id="3_lory0"]
+[ext_resource type="Script" uid="uid://wc1mum638gbl" path="res://src/features/enemies/boss_enemy.gd" id="2_nfnda"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="3_lory0"]
 [ext_resource type="Texture2D" uid="uid://cq6srekha0jup" path="res://assets/characters/enemies/Boss/Attack/0002.png0001.png" id="3_rsppg"]
 [ext_resource type="Resource" uid="uid://c5li0nd5vv0vo" path="res://src/features/enemies/Boss_Hit.tres" id="4_audnc"]
 [ext_resource type="Texture2D" uid="uid://dg727v2cpcsnx" path="res://assets/characters/enemies/Boss/Attack/0002.png0002.png" id="4_lory0"]

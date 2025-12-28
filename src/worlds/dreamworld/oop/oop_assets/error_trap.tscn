@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://gljlcysdxo1t"]
 
-[ext_resource type="Script" uid="uid://c16gwjdwjqlly" path="res://src/core/error_trap.gd" id="1_ywpsg"]
+[ext_resource type="Script" uid="uid://bs3onj8p8uoag" path="res://src/core/error_trap.gd" id="1_ywpsg"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="2_i74a5"]
 [ext_resource type="Texture2D" uid="uid://bi87jsbcadv0i" path="res://assets/oop_level/compile-Sheet.png" id="3_xh5vd"]
 
