@@ -19,6 +19,7 @@ func _on_body_entered(body: Node) -> void:
 
 	# Level 3 für OOP freischalten
 	GlobalScript.unlock_level(GlobalScript.classrooms.mathe, 1)
+	SaveManager.unlock_door("realworld_math_door")
 	
 	# LevelUI aktualisieren, falls vorhanden
 	var classroom = get_tree().current_scene
