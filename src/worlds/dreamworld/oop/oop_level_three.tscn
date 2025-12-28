@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://c0rimb6xqvjik"]
+[gd_scene load_steps=14 format=4 uid="uid://c0rimb6xqvjik"]
 
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="1_dfwey"]
 [ext_resource type="Texture2D" uid="uid://cvk2mnbk30uox" path="res://assets/oop_level/BG_defaultWalls.png" id="2_pwhbr"]
 [ext_resource type="Texture2D" uid="uid://c6ggydncga2e5" path="res://assets/oop_level/BG_door.png" id="3_1nj75"]
 [ext_resource type="Texture2D" uid="uid://cm6x4oh6a2csq" path="res://assets/oop_level/HSD_platforms.png" id="4_6v8fu"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="5_0ms5n"]
+[ext_resource type="Script" uid="uid://2p5i847orrx6" path="res://src/worlds/dreamworld/oop/level_3_test.gd" id="6_ke7vh"]
+[ext_resource type="Texture2D" uid="uid://bc8ldyfjs3iml" path="res://icon.svg" id="7_isrfw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ma1eb"]
 texture = ExtResource("1_dfwey")
@@ -183,6 +185,9 @@ sources/1 = SubResource("TileSetAtlasSource_kj5dp")
 sources/2 = SubResource("TileSetAtlasSource_1n38a")
 sources/3 = SubResource("TileSetAtlasSource_di4nu")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm5oa"]
+size = Vector2(63, 63)
+
 [node name="OOPLevelThree" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -191,3 +196,29 @@ tile_set = SubResource("TileSet_d548u")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("5_0ms5n")]
 position = Vector2(43, -31)
+
+[node name="Level 3 test" type="Area2D" parent="."]
+light_mask = 7
+visibility_layer = 7
+position = Vector2(-81, 9)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("6_ke7vh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level 3 test"]
+position = Vector2(891, -35)
+shape = SubResource("RectangleShape2D_gm5oa")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level 3 test"]
+position = Vector2(891, -36)
+scale = Vector2(0.53125, 0.53125)
+texture = ExtResource("7_isrfw")
+
+[node name="Label" type="Label" parent="Level 3 test"]
+offset_left = 835.0
+offset_top = -91.0
+offset_right = 941.0
+offset_bottom = -68.0
+text = "unlock Mathe"
+
+[connection signal="body_entered" from="Level 3 test" to="Level 3 test" method="_on_body_entered"]
