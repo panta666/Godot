@@ -17,7 +17,8 @@ var save_data = {
 		},
 		"quests": [],
 		"unlocked_doors": {},
-		"shop_unlocked": false
+		"shop_unlocked": false,
+		"unlocked_levels": {0:1}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -46,7 +47,8 @@ const default_values = {
 		},
 		"quests": [],
 		"unlocked_doors": {},
-		"shop_unlocked": false
+		"shop_unlocked": false,
+		"unlocked_levels": {0:1}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
