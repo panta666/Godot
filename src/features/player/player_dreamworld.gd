@@ -67,8 +67,6 @@ var can_attack = true
 @onready var sprite_down_hitbox: AnimatedSprite2D = $HitBoxDown/SpriteDownHitbox
 @onready var hund_coin: Control = $HUD/HundCoin
 
-
-
 #Variablen für Range Attacke
 var is_range_attack_allowed: bool = false
 var max_range_attack = 1 #Wie viele Charges man hat
@@ -88,7 +86,6 @@ var knockback_length = 0.2
 var is_invincible: bool = false
 const INVINCIBILITY_TIME := 1.0 # Sekunden
 
-
 #Shake Effekt bei Damage nehmen
 @export var shake = false
 var shake_phase := 0.0
@@ -101,6 +98,23 @@ var is_alive: bool = true
 @onready var health_wave: Control = $HUD/HealthWave
 @onready var health: Health = $Health
 var blink_overlay_scene = preload("res://src/shared/components/blink_overlay.tscn")
+
+#Heal-Ability
+var is_healing_allowed := false
+var is_healing := false
+var heal_timer := 0.0
+const HEAL_HOLD_TIME := 2.0
+const HEAL_AMOUNT := 15
+@onready var heal_ability_button: TextureButton = $HUD/heal_ability_charges
+var max_heal_charges = 1 #Wie viele Charges man hat
+var current_heal_charges = 1
+@onready var heal_particles_left: GPUParticles2D = $HealParticles_Left
+@onready var heal_particles_right: GPUParticles2D = $HealParticles_Right
+
+
+# Heal-Recharge durch Schaden
+var heal_recharge_progress := 0.0
+const HEAL_RECHARGE_REQUIRED := 100.0 # wie viel Schaden für 1 Charge
 
 #Scene
 @onready var camera_2d: Camera2D = $Camera2D
@@ -115,6 +129,8 @@ var is_cutscene_active: bool = false
 
 
 func _ready() -> void:
+	GlobalScript.enemy_damaged.connect(on_enemy_damaged)
+
 	GlobalScript.player_dw = self
 	current_scene = get_tree().current_scene
 	scene_name = current_scene.get_name().to_lower()
@@ -132,6 +148,7 @@ func _ready() -> void:
 			camera_2d.make_current()
 
 	range_attack_charges.update_charge_text(current_range_attack, max_range_attack)
+	heal_ability_button.update_charge_text(current_heal_charges, max_heal_charges)
 
 	player_sprite.material.set_shader_parameter("flash_value", 0.0)
 
@@ -187,6 +204,8 @@ func _physics_process(delta: float) -> void:
 		return
 	forced_crouch = head_check.is_colliding()
 
+	handle_heal(delta)
+
 	# Add gravity
 	add_gravity(delta)
 
@@ -233,6 +252,8 @@ func _physics_process(delta: float) -> void:
 		handle_range_attack()
 
 	handle_range_recharge(delta)
+	show_heal_charges()
+	handle_UI_placement()
 
 	#Sprite-Flip
 	player_sprite.flip_h = (last_facing_direction < 0)
@@ -249,6 +270,10 @@ func _physics_process(delta: float) -> void:
 		activate_range_attack()
 	if Input.is_action_just_pressed("increase_range_attack_charges"):
 		increase_range_attack_charges()
+	if Input.is_action_just_pressed("activate_heal"):
+		activate_heal()
+	if Input.is_action_just_pressed("increase_heal_charges"):
+		increase_heal_charges()
 
 	update_animation()
 	if player_sprite.animation == "run" and player_sprite.frame in [2,5]:
@@ -302,6 +327,8 @@ func add_gravity(delta: float) -> void:
 #Handle Movement
 func handle_movement():
 	var direction := Input.get_axis("move_left", "move_right")
+	if direction != 0 and is_healing:
+		cancel_heal()
 	if direction:
 		velocity.x = direction * SPEED
 		last_facing_direction = direction
@@ -317,6 +344,8 @@ func handle_coyote_time(delta: float):
 
 #Handle Jump and Double Jump
 func handle_jump():
+	if is_healing:
+		cancel_heal()
 	if on_ladder:
 		return
 	# Erster Sprung / Coyote Time
@@ -340,6 +369,8 @@ func handle_jump():
 
 #Handle Dash
 func handle_dash():
+	if is_healing:
+		cancel_heal()
 	if is_dash_allowed and not on_ladder:
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction == 0:	#Dash in Blickrichtung
@@ -355,6 +386,8 @@ func handle_dash():
 		dash_timer = DASH_DURATION
 
 func handle_crouching():
+	if is_healing:
+		cancel_heal()
 	if not is_dashing and is_crouching_allowed and not on_ladder:
 		is_crouching = true
 		collision_shape.shape.size = Vector2(14.0, 29.0)
@@ -384,6 +417,9 @@ func stop_dashing(delta: float):
 
 #Handle Attack
 func handle_attack():
+	if is_healing:
+		cancel_heal()
+
 	if is_attacking or not can_attack or on_ladder:
 		return
 
@@ -413,8 +449,10 @@ func handle_range_attack():
 		return
 	
 	if current_range_attack <= 0:
-		print("Keine Charges!")
 		return
+
+	if is_healing:
+		cancel_heal()
 
 	is_attacking = true
 	audio_player.play_sound(PlayreDreamworldSounds.soundtype.RANGE_ATTACK)
@@ -424,7 +462,6 @@ func handle_range_attack():
 
 	current_range_attack -= 1
 	range_attack_charges.update_charge_text(current_range_attack, max_range_attack)
-	print("Range Attack! Charges übrig:", current_range_attack)
 
 	if current_range_attack < max_range_attack and recharge_timer <= 0:
 		recharge_timer = RANGE_ATTACK_RECHARGE_TIME
@@ -469,8 +506,6 @@ func handle_range_recharge(delta):
 		else:
 			range_attack_charges.update_recharge_progress(1.0)
 
-
-
 #Handle Attack Cooldown
 func countdown_attack_timer(delta: float):
 	if not can_attack:
@@ -483,7 +518,92 @@ func _on_animation_finished():
 	if player_sprite.animation.begins_with("attack") or player_sprite.animation.begins_with("range_attack"):
 		is_attacking = false
 
+func on_enemy_damaged(damage: int) -> void:
+	if not is_healing_allowed:
+		return
 
+	if current_heal_charges >= max_heal_charges:
+		return
+
+	handle_heal_recharge(damage)
+
+
+func handle_heal(delta: float) -> void:
+	if not is_healing_allowed:
+		return
+	if not is_alive or is_taking_damage or is_attacking or is_dashing or current_heal_charges == 0:
+		return
+	if not is_on_floor():
+		return
+	if health.get_max_health() == health.get_health():
+		return
+	# Heal Button gedrückt halten
+	if Input.is_action_pressed("healing"):
+		if not is_healing:
+			is_healing = true
+			heal_particles_left.emitting = true
+			heal_particles_right.emitting = true
+			heal_timer = 0.0
+			velocity.x = 0
+
+		heal_timer += delta
+
+		# Heal abgeschlossen
+		if heal_timer >= HEAL_HOLD_TIME:
+			is_healing = false
+			heal_particles_left.emitting = false
+			heal_particles_right.emitting = false
+			heal_timer = 0.0
+			current_heal_charges -= 1
+			heal_ability_button.update_charge_text(current_heal_charges, max_heal_charges)
+			heal_ability_button.update_recharge_progress(heal_recharge_progress / HEAL_RECHARGE_REQUIRED)
+			health.health = min(
+				health.health + HEAL_AMOUNT,
+				health.max_health
+			)
+	else:
+		# Button losgelassen → abbrechen
+		if is_healing:
+			cancel_heal()
+
+func cancel_heal():
+	if not is_healing:
+		return
+
+	is_healing = false
+	heal_particles_left.emitting = false
+	heal_particles_right.emitting = false
+	heal_timer = 0.0
+
+func show_heal_charges():
+	if not is_healing_allowed:
+		heal_ability_button.visible = false
+	else:
+		heal_ability_button.visible = true
+	heal_ability_button.update_charge_text(current_heal_charges, max_heal_charges)
+
+func handle_heal_recharge(damage):
+	heal_recharge_progress += damage
+
+	var progress := heal_recharge_progress / HEAL_RECHARGE_REQUIRED
+	heal_ability_button.update_recharge_progress(progress)
+
+	if heal_recharge_progress >= HEAL_RECHARGE_REQUIRED:
+		heal_recharge_progress = 0.0
+		current_heal_charges += 1
+		current_heal_charges = min(current_heal_charges, max_heal_charges)
+
+		heal_ability_button.update_charge_text(current_heal_charges, max_heal_charges)
+		heal_ability_button.update_recharge_progress(1.0)
+
+func handle_UI_placement():
+	if is_healing_allowed and not is_range_attack_allowed:
+		heal_ability_button.position = Vector2(131, 23)
+	elif is_range_attack_allowed and not is_healing_allowed:
+		range_attack_charges.position = Vector2(131, 23)
+	else:
+		range_attack_charges.position = Vector2(131, 23)
+		heal_ability_button.position = Vector2(193, 23)
 
 #Handle Slash-Animation
 func play_slash(sprite: AnimatedSprite2D, hitbox: Area2D):
@@ -508,6 +628,9 @@ func received_damage(_damage: int, attacker_pos: Vector2) -> void:
 		return
 	if is_taking_damage:
 		return
+
+	if is_healing:
+		cancel_heal()
 
 	start_shake()
 	is_taking_damage = true
@@ -637,6 +760,10 @@ func update_animation():
 				player_sprite.play("idle_climbing")
 		return
 
+	if is_healing:
+		if player_sprite.animation != "heal":
+			player_sprite.play("heal")
+		return
 
 	# Double Jump Animation läuft
 	if is_double_jumping:
@@ -733,6 +860,12 @@ func activate_dash():
 
 func increase_range_attack_charges():
 	max_range_attack += 1
+
+func activate_heal():
+	is_healing_allowed = true
+
+func increase_heal_charges():
+	max_heal_charges += 1
 
 # --- Cutscene Methoden ---
 func cutscene_start() -> void:

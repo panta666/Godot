@@ -60,11 +60,14 @@ var knockback_duration := 0.2
 
 @onready var sound_player: Node2D = $EnemySoundPlayer
 
+signal damaged(amount)
+
 # -------------------------------------------------------------------
 # LIFECYCLE
 # -------------------------------------------------------------------
 func _ready() -> void:
-	call_deferred("_spawn_healthbar")
+	call_deferred("_spawn_healthbar")#
+
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
@@ -318,10 +321,12 @@ func _spawn_healthbar() -> void:
 	get_tree().root.add_child(healthbar)
 	healthbar.setup(self)
 
-func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
+func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 	flash_anim.play("flash")
 	_apply_knockback(attacker_pos)
 	healthbar.update()
+	damaged.emit(damage)
+	GlobalScript.enemy_damaged.emit(damage)
 	_stun()
 
 func _apply_knockback(attacker_pos: Vector2) -> void:

@@ -39,6 +39,8 @@ func _return_to_classroom() -> void:
 	# Szenenwechsel zurück
 	GlobalScript.change_scene("realworld_classroom_one")
 
-func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
+func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	healthbar.update()
+	damaged.emit(damage)
+	GlobalScript.enemy_damaged.emit(damage)
 	flash_anim.play("flash")

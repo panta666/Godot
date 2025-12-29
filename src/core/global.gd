@@ -26,6 +26,11 @@ var pending_spawn: bool = false
 var last_door_for_transition: Node = null
 
 # -------------------------
+# Signal Gegner
+# -------------------------
+signal enemy_damaged(amount)
+
+# -------------------------
 # Spieler-Infos
 # -------------------------
 var player_positions := {

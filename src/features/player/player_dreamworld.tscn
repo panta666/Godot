@@ -1,20 +1,22 @@
-[gd_scene load_steps=42 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=44 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://src/features/player/player_dreamworld.gd" id="1_fd23n"]
+[ext_resource type="Texture2D" uid="uid://dcn32kex2xq3w" path="res://assets/plattformer_character/rotations/south.png" id="2_0ulmu"]
 [ext_resource type="Texture2D" uid="uid://38w5c6o1fu2x" path="res://assets/plattformer_character/animations/pushing/east/frame_003.png" id="2_3pffi"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://src/shared/components/health.gd" id="3_rxbup"]
 [ext_resource type="PackedScene" uid="uid://2puypr5ol8x8" path="res://src/features/player/range_attack_charges.tscn" id="4_bydnf"]
 [ext_resource type="PackedScene" uid="uid://djjul724nbfvo" path="res://src/features/player/health_wave.tscn" id="5_060o7"]
 [ext_resource type="Shader" uid="uid://l5jshm6m8b1x" path="res://src/shared/components/hit_flash.gdshader" id="6_tg0uq"]
 [ext_resource type="SpriteFrames" uid="uid://hariq7g2xi0r" path="res://src/features/player/player_dreamworld.tres" id="7_nt51a"]
+[ext_resource type="PackedScene" uid="uid://bvrjjw237u8rk" path="res://src/features/player/heal_ability_charges.tscn" id="21_d4v6j"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="74_3kc26"]
 [ext_resource type="Texture2D" uid="uid://d1atpo45f7fum" path="res://assets/plattformer_character/animations/melee_slash/NPT100.png" id="75_w18fs"]
 [ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="76_ekknv"]
 [ext_resource type="Texture2D" uid="uid://bjlhawrp55nnj" path="res://assets/plattformer_character/animations/melee_slash/NPT102.png" id="77_6i2nj"]
 [ext_resource type="Texture2D" uid="uid://daagbhqb24058" path="res://assets/plattformer_character/animations/melee_slash/NPT103.png" id="78_rhhck"]
 [ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://src/shared/components/hurtbox.gd" id="79_84bjp"]
-[ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://src/shared/ui/dreamworld/hud_coin_dreamworld.tscn" id="80_ku5kx"]
-[ext_resource type="Script" path="res://src/features/player/audio_player.gd" id="92_uyd2q"]
+[ext_resource type="PackedScene" uid="uid://r1grvh0tojdc" path="res://src/shared/ui/hud_coin_dreamworld.tscn" id="80_ku5kx"]
+[ext_resource type="Script" uid="uid://b8ib7chc7er6p" path="res://src/features/player/audio_player.gd" id="92_uyd2q"]
 [ext_resource type="AudioStream" uid="uid://c6ipsxxk354ln" path="res://assets/sfx/DreamwolrdPlayerSounds/punchAttack/83976__theredshore__punch.mp3" id="93_on6mk"]
 [ext_resource type="AudioStream" uid="uid://4k6m8dvfogpo" path="res://assets/sfx/DreamwolrdPlayerSounds/getHit/216783__castironcarousel__punch-8.mp3" id="94_51uo2"]
 [ext_resource type="AudioStream" uid="uid://dg7e8p2u4gptj" path="res://assets/sfx/DreamwolrdPlayerSounds/death/udead.mp3" id="95_01t1s"]
@@ -188,6 +190,22 @@ collision_layer = 2
 script = ExtResource("1_fd23n")
 shake = true
 
+[node name="HealParticles_Left" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_t3ro2")
+position = Vector2(-8, 0)
+emitting = false
+texture = ExtResource("2_0ulmu")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_bqe6c")
+
+[node name="HealParticles_Right" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_t3ro2")
+position = Vector2(4, 0)
+emitting = false
+texture = ExtResource("2_0ulmu")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_bqe6c")
+
 [node name="DashParticles" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_t3ro2")
 emitting = false
@@ -205,7 +223,7 @@ material = SubResource("ShaderMaterial_ku5kx")
 position = Vector2(-2.0000005, 0)
 scale = Vector2(1.1145834, 1.1458334)
 sprite_frames = ExtResource("7_nt51a")
-animation = &"attack"
+animation = &"heal"
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="AnimatedSprite2D"]
 root_node = NodePath("../..")
@@ -349,6 +367,12 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="heal_ability_charges" parent="HUD" instance=ExtResource("21_d4v6j")]
+offset_left = 193.0
+offset_top = 23.0
+offset_right = 233.0
+offset_bottom = 63.0
 
 [node name="HundCoin" parent="HUD" instance=ExtResource("80_ku5kx")]
 z_index = 10
