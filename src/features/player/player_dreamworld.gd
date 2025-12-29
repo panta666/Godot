@@ -153,38 +153,42 @@ func _ready() -> void:
 	hurt_box.received_damage.connect(_on_player_received_damage)
 	
 	
-	#SAVEMANAGER STATES
-	# Double Jump
-	if SaveManager.save_data["player_stats"]["double_jump"]:
-		activate_double_jump()
-
-	# Dash
-	if SaveManager.save_data["player_stats"]["dash"]:
-		activate_dash()
-
-	# Range Attack
-	if SaveManager.save_data["player_stats"]["range_attack"]:
-		activate_range_attack()
-
-	# Range Attack Increase
-	if SaveManager.save_data["player_stats"]["range_attack_increase"]:
-		increase_range_attack_charges()
-
-	# Crouch
-	if SaveManager.save_data["player_stats"]["crouching"]:
-		activate_crouching()
-
-	#Heal Ability
-	if SaveManager.save_data["player_stats"]["heal_ability"]:
-		activate_heal()
-
-	#Heal Ability Increase
-	if SaveManager.save_data["player_stats"]["heal_ability_increase"]:
-		increase_heal_charges()
+	activate_player_stats()
 
 	hund_coin.set_scene(current_scene.get_name())
 
 	current_heal_charges = max_heal_charges
+
+func activate_player_stats():
+	# Activate Stat according to unlocks.
+	
+	# Double Jump
+	if SaveManager.is_player_stat_unlocked("double_jump"):
+		activate_double_jump()
+
+	# Dash
+	if SaveManager.is_player_stat_unlocked("dash"):
+		activate_dash()
+
+	# Range Attack
+	if SaveManager.is_player_stat_unlocked("range_attack"):
+		activate_range_attack()
+
+	# Range Attack Increase
+	if SaveManager.is_player_stat_unlocked("range_attack_increase"):
+		increase_range_attack_charges()
+
+	# Crouch
+	if SaveManager.is_player_stat_unlocked("crouching"):
+		activate_crouching()
+
+	#Heal Ability
+	if SaveManager.is_player_stat_unlocked("heal_ability"):
+		activate_heal()
+
+	#Heal Ability Increase
+	if SaveManager.is_player_stat_unlocked("heal_ability_increase"):
+		increase_heal_charges()
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:
