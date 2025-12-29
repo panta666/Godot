@@ -111,7 +111,6 @@ var current_heal_charges = 1
 @onready var heal_particles_left: GPUParticles2D = $HealParticles_Left
 @onready var heal_particles_right: GPUParticles2D = $HealParticles_Right
 
-
 # Heal-Recharge durch Schaden
 var heal_recharge_progress := 0.0
 const HEAL_RECHARGE_REQUIRED := 100.0 # wie viel Schaden für 1 Charge
@@ -126,7 +125,6 @@ var is_cutscene_active: bool = false
 
 # Sound
 @onready var audio_player: PlayerDreamworldSoundPlayer = $AudioPlayer
-
 
 func _ready() -> void:
 	GlobalScript.enemy_damaged.connect(on_enemy_damaged)

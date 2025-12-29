@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=5 format=3 uid="uid://hfn8kdo3sosd"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://src/features/shop/shop_data.gd" id="1_845gg"]
+[ext_resource type="Texture2D" uid="uid://cpgr6yrree3bl" path="res://assets/heal_ability/heal_ability.png" id="2_e3w3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tytmj"]
+atlas = ExtResource("2_e3w3h")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_845gg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tytmj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_845gg")
+item_name = "Heal Ability"
+sprite_frames = SubResource("SpriteFrames_845gg")
+price = 2
+description = "Hold \"V\" for 2 Seconds in order to heal for 15 Health Points"
+powerup_name = "heal_ability"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

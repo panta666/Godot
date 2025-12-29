@@ -33,7 +33,9 @@ var save_data = {
 		"dash": false,
 		"range_attack": false,
 		"crouching": false,
-		"range_attack_increase": false
+		"range_attack_increase": false,
+		"heal_ability": false,
+		"heal_ability_increase": false
 	}
 }
 
@@ -63,7 +65,9 @@ const default_values = {
 		"dash": false,
 		"range_attack": false,
 		"crouching": false,
-		"range_attack_increase": false
+		"range_attack_increase": false,
+		"heal_ability": false,
+		"heal_ability_increase": false
 	}
 }
 
@@ -184,6 +188,8 @@ func check_for_player_settings():
 		save_data["player_stats"]["range_attack"] = false
 		save_data["player_stats"]["crouching"] = false
 		save_data["player_stats"]["range_attack_increase"] = false
+		save_data["player_stats"]["heal_ability"] = false
+		save_data["player_stats"]["heal_ability_increase"] = false
 
 # Wendet die im 'save_data'-Dictionary gespeicherten Audioeinstellungen an.
 func apply_audio_settings():

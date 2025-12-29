@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_cpcct")
-item_name = "Range_Attack"
+item_name = "Range Attack"
 sprite_frames = ExtResource("2_51wks")
 price = 2
 description = "You can shoot Projectiles with the 'RMB' RightMouseButton"

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=5 format=3 uid="uid://bjnqu6m3cedcl"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://src/features/shop/shop_data.gd" id="1_wqph8"]
+[ext_resource type="Texture2D" uid="uid://cpgr6yrree3bl" path="res://assets/heal_ability/heal_ability.png" id="2_fvphc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x488g"]
+atlas = ExtResource("2_fvphc")
+region = Rect2(0, 0, 768, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qwj6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x488g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_wqph8")
+item_name = "Heal Ability Increase"
+sprite_frames = SubResource("SpriteFrames_1qwj6")
+price = 2
+description = "Add one more charge to your Heal Ability"
+powerup_name = "heal_ability_increase"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"
