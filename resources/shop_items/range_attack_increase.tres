@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_yy42l")
-item_name = "Range_Attack_Increase"
+item_name = "Range Attack Increase"
 sprite_frames = SubResource("SpriteFrames_yy42l")
 price = 3
 description = "You can increase the Number of Projectiles you can shoot at Enemies"

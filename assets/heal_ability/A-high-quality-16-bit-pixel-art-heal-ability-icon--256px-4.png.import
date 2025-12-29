@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br2sea1o8o3u0"
-path="res://.godot/imported/east.png-3a851a67ff480d0cd804bfc9723c5d33.ctex"
+uid="uid://bhupacm3kkxct"
+path="res://.godot/imported/A-high-quality-16-bit-pixel-art-heal-ability-icon--256px-4.png-2c62e592c6722af8c77b83fd6ce48483.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plattformer_character/rotations/east.png"
-dest_files=["res://.godot/imported/east.png-3a851a67ff480d0cd804bfc9723c5d33.ctex"]
+source_file="res://assets/heal_ability/A-high-quality-16-bit-pixel-art-heal-ability-icon--256px-4.png"
+dest_files=["res://.godot/imported/A-high-quality-16-bit-pixel-art-heal-ability-icon--256px-4.png-2c62e592c6722af8c77b83fd6ce48483.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=544 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=546 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://gs0ak4an6e2p" path="res://src/worlds/realworld/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="2_1lbkm"]
@@ -21,6 +21,8 @@
 [ext_resource type="Resource" uid="uid://ddbdgs4gv4dn2" path="res://resources/shop_items/range_attack.tres" id="19_0jema"]
 [ext_resource type="Resource" uid="uid://baftcvns6tuvu" path="res://resources/shop_items/range_attack_increase.tres" id="20_ktf6i"]
 [ext_resource type="Texture2D" uid="uid://bixy4gx4y484o" path="res://assets/characters/npc_stylesheets/boy_04.png" id="21_6gkb0"]
+[ext_resource type="Resource" uid="uid://hfn8kdo3sosd" path="res://resources/shop_items/heal_ability.tres" id="21_joeeu"]
+[ext_resource type="Resource" uid="uid://bjnqu6m3cedcl" path="res://resources/shop_items/heal_ability_charges.tres" id="22_ihjve"]
 [ext_resource type="Texture2D" uid="uid://l0dcsp1g4hmf" path="res://assets/characters/npc_stylesheets/boy_08.png" id="22_o51tc"]
 [ext_resource type="Texture2D" uid="uid://dwlavo8y00vk8" path="res://assets/characters/npc_stylesheets/boy_15.png" id="23_3tukc"]
 [ext_resource type="Texture2D" uid="uid://bqfibvj1ap57n" path="res://assets/characters/npc_stylesheets/girl_03.png" id="24_ub4w7"]
@@ -5736,7 +5738,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_a3dbr"]
+[sub_resource type="Resource" id="Resource_joeeu"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -6418,7 +6420,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_ietdu"]
+[sub_resource type="Resource" id="Resource_ihjve"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 npc_name = "Jens"
@@ -8139,7 +8141,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_2g2u1"]
+[sub_resource type="Resource" id="Resource_fnyri"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 sprite_frames = SubResource("SpriteFrames_a1gga")
@@ -8577,7 +8579,7 @@ npc_data = SubResource("Resource_hh4ny")
 
 [node name="NPC4" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1254, 510)
-npc_data = SubResource("Resource_a3dbr")
+npc_data = SubResource("Resource_joeeu")
 
 [node name="NPC5" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1579, 684)
@@ -8604,13 +8606,13 @@ energy = 1.78
 
 [node name="Shop" parent="." instance=ExtResource("14_npa15")]
 position = Vector2(1150, 491)
-shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("19_0jema"), ExtResource("20_ktf6i")])
+shop_items = Array[ExtResource("15_6r6jj")]([ExtResource("16_2ql7k"), ExtResource("17_pj12r"), ExtResource("19_0jema"), ExtResource("20_ktf6i"), ExtResource("21_joeeu"), ExtResource("22_ihjve")])
 coin_category = "math"
 
 [node name="NPC2" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
 position = Vector2(1492, 563)
-npc_data = SubResource("Resource_ietdu")
+npc_data = SubResource("Resource_ihjve")
 
 [node name="NPC6" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
@@ -8645,7 +8647,7 @@ npc_data = SubResource("Resource_5jvhl")
 [node name="NPC12" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
 position = Vector2(1301, 530)
-npc_data = SubResource("Resource_2g2u1")
+npc_data = SubResource("Resource_fnyri")
 
 [node name="NPC13" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3

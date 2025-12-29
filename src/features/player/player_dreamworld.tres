@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=155 format=3 uid="uid://hariq7g2xi0r"]
+[gd_resource type="SpriteFrames" load_steps=157 format=3 uid="uid://hariq7g2xi0r"]
 
 [ext_resource type="Texture2D" uid="uid://cbfkyca8x3out" path="res://assets/plattformer_character/animations/lead-jab/east/frame_000.png" id="1_scmay"]
 [ext_resource type="Texture2D" uid="uid://j738q4tahpiq" path="res://assets/plattformer_character/animations/lead-jab/east/frame_001.png" id="2_xr5tf"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://bqqpryrxfxalp" path="res://assets/plattformer_character/animations/front-flip/east/frame_003.png" id="36_71jh2"]
 [ext_resource type="Texture2D" uid="uid://cqt3km4sweo6c" path="res://assets/plattformer_character/animations/front-flip/east/frame_004.png" id="37_njxqm"]
 [ext_resource type="Texture2D" uid="uid://74gh2tjxlv0k" path="res://assets/plattformer_character/animations/front-flip/east/frame_005.png" id="38_mkaov"]
+[ext_resource type="Texture2D" uid="uid://dcn32kex2xq3w" path="res://assets/plattformer_character/rotations/south.png" id="39_oy3hm"]
 [ext_resource type="Texture2D" uid="uid://dcsbjiemglw36" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_000.png" id="39_skaw3"]
 [ext_resource type="Texture2D" uid="uid://bayx5avi6uyni" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_001.png" id="40_eowpe"]
 [ext_resource type="Texture2D" uid="uid://cmo4q8nrjajmj" path="res://assets/plattformer_character/animations/fight-stance-idle-8-frames/east/frame_002.png" id="41_uw3nf"]
@@ -214,6 +215,10 @@ region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgv2w"]
 atlas = ExtResource("38_mkaov")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oy3hm"]
+atlas = ExtResource("39_oy3hm")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_105pv"]
@@ -543,6 +548,14 @@ animations = [{
 "loop": false,
 "name": &"frontflip",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oy3hm")
+}],
+"loop": true,
+"name": &"heal",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
