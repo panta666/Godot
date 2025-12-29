@@ -10,13 +10,13 @@ class_name Enemy
 @export var health_bar_position: Vector2 = Vector2(0, -30)
 
 
-const SPEED := 50.0
-const DASH_SPEED := 300.0
-const STUN_TIME := 0.35
+@export var SPEED := 50.0
+@export var DASH_SPEED := 300.0
+@export var STUN_TIME := 0.35
 
-const ATTACK_RANGE := 260.0
-const ATTACK_RANGE_FAR := 166.0
-const ATTACK_RANGE_NEAR := 165.0
+@export var ATTACK_RANGE := 260.0
+@export var ATTACK_RANGE_FAR := 166.0
+@export var ATTACK_RANGE_NEAR := 165.0
 
 # -------------------------------------------------------------------
 # RESOURCES
@@ -100,7 +100,6 @@ func _handle_navigation() -> void:
 func _flip_direction() -> void:
 	direction *= -1
 	transform.x = Vector2(direction * abs(scale.x), 0)
-	#ray_forward.target_position.x = abs(ray_forward.target_position.x) * direction
 
 # -------------------------------------------------------------------
 # PLAYER LOGIC
@@ -151,7 +150,6 @@ func _track_player() -> void:
 
 	direction = sign(player.global_position.x - global_position.x)
 	transform.x = Vector2(direction * abs(scale.x), 0)
-	#ray_forward.target_position.x = abs(ray_forward.target_position.x) * direction
 
 # -------------------------------------------------------------------
 # COMBAT
@@ -293,7 +291,7 @@ func _end_attack() -> void:
 # -------------------------------------------------------------------
 func _play_animation_scaled(name: String, duration: float) -> void:
 	var frames := sprite.sprite_frames
-	var speed := frames.get_frame_count(name) / duration
+	var speed := (frames.get_frame_count(name)-1) / duration
 	frames.set_animation_speed(name, speed)
 	sprite.play(name)
 
