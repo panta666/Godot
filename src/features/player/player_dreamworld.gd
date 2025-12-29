@@ -173,8 +173,18 @@ func _ready() -> void:
 	# Crouch
 	if SaveManager.save_data["player_stats"]["crouching"]:
 		activate_crouching()
-		
+
+	#Heal Ability
+	if SaveManager.save_data["player_stats"]["heal_ability"]:
+		activate_heal()
+
+	#Heal Ability Increase
+	if SaveManager.save_data["player_stats"]["heal_ability_increase"]:
+		increase_heal_charges()
+
 	hund_coin.set_scene(current_scene.get_name())
+
+	current_heal_charges = max_heal_charges
 
 func _physics_process(delta: float) -> void:
 	if is_cutscene_active:

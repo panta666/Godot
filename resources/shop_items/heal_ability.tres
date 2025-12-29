@@ -22,7 +22,6 @@ animations = [{
 script = ExtResource("1_845gg")
 item_name = "Heal Ability"
 sprite_frames = SubResource("SpriteFrames_845gg")
-price = 2
 description = "Hold \"V\" for 2 Seconds in order to heal for 15 Health Points"
 powerup_name = "heal_ability"
 metadata/_custom_type_script = "uid://4a4lax7mb4ux"
