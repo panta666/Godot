@@ -1,6 +1,28 @@
 extends "res://src/features/enemies/generic_enemy.gd"
+class_name OOP_Boss
 
 @export var boss_of_level = ""
+
+@export var boss_trigger: Boss_Trigger
+
+func _ready() -> void:
+	call_deferred("_spawn_healthbar")
+
+func _get_visible_player() -> CharacterBody2D:
+	return boss_trigger._get_player()
+	
+func _handle_player_logic() -> void:
+	if _detect_player():
+		is_walking = true
+		sprite.play("walk")
+		_start_attack()
+		if not is_dashing:
+			_track_player()
+	else:
+		player = null
+		is_walking = true
+		sprite.play("walk")
+		sound_player.play_sound(Enemysound.soundtype.WALK)
 
 func _on_health_depleted() -> void:
 	healthbar._deplete()

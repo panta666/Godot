@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7vhfj6dh631y"]
+
+[ext_resource type="Script" uid="uid://cihk0t56vfj0h" path="res://src/features/enemies/boss_trigger.gd" id="1_jevpu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwwkd"]
+
+[node name="Boss_Trigger" type="Area2D"]
+script = ExtResource("1_jevpu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dwwkd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

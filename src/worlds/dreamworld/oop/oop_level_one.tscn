@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=84 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://src/worlds/dreamworld/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://londnksu0ohw" path="res://assets/Parallax_BG/2.png" id="30_8lnop"]
 [ext_resource type="Texture2D" uid="uid://b6opbo4nkvgs8" path="res://assets/Parallax_BG/3.png" id="31_clmav"]
 [ext_resource type="Texture2D" uid="uid://7pflni7yxeg3" path="res://assets/Parallax_BG/5.png" id="32_b6hso"]
+[ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="33_w5snx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3389,7 +3390,13 @@ position = Vector2(2940, 738)
 scale = Vector2(1, 1)
 collision_layer = 4
 
-[node name="Boss" parent="." instance=ExtResource("19_wnclc")]
-position = Vector2(3942, 319)
+[node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("19_wnclc")]
+position = Vector2(4020, 331)
 collision_layer = 4
 boss_of_level = "oop_level_one"
+boss_trigger = NodePath("../Boss_Trigger")
+
+[node name="Boss_Trigger" parent="." instance=ExtResource("33_w5snx")]
+position = Vector2(3460, 386.00003)
+scale = Vector2(3, 5.5)
+collision_mask = 2
