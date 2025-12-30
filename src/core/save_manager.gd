@@ -1,6 +1,7 @@
 # SaveManager.gd
 extends Node
 signal shop_unlocked_signal
+signal player_stats_changed
 
 # Der Pfad, unter dem die Speicherdatei abgelegt wird.
 const SAVE_PATH = "user://game_save.dat"
@@ -238,6 +239,7 @@ func unlock_door(door_id: String):
 func set_player_unlock(stat: String, unlocked: bool = true):
 	save_data["player_stats"][stat] = unlocked
 	save_game()
+	emit_signal("player_stats_changed", stat, unlocked)
 
 func is_player_stat_unlocked(stat: String)-> bool:
 	return save_data["player_stats"].has(stat) and save_data["player_stats"][stat]

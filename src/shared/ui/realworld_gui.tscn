@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbf3jotkoxkmx"]
+
+[ext_resource type="Texture2D" uid="uid://xsrd2urdv8w6" path="res://assets/plattformer_character/animations/crouched-walking/east/frame_000.png" id="1_b3jva"]
+[ext_resource type="Script" uid="uid://dkfg6ky687wr5" path="res://src/shared/ui/realworld_gui.gd" id="1_njb2m"]
+[ext_resource type="Texture2D" uid="uid://cifk0bu4cxdgy" path="res://assets/plattformer_character/animations/jumping-1/east/frame_004.png" id="2_qkadm"]
+[ext_resource type="Texture2D" uid="uid://ch3vs27owjkoo" path="res://assets/fire ball/fire ball 1.png" id="3_njb2m"]
+[ext_resource type="Texture2D" uid="uid://cbacak1l4ghxm" path="res://assets/plattformer_character/dash.png" id="4_x0d3o"]
+[ext_resource type="Texture2D" uid="uid://ti0ax670rdod" path="res://assets/Phone/off.png" id="5_0ej02"]
+[ext_resource type="Texture2D" uid="uid://cpgr6yrree3bl" path="res://assets/heal_ability/heal_ability.png" id="5_qkadm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k7tvd"]
+font_size = 105
+outline_size = 30
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 17
+shadow_color = Color(0, 0, 0, 0.38431373)
+shadow_offset = Vector2(9, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qkadm"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.27058825)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.15686275)
+corner_detail = 1
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njb2m"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.34901962, 0.34901962, 0.34901962, 0.3647059)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qkadm"]
+font_color = Color(1, 1, 0.27058825, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 0.27058825)
+
+[node name="Realworld_GUI" type="CanvasLayer"]
+script = ExtResource("1_njb2m")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 205.0
+offset_top = 26.0
+offset_right = 589.1984
+offset_bottom = 105.0
+scale = Vector2(1.0098947, 1.0094277)
+
+[node name="Phone" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 249.53094
+offset_top = -14.859909
+offset_right = 409.53094
+offset_bottom = 321.14008
+scale = Vector2(0.122460395, 0.11156394)
+texture = ExtResource("5_0ej02")
+
+[node name="Label" type="Label" parent="Control/Phone"]
+layout_mode = 0
+offset_left = -2.670288e-05
+offset_top = 340.61188
+offset_right = 182.99997
+offset_bottom = 487.17438
+scale = Vector2(0.81217235, 0.9065046)
+text = "ESC"
+label_settings = SubResource("LabelSettings_k7tvd")
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+layout_mode = 0
+offset_left = 290.1292
+offset_top = -17.831886
+offset_right = 693.1293
+offset_bottom = 31.168118
+scale = Vector2(0.99825966, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qkadm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CrouchIcon" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_b3jva")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="VSeparator5" type="VSeparator" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_njb2m")
+
+[node name="DoubleJumpIcon" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_qkadm")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_njb2m")
+
+[node name="DashIcon" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_x0d3o")
+expand_mode = 3
+
+[node name="VSeparator2" type="VSeparator" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_njb2m")
+
+[node name="RangeAttackIcon" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_njb2m")
+expand_mode = 3
+stretch_mode = 3
+flip_h = true
+
+[node name="VSeparator3" type="VSeparator" parent="Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_njb2m")
+
+[node name="HealIcon" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("5_qkadm")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 282.20764
+offset_top = 34.673122
+offset_right = 438.20764
+offset_bottom = 57.673122
+text = "Unlocked PowerUps"
+label_settings = SubResource("LabelSettings_qkadm")
