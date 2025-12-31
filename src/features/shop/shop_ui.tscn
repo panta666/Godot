@@ -226,6 +226,7 @@ offset_bottom = 265.0
 
 [node name="ItemIcon" type="Sprite2D" parent="Control"]
 position = Vector2(300, 107)
+scale = Vector2(1.6800001, 1.6800001)
 
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 0
