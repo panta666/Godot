@@ -64,3 +64,13 @@ func _return_to_classroom() -> void:
 func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	healthbar.update()
 	flash_anim.play("flash")
+
+
+func _on_hurt_box_torso_received_damage(damage: int, attacker_position: Vector2) -> void:
+	healthbar.update()
+	flash_anim.play("flash")
+
+
+func _on_hurt_box_legs_received_damage(damage: int, attacker_position: Vector2) -> void:
+	healthbar.update()
+	flash_anim.play("flash")
