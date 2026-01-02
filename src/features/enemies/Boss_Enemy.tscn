@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://c354yps3u21j"]
+[gd_scene load_steps=89 format=3 uid="uid://c354yps3u21j"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_x44s7"]
 [ext_resource type="Script" uid="uid://wc1mum638gbl" path="res://src/features/enemies/boss_enemy.gd" id="2_nfnda"]
@@ -79,6 +79,7 @@
 [ext_resource type="Texture2D" uid="uid://gh2huk8l8n0k" path="res://assets/characters/enemies/Boss/Pre_Attack/0018.png" id="74_udovp"]
 [ext_resource type="Texture2D" uid="uid://7hkrpktp5n4n" path="res://assets/characters/enemies/Boss/Pre_Attack/0019.png" id="75_585gi"]
 [ext_resource type="Texture2D" uid="uid://c0d0cfqyynlib" path="res://assets/characters/enemies/Boss/Pre_Attack/0020.png" id="76_l0kbn"]
+[ext_resource type="Script" uid="uid://doiua0q38uaxe" path="res://src/shared/components/hurtbox.gd" id="80_two4d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_audnc"]
 resource_local_to_scene = true
@@ -528,10 +529,16 @@ size = Vector2(48.437546, 200.00018)
 size = Vector2(1125.0022, 255.0005)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_audnc"]
-size = Vector2(37.50003, 193.75017)
+size = Vector2(40.00004, 33.75003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odusm"]
 size = Vector2(16.250011, 5.78125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l87mj"]
+size = Vector2(39.999996, 56.249996)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jw0he"]
+size = Vector2(38.750008, 103.74997)
 
 [node name="CharacterBody2D" instance=ExtResource("1_x44s7")]
 script = ExtResource("2_nfnda")
@@ -574,8 +581,8 @@ shape = SubResource("RectangleShape2D_lory0")
 [node name="HurtBox" parent="." index="8" groups=["boss"]]
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-12.499998, 15.625005)
-scale = Vector2(0.99999905, 0.99999905)
+position = Vector2(-9.999996, -64.37499)
+scale = Vector2(0.99999887, 0.99999887)
 shape = SubResource("RectangleShape2D_audnc")
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -583,3 +590,30 @@ shape = SubResource("RectangleShape2D_odusm")
 
 [node name="Attack_Cooldown" parent="." index="11"]
 wait_time = 0.75
+
+[node name="HurtBoxTorso" type="Area2D" parent="." index="13" node_paths=PackedStringArray("health")]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("80_two4d")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://doiua0q38uaxe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxTorso" index="0"]
+position = Vector2(-9.999996, -18.124994)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_l87mj")
+
+[node name="HurtBoxLegs" type="Area2D" parent="." index="14" node_paths=PackedStringArray("health")]
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("80_two4d")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://doiua0q38uaxe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxLegs" index="0"]
+position = Vector2(-10.624998, 63.124966)
+scale = Vector2(0.9999997, 0.9999997)
+shape = SubResource("RectangleShape2D_jw0he")
+
+[connection signal="received_damage" from="HurtBoxTorso" to="." method="_on_hurt_box_torso_received_damage"]
+[connection signal="received_damage" from="HurtBoxLegs" to="." method="_on_hurt_box_legs_received_damage"]
