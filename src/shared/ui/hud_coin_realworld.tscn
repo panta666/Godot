@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfstpqm8b81f5"]
 
-[ext_resource type="Script" uid="uid://cvir5ud67f3nr" path="res://src/shared/ui/realworld/hud_coin.gd" id="1_4qver"]
+[ext_resource type="Script" uid="uid://cvir5ud67f3nr" path="res://src/shared/ui/hud_coin.gd" id="1_4qver"]
 
 [node name="HudCoin" type="Control"]
 layout_mode = 3

@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_wqph8")
 item_name = "Heal Ability Increase"
+sprite_frames = SubResource("SpriteFrames_1qwj6")
+price = 1
 texture = ExtResource("2_fvphc")
 description = "Add one more charge to your Heal Ability"
 powerup_name = "heal_ability_increase"

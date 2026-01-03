@@ -117,9 +117,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://assets/": "purple",
-"res://scenes/": "orange",
-"res://scripts/": "green"
+"res://assets/": "purple"
 }
 
 [global_group]

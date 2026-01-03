@@ -59,6 +59,7 @@ func set_transition_center(player_pos: Vector2):
 func play_door_animation(_player_node):
 	# Türgeräusch
 	door_open_player.play()
+	GlobalScript.transition_scene = true
 
 	# Türanimation starten (parallel)
 	_door_animation()
@@ -74,6 +75,7 @@ func play_door_animation(_player_node):
 		# Speichert, welche Tür den Wechsel ausgelöst hat
 		GlobalScript.last_door_for_transition = self
 		GlobalScript.change_scene(next_scene)
+		GlobalScript.transition_scene = false
 
 	is_opening = false
 	GlobalScript.player.can_move = true
@@ -114,3 +116,4 @@ func _fade_in(duration):
 		await get_tree().process_frame
 	shader_mat.set_shader_parameter("radius", 1.0)
 	transition_rect.visible = false
+	GlobalScript.transition_scene = false
