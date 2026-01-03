@@ -3190,7 +3190,7 @@ tile_set = SubResource("TileSet_x23ky")
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 unique_name_in_owner = true
 z_index = 2
-position = Vector2(352, 51)
+position = Vector2(51, 58)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
