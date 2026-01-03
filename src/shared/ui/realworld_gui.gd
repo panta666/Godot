@@ -24,10 +24,28 @@ func _on_frame():
 	_update_icons()
 
 func _update_visibility():
-	if GlobalScript.player is PlayerRealworld and get_tree().current_scene.name != "MainMenu":
-		visible = true
-	else:
+	# Wenn Transition → HUD komplett aus
+	if GlobalScript.transition_scene:
 		visible = false
+		return
+
+	# Falls HUD gerade gar nicht im Tree ist nichts tun
+	if not is_inside_tree():
+		visible = false
+		return
+
+	# Scene kann beim Wechsel kurz null sein
+	var scene := get_tree().current_scene
+	if scene == null:
+		visible = false
+		return
+
+	# Player kann in der Traumwelt null sein also vorher prüfen
+	var player_exists := GlobalScript.player != null
+	var is_realworld_player := player_exists and GlobalScript.player is PlayerRealworld
+	var not_mainmenu := scene.name != "MainMenu"
+
+	visible = is_realworld_player and not_mainmenu
 
 func _update_icons():
 	# PowerUp-Icons

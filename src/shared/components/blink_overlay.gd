@@ -19,6 +19,7 @@ func _ready():
 # Einschlafen + Aufwachen mit Blur gekoppelt
 # ------------------------------------------------------
 func play_sleep_wake(next_scene_path: String) -> void:
+	GlobalScript.transition_scene = true
 	visible = true
 	
 	yawning_player.play()
@@ -46,6 +47,7 @@ func play_sleep_wake(next_scene_path: String) -> void:
 	visible = false
 	
 func play_sleep_wake_nosound(next_scene_path: String) -> void:
+	GlobalScript.transition_scene = true
 	visible = true
 	
 	# Augen langsam schließen + Blur hoch
@@ -94,6 +96,7 @@ func animate_shader(param: String, from: float, to: float, duration: float) -> v
 	mat.set_shader_parameter(param, to)
 
 func play_wake_up(next_scene_path: String) -> void:
+	GlobalScript.transition_scene = true
 	visible = true
 	get_tree().change_scene_to_file(next_scene_path)
 
