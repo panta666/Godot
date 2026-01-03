@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://c354yps3u21j"]
+[gd_scene load_steps=90 format=3 uid="uid://c354yps3u21j"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_x44s7"]
 [ext_resource type="Script" uid="uid://wc1mum638gbl" path="res://src/features/enemies/boss_enemy.gd" id="2_nfnda"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c5li0nd5vv0vo" path="res://src/features/enemies/Boss_Hit.tres" id="4_audnc"]
 [ext_resource type="Texture2D" uid="uid://dg727v2cpcsnx" path="res://assets/characters/enemies/Boss/Attack/0002.png0002.png" id="4_lory0"]
 [ext_resource type="Texture2D" uid="uid://d260yeo8yb643" path="res://assets/characters/enemies/Boss/Attack/0002.png0003.png" id="5_audnc"]
+[ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://src/shared/components/health.gd" id="5_l87mj"]
 [ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="5_lory0"]
 [ext_resource type="Texture2D" uid="uid://mgkmsvlslsst" path="res://assets/characters/enemies/Boss/Attack/0002.png0004.png" id="6_odusm"]
 [ext_resource type="Texture2D" uid="uid://blrq1s2ba00ln" path="res://assets/characters/enemies/Boss/Attack/0002.png0005.png" id="7_bc0da"]
@@ -545,32 +546,42 @@ script = ExtResource("2_nfnda")
 boss_of_level = ""
 attacks = Array[ExtResource("3_lory0")]([ExtResource("4_audnc")])
 
-[node name="Health" parent="." index="0"]
+[node name="Health" parent="." index="0" groups=["health"]]
 max_health = 250
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="HealthTorso" type="Node" parent="." index="1" groups=["health"]]
+script = ExtResource("5_l87mj")
+max_health = 250
+metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
+
+[node name="HealthLegs" type="Node" parent="." index="2" groups=["health"]]
+script = ExtResource("5_l87mj")
+max_health = 250
+metadata/_custom_type_script = "uid://cptwt0tu7lhxh"
+
+[node name="AnimatedSprite2D" parent="." index="3"]
 material = SubResource("ShaderMaterial_audnc")
 sprite_frames = SubResource("SpriteFrames_gkw0u")
 animation = &"post_attack"
 frame_progress = 0.7838312
 flip_h = true
 
-[node name="Collision" parent="." index="2"]
+[node name="Collision" parent="." index="4"]
 position = Vector2(-13.125, 32.499996)
 scale = Vector2(0.7999992, 0.7999992)
 shape = SubResource("RectangleShape2D_rsppg")
 
-[node name="RayCastRight" parent="." index="3"]
+[node name="RayCastRight" parent="." index="5"]
 position = Vector2(25, -20)
 target_position = Vector2(33.115, 0)
 
-[node name="RaycastDownRight" parent="." index="4"]
+[node name="RaycastDownRight" parent="." index="6"]
 position = Vector2(60, 97)
 
-[node name="Vision_Front" parent="." index="5"]
+[node name="Vision_Front" parent="." index="7"]
 position = Vector2(1.3, 80)
 
-[node name="Vision_Back" parent="." index="6"]
+[node name="Vision_Back" parent="." index="8"]
 position = Vector2(-1.25, 80)
 
 [node name="CollisionShape2D" parent="Tracking_Box" index="0"]
@@ -578,7 +589,7 @@ position = Vector2(1.25, 3.750001)
 scale = Vector2(0.9999976, 0.9999976)
 shape = SubResource("RectangleShape2D_lory0")
 
-[node name="HurtBox" parent="." index="8" groups=["boss"]]
+[node name="HurtBox" parent="." index="10" groups=["boss"]]
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-9.999996, -64.37499)
@@ -588,14 +599,14 @@ shape = SubResource("RectangleShape2D_audnc")
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_odusm")
 
-[node name="Attack_Cooldown" parent="." index="11"]
+[node name="Attack_Cooldown" parent="." index="13"]
 wait_time = 0.75
 
-[node name="HurtBoxTorso" type="Area2D" parent="." index="13" node_paths=PackedStringArray("health")]
+[node name="HurtBoxTorso" type="Area2D" parent="." index="15" node_paths=PackedStringArray("health")]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("80_two4d")
-health = NodePath("../Health")
+health = NodePath("../HealthTorso")
 metadata/_custom_type_script = "uid://doiua0q38uaxe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxTorso" index="0"]
@@ -603,11 +614,11 @@ position = Vector2(-9.999996, -18.124994)
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_l87mj")
 
-[node name="HurtBoxLegs" type="Area2D" parent="." index="14" node_paths=PackedStringArray("health")]
+[node name="HurtBoxLegs" type="Area2D" parent="." index="16" node_paths=PackedStringArray("health")]
 collision_layer = 32
 collision_mask = 16
 script = ExtResource("80_two4d")
-health = NodePath("../Health")
+health = NodePath("../HealthLegs")
 metadata/_custom_type_script = "uid://doiua0q38uaxe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxLegs" index="0"]
@@ -615,5 +626,7 @@ position = Vector2(-10.624998, 63.124966)
 scale = Vector2(0.9999997, 0.9999997)
 shape = SubResource("RectangleShape2D_jw0he")
 
+[connection signal="health_depleted" from="HealthTorso" to="." method="_on_health_torso_health_depleted"]
+[connection signal="health_depleted" from="HealthLegs" to="." method="_on_health_legs_health_depleted"]
 [connection signal="received_damage" from="HurtBoxTorso" to="." method="_on_hurt_box_torso_received_damage"]
 [connection signal="received_damage" from="HurtBoxLegs" to="." method="_on_hurt_box_legs_received_damage"]
