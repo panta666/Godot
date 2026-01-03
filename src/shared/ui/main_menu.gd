@@ -72,3 +72,7 @@ func _on_einstellungen_speichern_pressed() -> void:
 func _on_check_box_toggled(toggled_on: bool) -> void:
 	GlobalScript.tutorial_on = toggled_on
 	blinking.enable_tutorial(toggled_on)
+
+
+func _on_credits_pressed() -> void:
+	get_tree().change_scene_to_file("res://src/shared/ui/credits.tscn")
