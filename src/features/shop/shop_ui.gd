@@ -6,7 +6,7 @@ var pending_purchase_item: ShopData = null
 var coin_category: String = "" # oop oder math
 
 # UI-Elemente
-@onready var item_icon: AnimatedSprite2D = $Control/ItemIconAnimatedSprite2D
+@onready var item_icon: Sprite2D = $Control/ItemIcon
 @onready var item_name_label: Label = $Control/Name
 @onready var item_desc_label: Label = $Control/Desc
 @onready var buy_button: Button = $Control/Buy
@@ -58,9 +58,7 @@ func show_item(index: int) -> void:
 	var data: ShopData = shop.shop_items[current_item]
 
 	item_icon.show()
-	item_icon.sprite_frames = data.sprite_frames
-	item_icon.animation = "default"
-	item_icon.play()
+	item_icon.texture = data.texture
 
 	item_name_label.text = data.item_name
 	item_desc_label.text = data.description

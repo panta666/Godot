@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://08swwximjkt"]
+[gd_scene load_steps=30 format=3 uid="uid://08swwximjkt"]
 
 [ext_resource type="Script" uid="uid://br05g51v7a807" path="res://src/features/shop/shop_ui.gd" id="1_fs6yy"]
 [ext_resource type="Texture2D" uid="uid://chqpicboyq0fr" path="res://assets/tilemap/32x32/interior_32x32/shop_ui.png" id="2_oixfk"]
@@ -56,8 +56,6 @@ _data = {
 &"transition_in": SubResource("Animation_fs6yy"),
 &"transition_out": SubResource("Animation_oixfk")
 }
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_oixfk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oixfk"]
 font_size = 33
@@ -226,9 +224,9 @@ offset_top = -29.0
 offset_right = 806.0
 offset_bottom = 265.0
 
-[node name="ItemIconAnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+[node name="ItemIcon" type="Sprite2D" parent="Control"]
 position = Vector2(300, 107)
-sprite_frames = SubResource("SpriteFrames_oixfk")
+scale = Vector2(1.6800001, 1.6800001)
 
 [node name="Name" type="Label" parent="Control"]
 layout_mode = 0
