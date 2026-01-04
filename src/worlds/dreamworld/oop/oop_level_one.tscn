@@ -3391,7 +3391,8 @@ scale = Vector2(1, 1)
 collision_layer = 4
 
 [node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("19_wnclc")]
-position = Vector2(4020, 331)
+position = Vector2(3975, 278)
+scale = Vector2(1.2, 1.2)
 collision_layer = 4
 boss_of_level = "oop_level_one"
 boss_trigger = NodePath("../Boss_Trigger")
