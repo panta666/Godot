@@ -2,6 +2,8 @@ extends Node
 
 @export var items := [
 	preload("res://scenes/key.tscn"),
+	preload("res://scenes/key.tscn"),
+	preload("res://scenes/key.tscn"),
 	preload("res://scenes/key.tscn")
 ]
 
@@ -24,7 +26,7 @@ func distribute_items():
 func add_key():
 	keys += 1
 	print(keys)
-	if keys == 2:
+	if keys == 4:
 		print("open")
 		door = get_parent().find_child("Boss_door")
 		door.open_door()

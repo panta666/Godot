@@ -578,6 +578,31 @@ position = Vector2(1300, 131.00003)
 scale = Vector2(0.43219286, 0.47272727)
 collision_layer = 2
 
+[node name="Bug4" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
+position = Vector2(976, 463.00003)
+scale = Vector2(0.43219286, 0.47272727)
+collision_layer = 2
+
+[node name="Bug5" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
+position = Vector2(1354.0001, 1170)
+scale = Vector2(0.43219286, 0.47272727)
+collision_layer = 2
+
+[node name="Bug6" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
+position = Vector2(189.00012, 1369)
+scale = Vector2(0.43219286, 0.47272727)
+collision_layer = 2
+
+[node name="Bug7" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
+position = Vector2(1659, 1452)
+scale = Vector2(0.43219286, 0.47272727)
+collision_layer = 2
+
+[node name="Bug8" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
+position = Vector2(2358.0002, 545.99994)
+scale = Vector2(0.43219286, 0.47272727)
+collision_layer = 2
+
 [node name="Boss_door" parent="." instance=ExtResource("14_0hj1e")]
 position = Vector2(2072, 1405)
 
