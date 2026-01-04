@@ -7,13 +7,17 @@ class_name OOP_Boss
 
 var bar_instance
 
-var lifes := 3
+var head_broken := false
+
+var torso_broken := false
+
+var legs_broken := false
 
 var boss_bar = preload("res://src/features/enemies/boss_healthbar.tscn")
 
 func _ready() -> void:
 	pass
-
+	
 func _spawn_healthbar() -> void:
 	print("spawned healthbar")
 	bar_instance = boss_bar.instantiate()
@@ -31,7 +35,7 @@ func _detect_player() -> bool:
 		player = collider
 		return true
 	return false
-
+	
 func _handle_player_logic() -> void:
 	if _detect_player():
 		is_walking = true
@@ -47,10 +51,10 @@ func _handle_player_logic() -> void:
 		is_walking = true
 		sprite.play("walk")
 		sound_player.play_sound(Enemysound.soundtype.WALK)
-
+		
 
 func die() -> void:
-	if lifes <= 0:
+	if head_broken and torso_broken and legs_broken:
 		bar_instance._deplete()
 		print("Level One Bereich betreten! OOP Level 2 freischalten.")
 
@@ -58,7 +62,7 @@ func die() -> void:
 		GlobalScript.unlock_level(GlobalScript.classrooms.oop, 2)
 		#Shop freischalten in Realworld
 		SaveManager.unlock_shop()
-
+		
 		# TEST MATH Room freischalten
 	#----------------------------------------------------------------
 		# BITTE ENTFERNEN UND IN BOSS FÜR LEVEL 2 HINZUFÜGEN
@@ -74,7 +78,7 @@ func die() -> void:
 				level_ui.unlock_oop_level(1)
 			else:
 				level_ui.update_level_button()
-
+				
 		await _return_to_classroom()
 		queue_free()
 
@@ -90,32 +94,34 @@ func _return_to_classroom() -> void:
 func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	damaged.emit(damage)
-	GlobalScript.enemy_damaged.emit(damage)
-	flash_anim.play("flash")
+	if not head_broken:
+		flash_anim.play("flash")
+        damaged.emit(damage)
+        GlobalScript.enemy_damaged.emit(damage)
+        flash_anim.play("flash")
 
 
 func _on_hurt_box_torso_received_damage(damage: int, attacker_position: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	flash_anim.play("flash")
-
+	if not torso_broken:
+		flash_anim.play("flash")
 
 func _on_hurt_box_legs_received_damage(damage: int, attacker_position: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	flash_anim.play("flash")
+	if not legs_broken:
+		flash_anim.play("flash")
 
 func _on_health_depleted() -> void:
-	lifes -= 1
+	head_broken = true
 	die()
 
 func _on_health_torso_health_depleted() -> void:
-	lifes -= 1
+	torso_broken = true
 	die()
-
+	
 
 func _on_health_legs_health_depleted() -> void:
-	lifes -= 1
-	print("lifes: ", lifes)
+	legs_broken = true
 	die()
