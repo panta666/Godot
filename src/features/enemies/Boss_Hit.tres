@@ -14,4 +14,3 @@ movement = 1
 hitbox_offset = Vector2(80, 0)
 hitbox_size = Vector2(50, 20)
 hitbox_duration = 0.3
-metadata/_custom_type_script = "uid://d2iv1cx41gku0"
