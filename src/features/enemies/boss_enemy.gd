@@ -7,7 +7,11 @@ class_name OOP_Boss
 
 var bar_instance
 
-var lifes := 3
+var head_broken := false
+
+var torso_broken := false
+
+var legs_broken := false
 
 var boss_bar = preload("res://src/features/enemies/boss_healthbar.tscn")
 
@@ -50,7 +54,7 @@ func _handle_player_logic() -> void:
 		
 
 func die() -> void:
-	if lifes <= 0:
+	if head_broken and torso_broken and legs_broken:
 		bar_instance._deplete()
 		print("Level One Bereich betreten! OOP Level 2 freischalten.")
 
@@ -90,30 +94,30 @@ func _return_to_classroom() -> void:
 func _on_hurt_box_received_damage(_damage: int, attacker_pos: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	flash_anim.play("flash")
-
+	if not head_broken:
+		flash_anim.play("flash")
 
 func _on_hurt_box_torso_received_damage(damage: int, attacker_position: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	flash_anim.play("flash")
-
+	if not torso_broken:
+		flash_anim.play("flash")
 
 func _on_hurt_box_legs_received_damage(damage: int, attacker_position: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
-	flash_anim.play("flash")
+	if not legs_broken:
+		flash_anim.play("flash")
 
 func _on_health_depleted() -> void:
-	lifes -= 1
+	head_broken = true
 	die()
 
 func _on_health_torso_health_depleted() -> void:
-	lifes -= 1
+	torso_broken = true
 	die()
 	
 
 func _on_health_legs_health_depleted() -> void:
-	lifes -= 1
-	print("lifes: ", lifes)
+	legs_broken = true
 	die()
