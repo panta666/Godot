@@ -268,7 +268,7 @@ func _physics_process(delta: float) -> void:
 	if in_water:
 		water_damage(delta)
 	else:
-		water_damage_timer = 0.0 # reset, wenn man nicht im Wasser ist
+		water_damage_timer = 1.0 # reset, wenn man nicht im Wasser ist
 
 func deactivate_hitboxes():
 	hit_box_left.monitoring = false
@@ -762,8 +762,9 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 #Schaden in Wasser
 #Timer wird hochgezählt
 func water_damage(delta: float) -> void:
-	water_damage_timer += delta
+	water_damage_timer += delta * 1.5
 
 	if water_damage_timer >= WATER_DAMAGE_TICK:
 		water_damage_timer = 0.0
 		health.health -= 5
+		hit_flash_animation.play("hit_flash")
