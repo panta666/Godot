@@ -19,11 +19,11 @@ Prof. Dennis Müller
 Christopher Antes
 
 [b]--- Entwickler ---[/b]
+Dennis Strutmann
 Sebastian Rindfleisch
-Dennis 
-Sebastian
-Jonas
-Daniel
+Sebastian Wendland
+Jonas Holzem
+David Otten
 
 [b]--- Assets & Tools ---[/b]
 Godot Engine 4.5
