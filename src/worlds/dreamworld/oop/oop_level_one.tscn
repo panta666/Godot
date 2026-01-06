@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=86 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://src/worlds/dreamworld/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -32,9 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://londnksu0ohw" path="res://assets/Parallax_BG/2.png" id="30_8lnop"]
 [ext_resource type="Texture2D" uid="uid://b6opbo4nkvgs8" path="res://assets/Parallax_BG/3.png" id="31_clmav"]
 [ext_resource type="Texture2D" uid="uid://7pflni7yxeg3" path="res://assets/Parallax_BG/5.png" id="32_b6hso"]
-[ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="33_w5snx"]
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="33_clmav"]
-[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/boss_door.tscn" id="34_b6hso"]
+[ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="33_w5snx"]
+[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="34_b6hso"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
