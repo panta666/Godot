@@ -27,10 +27,20 @@ David Otten
 
 [b]--- Assets & Tools ---[/b]
 Godot Engine 4.5
+Blender
 """
 
-
 const music_credits = """
+[b][font_size=40]Art & Visuals[/font_size][/b]
+
+[b]3D Models & Animation[/b]
+
+"Enemies" (Duck, Bug, Boss)
+Created & Animated in Blender
+by [i]Sebastian Wendlandr[/i]
+[color=#888888]Original Assets (Handmade)[/color]
+
+
 [b][font_size=40]Music[/font_size][/b]
 
 [b]Hubworld Theme[/b]
