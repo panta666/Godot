@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://vljtdwg70jiy"]
+
+[ext_resource type="Script" uid="uid://dutaqxyillto2" path="res://src/shared/ui/credits.gd" id="1_61mku"]
+[ext_resource type="FontFile" uid="uid://vrrmdx83skor" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Regular.ttf" id="2_s5iev"]
+[ext_resource type="FontFile" uid="uid://cc4xli25271fd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="3_e6ku2"]
+[ext_resource type="FontFile" uid="uid://b5c0p00x6g6u5" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Italic.ttf" id="4_lker1"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -519.0
+offset_top = -323.0
+offset_right = -519.0
+offset_bottom = -323.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_61mku")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025207013, 0.217973, 0.4021252, 1)
+
+[node name="Creditstext" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 919.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_s5iev")
+theme_override_fonts/bold_font = ExtResource("3_e6ku2")
+theme_override_fonts/italics_font = ExtResource("4_lker1")
+bbcode_enabled = true
+fit_content = true
+drag_and_drop_selection_enabled = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 302)

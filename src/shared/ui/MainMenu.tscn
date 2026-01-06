@@ -184,5 +184,6 @@ position = Vector2(517, 230)
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Options/Backbutton/EinstellungenSpeichern" to="." method="_on_einstellungen_speichern_pressed"]
