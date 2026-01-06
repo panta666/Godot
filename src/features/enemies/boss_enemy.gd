@@ -96,9 +96,9 @@ func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 		bar_instance.update()
 	if not head_broken:
 		flash_anim.play("flash")
-        damaged.emit(damage)
-        GlobalScript.enemy_damaged.emit(damage)
-        flash_anim.play("flash")
+		damaged.emit(damage)
+		GlobalScript.enemy_damaged.emit(damage)
+		flash_anim.play("flash")
 
 
 func _on_hurt_box_torso_received_damage(damage: int, attacker_position: Vector2) -> void:
