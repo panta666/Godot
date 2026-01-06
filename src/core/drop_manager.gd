@@ -1,10 +1,10 @@
 extends Node
 
 @export var items := [
-	preload("res://scenes/key.tscn"),
-	preload("res://scenes/key.tscn"),
-	preload("res://scenes/key.tscn"),
-	preload("res://scenes/key.tscn")
+	preload("res://src/shared/componentes/key.tscn"),
+	preload("res://src/shared/componentes/key.tscn"),
+	preload("res://src/shared/componentes/key.tscn"),
+	preload("res://src/shared/componentes/key.tscn")
 ]
 
 var keys = 0
