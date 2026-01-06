@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://dao4yu5gwhxhq"]
+
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="1_jbt61"]
+
+[resource]
+script = ExtResource("1_jbt61")
+damage = 30
+pre_attack_duration = 1.0
+post_attack_duration = 0.3
+animation_name = "kick"
+pre_animation_name = "pre_kick"
+post_animation_name = "post_kick"
+movement = 1
+hitbox_offset = Vector2(50, 60)
+hitbox_size = Vector2(50, 30)
+hitbox_duration = 0.3
+metadata/_custom_type_script = "uid://cmwgyb1n1ar8"
