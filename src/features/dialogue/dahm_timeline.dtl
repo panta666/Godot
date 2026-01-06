@@ -1,8 +1,10 @@
 dahm: Hello Student, how are you?
 - Feeling good.
-	dahm: Thats very good. Take a seat at the back row please.
+	dahm: Thats very good. Take a seat please.
 	dahm: The lecture is about to start.
 	[signal arg="cutscene_end"]
+	[signal arg="quest_talk_to_teacher_done"]
+	[signal arg="prof_finished_dialog"]
 - Not so good.
 	dahm: Okay..mhh..you can go home if you aren't feeling well.
 	dahm: Get well soon, Bye!
