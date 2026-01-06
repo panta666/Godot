@@ -14,12 +14,13 @@ var save_data = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"math_level_one": []
+			"math_level_one": [],
 		},
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
-		"unlocked_levels": {0:1}
+		"unlocked_levels": {0:1},
+		"scene_effects": {}   # speichert die Änderungen pro Szene
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -51,7 +52,8 @@ const default_values = {
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
-		"unlocked_levels": {0:1}
+		"unlocked_levels": {0:1},
+		"scene_effects": {}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -217,6 +219,16 @@ func update_bus_volume(audio_bus_id: int, volume: float):
 	else:
 		push_error("Bus unknown!")
 
+func add_scene_effect(scene_name: String, node_name: String, property: String, value) -> void:
+	if not save_data["game_progress"]["scene_effects"].has(scene_name):
+		save_data["game_progress"]["scene_effects"][scene_name] = {}
+	if not save_data["game_progress"]["scene_effects"][scene_name].has(node_name):
+		save_data["game_progress"]["scene_effects"][scene_name][node_name] = {}
+	save_data["game_progress"]["scene_effects"][scene_name][node_name][property] = value
+	save_game()
+	
+func get_scene_effects(scene_name: String) -> Dictionary:
+	return save_data["game_progress"].get("scene_effects", {}).get(scene_name, {})	
 
 func update_is_muted(audio_bus_id: int,is_muted: bool):
 	var bus_is_muted = Global.AUDIO_BUSES[audio_bus_id] + "_is_muted"

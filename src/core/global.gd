@@ -359,6 +359,16 @@ func change_scene(new_scene: String) -> void:
 	current_scene = new_scene
 
 	move_player_to_current_scene()
+	
+	var scene_name = new_scene_instance.name
+	var effects = SaveManager.get_scene_effects(scene_name)
+
+	if effects:
+		for node_name in effects.keys():
+			var node = new_scene_instance.get_node_or_null(node_name)
+			if node:
+				for property in effects[node_name].keys():
+					node.set(property, effects[node_name][property])
 
 # ==========================================================
 #                     ESC-MENÜ SYSTEM

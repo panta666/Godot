@@ -12,7 +12,7 @@ func _ready():
 	_load_all_quests()
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 
-	# Bereits getriggerte Quests → Szeneeffekte anwenden
+	# Bereits getriggerte Quests - Szeneeffekte anwenden
 	call_deferred("_apply_all_completed_quests_effects")
 
 # --- Handler für Dialogic Signale ---
@@ -21,20 +21,20 @@ func _on_dialogic_signal(signal_name: String):
 		return
 
 	for quest in all_quests:
-		if quest is QuestData:
-			if quest.dialog_signal != "" and quest.dialog_signal == signal_name:
-				# Bereits getriggert?
-				if SaveManager.get_quest_already_triggered(quest.id):
-					return
-
-				print("[QuestManager] Starte Quest via Dialogic:", quest.id)
-				set_quest(quest)
-				SaveManager.set_quest_triggered(quest.id)
-
-				# Szeneffekte direkt anwenden
-				_apply_scene_effects_for_completed_quest(quest)
+		if quest is QuestData and quest.dialog_signal == signal_name:
+			# Bereits getriggert?
+			if SaveManager.get_quest_already_triggered(quest.id):
 				return
 
+			print("[QuestManager] Starte Quest via Dialogic:", quest.id)
+			set_quest(quest)
+			SaveManager.set_quest_triggered(quest.id)
+
+			# Szeneeffekte direkt anwenden
+			_apply_scene_effects_for_completed_quest(quest)
+			return
+
+# --- Wendet Szeneeffekte aller bereits getriggerten Quests an ---
 func _apply_all_completed_quests_effects():
 	for quest in all_quests:
 		if SaveManager.get_quest_already_triggered(quest.id):
@@ -42,17 +42,25 @@ func _apply_all_completed_quests_effects():
 
 # --- Wendet alle Szenenänderungen für eine bestimmte Quest an ---
 func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
+	var scene_name = get_tree().current_scene.name
+
+	# Effekte nur für die Quest-ID
 	match quest.id:
 		"4":
 			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
 			if prof_node:
 				prof_node.visible = false
+				SaveManager.add_scene_effect(scene_name, "BlinkingProf", "visible", false)
+
 			var blinking_chair = get_tree().current_scene.get_node_or_null("BlinkingChair")
 			if blinking_chair:
 				blinking_chair.visible = true
+				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", true)
+
 			var chair = get_tree().current_scene.get_node_or_null("Chair")
 			if chair:
 				chair.visible = true
+				SaveManager.add_scene_effect(scene_name, "Chair", "visible", true)
 
 # --- Lädt alle QuestData .tres aus dem Ordner ---
 func _load_all_quests():
