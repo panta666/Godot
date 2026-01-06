@@ -68,8 +68,7 @@ signal damaged(amount)
 # LIFECYCLE
 # -------------------------------------------------------------------
 func _ready() -> void:
-	call_deferred("_spawn_healthbar")#
-
+	call_deferred("_spawn_healthbar")
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)

@@ -161,7 +161,7 @@ func _ready() -> void:
 
 func activate_player_stats():
 	# Activate Stat according to unlocks.
-	
+
 	# Double Jump
 	if SaveManager.is_player_stat_unlocked("double_jump"):
 		activate_double_jump()
