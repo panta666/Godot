@@ -1,5 +1,5 @@
 [style name="platformer_style"]
-player: Oh..I think the Exit is behind that door..but its locked.
-player: I looks like I need '4' Key Fragments to open that door.
-player: Better defeat more of those Bugs and Ducks to get all '4' of them.
+player: Mhm..that Room seems to be locked and the Key Fragment i got from one of those Monsters can't seem to fit in there.
+player: Maybe i need to find and combine '4' of those Key Fragments in order to open that door.
+player: I should defeat more of those Bugs and Ducks then..
 [signal arg="cutscene_end"]

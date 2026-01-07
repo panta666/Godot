@@ -1,0 +1,5 @@
+[style name="platformer_style"]
+player: Oh..I think the Exit is behind that door..but its locked.
+player: I looks like I need '4' Key Fragments to open that door.
+player: Maybe the Ducks and Bugs have them. I should try defeating them.
+[signal arg="cutscene_end"]

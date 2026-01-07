@@ -1,0 +1,3 @@
+[style name="platformer_style"]
+player: It looks like the Exit is this way!
+[signal arg="cutscene_end"]

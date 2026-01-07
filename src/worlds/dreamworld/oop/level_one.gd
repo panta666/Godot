@@ -2,11 +2,17 @@ extends Node2D
 
 @export var timeline_1: String = "level_one_timeline"
 @export var timeline_2: String = "level_one_keys_timeline"
+@export var timeline_2_no_key: String = "level_one_no_keys_timeline"
+@export var timeline_2_all_keys: String = "level_one_all_keys_timeline"
 @onready var dialog_trigger: Area2D = $DialogTrigger
 @onready var dialog_trigger2: Area2D = $DialogTrigger2
 
+@onready var drop_manager: Node = $Drop_Manager
+
 var cutscene1_played := false
-var cutscene2_played := false
+var cutscene_no_keys_played := false
+var cutscene_some_keys_played := false
+var cutscene_all_keys_played := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,8 +29,23 @@ func _on_dialog_trigger_entered_timeline1(body: Node) -> void:
 		start_cutscene_with(body, timeline_1)
 
 func _on_dialog_trigger_entered_timeline2(body: Node) -> void:
-	if is_player(body):
+	if not is_player(body):
+		return
+	
+	var keys: int = drop_manager.get_key_status()
+	print("Keys aktuell:", keys)
+
+	if keys == 0:
+		print("Keine Schlüssel vorhanden")
+		start_cutscene_with(body, timeline_2_no_key)
+
+	elif keys < 4:
+		print("Ein oder mehrere Schlüssel vorhanden")
 		start_cutscene_with(body, timeline_2)
+
+	else:
+		print("Alle Schlüssel gesammelt")
+		start_cutscene_with(body, timeline_2_all_keys)
 
 func start_cutscene_with(player: Node, timeline_name: String):
 	match timeline_name:
@@ -32,10 +53,21 @@ func start_cutscene_with(player: Node, timeline_name: String):
 			if cutscene1_played:
 				return
 			cutscene1_played = true
-		timeline_2:
-			if cutscene2_played:
+
+		timeline_2_no_key:
+			if cutscene_no_keys_played:
 				return
-			cutscene2_played = true
+			cutscene_no_keys_played = true
+
+		timeline_2:
+			if cutscene_some_keys_played:
+				return
+			cutscene_some_keys_played = true
+
+		timeline_2_all_keys:
+			if cutscene_all_keys_played:
+				return
+			cutscene_all_keys_played = true
 
 	_start_cutscene(player, timeline_name)
 
