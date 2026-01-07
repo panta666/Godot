@@ -1,6 +1,7 @@
 # SaveManager.gd
 extends Node
 signal shop_unlocked_signal
+signal chair_unlocked_signal
 signal player_stats_changed
 
 # Der Pfad, unter dem die Speicherdatei abgelegt wird.
@@ -19,6 +20,7 @@ var save_data = {
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
+		"chair_unlocked": false,
 		"unlocked_levels": {0:1},
 		"scene_effects": {}   # speichert die Änderungen pro Szene
 	},
@@ -52,6 +54,7 @@ const default_values = {
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
+		"chair_unlocked": false,
 		"unlocked_levels": {0:1},
 		"scene_effects": {}
 	},
@@ -279,6 +282,18 @@ func unlock_shop():
 
 func is_shop_unlocked() -> bool:
 	return save_data["game_progress"]["shop_unlocked"]
+	
+# Chair Unlock
+func unlock_chair():
+	if not save_data["game_progress"].has("chair_unlocked"):
+		save_data["game_progress"]["chair_unlocked"] = true
+	if not save_data["game_progress"]["chair_unlocked"]:
+		save_data["game_progress"]["chair_unlocked"] = true
+		save_game()
+		emit_signal("chair_unlocked_signal")
+
+func is_chair_unlocked() -> bool:
+	return save_data["game_progress"].get("chair_unlocked", false)
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten

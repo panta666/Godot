@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://pvtj7pjm8cnr"]
+
+[ext_resource type="Script" uid="uid://dmq1os3w0lmng" path="res://src/features/quests/quest_data.gd" id="1_1o4c0"]
+
+[resource]
+script = ExtResource("1_1o4c0")
+id = "6"
+title = "Buy some Powerups!"
+description = "You can buy some mighty Powerups..why? No clue.."
+target_scene = "Realworld_Classroom_One"
+target_node_path = "Shop"
+dialog_signal = "quest_talk_to_teacher2_done"
+metadata/_custom_type_script = "uid://dmq1os3w0lmng"

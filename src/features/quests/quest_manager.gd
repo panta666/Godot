@@ -66,6 +66,16 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 		"4":
 			await FadeTransition.fade_out(1.0)
 			
+			print("Quest 6 abgeschlossen -> Chair freischalten")
+			SaveManager.save_data["game_progress"]["chair_unlocked"] = true
+			SaveManager.save_game()
+			SaveManager.emit_signal("chair_unlocked_signal")
+			var chair_node = get_tree().current_scene.get_node_or_null("Chair")
+			if chair_node:
+				chair_node.interactable.is_interactable = true
+				if chair_node.has_method("update_interact_text"):
+					chair_node.update_interact_text()
+			
 			# Beispiel: Szeneeffekte für Objekte
 			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
 			if prof_node:
@@ -123,6 +133,41 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 					npc_node.apply_npc_data()
 
 			await FadeTransition.fade_in(1.0)
+		"5":
+			# Stuhl deaktivieren / sperren
+			print("Quest 5 abgeschlossen -> Chair sperren")
+			SaveManager.save_data["game_progress"]["chair_unlocked"] = false
+			SaveManager.save_game()
+			# Optional: Signal, falls Chair.gd reagieren soll
+			SaveManager.emit_signal("chair_unlocked_signal")
+			# Wenn du willst, dass der Chair sofort deaktiviert wird:
+			var chair_node = get_tree().current_scene.get_node_or_null("Chair")
+			if chair_node:
+				chair_node.interactable.is_interactable = false
+				if chair_node.has_method("update_interact_text"):
+					chair_node.update_interact_text()
+					
+			# NPC2 Timeline ändern
+			var npc2_node = get_tree().current_scene.get_node_or_null("NPC2")
+			if npc2_node and npc2_node.npc_data:
+				npc2_node.npc_data.dialog_timeline_path = "res://src/features/dialogue/dahm_timeline_three.dtl"
+				SaveManager.add_scene_effect(get_tree().current_scene.name, "NPC2", "dialog_timeline_path", npc2_node.npc_data.dialog_timeline_path)
+		
+			# NPC2 aktualisieren, falls Methode vorhanden
+			if npc2_node.has_method("apply_npc_data"):
+				npc2_node.apply_npc_data()
+		
+		"6":
+			# Stuhl wieder freischalten
+			print("Quest 6 abgeschlossen -> Chair freischalten")
+			SaveManager.save_data["game_progress"]["chair_unlocked"] = true
+			SaveManager.save_game()
+			SaveManager.emit_signal("chair_unlocked_signal")
+			var chair_node = get_tree().current_scene.get_node_or_null("Chair")
+			if chair_node:
+				chair_node.interactable.is_interactable = true
+				if chair_node.has_method("update_interact_text"):
+					chair_node.update_interact_text()
 
 # --- Lädt alle QuestData .tres aus dem Ordner ---
 func _load_all_quests():

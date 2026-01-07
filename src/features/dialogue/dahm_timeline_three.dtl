@@ -1,0 +1,3 @@
+dahm: Test
+[signal arg="cutscene_end"]
+[signal arg="quest_talk_to_teacher2_done"]
