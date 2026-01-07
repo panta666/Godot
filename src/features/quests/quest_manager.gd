@@ -67,6 +67,8 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 	# Effekte nur für die Quest-ID
 	match quest.id:
 		"4":
+			await FadeTransition.fade_out(1.0)
+			
 			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
 			if prof_node:
 				prof_node.visible = false
@@ -76,7 +78,8 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 			if blinking_chair:
 				blinking_chair.visible = true
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", true)
-				
+			
+			
 			# --- NPCs Sitz/Position/Z-Index/Dialogic ---
 			var npcs_to_update := {
 				"NPC12": {"pos": Vector2(250, 184), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc12.tres"},
@@ -115,6 +118,8 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 					SaveManager.add_scene_effect(scene_name, npc_name, "can_sit", true)
 					SaveManager.add_scene_effect(scene_name, npc_name, "sit_direction", data.sit_dir)
 					SaveManager.add_scene_effect(scene_name, npc_name, "dialog_timeline_path", data.timeline)
+
+			await FadeTransition.fade_in(1.0)
 
 # --- Lädt alle QuestData .tres aus dem Ordner ---
 func _load_all_quests():

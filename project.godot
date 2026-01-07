@@ -29,6 +29,7 @@ Player_Realworld="*res://src/features/player/player_realworld.tscn"
 MusicManager="*res://src/core/music_manager.gd"
 SaveManager="*res://src/core/save_manager.gd"
 QuestManager="*res://src/features/quests/quest_manager.gd"
+FadeTransition="*res://src/shared/components/fade_transition.tscn"
 
 [dialogic]
 
