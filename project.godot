@@ -53,6 +53,7 @@ directories/dtl_directory={
 "npc_henry_timeline": "res://src/features/dialogue/npc_henry_timeline.dtl",
 "npc_jens_timeline": "res://src/features/dialogue/npc_jens_timeline.dtl",
 "speak_with_dahm": "res://src/features/dialogue/speak_with_dahm.dtl",
+"speak_with_dahm_again": "res://src/features/dialogue/speak_with_dahm_again.dtl",
 "tutorial_fifth_cutscene_timeline": "res://src/features/dialogue/tutorial_fifth_cutscene_timeline.dtl",
 "tutorial_fourth_cutscene_timeline": "res://src/features/dialogue/tutorial_fourth_cutscene_timeline.dtl",
 "tutorial_second_cutscene_timeline": "res://src/features/dialogue/tutorial_second_cutscene_timeline.dtl",

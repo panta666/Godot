@@ -5,5 +5,8 @@
 [resource]
 script = ExtResource("1_vbra3")
 id = "5"
-scene_effects = Array[Dictionary]([{}, {}, {}])
+title = "Small break!"
+description = "You slept through the first half of the Lecture. Go and talk to Prof. Dahm"
+target_scene = "Realworld_Classroom_One"
+target_node_path = "NPC2"
 metadata/_custom_type_script = "uid://dmq1os3w0lmng"
