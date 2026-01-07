@@ -249,9 +249,12 @@ func update_current_scene():
 
 # Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
 func unlock_door(door_id: String):
-	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
-		save_data["game_progress"]["unlocked_doors"][door_id] = true
-		save_game()
+	save_data["game_progress"]["unlocked_doors"][door_id] = true
+	save_game()
+		
+func lock_door(door_id: String):
+	save_data["game_progress"]["unlocked_doors"][door_id] = false
+	save_game()
 
 func set_player_unlock(stat: String, unlocked: bool = true):
 	save_data["player_stats"][stat] = unlocked
@@ -263,6 +266,9 @@ func is_player_stat_unlocked(stat: String)-> bool:
 
 func is_door_unlocked(door_id: String) -> bool:
 	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
+	
+func is_door_locked(door_id: String) -> bool:
+	return save_data["game_progress"]["unlocked_doors"].get(door_id, true)
 	
 # Shop Unlock
 func unlock_shop():

@@ -19,16 +19,15 @@ func _on_body_entered(body):
 		return
 
 	already_triggered = true
-	SaveManager.set_quest_triggered(quest.id)
 
-	# 1. Quest aktivieren
 	if quest:
-		QuestManager.set_quest(quest)
+		# Direkt den Autoload verwenden
+		QuestManager.trigger_quest(quest)
 
-	# 2. Spieler einfrieren (cutscene starten)
+	# Spieler einfrieren (Cutscene starten)
 	if body.has_method("cutscene_start"):
 		body.cutscene_start()
 
-	# 3. Dialog starten
+	# Dialog starten
 	if auto_start_dialog != "":
 		Dialogic.start(auto_start_dialog)

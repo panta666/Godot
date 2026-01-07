@@ -8503,6 +8503,7 @@ polygon = PackedVector2Array(1087, 492, 1087, 469, 1318, 469, 1619, 469, 1619, 7
 z_index = 4
 position = Vector2(1139, 755)
 next_scene = "realworld_hall"
+door_id = "realworld_math_door_inside"
 
 [node name="Classroom_Two" type="TileMapLayer" parent="."]
 y_sort_enabled = true

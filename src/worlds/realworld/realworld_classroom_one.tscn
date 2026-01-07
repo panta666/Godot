@@ -8881,6 +8881,7 @@ stand_position = Vector2(190, 345)
 z_index = 7
 position = Vector2(567, 410)
 next_scene = "realworld_hall"
+door_id = "realworld_oop_door_inside"
 
 [node name="Collisions" type="StaticBody2D" parent="."]
 

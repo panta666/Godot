@@ -18,17 +18,8 @@ func _on_dialogic_signal(signal_name: String):
 		return
 
 	for quest in all_quests:
-		if quest is QuestData and quest.dialog_signal == signal_name:
-			# Bereits getriggert?
-			if SaveManager.get_quest_already_triggered(quest.id):
-				return
-
-			print("[QuestManager] Starte Quest via Dialogic:", quest.id)
-			set_quest(quest)
-			SaveManager.set_quest_triggered(quest.id)
-
-			# Szeneeffekte direkt anwenden
-			_apply_scene_effects_for_completed_quest(quest)
+		if quest.dialog_signal == signal_name:
+			trigger_quest(quest)
 			return
 
 # --- Wendet Szeneeffekte aller bereits getriggerten Quests an ---
@@ -65,6 +56,13 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 	var scene_name = get_tree().current_scene.name
 
 	match quest.id:
+		"3":
+			# Tür sperren
+			var door_node = get_tree().current_scene.get_node_or_null("Door")
+			if door_node and door_node.has_method("lock"):
+				door_node.lock()
+				SaveManager.lock_door(door_node.door_id)
+		
 		"4":
 			await FadeTransition.fade_out(1.0)
 			
@@ -153,3 +151,14 @@ func set_quest(quest: QuestData) -> void:
 func clear_quest() -> void:
 	current_quest = null
 	emit_signal("quest_changed", null)
+	
+func trigger_quest(quest: QuestData):
+	if SaveManager.get_quest_already_triggered(quest.id):
+		return
+
+	print("[QuestManager] Quest getriggert:", quest.id)
+	set_quest(quest)
+	SaveManager.set_quest_triggered(quest.id)
+
+	# Wendet die Szeneeffekte an (z.B. Tür lock/unlock)
+	_apply_scene_effects_for_completed_quest(quest)

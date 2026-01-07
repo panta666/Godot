@@ -17,6 +17,9 @@ func _ready():
 	if not is_connected("body_entered", Callable(self, "_on_body_entered")):
 		connect("body_entered", Callable(self, "_on_body_entered"))
 		
+	# Nur überschreiben, wenn es einen gespeicherten Status gibt
+	if SaveManager.save_data["game_progress"]["unlocked_doors"].has(door_id):
+		needs_unlock = not SaveManager.is_door_unlocked(door_id)
 
 func _on_body_entered(body):
 	if is_opening:
@@ -37,6 +40,16 @@ func _on_body_entered(body):
 func _show_locked_feedback():
 	if not door_closed_player.playing:
 		door_closed_player.play()
+
+func lock():
+	needs_unlock = true   
+	SaveManager.lock_door(door_id)
+	print("[Door] Door '%s' locked" % door_id)
+
+func unlock():
+	needs_unlock = false  
+	SaveManager.unlock_door(door_id) # speichert direkt in SaveManager
+	print("[Door] Door '%s' unlocked" % door_id)
 
 func _on_boss_defeated():
 	SaveManager.unlock_door("math_room")
