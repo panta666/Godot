@@ -5247,7 +5247,6 @@ resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 npc_name = "Clemens"
 sprite_frames = SubResource("SpriteFrames_gouq0")
-can_sit = true
 can_talk = false
 behavior_type = 1
 move_speed = 88.0
@@ -6428,9 +6427,9 @@ resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 npc_name = "Jens"
 sprite_frames = SubResource("SpriteFrames_r6m4u")
-can_sit = true
 start_facing = "up"
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg1fd"]
@@ -6769,8 +6768,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 sprite_frames = SubResource("SpriteFrames_8s6yi")
-can_sit = true
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5eqdl"]
@@ -7791,8 +7790,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 sprite_frames = SubResource("SpriteFrames_63eju")
-can_sit = true
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vir52"]
@@ -8131,8 +8130,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 sprite_frames = SubResource("SpriteFrames_sm84n")
-can_sit = true
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8quc"]
@@ -8471,8 +8470,8 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 sprite_frames = SubResource("SpriteFrames_a1gga")
-can_sit = true
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gc6r1"]
@@ -8811,9 +8810,9 @@ animations = [{
 resource_local_to_scene = true
 script = ExtResource("31_2ebjl")
 sprite_frames = SubResource("SpriteFrames_3sx5d")
-can_sit = true
 start_facing = "left"
 can_talk = false
+behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
 [node name="Realworld_Classroom_One" type="Node2D"]
@@ -8872,7 +8871,6 @@ tile_map_data = PackedByteArray("AAAAAP3/AQAXAAIAAAAiAP3/AQAaAAIAAAAAAP7/AQAXAAM
 tile_set = SubResource("TileSet_x23ky")
 
 [node name="Chair" parent="." instance=ExtResource("5_onpry")]
-visible = false
 z_index = 1
 y_sort_enabled = true
 position = Vector2(180, 327)
@@ -8894,8 +8892,7 @@ position = Vector2(145, 196)
 npc_data = SubResource("Resource_mkscr")
 
 [node name="NPC4" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(250, 249)
+position = Vector2(492, 353)
 npc_data = SubResource("Resource_p67ub")
 
 [node name="NPC3" parent="." instance=ExtResource("4_55vsv")]
@@ -8959,13 +8956,11 @@ shop_items = Array[ExtResource("18_7rigo")]([ExtResource("19_l3xm6"), ExtResourc
 coin_category = "oop"
 
 [node name="NPC5" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(441, 216)
+position = Vector2(472, 388)
 npc_data = SubResource("Resource_okp8e")
 
 [node name="NPC6" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(442, 152)
+position = Vector2(455, 122)
 npc_data = SubResource("Resource_4f3im")
 
 [node name="NPC7" parent="." instance=ExtResource("4_55vsv")]
@@ -8979,21 +8974,17 @@ position = Vector2(313, 311)
 npc_data = SubResource("Resource_2euoh")
 
 [node name="NPC9" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(313, 248)
+position = Vector2(479, 112)
 npc_data = SubResource("Resource_us36q")
 
 [node name="NPC10" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(250, 280)
+position = Vector2(472, 137)
 npc_data = SubResource("Resource_a2kdn")
 
 [node name="NPC11" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(186, 152)
+position = Vector2(475.99997, 340)
 npc_data = SubResource("Resource_yrnny")
 
 [node name="NPC12" parent="." instance=ExtResource("4_55vsv")]
-z_index = 3
-position = Vector2(250, 184)
+position = Vector2(461, 362)
 npc_data = SubResource("Resource_ytija")

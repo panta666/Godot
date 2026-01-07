@@ -112,7 +112,7 @@ func _ready() -> void:
 			last_path_pos = path_follow.global_position
 
 	Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
-
+	call_deferred("_apply_saved_scene_effects")
 
 func _physics_process(delta: float) -> void:
 	if dialog_active or not player or not npc_data:
@@ -415,3 +415,109 @@ func _setup_player() -> void:
 		else:
 			player = null
 			push_warning("Kein gültiger Player: " + name)
+			
+func apply_npc_data() -> void:
+	if not npc_data or not animated_sprite:
+		return
+
+	# --- SITZ-LOGIK ---
+	if npc_data.can_sit:
+		var sit_anim := npc_data.sit
+		if sit_anim != "" and animated_sprite.sprite_frames.has_animation(sit_anim):
+			animated_sprite.play(sit_anim)
+		else:
+			push_warning(
+				"NPC '%s' hat keine gültige Sitzanimation '%s'!"
+				% [npc_data.npc_name, sit_anim]
+			)
+
+		if npc_data.sit_direction == NPCData.SitDirection.RIGHT:
+			animated_sprite.flip_h = false
+			current_facing = "right"
+		else:
+			animated_sprite.flip_h = true
+			current_facing = "left"
+
+		velocity = Vector2.ZERO
+		# Idle/Patrol stoppen, wenn nötig
+		if idle_timer:
+			idle_timer.stop()
+		return
+
+	# --- NICHT SITZEND: Idle / Behavior erneut aktivieren ---
+	# Timer für zufällige Bewegung
+	if idle_timer == null:
+		idle_timer = Timer.new()
+		idle_timer.wait_time = npc_data.wander_interval
+		idle_timer.one_shot = false
+		idle_timer.autostart = true
+		add_child(idle_timer)
+		idle_timer.connect("timeout", Callable(self, "_on_idle_behavior"))
+	else:
+		idle_timer.start()
+
+	# Patrol Setup
+	if npc_data.behavior_type == npc_data.BehaviorType.PATROL and npc_data.path_node != null:
+		var path = get_node_or_null(npc_data.path_node)
+		if path and path is Path2D:
+			if path_follow == null:
+				path_follow = path.get_node_or_null("Follow") as PathFollow2D
+				if not path_follow:
+					path_follow = PathFollow2D.new()
+					path_follow.name = "Follow"
+					path.add_child(path_follow)
+			path_follow.loop = false
+			path_follow.rotates = false
+
+			if get_parent() != path_follow:
+				path_follow.add_child(self)
+				position = Vector2.ZERO
+
+			last_path_pos = path_follow.global_position
+			
+func _apply_saved_scene_effects() -> void:
+	if not npc_data:
+		return
+
+	var scene_name = get_tree().current_scene.name
+	var scene_effects = SaveManager.get_scene_effects(scene_name)
+
+	if scene_effects.has(name):
+		var data = scene_effects[name]
+
+		# --- POSITION ---
+		if "position" in data:
+			var pos = data["position"]
+
+			# Falls ein Dictionary mit x/y
+			if typeof(pos) == TYPE_DICTIONARY and pos.has("x") and pos.has("y"):
+				pos = Vector2(pos["x"], pos["y"])
+			# Falls noch String "x,y"
+			elif typeof(pos) == TYPE_STRING:
+				var parts = pos.split(",")
+				if parts.size() == 2:
+					pos = Vector2(parts[0].to_float(), parts[1].to_float())
+			# Falls es schon Vector2 ist, nichts tun
+			elif typeof(pos) == TYPE_VECTOR2:
+				pass
+			else:
+				push_warning("NPC '%s': Ungültiger Positionstyp in SaveData: %s" % [name, typeof(pos)])
+	
+			global_position = pos
+
+		# --- Z-INDEX ---
+		if "z_index" in data:
+			z_index = int(data["z_index"])
+
+		# --- SITZ-LOGIK ---
+		if "can_sit" in data:
+			npc_data.can_sit = bool(data["can_sit"])
+		if "sit_direction" in data:
+			npc_data.sit_direction = int(data["sit_direction"])
+
+		# --- DIALOGIC TIMELINE ---
+		if "dialog_timeline_path" in data:
+			npc_data.dialog_timeline_path = data["dialog_timeline_path"]
+
+		# --- NPC Daten anwenden ---
+		apply_npc_data()

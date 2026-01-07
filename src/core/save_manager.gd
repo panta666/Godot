@@ -224,6 +224,11 @@ func add_scene_effect(scene_name: String, node_name: String, property: String, v
 		save_data["game_progress"]["scene_effects"][scene_name] = {}
 	if not save_data["game_progress"]["scene_effects"][scene_name].has(node_name):
 		save_data["game_progress"]["scene_effects"][scene_name][node_name] = {}
+
+	# Vector2 korrekt speichern
+	if value is Vector2:
+		value = {"x": value.x, "y": value.y}
+
 	save_data["game_progress"]["scene_effects"][scene_name][node_name][property] = value
 	save_game()
 	
