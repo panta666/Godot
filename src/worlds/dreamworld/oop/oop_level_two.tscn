@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d3lli58wejm0h" path="res://assets/tilemap/first_test.png" id="7_vqyb8"]
 [ext_resource type="Texture2D" uid="uid://cu0eatkkyeru" path="res://src/worlds/dreamworld/oop/oop_assets/ladder.png" id="8_und7l"]
 [ext_resource type="PackedScene" uid="uid://6wx15xs4nxry" path="res://src/features/enemies/Bug.tscn" id="12_vqyb8"]
-[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/boss_door.tscn" id="14_0hj1e"]
+[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="14_0hj1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_und7l"]
 texture = ExtResource("2_lpkye")
