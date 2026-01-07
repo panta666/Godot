@@ -64,11 +64,11 @@ func _apply_all_completed_quests_effects():
 func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 	var scene_name = get_tree().current_scene.name
 
-	# Effekte nur für die Quest-ID
 	match quest.id:
 		"4":
 			await FadeTransition.fade_out(1.0)
 			
+			# Beispiel: Szeneeffekte für Objekte
 			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
 			if prof_node:
 				prof_node.visible = false
@@ -78,46 +78,51 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 			if blinking_chair:
 				blinking_chair.visible = true
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", true)
-			
-			
-			# --- NPCs Sitz/Position/Z-Index/Dialogic ---
+
+			# --- NPCs optional aktualisieren ---
 			var npcs_to_update := {
-				"NPC12": {"pos": Vector2(250, 184), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc12.tres"},
-				"NPC11": {"pos": Vector2(186, 152), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc11.tres"},
-				"NPC4":  {"pos": Vector2(250, 249), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc4.tres"},
-				"NPC10": {"pos": Vector2(250, 280), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc10.tres"},
-				"NPC9":  {"pos": Vector2(313, 248), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc9.tres"},
-				"NPC6":  {"pos": Vector2(442, 152), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc6.tres"},
-				"NPC5":  {"pos": Vector2(441, 216), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT, "timeline": "res://dialogs/npc5.tres"},
+				"NPC12": {"pos": Vector2(250, 184), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC11": {"pos": Vector2(186, 152), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC4":  {"pos": Vector2(250, 249), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC10": {"pos": Vector2(250, 280), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC9":  {"pos": Vector2(313, 248), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC6":  {"pos": Vector2(442, 152), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC5":  {"pos": Vector2(441, 216), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
+				"NPC2":  {"timeline": "res://src/features/dialogue/dahm_timeline_two.dtl"}
 			}
 
 			for npc_name in npcs_to_update.keys():
 				var npc_node = get_tree().current_scene.get_node_or_null(npc_name)
-				if npc_node:
-					var data = npcs_to_update[npc_name]
+				if not npc_node or not npc_node.npc_data:
+					continue
 
-					# --- Position + Z-Index ---
-					npc_node.global_position = data.pos
-					npc_node.z_index = data.z
+				var data = npcs_to_update[npc_name]
 
-					# --- NPCData anpassen ---
-					if npc_node.npc_data:
-						npc_node.npc_data.can_sit = true
-						npc_node.npc_data.sit_direction = data.sit_dir
+				# --- Position anwenden, falls vorhanden ---
+				if "pos" in data:
+					npc_node.global_position = data["pos"]
+					SaveManager.add_scene_effect(scene_name, npc_name, "position", data["pos"])
 
-						# Optional: Dialogic-Timeline überschreiben
-						if "timeline" in data and data.timeline != "":
-							npc_node.npc_data.dialog_timeline_path = data.timeline
+				# --- Z-Index anwenden, falls vorhanden ---
+				if "z" in data:
+					npc_node.z_index = data["z"]
+					SaveManager.add_scene_effect(scene_name, npc_name, "z_index", data["z"])
 
-						if npc_node.has_method("apply_npc_data"):
-							npc_node.apply_npc_data()
-
-					# --- Persistent speichern ---
-					SaveManager.add_scene_effect(scene_name, npc_name, "position", data.pos)
-					SaveManager.add_scene_effect(scene_name, npc_name, "z_index", data.z)
+				# --- Sitzrichtung anwenden, falls vorhanden ---
+				if "sit_dir" in data:
+					npc_node.npc_data.can_sit = true
+					npc_node.npc_data.sit_direction = data["sit_dir"]
 					SaveManager.add_scene_effect(scene_name, npc_name, "can_sit", true)
-					SaveManager.add_scene_effect(scene_name, npc_name, "sit_direction", data.sit_dir)
-					SaveManager.add_scene_effect(scene_name, npc_name, "dialog_timeline_path", data.timeline)
+					SaveManager.add_scene_effect(scene_name, npc_name, "sit_direction", data["sit_dir"])
+
+				# --- Timeline überschreiben, falls vorhanden ---
+				if "timeline" in data and data["timeline"] != "":
+					npc_node.npc_data.dialog_timeline_path = data["timeline"]
+					SaveManager.add_scene_effect(scene_name, npc_name, "dialog_timeline_path", data["timeline"])
+
+				# --- NPC-Daten anwenden ---
+				if npc_node.has_method("apply_npc_data"):
+					npc_node.apply_npc_data()
 
 			await FadeTransition.fade_in(1.0)
 
