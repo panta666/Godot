@@ -1,3 +1,16 @@
-dahm: Test
-[signal arg="cutscene_end"]
-[signal arg="quest_talk_to_teacher2_done"]
+dahm: Ah… awake at last. I was beginning to wonder if you’d joined the ranks of the… sleeping code.
+- Yeah… that was… intense.
+	dahm: I did warn you, you know. Falling asleep in my lecture is not without consequences.
+	- Consequences like… bugs and… ducks?
+		dahm: Precisely. The world of objects can be… unpredictable. Sometimes even rebellious.
+		dahm: And, well… let’s just say Level Two might be a bit… “flooded.”\
+		Objects everywhere. Methods calling themselves. Chaos lurking in every corner.
+		- Flooded? That doesn’t sound fun.
+			dahm: Fun is relative. Order is what matters. Classes. Objects. Relationships. Inheritance… and, of course, polymorphism.\
+			But sometimes, even I wonder if the dreams of code have a mind of their own.
+			dahm: Anyway, while we have this break… let’s do something practical.\
+			Go to the board. There’s something you need to see.
+			dahm: Come back to me after you are finished with the Board.
+			dahm: And remember… even in dreams, structure matters.
+			[signal arg="cutscene_end"]
+			[signal arg="quest_talk_to_teacher2_done"]

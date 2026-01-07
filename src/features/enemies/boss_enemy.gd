@@ -60,8 +60,6 @@ func die() -> void:
 
 		# Level 2 für OOP freischalten
 		GlobalScript.unlock_level(GlobalScript.classrooms.oop, 2)
-		#Shop freischalten in Realworld
-		SaveManager.unlock_shop()
 		
 		# TEST MATH Room freischalten
 	#----------------------------------------------------------------
