@@ -150,6 +150,11 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 				blinking_chair.visible = false
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", false)
 			
+			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
+			if prof_node:
+				prof_node.visible = true
+				SaveManager.add_scene_effect(scene_name, "BlinkingProf", "visible", true)
+			
 			# NPC2 Timeline ändern
 			var npc2_node = get_tree().current_scene.get_node_or_null("NPC2")
 			if npc2_node and npc2_node.npc_data:
@@ -164,6 +169,26 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 			#Shop freischalten in Realworld
 			SaveManager.unlock_shop()
 			SaveManager.save_game()
+			
+			var prof_node = get_tree().current_scene.get_node_or_null("BlinkingProf")
+			if prof_node:
+				prof_node.visible = false
+				SaveManager.add_scene_effect(scene_name, "BlinkingProf", "visible", false)
+				
+			var shop_node = get_tree().current_scene.get_node_or_null("BlinkingShop")
+			if shop_node:
+				shop_node.visible = true
+				SaveManager.add_scene_effect(scene_name, "BlinkingShop", "visible", true)
+				
+			# NPC2 Timeline ändern
+			var npc2_node = get_tree().current_scene.get_node_or_null("NPC2")
+			if npc2_node and npc2_node.npc_data:
+				npc2_node.npc_data.dialog_timeline_path = "res://src/features/dialogue/dahm_timeline_four.dtl"
+				SaveManager.add_scene_effect(get_tree().current_scene.name, "NPC2", "dialog_timeline_path", npc2_node.npc_data.dialog_timeline_path)
+		
+			# NPC2 aktualisieren, falls Methode vorhanden
+			if npc2_node.has_method("apply_npc_data"):
+				npc2_node.apply_npc_data()
 		
 		"7":
 			# Stuhl wieder freischalten
@@ -176,6 +201,16 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 				chair_node.interactable.is_interactable = true
 				if chair_node.has_method("update_interact_text"):
 					chair_node.update_interact_text()
+					
+			var shop_node = get_tree().current_scene.get_node_or_null("BlinkingShop")
+			if shop_node:
+				shop_node.visible = false
+				SaveManager.add_scene_effect(scene_name, "BlinkingShop", "visible", false)
+			
+			var blinking_chair = get_tree().current_scene.get_node_or_null("BlinkingChair")
+			if blinking_chair:
+				blinking_chair.visible = false
+				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", false)
 
 # --- Lädt alle QuestData .tres aus dem Ordner ---
 func _load_all_quests():

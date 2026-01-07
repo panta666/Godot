@@ -1,0 +1,3 @@
+dahm: The break is over. Go back to your seat please.
+[signal arg="cutscene_end"]
+[signal arg="quest_talk_to_teacher3_done"]

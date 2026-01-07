@@ -8996,3 +8996,10 @@ position = Vector2(196, 324)
 scale = Vector2(7.303655, 5.4928412)
 quest = ExtResource("36_p67ub")
 auto_start_dialog = "speak_with_dahm_again"
+
+[node name="BlinkingShop" parent="." instance=ExtResource("13_j8bsy")]
+visible = false
+z_index = 5
+position = Vector2(532, 125)
+scale = Vector2(0.06627036, 0.11515798)
+chosen_type = 1

@@ -42,6 +42,7 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "dahm_timeline": "res://src/features/dialogue/dahm_timeline.dtl",
+"dahm_timeline_four": "res://src/features/dialogue/dahm_timeline_four.dtl",
 "dahm_timeline_three": "res://src/features/dialogue/dahm_timeline_three.dtl",
 "dahm_timeline_two": "res://src/features/dialogue/dahm_timeline_two.dtl",
 "enter_chair": "res://src/features/dialogue/enter_chair.dtl",
