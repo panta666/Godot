@@ -180,6 +180,8 @@ func _on_credits_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	var player_dw = GlobalScript.player_dw
+	# Reset coins because no boss has been defeated.
+	GlobalScript.reset_coins()
 	if player_dw and is_instance_valid(player_dw):
 		print("[ESC_MENU] Dreamworld verlassen, zurück zur Realworld")
 		get_tree().paused = false
