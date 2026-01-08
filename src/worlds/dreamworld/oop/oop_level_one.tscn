@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=87 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://src/worlds/dreamworld/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -3100,6 +3100,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7igvv"]
 size = Vector2(13, 111.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k6i5"]
+size = Vector2(26, 111)
+
 [node name="oop_level_one" type="Node2D"]
 script = ExtResource("1_ahlc2")
 
@@ -3422,3 +3425,11 @@ script = ExtResource("33_clmav")
 [node name="Boss_door" parent="." instance=ExtResource("34_b6hso")]
 position = Vector2(3432, 408)
 scale = Vector2(1, 1)
+
+[node name="DialogTrigger2" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger2"]
+position = Vector2(3374, 384)
+shape = SubResource("RectangleShape2D_0k6i5")

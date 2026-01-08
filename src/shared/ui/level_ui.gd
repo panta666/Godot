@@ -110,15 +110,15 @@ func _update_oop_buttons():
 func _update_medg_buttons():
 	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
 	enter_level_button.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
-	enter_level_button.text = "MEDG Level 1"
+	enter_level_button.text = "MATH Level 1"
 
 	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
 	enter_level_button2.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
-	enter_level_button2.text = "MEDG Level 2"
+	enter_level_button2.text = "MATH Level 2"
 
 	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
 	enter_level_button3.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
-	enter_level_button3.text = "MEDG Level 3"
+	enter_level_button3.text = "MATH Level 3"
 
 
 # ======================================================

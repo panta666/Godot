@@ -7,3 +7,5 @@ class_name QuestData
 
 @export var target_scene: String            # zB "Realworld_Hall"
 @export var target_node_path: String        # relativer Node-Name zB "Classroom_Door_One"
+
+@export var dialog_signal: String = ""   # Dialogic Signalname

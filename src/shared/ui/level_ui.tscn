@@ -581,6 +581,7 @@ animations = [{
 size = Vector2(47, 20)
 
 [node name="LevelUI" type="CanvasLayer"]
+layer = 20
 script = ExtResource("1_exbfu")
 
 [node name="Control" type="Control" parent="."]

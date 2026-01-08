@@ -60,14 +60,6 @@ func die() -> void:
 
 		# Level 2 für OOP freischalten
 		GlobalScript.unlock_level(GlobalScript.classrooms.oop, 2)
-		#Shop freischalten in Realworld
-		SaveManager.unlock_shop()
-		
-		# TEST MATH Room freischalten
-	#----------------------------------------------------------------
-		# BITTE ENTFERNEN UND IN BOSS FÜR LEVEL 2 HINZUFÜGEN
-		SaveManager.unlock_door("realworld_math_door")
-	#----------------------------------------------------------------
 
 		# LevelUI aktualisieren, falls vorhanden
 		var classroom = get_tree().current_scene
@@ -85,11 +77,16 @@ func die() -> void:
 
 func _return_to_classroom() -> void:
 	GlobalScript.save_coins_for_level(boss_of_level)
-	# Kurze Wartezeit
+
 	await get_tree().create_timer(0.2).timeout
-	print("change scene")
-	# Szenenwechsel zurück
-	GlobalScript.change_scene("realworld_classroom_one")
+
+	# Blink Overlay laden
+	var blink_overlay = preload("res://src/shared/components/blink_overlay.tscn").instantiate()
+	get_tree().root.add_child(blink_overlay)
+	
+	var overlay = blink_overlay.get_node("Blink_Overlay")
+	# Transition zurück in die echte Welt
+	await overlay.play_wake_up("res://src/worlds/realworld/realworld_classroom_one.tscn")
 
 func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	if bar_instance != null:

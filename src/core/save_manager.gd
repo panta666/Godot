@@ -1,6 +1,7 @@
 # SaveManager.gd
 extends Node
 signal shop_unlocked_signal
+signal chair_unlocked_signal
 signal player_stats_changed
 
 # Der Pfad, unter dem die Speicherdatei abgelegt wird.
@@ -14,12 +15,14 @@ var save_data = {
 		"coins" : {
 			"realworld": 0,
 			"oop_level_one": [], #Szenenname des coins speichern
-			"math_level_one": []
+			"math_level_one": [],
 		},
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
-		"unlocked_levels": {0:1}
+		"chair_unlocked": false,
+		"unlocked_levels": {0:1},
+		"scene_effects": {}   # speichert die Änderungen pro Szene
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -51,7 +54,9 @@ const default_values = {
 		"quests": [],
 		"unlocked_doors": {},
 		"shop_unlocked": false,
-		"unlocked_levels": {0:1}
+		"chair_unlocked": false,
+		"unlocked_levels": {0:1},
+		"scene_effects": {}
 	},
 	"audio_settings": {
 		"Master": 0.0,   # 0.0 dB ist volle Lautstärke
@@ -217,6 +222,21 @@ func update_bus_volume(audio_bus_id: int, volume: float):
 	else:
 		push_error("Bus unknown!")
 
+func add_scene_effect(scene_name: String, node_name: String, property: String, value) -> void:
+	if not save_data["game_progress"]["scene_effects"].has(scene_name):
+		save_data["game_progress"]["scene_effects"][scene_name] = {}
+	if not save_data["game_progress"]["scene_effects"][scene_name].has(node_name):
+		save_data["game_progress"]["scene_effects"][scene_name][node_name] = {}
+
+	# Vector2 korrekt speichern
+	if value is Vector2:
+		value = {"x": value.x, "y": value.y}
+
+	save_data["game_progress"]["scene_effects"][scene_name][node_name][property] = value
+	save_game()
+	
+func get_scene_effects(scene_name: String) -> Dictionary:
+	return save_data["game_progress"].get("scene_effects", {}).get(scene_name, {})	
 
 func update_is_muted(audio_bus_id: int,is_muted: bool):
 	var bus_is_muted = Global.AUDIO_BUSES[audio_bus_id] + "_is_muted"
@@ -232,9 +252,12 @@ func update_current_scene():
 
 # Door Unlock um z.B: die MATH Door aufzuschließen/abzuschließen zu Beginn
 func unlock_door(door_id: String):
-	if not save_data["game_progress"]["unlocked_doors"].has(door_id):
-		save_data["game_progress"]["unlocked_doors"][door_id] = true
-		save_game()
+	save_data["game_progress"]["unlocked_doors"][door_id] = true
+	save_game()
+		
+func lock_door(door_id: String):
+	save_data["game_progress"]["unlocked_doors"][door_id] = false
+	save_game()
 
 func set_player_unlock(stat: String, unlocked: bool = true):
 	save_data["player_stats"][stat] = unlocked
@@ -247,6 +270,9 @@ func is_player_stat_unlocked(stat: String)-> bool:
 func is_door_unlocked(door_id: String) -> bool:
 	return save_data["game_progress"]["unlocked_doors"].get(door_id, false)
 	
+func is_door_locked(door_id: String) -> bool:
+	return save_data["game_progress"]["unlocked_doors"].get(door_id, true)
+	
 # Shop Unlock
 func unlock_shop():
 	if not save_data["game_progress"]["shop_unlocked"]:
@@ -256,6 +282,18 @@ func unlock_shop():
 
 func is_shop_unlocked() -> bool:
 	return save_data["game_progress"]["shop_unlocked"]
+	
+# Chair Unlock
+func unlock_chair():
+	if not save_data["game_progress"].has("chair_unlocked"):
+		save_data["game_progress"]["chair_unlocked"] = true
+	if not save_data["game_progress"]["chair_unlocked"]:
+		save_data["game_progress"]["chair_unlocked"] = true
+		save_game()
+		emit_signal("chair_unlocked_signal")
+
+func is_chair_unlocked() -> bool:
+	return save_data["game_progress"].get("chair_unlocked", false)
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten

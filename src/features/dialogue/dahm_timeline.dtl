@@ -1,9 +1,21 @@
-dahm: Hello Student, how are you?
-- Feeling good.
-	dahm: Thats very good. Take a seat at the back row please.
+dahm: Ah, good morning. You must be one of my OOP students.\
+First day, huh?
+- Yeah... I'm here. Ready, I think.
+	dahm: That’s all I can ask for at this hour.\
+	Go ahead and find yourself a seat - we’re about to begin the lecture.
 	dahm: The lecture is about to start.
-	[signal arg="cutscene_end"]
-- Not so good.
-	dahm: Okay..mhh..you can go home if you aren't feeling well.
-	dahm: Get well soon, Bye!
-	[signal arg="go_home"]
+	- Is it going to be difficult?
+		dahm: Object-Oriented Programming is...\
+		let's say it rewards patience, structure and a clear head.
+		dahm: We’ll talk about classes, objects…\
+		how things relate to each other…\
+		and of course, the beautiful chaos of bugs.
+		dahm: But first things first. Sit down, relax, and try to stay awake.\
+		Once everyone is seated, we’ll begin properly.
+		dahm: Trust me… you don’t want to fall asleep in OOP.
+		- Why not?
+			dahm: Because sometimes…\
+			when you fall asleep in this lecture…
+			dahm: …the bugs and ducks start dreaming too.
+			[signal arg="cutscene_end"]
+			[signal arg="quest_talk_to_teacher_done"]

@@ -31,3 +31,5 @@ func add_key():
 		door = get_parent().find_child("Boss_door")
 		door.open_door()
 		
+func get_key_status() -> int:
+	return keys

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://beglw33txd6eo"]
+
+[ext_resource type="Script" uid="uid://dmq1os3w0lmng" path="res://src/features/quests/quest_data.gd" id="1_qfh6i"]
+
+[resource]
+script = ExtResource("1_qfh6i")
+id = "7"
+title = "Back into the Dreamworld!"
+description = "Go back to your seat and try to stay awake..lol"
+target_scene = "Realworld_Classroom_One"
+target_node_path = "Chair"
+dialog_signal = "quest_talk_to_teacher3_done"
+metadata/_custom_type_script = "uid://dmq1os3w0lmng"

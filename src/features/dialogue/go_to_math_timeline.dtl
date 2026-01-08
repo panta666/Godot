@@ -1,0 +1,9 @@
+[style name="platformer_style"]
+player: Good thing that I am not wet. That dream was...
+player: different..
+player: Well, it looks like i missed the whole Lecture.
+player: Let me see which Lecture is next..
+player: ...
+player: It is Math..it should be...
+player: next door.. Okay.. I should go now, the room is almost empty now.
+[signal arg="cutscene_end"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlwdshe1jclgo"]
+
+[ext_resource type="Script" uid="uid://cv0uhqjfvyt6a" path="res://src/shared/components/fade_transition.gd" id="1_1jen5"]
+[ext_resource type="Shader" uid="uid://cxrmutouwyfrc" path="res://src/shared/components/fade_transition.gdshader" id="2_3t0mw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjn6v"]
+shader = ExtResource("2_3t0mw")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 1.0
+
+[node name="FadeTransition" type="CanvasLayer"]
+layer = 18
+script = ExtResource("1_1jen5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_jjn6v")
+offset_left = -132.0
+offset_top = -85.0
+offset_right = 1154.0
+offset_bottom = 530.0
+color = Color(0, 0, 0, 1)

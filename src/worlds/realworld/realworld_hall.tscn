@@ -1,12 +1,14 @@
-[gd_scene load_steps=607 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=610 format=4 uid="uid://dqloihqvrxpgp"]
 
 [ext_resource type="Script" uid="uid://rx0fqlfipfpo" path="res://src/worlds/realworld/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://src/worlds/realworld/door_open_player.tscn" id="4_6r254"]
+[ext_resource type="Texture2D" uid="uid://vsxkv6ijoo22" path="res://assets/characters/npc_portraits/dahm.png" id="4_sa4eq"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="5_2ufs1"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="5_3x2cr"]
 [ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://src/worlds/realworld/door_closed_player.tscn" id="5_752cd"]
+[ext_resource type="Texture2D" uid="uid://dwmpoohthkals" path="res://assets/characters/npc_portraits/sokalski.png" id="5_ga1li"]
 [ext_resource type="Resource" uid="uid://bjk5ukmy8op3t" path="res://src/features/dialogue/characters/npc_henry.dch" id="6_bdf6b"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="6_snpmh"]
 [ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="7_gu2pk"]
@@ -55,6 +57,7 @@
 [ext_resource type="Resource" uid="uid://dgenpfl7ghqe5" path="res://resources/npc_data/boy_19.tres" id="46_ep1jl"]
 [ext_resource type="Texture2D" uid="uid://dgwefd1xi15os" path="res://assets/characters/npc_stylesheets/boy_11.png" id="47_vux2c"]
 [ext_resource type="Resource" uid="uid://bieotjr26xdld" path="res://resources/npc_data/boy_17.tres" id="48_6eqbu"]
+[ext_resource type="Resource" uid="uid://dilctcpbjrik" path="res://resources/quests/quest_09.tres" id="58_ga1li"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sep4y"]
 polygon = PackedVector2Array(-2, -6, 8, -6, 8, 8, -2, 8)
@@ -11267,7 +11270,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="Resource" id="Resource_yuxhh"]
+[sub_resource type="Resource" id="Resource_vux2c"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Henry"
@@ -11611,7 +11614,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_fyfcd"]
+[sub_resource type="Resource" id="Resource_sa4eq"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Georg"
@@ -11954,7 +11957,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_v2nlh"]
+[sub_resource type="Resource" id="Resource_ga1li"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Jens"
@@ -12295,7 +12298,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_r445l"]
+[sub_resource type="Resource" id="Resource_oahrd"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Clemens"
@@ -17194,7 +17197,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_kq4tn"]
+[sub_resource type="Resource" id="Resource_flvwn"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_8s6yi")
@@ -17534,7 +17537,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_idogc"]
+[sub_resource type="Resource" id="Resource_sx144"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -17875,7 +17878,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_hvqik"]
+[sub_resource type="Resource" id="Resource_csmof"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_8hh0s")
@@ -18222,14 +18225,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_q0nfu"]
+[sub_resource type="Resource" id="Resource_ni671"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_a1gga")
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
-[sub_resource type="Resource" id="Resource_wjmc3"]
+[sub_resource type="Resource" id="Resource_5qu6y"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -18568,7 +18571,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_gyoco"]
+[sub_resource type="Resource" id="Resource_yuxhh"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_dl35o")
@@ -18916,7 +18919,7 @@ start_facing = "left"
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
-[sub_resource type="Resource" id="Resource_tcj8f"]
+[sub_resource type="Resource" id="Resource_fyfcd"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_dl35o")
@@ -18988,11 +18991,33 @@ text = "OOP"
 label_settings = SubResource("LabelSettings_6r254")
 metadata/_edit_use_anchors_ = true
 
-[node name="OOP_Picture" type="Sprite2D" parent="Hall/Wall_top"]
+[node name="OOP_Panel" type="PanelContainer" parent="Hall/Wall_top"]
+clip_contents = true
+offset_left = -286.0
+offset_top = 2.7142944
+offset_right = -257.0
+offset_bottom = 41.714294
+
+[node name="OOP_Picture" type="Sprite2D" parent="Hall/Wall_top/OOP_Panel"]
 light_mask = 0
 z_index = 2
-position = Vector2(-275, 21)
-scale = Vector2(0.4285711, 0.4285711)
+position = Vector2(15.999994, 20.999992)
+scale = Vector2(0.39880946, 0.39880955)
+texture = ExtResource("4_sa4eq")
+
+[node name="MATH_Panel" type="PanelContainer" parent="Hall/Wall_top"]
+clip_contents = true
+offset_left = -190.0
+offset_top = 2.7142944
+offset_right = -161.0
+offset_bottom = 41.714294
+
+[node name="MATH_Picture" type="Sprite2D" parent="Hall/Wall_top/MATH_Panel"]
+light_mask = 0
+z_index = 2
+position = Vector2(14.000004, 28.000006)
+scale = Vector2(0.41276053, 0.41276053)
+texture = ExtResource("5_ga1li")
 
 [node name="Wall_side" type="TileMapLayer" parent="Hall"]
 z_index = 4
@@ -19110,7 +19135,7 @@ position = Vector2(-513, 2)
 
 [node name="NPC" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1919, 704)
-npc_data = SubResource("Resource_yuxhh")
+npc_data = SubResource("Resource_vux2c")
 
 [node name="NPC2" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(-103.99994, 371)
@@ -19118,15 +19143,15 @@ npc_data = ExtResource("7_gu2pk")
 
 [node name="NPC3" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(942, 701)
-npc_data = SubResource("Resource_fyfcd")
+npc_data = SubResource("Resource_sa4eq")
 
 [node name="NPC4" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2304, 1012.99994)
-npc_data = SubResource("Resource_v2nlh")
+npc_data = SubResource("Resource_ga1li")
 
 [node name="NPC5" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(590, 395)
-npc_data = SubResource("Resource_r445l")
+npc_data = SubResource("Resource_oahrd")
 
 [node name="NPC6" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2176, 393)
@@ -19166,7 +19191,7 @@ npc_data = ExtResource("13_ndawl")
 [node name="NPC9_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
 position = Vector2(288, 446)
-npc_data = SubResource("Resource_kq4tn")
+npc_data = SubResource("Resource_flvwn")
 
 [node name="NPC10_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
@@ -19201,7 +19226,7 @@ npc_data = ExtResource("19_csmof")
 [node name="NPC16_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
 position = Vector2(-78, 818)
-npc_data = SubResource("Resource_idogc")
+npc_data = SubResource("Resource_sx144")
 
 [node name="NPC17_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
@@ -19255,7 +19280,7 @@ npc_data = ExtResource("31_gyoco")
 
 [node name="NPC31" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2315, 975)
-npc_data = SubResource("Resource_hvqik")
+npc_data = SubResource("Resource_csmof")
 
 [node name="NPC32" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2288, 983)
@@ -19283,11 +19308,11 @@ npc_data = ExtResource("35_jml0d")
 
 [node name="NPC35" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1161, 387)
-npc_data = SubResource("Resource_q0nfu")
+npc_data = SubResource("Resource_ni671")
 
 [node name="NPC36" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1202, 389)
-npc_data = SubResource("Resource_wjmc3")
+npc_data = SubResource("Resource_5qu6y")
 
 [node name="NPC37" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1174, 414)
@@ -19323,7 +19348,7 @@ npc_data = ExtResource("46_ep1jl")
 
 [node name="NPC47" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(96, 291)
-npc_data = SubResource("Resource_gyoco")
+npc_data = SubResource("Resource_yuxhh")
 
 [node name="NPC48" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(-73, 370)
@@ -19335,7 +19360,7 @@ npc_data = ExtResource("48_6eqbu")
 
 [node name="NPC51" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1089, 972)
-npc_data = SubResource("Resource_tcj8f")
+npc_data = SubResource("Resource_fyfcd")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -19388,7 +19413,7 @@ position = Vector2(1083, 697)
 scale = Vector2(13.576875, 6.8000007)
 metadata/_edit_lock_ = true
 
-[node name="Blinking" parent="." instance=ExtResource("17_ldiki")]
+[node name="BlinkingOOP" parent="." instance=ExtResource("17_ldiki")]
 z_index = 5
 z_as_relative = false
 position = Vector2(183.00002, 316)
@@ -19400,6 +19425,31 @@ position = Vector2(415, 1109)
 scale = Vector2(5.469954, 5.089773)
 quest = ExtResource("19_7us8e")
 auto_start_dialog = "hall_story_timeline"
+
+[node name="Sunset" type="ColorRect" parent="."]
+visible = false
+z_index = 6
+offset_left = -652.0
+offset_top = -16.0
+offset_right = 1849.0
+offset_bottom = 1450.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(1, 0.38431373, 0, 0.1882353)
+
+[node name="QuestTrigger2" parent="." instance=ExtResource("18_o55gb")]
+position = Vector2(184, 405)
+scale = Vector2(3.7117355, 2.6773853)
+quest = ExtResource("58_ga1li")
+auto_start_dialog = "enter_math_room_timeline"
+
+[node name="BlinkingMath" parent="." instance=ExtResource("17_ldiki")]
+visible = false
+z_index = 11
+y_sort_enabled = true
+position = Vector2(279, 318)
+scale = Vector2(0.07495242, 0.15392604)
+chosen_type = 1
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]

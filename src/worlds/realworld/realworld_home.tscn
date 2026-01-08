@@ -60490,6 +60490,7 @@ tile_set = SubResource("TileSet_kvj23")
 visible = false
 position = Vector2(368, 203)
 next_scene = "train_scene"
+door_id = "realworld_home_door"
 
 [node name="Light" type="Node2D" parent="."]
 

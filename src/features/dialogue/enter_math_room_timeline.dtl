@@ -1,0 +1,4 @@
+[style name="platformer_style"]
+player: Wow, look at the time. I should really get going or I am going to be late!
+player: Better hurry..the Math Room should be next door.
+[signal arg="cutscene_end"]
