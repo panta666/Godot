@@ -1,4 +1,4 @@
-[gd_scene load_steps=546 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=548 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://gs0ak4an6e2p" path="res://src/worlds/realworld/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="2_1lbkm"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://cc15qmwfvk51a" path="res://assets/characters/npc_stylesheets/girl_09.png" id="25_80lvd"]
 [ext_resource type="Texture2D" uid="uid://dfvuprvryq1i6" path="res://assets/characters/npc_stylesheets/girl_14.png" id="26_ysjg4"]
 [ext_resource type="Texture2D" uid="uid://oog8top0v7d0" path="res://assets/characters/npc_stylesheets/girl_17.png" id="27_tg22w"]
+[ext_resource type="PackedScene" uid="uid://lwfs7n2rkj2y" path="res://src/features/quests/quest_trigger.tscn" id="30_fnyri"]
+[ext_resource type="Resource" uid="uid://dgk7xu70ogt1b" path="res://resources/quests/quest_10.tres" id="31_shtu6"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvmm4"]
 polygon = PackedVector2Array(-26, -22, 0, -22, 0, -8, 12, -8, 12, -22, 18, -22, 18, 16, 12, 16, 12, 12, 2, 12, 2, 16, 0, 16, 0, 18, -2, 18, -2, 20, -8, 20, -8, 14, -18, 14, -18, 20, -24, 20, -24, 10, -26, 10)
@@ -8600,10 +8602,20 @@ stand_position = Vector2(1383, 600)
 flip_horizontal = true
 flip_player_on_sit = true
 
+[node name="Sunset" type="ColorRect" parent="."]
+z_index = 14
+offset_left = 1073.0
+offset_top = 409.0
+offset_right = 1633.0
+offset_bottom = 776.0
+color = Color(0.6392157, 0.25882354, 0.019607844, 0.05882353)
+
 [node name="Sunlight" parent="." instance=ExtResource("13_7iy3m")]
 position = Vector2(1339, 365)
 scale = Vector2(22.27431, -8.603439)
+color = Color(0.9607843, 0.6862745, 0.25882354, 1)
 energy = 1.78
+metadata/_edit_lock_ = true
 
 [node name="Shop" parent="." instance=ExtResource("14_npa15")]
 position = Vector2(1150, 491)
@@ -8654,3 +8666,9 @@ npc_data = SubResource("Resource_fnyri")
 z_index = 3
 position = Vector2(1236, 563)
 npc_data = SubResource("Resource_phq1v")
+
+[node name="QuestTrigger" parent="." instance=ExtResource("30_fnyri")]
+position = Vector2(1139, 721.00006)
+scale = Vector2(3.7810485, 2.826794)
+quest = ExtResource("31_shtu6")
+auto_start_dialog = "talk_to_sokalski_timeline"

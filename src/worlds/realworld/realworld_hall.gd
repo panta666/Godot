@@ -6,6 +6,7 @@ const PLAYER_SPAWN_POS_TWO := Vector2(280, 420)
 const PLAYER_SPAWN_POS_HOME := Vector2(434, 1190)
 @onready var door_closed_player: AudioStreamPlayer = $SFX/DoorClosedPlayer
 @onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
+@onready var quest_trigger2: QuestTrigger = $QuestTrigger2
 
 
 
@@ -32,6 +33,21 @@ func _ready() -> void:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_HOME
 	else:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE
+		
+	# --- QuestTrigger2 (Math) standardmäßig deaktivieren ---
+	quest_trigger2.monitoring = false
+	quest_trigger2.monitorable = false
+	quest_trigger2.get_node("CollisionShape2D").disabled = true
+
+	# --- Prüfen, ob Math Level 1 freigeschaltet ist ---
+	if GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1):
+		_activate_math_trigger()
+
+func _activate_math_trigger() -> void:
+	quest_trigger2.monitoring = true
+	quest_trigger2.monitorable = true
+	quest_trigger2.get_node("CollisionShape2D").disabled = false
+	print("QuestTrigger2 in Hall aktiviert (Math Level 1 freigeschaltet)")
 
 func _on_classroom_three_door_3_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:

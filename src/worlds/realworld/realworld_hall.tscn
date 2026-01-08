@@ -11267,7 +11267,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="Resource" id="Resource_yuxhh"]
+[sub_resource type="Resource" id="Resource_vux2c"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Henry"
@@ -11611,7 +11611,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_fyfcd"]
+[sub_resource type="Resource" id="Resource_sa4eq"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Georg"
@@ -11954,7 +11954,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_v2nlh"]
+[sub_resource type="Resource" id="Resource_ga1li"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Jens"
@@ -12295,7 +12295,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_r445l"]
+[sub_resource type="Resource" id="Resource_oahrd"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 npc_name = "Clemens"
@@ -17194,7 +17194,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_kq4tn"]
+[sub_resource type="Resource" id="Resource_flvwn"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_8s6yi")
@@ -17534,7 +17534,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_idogc"]
+[sub_resource type="Resource" id="Resource_sx144"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -17875,7 +17875,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_hvqik"]
+[sub_resource type="Resource" id="Resource_csmof"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_8hh0s")
@@ -18222,14 +18222,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_q0nfu"]
+[sub_resource type="Resource" id="Resource_ni671"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_a1gga")
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
-[sub_resource type="Resource" id="Resource_wjmc3"]
+[sub_resource type="Resource" id="Resource_5qu6y"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -18568,7 +18568,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_gyoco"]
+[sub_resource type="Resource" id="Resource_yuxhh"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_dl35o")
@@ -18916,7 +18916,7 @@ start_facing = "left"
 can_talk = false
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
-[sub_resource type="Resource" id="Resource_tcj8f"]
+[sub_resource type="Resource" id="Resource_fyfcd"]
 resource_local_to_scene = true
 script = ExtResource("7_vux2c")
 sprite_frames = SubResource("SpriteFrames_dl35o")
@@ -19110,7 +19110,7 @@ position = Vector2(-513, 2)
 
 [node name="NPC" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1919, 704)
-npc_data = SubResource("Resource_yuxhh")
+npc_data = SubResource("Resource_vux2c")
 
 [node name="NPC2" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(-103.99994, 371)
@@ -19118,15 +19118,15 @@ npc_data = ExtResource("7_gu2pk")
 
 [node name="NPC3" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(942, 701)
-npc_data = SubResource("Resource_fyfcd")
+npc_data = SubResource("Resource_sa4eq")
 
 [node name="NPC4" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2304, 1012.99994)
-npc_data = SubResource("Resource_v2nlh")
+npc_data = SubResource("Resource_ga1li")
 
 [node name="NPC5" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(590, 395)
-npc_data = SubResource("Resource_r445l")
+npc_data = SubResource("Resource_oahrd")
 
 [node name="NPC6" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2176, 393)
@@ -19166,7 +19166,7 @@ npc_data = ExtResource("13_ndawl")
 [node name="NPC9_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
 position = Vector2(288, 446)
-npc_data = SubResource("Resource_kq4tn")
+npc_data = SubResource("Resource_flvwn")
 
 [node name="NPC10_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
@@ -19201,7 +19201,7 @@ npc_data = ExtResource("19_csmof")
 [node name="NPC16_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
 position = Vector2(-78, 818)
-npc_data = SubResource("Resource_idogc")
+npc_data = SubResource("Resource_sx144")
 
 [node name="NPC17_sit" parent="YSort" instance=ExtResource("5_3x2cr")]
 z_index = 3
@@ -19255,7 +19255,7 @@ npc_data = ExtResource("31_gyoco")
 
 [node name="NPC31" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2315, 975)
-npc_data = SubResource("Resource_hvqik")
+npc_data = SubResource("Resource_csmof")
 
 [node name="NPC32" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(2288, 983)
@@ -19283,11 +19283,11 @@ npc_data = ExtResource("35_jml0d")
 
 [node name="NPC35" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1161, 387)
-npc_data = SubResource("Resource_q0nfu")
+npc_data = SubResource("Resource_ni671")
 
 [node name="NPC36" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1202, 389)
-npc_data = SubResource("Resource_wjmc3")
+npc_data = SubResource("Resource_5qu6y")
 
 [node name="NPC37" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1174, 414)
@@ -19323,7 +19323,7 @@ npc_data = ExtResource("46_ep1jl")
 
 [node name="NPC47" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(96, 291)
-npc_data = SubResource("Resource_gyoco")
+npc_data = SubResource("Resource_yuxhh")
 
 [node name="NPC48" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(-73, 370)
@@ -19335,7 +19335,7 @@ npc_data = ExtResource("48_6eqbu")
 
 [node name="NPC51" parent="YSort" instance=ExtResource("5_3x2cr")]
 position = Vector2(1089, 972)
-npc_data = SubResource("Resource_tcj8f")
+npc_data = SubResource("Resource_fyfcd")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -19400,6 +19400,20 @@ position = Vector2(415, 1109)
 scale = Vector2(5.469954, 5.089773)
 quest = ExtResource("19_7us8e")
 auto_start_dialog = "hall_story_timeline"
+
+[node name="Sunset" type="ColorRect" parent="."]
+visible = false
+z_index = 15
+offset_left = -652.0
+offset_top = -16.0
+offset_right = 1849.0
+offset_bottom = 1450.0
+color = Color(1, 0.38431373, 0, 0.1882353)
+
+[node name="QuestTrigger2" parent="." instance=ExtResource("18_o55gb")]
+position = Vector2(184, 405)
+scale = Vector2(3.7117355, 2.6773853)
+auto_start_dialog = "enter_math_room_timeline"
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]
