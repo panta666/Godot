@@ -1,12 +1,14 @@
-[gd_scene load_steps=607 format=4 uid="uid://dqloihqvrxpgp"]
+[gd_scene load_steps=610 format=4 uid="uid://dqloihqvrxpgp"]
 
 [ext_resource type="Script" uid="uid://rx0fqlfipfpo" path="res://src/worlds/realworld/realworld_hall.gd" id="1_je2ly"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="2_6r254"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="3_752cd"]
 [ext_resource type="PackedScene" uid="uid://bdqaf2dnok7fm" path="res://src/worlds/realworld/door_open_player.tscn" id="4_6r254"]
+[ext_resource type="Texture2D" uid="uid://vsxkv6ijoo22" path="res://assets/characters/npc_portraits/dahm.png" id="4_sa4eq"]
 [ext_resource type="PackedScene" uid="uid://bm4bor8s1rv0h" path="res://src/worlds/realworld/classroom_ambiance_player.tscn" id="5_2ufs1"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="5_3x2cr"]
 [ext_resource type="PackedScene" uid="uid://doewejfkw5eds" path="res://src/worlds/realworld/door_closed_player.tscn" id="5_752cd"]
+[ext_resource type="Texture2D" uid="uid://dwmpoohthkals" path="res://assets/characters/npc_portraits/sokalski.png" id="5_ga1li"]
 [ext_resource type="Resource" uid="uid://bjk5ukmy8op3t" path="res://src/features/dialogue/characters/npc_henry.dch" id="6_bdf6b"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="6_snpmh"]
 [ext_resource type="Resource" uid="uid://2yam7bgqjqt0" path="res://resources/npc_data/boy_02.tres" id="7_gu2pk"]
@@ -55,6 +57,7 @@
 [ext_resource type="Resource" uid="uid://dgenpfl7ghqe5" path="res://resources/npc_data/boy_19.tres" id="46_ep1jl"]
 [ext_resource type="Texture2D" uid="uid://dgwefd1xi15os" path="res://assets/characters/npc_stylesheets/boy_11.png" id="47_vux2c"]
 [ext_resource type="Resource" uid="uid://bieotjr26xdld" path="res://resources/npc_data/boy_17.tres" id="48_6eqbu"]
+[ext_resource type="Resource" uid="uid://dilctcpbjrik" path="res://resources/quests/quest_09.tres" id="58_ga1li"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sep4y"]
 polygon = PackedVector2Array(-2, -6, 8, -6, 8, 8, -2, 8)
@@ -18988,11 +18991,33 @@ text = "OOP"
 label_settings = SubResource("LabelSettings_6r254")
 metadata/_edit_use_anchors_ = true
 
-[node name="OOP_Picture" type="Sprite2D" parent="Hall/Wall_top"]
+[node name="OOP_Panel" type="PanelContainer" parent="Hall/Wall_top"]
+clip_contents = true
+offset_left = -286.0
+offset_top = 2.7142944
+offset_right = -257.0
+offset_bottom = 41.714294
+
+[node name="OOP_Picture" type="Sprite2D" parent="Hall/Wall_top/OOP_Panel"]
 light_mask = 0
 z_index = 2
-position = Vector2(-275, 21)
-scale = Vector2(0.4285711, 0.4285711)
+position = Vector2(15.999994, 20.999992)
+scale = Vector2(0.39880946, 0.39880955)
+texture = ExtResource("4_sa4eq")
+
+[node name="MATH_Panel" type="PanelContainer" parent="Hall/Wall_top"]
+clip_contents = true
+offset_left = -190.0
+offset_top = 2.7142944
+offset_right = -161.0
+offset_bottom = 41.714294
+
+[node name="MATH_Picture" type="Sprite2D" parent="Hall/Wall_top/MATH_Panel"]
+light_mask = 0
+z_index = 2
+position = Vector2(14.000004, 28.000006)
+scale = Vector2(0.41276053, 0.41276053)
+texture = ExtResource("5_ga1li")
 
 [node name="Wall_side" type="TileMapLayer" parent="Hall"]
 z_index = 4
@@ -19388,7 +19413,7 @@ position = Vector2(1083, 697)
 scale = Vector2(13.576875, 6.8000007)
 metadata/_edit_lock_ = true
 
-[node name="Blinking" parent="." instance=ExtResource("17_ldiki")]
+[node name="BlinkingOOP" parent="." instance=ExtResource("17_ldiki")]
 z_index = 5
 z_as_relative = false
 position = Vector2(183.00002, 316)
@@ -19413,7 +19438,16 @@ color = Color(1, 0.38431373, 0, 0.1882353)
 [node name="QuestTrigger2" parent="." instance=ExtResource("18_o55gb")]
 position = Vector2(184, 405)
 scale = Vector2(3.7117355, 2.6773853)
+quest = ExtResource("58_ga1li")
 auto_start_dialog = "enter_math_room_timeline"
+
+[node name="BlinkingMath" parent="." instance=ExtResource("17_ldiki")]
+visible = false
+z_index = 11
+y_sort_enabled = true
+position = Vector2(279, 318)
+scale = Vector2(0.07495242, 0.15392604)
+chosen_type = 1
 
 [connection signal="body_entered" from="door_closed" to="." method="_on_door_closed_body_entered"]
 [connection signal="body_entered" from="door_closed2" to="." method="_on_door_closed_2_body_entered"]

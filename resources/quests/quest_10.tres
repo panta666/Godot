@@ -5,4 +5,8 @@
 [resource]
 script = ExtResource("1_gq3l7")
 id = "10"
+title = "Small talk, again!"
+description = "Quick, talk to Mr. Sokalski before the Lecture starts"
+target_scene = "Realworld_Classroom_Two"
+target_node_path = "NPC"
 metadata/_custom_type_script = "uid://dmq1os3w0lmng"

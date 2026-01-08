@@ -5,4 +5,9 @@
 [resource]
 script = ExtResource("1_ae5xg")
 id = "11"
+title = "Take a seat!"
+description = "Go on and take a seat and listen to the Lecture..or not.."
+target_scene = "Realworld_Classroom_Two"
+target_node_path = "Chair"
+dialog_signal = "quest_go_to_chair"
 metadata/_custom_type_script = "uid://dmq1os3w0lmng"

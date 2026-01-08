@@ -1,0 +1,13 @@
+sokalski: Ah… good day. You’re early. That’s a good sign.
+- Good day, Sir. I was hoping to talk to you for a moment.
+	sokalski: Of course. Mathematics rewards curiosity.\
+	What’s on your mind?
+	- I’ve been having… strange dreams.They feel connected to the lectures. To the subjects.
+		sokalski: Dreams often reveal structure where we fail to see it while awake.
+		sokalski: We’ll continue this discussion another time.\
+		For now… please take your seat.
+		sokalski: The lecture is about to begin.
+		sokalski: And remember - even in dreams…\
+		everything can be proven.
+		[signal arg="cutscene_end"]
+		[signal arg="quest_go_to_chair"]

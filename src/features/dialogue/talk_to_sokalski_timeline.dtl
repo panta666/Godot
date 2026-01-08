@@ -1,4 +1,4 @@
 [style name="platformer_style"]
 player: The lecture hasn’t started yet.
-player: Maybe I should talk to Professor Sokalski before we begin.
+player: Maybe I should talk to Mr. Sokalski before we begin.
 [signal arg="cutscene_end"]

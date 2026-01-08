@@ -1,10 +1,11 @@
-[gd_scene load_steps=548 format=4 uid="uid://dgbxaknj4cqq"]
+[gd_scene load_steps=550 format=4 uid="uid://dgbxaknj4cqq"]
 
 [ext_resource type="Script" uid="uid://gs0ak4an6e2p" path="res://src/worlds/realworld/realworld_classroom_two.gd" id="1_w6gge"]
 [ext_resource type="PackedScene" uid="uid://c4061oanmcyqa" path="res://src/worlds/realworld/door.tscn" id="2_1lbkm"]
 [ext_resource type="Texture2D" uid="uid://cnve4ivgcc5ws" path="res://assets/tilemap/32x32/Interiors_free_32x32.png" id="3_cwmjx"]
 [ext_resource type="Texture2D" uid="uid://h0ybgy71adqv" path="res://assets/tilemap/32x32/Room_Builder_free_32x32.png" id="4_4bt26"]
 [ext_resource type="PackedScene" uid="uid://bpw2kucamlx24" path="res://src/features/interactables/npc.tscn" id="5_fd6lo"]
+[ext_resource type="Resource" uid="uid://euk6ylnyamou" path="res://src/features/dialogue/characters/sokalski.dch" id="6_shtu6"]
 [ext_resource type="Script" uid="uid://j0bl253043i7" path="res://src/features/interactables/npc_data.gd" id="6_y7413"]
 [ext_resource type="Texture2D" uid="uid://ijarcj002nh7" path="res://assets/characters/npc_stylesheets/sokalski.png" id="7_q07ei"]
 [ext_resource type="Texture2D" uid="uid://2u6jh2fofajb" path="res://assets/characters/npc_stylesheets/boy_02.png" id="8_joeeu"]
@@ -31,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://oog8top0v7d0" path="res://assets/characters/npc_stylesheets/girl_17.png" id="27_tg22w"]
 [ext_resource type="PackedScene" uid="uid://lwfs7n2rkj2y" path="res://src/features/quests/quest_trigger.tscn" id="30_fnyri"]
 [ext_resource type="Resource" uid="uid://dgk7xu70ogt1b" path="res://resources/quests/quest_10.tres" id="31_shtu6"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://src/shared/components/blinking.tscn" id="33_6gkb0"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kvmm4"]
 polygon = PackedVector2Array(-26, -22, 0, -22, 0, -8, 12, -8, 12, -22, 18, -22, 18, 16, 12, 16, 12, 12, 2, 12, 2, 16, 0, 16, 0, 18, -2, 18, -2, 20, -8, 20, -8, 14, -18, 14, -18, 20, -24, 20, -24, 10, -26, 10)
@@ -4714,8 +4716,10 @@ animations = [{
 
 [sub_resource type="Resource" id="Resource_prswn"]
 script = ExtResource("6_y7413")
-npc_name = "Herr Sokalski"
+npc_name = "Mr. Sokalski"
 sprite_frames = SubResource("SpriteFrames_k0pxy")
+dialog_timeline_path = "sokalski_timeline"
+dialogic_character = ExtResource("6_shtu6")
 behavior_type = 1
 metadata/_custom_type_script = "uid://j0bl253043i7"
 
@@ -8672,3 +8676,16 @@ position = Vector2(1139, 721.00006)
 scale = Vector2(3.7810485, 2.826794)
 quest = ExtResource("31_shtu6")
 auto_start_dialog = "talk_to_sokalski_timeline"
+
+[node name="BlinkingProf" parent="." instance=ExtResource("33_6gkb0")]
+z_index = 10
+position = Vector2(1119, 516)
+scale = Vector2(0.049821623, 0.07658208)
+chosen_type = 1
+
+[node name="BlinkingChair" parent="." instance=ExtResource("33_6gkb0")]
+visible = false
+z_index = 11
+position = Vector2(1371, 584)
+scale = Vector2(0.04497094, 0.07136563)
+chosen_type = 1
