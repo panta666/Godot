@@ -8930,11 +8930,13 @@ npc_data = SubResource("Resource_okp8e")
 
 [node name="Sunset" type="ColorRect" parent="."]
 visible = false
-z_index = 12
+z_index = 6
 offset_left = 82.0
 offset_top = 64.0
 offset_right = 639.0
 offset_bottom = 433.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
 color = Color(0.9372549, 0.8156863, 0.2, 0.09411765)
 
 [node name="Sunlight" parent="." instance=ExtResource("12_4xjni")]

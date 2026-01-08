@@ -19428,11 +19428,13 @@ auto_start_dialog = "hall_story_timeline"
 
 [node name="Sunset" type="ColorRect" parent="."]
 visible = false
-z_index = 15
+z_index = 6
 offset_left = -652.0
 offset_top = -16.0
 offset_right = 1849.0
 offset_bottom = 1450.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
 color = Color(1, 0.38431373, 0, 0.1882353)
 
 [node name="QuestTrigger2" parent="." instance=ExtResource("18_o55gb")]
