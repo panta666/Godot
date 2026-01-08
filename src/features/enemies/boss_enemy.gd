@@ -60,13 +60,6 @@ func die() -> void:
 
 		# Level 2 für OOP freischalten
 		GlobalScript.unlock_level(GlobalScript.classrooms.oop, 2)
-		
-		# TEST MATH Room freischalten
-	#----------------------------------------------------------------
-		# BITTE ENTFERNEN UND IN BOSS FÜR LEVEL 2 HINZUFÜGEN
-		SaveManager.unlock_door("realworld_math_door")
-		SaveManager.unlock_door("realworld_oop_door_inside")
-	#----------------------------------------------------------------
 
 		# LevelUI aktualisieren, falls vorhanden
 		var classroom = get_tree().current_scene

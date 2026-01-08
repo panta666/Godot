@@ -28,28 +28,35 @@ func _apply_all_completed_quests_effects():
 		if SaveManager.get_quest_already_triggered(quest.id):
 			_apply_scene_effects_for_completed_quest(quest)
 
-	# --- Zusätzlich alle NPCs prüfen, ob gespeicherte Effekte vorhanden sind ---
 	var scene_name = get_tree().current_scene.name
 	var scene_effects = SaveManager.get_scene_effects(scene_name)
 
 	for npc_name in scene_effects.keys():
 		var npc_node = get_tree().current_scene.get_node_or_null(npc_name)
-		if not npc_node or not npc_node.npc_data:
+		if not npc_node:
 			continue
 
 		var data = scene_effects[npc_name]
 
-		# Anwenden von can_sit & sit_direction
-		if "can_sit" in data:
-			npc_node.npc_data.can_sit = data["can_sit"]
-		if "sit_direction" in data:
-			npc_node.npc_data.sit_direction = data["sit_direction"]
-		if "dialog_timeline_path" in data:
-			npc_node.npc_data.dialog_timeline_path = data["dialog_timeline_path"]
+		# --- Sichtbarkeit (für NPCs, Chairs, Overlays, etc.) ---
+		if "visible" in data:
+			npc_node.visible = data["visible"]
 
-		# Wendet die Animation an, wenn NPC sitzen soll
-		if npc_node.has_method("apply_npc_data"):
-			npc_node.apply_npc_data()
+		# --- Farbe (PointLight2D, ColorRect, Sprite2D etc.) ---
+		if "color" in data and npc_node.has_property("color"):
+			npc_node.color = data["color"]
+
+		# --- NPC-spezifische Daten ---
+		if npc_node.has_variable("npc_data") and npc_node.npc_data:
+			if "can_sit" in data:
+				npc_node.npc_data.can_sit = data["can_sit"]
+			if "sit_direction" in data:
+				npc_node.npc_data.sit_direction = data["sit_direction"]
+			if "dialog_timeline_path" in data:
+				npc_node.npc_data.dialog_timeline_path = data["dialog_timeline_path"]
+
+			if npc_node.has_method("apply_npc_data"):
+				npc_node.apply_npc_data()
 
 # --- Wendet alle Szenenänderungen für eine bestimmte Quest an ---
 func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
@@ -86,7 +93,7 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 				blinking_chair.visible = true
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", true)
 
-			# --- NPCs optional aktualisieren ---
+			# --- NPCs aktualisieren ---
 			var npcs_to_update := {
 				"NPC12": {"pos": Vector2(250, 184), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
 				"NPC11": {"pos": Vector2(186, 152), "z": 3, "sit_dir": NPCData.SitDirection.RIGHT},
@@ -211,6 +218,44 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 			if blinking_chair:
 				blinking_chair.visible = false
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", false)
+		"8":
+			# --- Sonnenlicht anpassen ---
+			var sunlight = get_tree().current_scene.get_node_or_null("Sunlight")
+			if sunlight and sunlight is PointLight2D:
+				var sunset_color := Color(1.0, 0.75, 0.45)
+				sunlight.color = sunset_color
+				SaveManager.add_scene_effect(scene_name, "Sunlight", "color", sunset_color)
+
+			# --- Sunset Overlay anzeigen ---
+			var sunset_rect = get_tree().current_scene.get_node_or_null("Sunset")
+			if sunset_rect:
+				sunset_rect.visible = true
+				SaveManager.add_scene_effect(scene_name, "Sunset", "visible", true)
+			
+			
+			# OOP Türe wieder öffnen
+			SaveManager.unlock_door("realworld_oop_door_inside")
+			SaveManager.unlock_door("realworld_math_door")
+			
+			# --- NPCs aktualisieren ---
+			var npcs_to_hide := [
+				"NPC12",
+				"NPC11",
+				"NPC4",
+				"NPC10",
+				"NPC9",
+				"NPC6",
+				"NPC5",
+				"NPC2"
+			]
+
+			for npc_name in npcs_to_hide:
+				var npc_node = get_tree().current_scene.get_node_or_null(npc_name)
+				if not npc_node:
+					continue
+
+				npc_node.visible = false
+				SaveManager.add_scene_effect(scene_name, npc_name, "visible", false)
 
 # --- Lädt alle QuestData .tres aus dem Ordner ---
 func _load_all_quests():

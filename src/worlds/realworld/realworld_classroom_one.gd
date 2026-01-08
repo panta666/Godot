@@ -1,6 +1,8 @@
 extends RealworldScenes
 @onready var classroom_ambiance_player: AudioStreamPlayer = $SFX/ClassroomAmbiancePlayer
-@onready var quest_trigger2: Area2D = $QuestTrigger2
+@onready var quest_trigger2: QuestTrigger = $QuestTrigger2
+@onready var quest_trigger3: QuestTrigger = $QuestTrigger3
+
 
 func _ready() -> void:
 	classroom_ambiance_player.play()
@@ -22,6 +24,19 @@ func _ready() -> void:
 		trigger.monitorable = true
 		trigger.get_node("CollisionShape2D").disabled = false
 		print("QuestTrigger2 aktiviert, OOP Level 2 freigeschaltet!")
+		
+	# QuestTrigger3 standardmäßig deaktivieren
+	var trigger2 := $QuestTrigger3
+	trigger2.monitoring = false
+	trigger2.monitorable = false
+	trigger2.get_node("CollisionShape2D").disabled = true
+
+	# Prüfen, ob Math Door unlocked ist
+	if GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1):
+		trigger2.monitoring = true
+		trigger2.monitorable = true
+		trigger2.get_node("CollisionShape2D").disabled = false
+		print("QuestTrigger3 aktiviert, Math Level freigeschaltet!")
 
 func _on_dialogic_signal(event_name: String) -> void:
 	# Cutscene freigeben
