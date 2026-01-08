@@ -31,15 +31,6 @@ Blender
 """
 
 const music_credits = """
-[b][font_size=40]Art & Visuals[/font_size][/b]
-
-[b]3D Models & Animation[/b]
-
-"Enemies" (Duck, Bug, Boss)
-Created & Animated in Blender
-by [i]Sebastian Wendlandr[/i]
-[color=#888888]Original Assets (Handmade)[/color]
-
 
 [b][font_size=40]Music[/font_size][/b]
 
@@ -157,7 +148,74 @@ by [i]sqeeeek[/i]
 [color=#888888]License: CC0[/color]
 """
 
-const full_credits = "[center]" + main_credits + music_credits + "[/center]"
+const design_credits = """
+[b][font_size=40]Art & Visuals[/font_size][/b]
+
+[b]Characters & NPCs[/b]
+
+"Character Generator 2.0" (Realworld NPCs)
+by [i]MrSwordsman[/i]
+[url]https://legendaryswordsman2.itch.io/character-generator[/url]
+
+"Enemy Models" (Duck, Bug, Boss)
+Modelled & Animated in Blender
+by [i]Sebastian Wendland[/i]
+[color=#888888]Original Assets (Handmade)[/color]
+
+"Player Character" (Adam)
+Created by [i]Dennis Strutmann[/i]
+[color=#888888]Original Assets[/color]
+
+"Dreamworld Character Assets"
+AI Generated via PixelLab
+[url]https://www.pixellab.ai/[/url]
+
+
+[b]Environment & Tilesets[/b]
+
+"Modern Interiors & Exteriors" (Realworld)
+by [i]LimeZu[/i]
+[url]https://limezu.itch.io/[/url]
+
+"Sidescroller Pixelart Sprites (Forest)"
+by [i]Anokolisa[/i]
+[url]https://anokolisa.itch.io/[/url]
+
+"Pixel Platformer Blocks"
+by [i]Kenney[/i]
+[url]https://kenney.nl/assets/pixel-platformer-blocks[/url]
+
+"Free Scrolling City Backgrounds"
+by [i]Free Game Assets (itch.io)[/i]
+[url]https://free-game-assets.itch.io/[/url]
+
+"Background Starry Space"
+by [i]Enjl[/i]
+[url]https://enjl.itch.io/[/url]
+
+
+[b]UI Assets[/b]
+
+"Pixel(ized) Phone"
+by [i]Ashizian[/i]
+[url]https://ashizian.itch.io/[/url]
+
+"Pixel Keyboard Keys UI"
+by [i]DreamMix[/i]
+[url]https://dreammixgames.itch.io/[/url]
+
+[b]VFX & Special Effects[/b]
+
+"Attacks, Explosions and Misc Pixel VFX"
+by [i]combosmooth[/i]
+[url]https://combosmooth.itch.io/vfx-pack[/url]
+
+"Range Attacks" (Calculator / Capsule)
+AI Generated / Researched via Ludo.ai
+[url]https://ludo.ai/[/url]
+"""
+
+const full_credits = "[center]" + main_credits + design_credits + music_credits + "[/center]"
 
 # Flag, um zu wissen, wann wir fertig sind
 var scrolling_finished: bool = false
