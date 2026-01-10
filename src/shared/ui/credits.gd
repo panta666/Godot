@@ -75,6 +75,11 @@ by [i]janica_uys241180[/i]
 by [i]SpliceSound[/i]
 [color=#888888]License: CC0[/color]
 
+"yandere-simulator-schoolbell"
+by [i]SpliceSound[/i]
+[url]https://freesound.org/s/376034/[/url]
+[color=#888888]License: Attribution NonCommercial 4.0[/color]
+
 
 [b]Character & Action[/b]
 
