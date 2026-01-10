@@ -42,6 +42,14 @@ Generated with Suno AI
 Generated with 8BitComposer
 [url]https://www.8bitcomposer.com/[/url]
 
+[b]OOP Theme[/b]
+Generated with 8BitComposer
+[url]https://www.mureka.ai/de/[/url]
+
+[b]Mathe Theme[/b]
+Generated with 8BitComposer
+[url]https://songgenerator.io/de[/url]
+
 
 [b][font_size=40]Sound Effects[/font_size][/b]
 
