@@ -138,6 +138,10 @@ func _get_visible_player() -> CharacterBody2D:
 	for ray in [vision_front, vision_back]:
 		if ray.is_colliding():
 			var collider = ray.get_collider()
+			
+			if collider == null:
+				continue
+				
 			if collider.is_in_group("player"):
 				return collider
 	return null
