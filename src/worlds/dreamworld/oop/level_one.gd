@@ -22,7 +22,7 @@ func _ready() -> void:
 	dialog_trigger2.body_entered.connect(_on_dialog_trigger_entered_timeline2)
 	# Speichert die aktuelle Szene für continue
 	SaveManager.update_current_scene()
-	MusicManager.playMusic(MusicManager.MusicType.DREAMWORLD)
+	MusicManager.playMusic(MusicManager.MusicType.OOP)
 
 func _on_dialog_trigger_entered_timeline1(body: Node) -> void:
 	if is_player(body):

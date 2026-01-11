@@ -7,14 +7,16 @@ enum MusicType {
 	NONE,    # Repräsentiert keine Musik (Stille)
 	MENU,    # Hauptmenü-Theme
 	HUB,      # Hubworld-Theme
-	DREAMWORLD # Dreamworld-Theme
+	OOP, 	  # OOP-Theme
+	MATHE	  # Mathe-Theme
 }
 
 # Bildet die MusicType-Enums auf die vorgeladenen AudioStream-Ressourcen ab.
 const TRACKS = {
 	MusicType.MENU: preload("res://assets/music/MainMenuTheme.wav"),
 	MusicType.HUB: preload("res://assets/music/Hubworld theme.mp3"),
-	MusicType.DREAMWORLD: preload("res://assets/music/DreamworldTheme.mp3")
+	MusicType.OOP: preload("res://assets/music/DreamworldTheme.mp3"),
+	MusicType.MATHE: preload("res://assets/music/Mathe theme.mp3")
 }
 
 var music_player: AudioStreamPlayer

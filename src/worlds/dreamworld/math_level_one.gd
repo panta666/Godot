@@ -30,6 +30,7 @@ var tasks = [
 func _ready():
 	randomize()
 	setup_question()
+	MusicManager.playMusic(MusicManager.MusicType.MATHE)
 	
 	for i in range(3):
 		answer_areas[i].body_entered.connect(

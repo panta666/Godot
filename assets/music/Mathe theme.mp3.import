@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cie7ch7mhl1eq"
+path="res://.godot/imported/Mathe theme.mp3-e5662ea74a65578de2c2f562522685e3.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Mathe theme.mp3"
+dest_files=["res://.godot/imported/Mathe theme.mp3-e5662ea74a65578de2c2f562522685e3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

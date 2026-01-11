@@ -42,6 +42,14 @@ Generated with Suno AI
 Generated with 8BitComposer
 [url]https://www.8bitcomposer.com/[/url]
 
+[b]OOP Theme[/b]
+Generated with 8BitComposer
+[url]https://www.mureka.ai/de/[/url]
+
+[b]Mathe Theme[/b]
+Generated with 8BitComposer
+[url]https://songgenerator.io/de[/url]
+
 
 [b][font_size=40]Sound Effects[/font_size][/b]
 
@@ -66,6 +74,11 @@ by [i]janica_uys241180[/i]
 "Alarm clock beep close perspective"
 by [i]SpliceSound[/i]
 [color=#888888]License: CC0[/color]
+
+"yandere-simulator-schoolbell"
+by [i]SpliceSound[/i]
+[url]https://freesound.org/s/376034/[/url]
+[color=#888888]License: Attribution NonCommercial 4.0[/color]
 
 
 [b]Character & Action[/b]
