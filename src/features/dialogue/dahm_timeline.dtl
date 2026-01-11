@@ -19,3 +19,4 @@ First day, huh?
 			dahm: …the bugs and ducks start dreaming too.
 			[signal arg="cutscene_end"]
 			[signal arg="quest_talk_to_teacher_done"]
+audio SFX "res://assets/sfx/376034__jia_07__yandere-simulator-schoolbellsongsxpk.mp3"
