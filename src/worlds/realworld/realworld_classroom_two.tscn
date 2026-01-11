@@ -5744,7 +5744,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_joeeu"]
+[sub_resource type="Resource" id="Resource_6gkb0"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 sprite_frames = SubResource("SpriteFrames_63eju")
@@ -6426,7 +6426,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_ihjve"]
+[sub_resource type="Resource" id="Resource_o51tc"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 npc_name = "Jens"
@@ -8147,7 +8147,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Resource" id="Resource_fnyri"]
+[sub_resource type="Resource" id="Resource_3tukc"]
 resource_local_to_scene = true
 script = ExtResource("6_y7413")
 sprite_frames = SubResource("SpriteFrames_a1gga")
@@ -8586,7 +8586,7 @@ npc_data = SubResource("Resource_hh4ny")
 
 [node name="NPC4" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1254, 510)
-npc_data = SubResource("Resource_joeeu")
+npc_data = SubResource("Resource_6gkb0")
 
 [node name="NPC5" parent="." instance=ExtResource("5_fd6lo")]
 position = Vector2(1579, 684)
@@ -8631,7 +8631,7 @@ coin_category = "math"
 [node name="NPC2" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
 position = Vector2(1492, 563)
-npc_data = SubResource("Resource_ihjve")
+npc_data = SubResource("Resource_o51tc")
 
 [node name="NPC6" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
@@ -8666,7 +8666,7 @@ npc_data = SubResource("Resource_5jvhl")
 [node name="NPC12" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3
 position = Vector2(1301, 530)
-npc_data = SubResource("Resource_fnyri")
+npc_data = SubResource("Resource_3tukc")
 
 [node name="NPC13" parent="." instance=ExtResource("5_fd6lo")]
 z_index = 3

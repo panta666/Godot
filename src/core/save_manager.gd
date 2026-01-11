@@ -163,6 +163,11 @@ func load_game():
 		apply_audio_settings()
 		return
 
+	# Signal feuern, damit HUD aktualisiert wird
+	for stat in save_data["player_stats"]:
+		if save_data["player_stats"][stat]:
+			SaveManager.player_stats_changed.emit(stat, true)
+
 	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
 	if file == null:
 		print("SaveManager: Fehler beim Öffnen der Speicherdatei zum Lesen.")
@@ -294,6 +299,12 @@ func unlock_chair():
 
 func is_chair_unlocked() -> bool:
 	return save_data["game_progress"].get("chair_unlocked", false)
+	
+func has_any_player_stat_unlocked() -> bool:
+	for v in save_data["player_stats"].values():
+		if v == true:
+			return true
+	return false
 
 ## ----------------------------------------------------------------
 ## GETTER-FUNKTIONEN: Zum Abrufen von Daten
