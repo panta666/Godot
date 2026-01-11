@@ -37,4 +37,10 @@ func _return_to_classroom() -> void:
 	# Kurze Wartezeit
 	await get_tree().create_timer(0.2).timeout
 	# Szenenwechsel zurück
+		# Blink Overlay laden
+	var blink_overlay = preload("res://src/shared/components/blink_overlay.tscn").instantiate()
+	get_tree().root.add_child(blink_overlay)
+	
+	var overlay = blink_overlay.get_node("Blink_Overlay")
+	await overlay.play_wake_up()
 	GlobalScript.change_scene("realworld_classroom_one")

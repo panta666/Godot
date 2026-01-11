@@ -46,25 +46,27 @@ func play_sleep_wake(next_scene_path: String) -> void:
 
 	visible = false
 	
-func play_sleep_wake_nosound(next_scene_path: String) -> void:
+func play_sleep_wake_nosound(next_scene_path: String = "") -> void:
 	GlobalScript.transition_scene = true
 	visible = true
-	
-	# Augen langsam schließen + Blur hoch
+
+	# Augen schließen + Blur hoch
 	await animate_shader("blink_progress", 0.0, 1.0, second_blink_duration)
 	await animate_shader("blur_strength", 0.0, max_blur_strength, second_blink_duration)
 
 	# Augen geschlossen halten
 	await get_tree().create_timer(eyes_closed_hold).timeout
 
-	# Szene wechseln
-	get_tree().change_scene_to_file(next_scene_path)
+	# NUR wenn explizit gewünscht (Legacy / Altcode)
+	if next_scene_path != "":
+		get_tree().change_scene_to_file(next_scene_path)
 
-	# Aufwachen: Augen öffnen + Blur weg
+	# Aufwachen
 	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
 	await animate_shader("blur_strength", max_blur_strength, 0.0, second_blink_duration)
 
 	visible = false
+	GlobalScript.transition_scene = false
 
 # ------------------------------------------------------
 # Hilfsfunktion: Einzelnes Blinzeln mit Blur gekoppelt
@@ -95,13 +97,17 @@ func animate_shader(param: String, from: float, to: float, duration: float) -> v
 		t += get_process_delta_time()
 	mat.set_shader_parameter(param, to)
 
-func play_wake_up(next_scene_path: String) -> void:
+func play_wake_up(next_scene_path: String = "") -> void:
 	GlobalScript.transition_scene = true
 	visible = true
-	get_tree().change_scene_to_file(next_scene_path)
+
+	# NUR wechseln, wenn explizit gewünscht (z. B. alter Code)
+	if next_scene_path != "":
+		get_tree().change_scene_to_file(next_scene_path)
 
 	# Aufwachen: Augen öffnen + Blur weg
 	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
 	await animate_shader("blur_strength", max_blur_strength, 0.0, second_blink_duration)
-	
+
 	visible = false
+	GlobalScript.transition_scene = false

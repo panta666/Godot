@@ -13,55 +13,64 @@ var unlocked: bool = false
 func _ready():
 	# HUD initial unsichtbar
 	visible = false
+
+	# Signal verbinden, falls noch nicht verbunden
+	if not SaveManager.player_stats_changed.is_connected(_on_player_stats_changed):
+		SaveManager.player_stats_changed.connect(_on_player_stats_changed)
+
+	# Prüfen, ob bereits Player-Stats freigeschaltet sind (z.B. beim Continue)
+	for stat in SaveManager.save_data["player_stats"]:
+		if SaveManager.save_data["player_stats"][stat]:
+			_on_player_stats_changed(stat, true) # direkt aufrufen, um HUD zu aktivieren
+
+	# Player-abhängige Sichtbarkeit erst prüfen, wenn Player existiert
+	_wait_for_player()
+
+
+# Neue Funktion, wartet bis Player existiert
+func _wait_for_player() -> void:
+	while not GlobalScript.player:
+		await get_tree().process_frame
+	# Jetzt Player existiert -> HUD aktualisieren
+	unlocked = SaveManager.has_any_player_stat_unlocked()
 	_update_icons()
+	_update_visibility()
 
-	# Shop-Update Signal: wird gefeuert, wenn ein PowerUp gekauft/erhalten wird
-	if not SaveManager.shop_unlocked_signal.is_connected(_on_powerup_unlocked):
-		SaveManager.shop_unlocked_signal.connect(_on_powerup_unlocked)
-
-	# Frame-Update für Sichtbarkeit und Icons
-	get_tree().process_frame.connect(_on_frame)
-
-func _on_frame():
+func _process(_delta):
+	_update_visibility()
+	
+func _on_player_stats_changed(_stat, _value):
+	unlocked = SaveManager.has_any_player_stat_unlocked()
 	_update_visibility()
 	_update_icons()
-
-# -----------------------------------------
-# Signal Callback: PowerUp wurde freigeschaltet
-# -----------------------------------------
-func _on_powerup_unlocked():
-	unlocked = true
-	_update_visibility()
-	_update_icons()
-
+	
 # -----------------------------------------
 # Sichtbarkeit prüfen
 # -----------------------------------------
 func _update_visibility():
-	# HUD aus während Transition
+	if not unlocked:
+		visible = false
+		return
+
 	if GlobalScript.transition_scene:
 		visible = false
 		return
 
-	# Wenn HUD nicht im Tree
-	if not is_inside_tree():
+	var player := GlobalScript.player
+	if not player or not is_instance_valid(player):
 		visible = false
 		return
 
-	# Aktuelle Szene prüfen
-	var scene := get_tree().current_scene
-	if scene == null:
+	if not (player is PlayerRealworld):
 		visible = false
 		return
 
-	# Player prüfen (kann null oder invalid sein)
-	var player_exists := GlobalScript.player != null and is_instance_valid(GlobalScript.player)
-	var is_realworld_player := player_exists and GlobalScript.player is PlayerRealworld
-	var not_mainmenu := scene.name != "MainMenu"
+	if get_tree().current_scene.name == "MainMenu":
+		visible = false
+		return
 
-	# HUD nur anzeigen, wenn freigeschaltet, Player existiert, Realworld, keine MainMenu und keine Transition
-	visible = unlocked and is_realworld_player and not_mainmenu and not GlobalScript.transition_scene
-
+	visible = true
+	
 # -----------------------------------------
 # Icons updaten
 # -----------------------------------------
@@ -85,7 +94,7 @@ func _update_icons():
 	_set_icon(heal_icon, SaveManager.is_player_stat_unlocked("heal_ability"))
 
 	# Handy ausgrauen, wenn Player beschäftigt
-	if GlobalScript.player.is_busy:
+	if "is_busy" in GlobalScript.player and GlobalScript.player.is_busy:
 		phone.self_modulate = Color(1,1,1,0.35)
 	else:
 		phone.self_modulate = Color(1,1,1,1)
