@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xnykv3jipun8"]
+[gd_scene load_steps=15 format=3 uid="uid://xnykv3jipun8"]
 
 [ext_resource type="Texture2D" uid="uid://cecii67wnthxn" path="res://assets/tilemap/32x32/train.png" id="1_7prj5"]
 [ext_resource type="Script" uid="uid://bsi33qfph8bct" path="res://src/worlds/realworld/train_scene.gd" id="1_mlpd5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://7pflni7yxeg3" path="res://assets/Parallax_BG/5.png" id="5_ocwmx"]
 [ext_resource type="PackedScene" uid="uid://dvbwb53kbyq0y" path="res://src/shared/components/skip_scene.tscn" id="5_uaq5e"]
 [ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="8_4l6ny"]
+[ext_resource type="AudioStream" uid="uid://cas2sakr7wi3x" path="res://assets/sfx/372873__jordir__train.mp3" id="10_p3jdk"]
 
 [sub_resource type="Animation" id="Animation_uaq5e"]
 length = 10.0
@@ -218,3 +219,9 @@ color = Color(0.16078432, 0.13725491, 0.1882353, 1)
 [node name="Skip_Scene" parent="." instance=ExtResource("5_uaq5e")]
 layer = 6
 next_scene = "uid://dqloihqvrxpgp"
+
+[node name="Trainsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p3jdk")
+volume_db = -12.5
+autoplay = true
+bus = &"SFX"

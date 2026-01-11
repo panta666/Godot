@@ -5,5 +5,5 @@ narrator: Do you want to skip the tutorial?
 	[signal arg="cutscene_end"]
 - yes
 	[signal arg="cutscene_end"]
-	audio music "res://assets/sfx/369880__splicesound__alarm-clock-beep-close-perspective.wav"
+	audio SFX "res://assets/sfx/369880__splicesound__alarm-clock-beep-close-perspective.wav"
 	[signal arg="wake_up"]
