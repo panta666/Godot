@@ -105,8 +105,14 @@ audio/channel_defaults={
 "loop": false,
 "volume": 0.0
 },
+"SFX": {
+"audio_bus": "SFX",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+},
 "music": {
-"audio_bus": "",
+"audio_bus": "Music",
 "fade_length": 0.0,
 "loop": true,
 "volume": 0.0
