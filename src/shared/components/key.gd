@@ -7,10 +7,7 @@ var drop_manager
 
 
 func _on_body_entered(body: Node2D) -> void:
-	#print(body == player_dreamworld)
-	#print(body)
 	if body.is_in_group("player"):
 		drop_manager = body.get_parent().find_child("Drop_Manager")
-		#print(drop_manager)
 		drop_manager.add_key()
 		queue_free()

@@ -20,9 +20,6 @@ func _ready() -> void:
 func update_keys(value: int):
 	keys = value
 	key_label.text = "Keys: " + str(value) + "/4"
-	#if first_key == true:
-	#	get_child(0).visible = true
-	#	first_key = false
 
 #func set_scene(scene_name: String):
 #	var loaded_coins = SaveManager.get_ammount_dreamworld_coins(scene_name)
