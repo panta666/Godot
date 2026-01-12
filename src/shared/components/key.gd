@@ -5,7 +5,7 @@ extends Area2D
 
 var drop_manager
 
-
+#Beim Einsammeln wird die Anzahl der Keys im drop_manager erhöht und der key verschwindet
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		drop_manager = body.get_parent().find_child("Drop_Manager")
