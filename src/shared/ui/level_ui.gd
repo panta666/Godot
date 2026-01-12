@@ -38,6 +38,7 @@ var phone_state: PhoneState = PhoneState.OFF
 var dragging := false
 var drag_offset := Vector2.ZERO
 
+var prof_mode = false
 
 # ======================================================
 # READY
@@ -50,6 +51,7 @@ func _ready():
 	
 	blinking.visible = false
 
+	prof_mode = GlobalScript.is_prof_mode()
 
 	# Buttons verbinden
 	enter_level_button.connect("pressed", Callable(self, "_on_enter_level1_pressed"))
@@ -95,11 +97,11 @@ func update_level_button():
 
 func _update_oop_buttons():
 	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1)
-	enter_level_button.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1) or GlobalScript.is_prof_mode())
+	enter_level_button.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1) or prof_mode)
 	enter_level_button.text = "OOP Level 1"
 
 	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2)
-	enter_level_button2.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2) or GlobalScript.is_prof_mode())
+	enter_level_button2.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2) or prof_mode)
 	enter_level_button2.text = "OOP Level 2"
 
 	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
@@ -109,7 +111,7 @@ func _update_oop_buttons():
 
 func _update_medg_buttons():
 	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
-	enter_level_button.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
+	enter_level_button.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1) or prof_mode)
 	enter_level_button.text = "MATH Level 1"
 
 	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
