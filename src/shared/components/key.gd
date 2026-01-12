@@ -1,16 +1,16 @@
 extends Area2D
 
-@onready var player_dreamworld: CharacterBody2D = %Player_Dreamworld
-@onready var player_dreamworld_tutorial: CharacterBody2D = %Player_Dreamworld
+#@onready var player_dreamworld: CharacterBody2D = %Player_Dreamworld
+#@onready var player_dreamworld_tutorial: CharacterBody2D = %Player_Dreamworld
 
 var drop_manager
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print(body == player_dreamworld)
-	print(body)
+	#print(body == player_dreamworld)
+	#print(body)
 	if body.is_in_group("player"):
 		drop_manager = body.get_parent().find_child("Drop_Manager")
-		print(drop_manager)
+		#print(drop_manager)
 		drop_manager.add_key()
 		queue_free()

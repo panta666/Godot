@@ -1,5 +1,7 @@
 extends Node
 
+signal key_collected(total_keys: int)
+
 @export var items := [
 	preload("res://src/shared/components/key.tscn"),
 	preload("res://src/shared/components/key.tscn"),
@@ -26,6 +28,7 @@ func distribute_items():
 func add_key():
 	keys += 1
 	print(keys)
+	key_collected.emit(keys)
 	if keys == 4:
 		print("open")
 		door = get_parent().find_child("Boss_door")
