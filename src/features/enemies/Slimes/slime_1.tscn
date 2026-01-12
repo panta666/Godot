@@ -1,0 +1,238 @@
+[gd_scene load_steps=47 format=3 uid="uid://d4l8ts0xr1xf6"]
+
+[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_bh7k8"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="2_cyojr"]
+[ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="2_emyvm"]
+[ext_resource type="Resource" uid="uid://be0ehycyqholx" path="res://src/features/enemies/slime_dash_small.tres" id="3_fn6lj"]
+[ext_resource type="Texture2D" uid="uid://doh6xpary46dy" path="res://assets/characters/enemies/Slimes/1/Dash/0001.png" id="3_nk08y"]
+[ext_resource type="Texture2D" uid="uid://bdxbv60djnyl1" path="res://assets/characters/enemies/Slimes/1/Dash/0002.png" id="4_bh7k8"]
+[ext_resource type="Texture2D" uid="uid://bb8wl10ux3tlf" path="res://assets/characters/enemies/Slimes/1/Dash/0003.png" id="5_emyvm"]
+[ext_resource type="Texture2D" uid="uid://4i202j5ctom3" path="res://assets/characters/enemies/Slimes/1/Dash/0004.png" id="6_cyojr"]
+[ext_resource type="Texture2D" uid="uid://bcrsqdfijwlf0" path="res://assets/characters/enemies/Slimes/1/Dash/0005.png" id="7_fn6lj"]
+[ext_resource type="Texture2D" uid="uid://b6s6xk4ueqnjt" path="res://assets/characters/enemies/Slimes/1/Idle/0001.png" id="8_4431c"]
+[ext_resource type="Texture2D" uid="uid://bi3i4c2xm0dt6" path="res://assets/characters/enemies/Slimes/1/Idle/0002.png" id="9_43moc"]
+[ext_resource type="Texture2D" uid="uid://rvmrvurm2r2q" path="res://assets/characters/enemies/Slimes/1/Idle/0003.png" id="10_5jlsc"]
+[ext_resource type="Texture2D" uid="uid://blpm7r4a86drq" path="res://assets/characters/enemies/Slimes/1/Idle/0004.png" id="11_x1b8u"]
+[ext_resource type="Texture2D" uid="uid://bqg3wnfdp3p0k" path="res://assets/characters/enemies/Slimes/1/Idle/0005.png" id="12_dl78l"]
+[ext_resource type="Texture2D" uid="uid://b80hw481wopay" path="res://assets/characters/enemies/Slimes/1/Idle/0006.png" id="13_8vn1y"]
+[ext_resource type="Texture2D" uid="uid://b4vd8ottq8ky6" path="res://assets/characters/enemies/Slimes/1/Idle/0007.png" id="14_sajf7"]
+[ext_resource type="Texture2D" uid="uid://dkmnpehkb7hi" path="res://assets/characters/enemies/Slimes/1/Idle/0008.png" id="15_8xqnf"]
+[ext_resource type="Texture2D" uid="uid://blyixsrg7xsu5" path="res://assets/characters/enemies/Slimes/1/Idle/0009.png" id="16_llqwn"]
+[ext_resource type="Texture2D" uid="uid://md71varwtohq" path="res://assets/characters/enemies/Slimes/1/Idle/0010.png" id="17_iuhvm"]
+[ext_resource type="Texture2D" uid="uid://ddmw7w0pq5uhh" path="res://assets/characters/enemies/Slimes/1/Idle/0011.png" id="18_hj3an"]
+[ext_resource type="Texture2D" uid="uid://bwtda8nch3bpu" path="res://assets/characters/enemies/Slimes/1/Idle/0012.png" id="19_g7mpl"]
+[ext_resource type="Texture2D" uid="uid://pobj5p1yt0pr" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0001.png" id="20_sdpe3"]
+[ext_resource type="Texture2D" uid="uid://upi8hlrgeder" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0002.png" id="21_5ryd0"]
+[ext_resource type="Texture2D" uid="uid://dy3tfh2221cum" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0003.png" id="22_gfrt2"]
+[ext_resource type="Texture2D" uid="uid://cu65iptfsbgxr" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0004.png" id="23_mkks5"]
+[ext_resource type="Texture2D" uid="uid://d1en14bw2kh0c" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0005.png" id="24_mercg"]
+[ext_resource type="Texture2D" uid="uid://dpxj3i21x8c5o" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0006.png" id="25_hks1n"]
+[ext_resource type="Texture2D" uid="uid://dyxo2kvg6skh3" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0007.png" id="26_xpkrr"]
+[ext_resource type="Texture2D" uid="uid://c1ali1j2y6uja" path="res://assets/characters/enemies/Slimes/1/Pre_Attack/0008.png" id="27_8rajm"]
+[ext_resource type="Texture2D" uid="uid://dosgf1aae2maq" path="res://assets/characters/enemies/Slimes/1/Walk/0001.png" id="28_q4bg8"]
+[ext_resource type="Texture2D" uid="uid://cwnlsv1jje1ya" path="res://assets/characters/enemies/Slimes/1/Walk/0002.png" id="29_e2vox"]
+[ext_resource type="Texture2D" uid="uid://bxarpak7hyfit" path="res://assets/characters/enemies/Slimes/1/Walk/0003.png" id="30_xmp5s"]
+[ext_resource type="Texture2D" uid="uid://bj2fi7yyil8hx" path="res://assets/characters/enemies/Slimes/1/Walk/0004.png" id="31_ucmde"]
+[ext_resource type="Texture2D" uid="uid://ciq0fgx32n7k2" path="res://assets/characters/enemies/Slimes/1/Walk/0005.png" id="32_dqmir"]
+[ext_resource type="Texture2D" uid="uid://74uj7jt37yt7" path="res://assets/characters/enemies/Slimes/1/Walk/0006.png" id="33_kjuu2"]
+[ext_resource type="Texture2D" uid="uid://be8lkarv7g6tj" path="res://assets/characters/enemies/Slimes/1/Walk/0007.png" id="34_sax3g"]
+[ext_resource type="Texture2D" uid="uid://b7giwklwd61cu" path="res://assets/characters/enemies/Slimes/1/Walk/0008.png" id="35_r1dea"]
+[ext_resource type="Texture2D" uid="uid://bcrummkdubwu8" path="res://assets/characters/enemies/Slimes/1/Walk/0009.png" id="36_d2ei7"]
+[ext_resource type="Texture2D" uid="uid://cbwtnrbi4wc33" path="res://assets/characters/enemies/Slimes/1/Walk/0010.png" id="37_x04db"]
+[ext_resource type="Texture2D" uid="uid://c4vm3sc8ksid3" path="res://assets/characters/enemies/Slimes/1/Walk/0011.png" id="38_v6i4p"]
+[ext_resource type="Texture2D" uid="uid://osm3m2a1p3d1" path="res://assets/characters/enemies/Slimes/1/Walk/0012.png" id="39_gajvn"]
+[ext_resource type="Texture2D" uid="uid://bk67jdfbxv1r1" path="res://assets/characters/enemies/Slimes/1/Walk/0013.png" id="40_hwy7t"]
+[ext_resource type="Texture2D" uid="uid://ddk4o7f5emnaf" path="res://assets/characters/enemies/Slimes/1/Walk/0014.png" id="41_2hrn5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7q06u"]
+resource_local_to_scene = true
+shader = ExtResource("2_emyvm")
+shader_parameter/flash_color = Color(0.78431374, 0, 0, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o34g0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nk08y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bh7k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_emyvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cyojr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fn6lj")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4431c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_43moc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5jlsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x1b8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dl78l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8vn1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sajf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8xqnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_llqwn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_iuhvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_hj3an")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_g7mpl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_sdpe3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5ryd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_gfrt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_mkks5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_mercg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_hks1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_xpkrr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_8rajm")
+}],
+"loop": true,
+"name": &"pre_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_q4bg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_e2vox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_xmp5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ucmde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_dqmir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_kjuu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_sax3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_r1dea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_d2ei7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_x04db")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_v6i4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_gajvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_hwy7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_2hrn5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72yxd"]
+size = Vector2(420.00098, 135.93785)
+
+[node name="CharacterBody2D" instance=ExtResource("1_bh7k8")]
+attacks = Array[ExtResource("2_cyojr")]([ExtResource("3_fn6lj")])
+STUN_TIME = 0.1
+
+[node name="Health" parent="." index="0"]
+max_health = 25
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_7q06u")
+position = Vector2(0, -5)
+scale = Vector2(0.29166666, 0.29166666)
+sprite_frames = SubResource("SpriteFrames_o34g0")
+animation = &"dash"
+
+[node name="Collision" parent="." index="2"]
+position = Vector2(3.8146948e-07, 3.7499988)
+scale = Vector2(0.79999954, 0.79999954)
+
+[node name="RayCastRight" parent="." index="3"]
+position = Vector2(9.46, -0.43)
+
+[node name="RaycastDownRight" parent="." index="4"]
+position = Vector2(11.21, -5.7)
+
+[node name="Vision_Front" parent="." index="5"]
+position = Vector2(0, 3)
+target_position = Vector2(211.24998, -1.2499999)
+
+[node name="Vision_Back" parent="." index="6"]
+position = Vector2(0, 3)
+target_position = Vector2(-208.74998, 0)
+
+[node name="CollisionShape2D" parent="Tracking_Box" index="0"]
+position = Vector2(0.6249713, -12.50002)
+scale = Vector2(0.99999756, 0.99999756)
+shape = SubResource("RectangleShape2D_72yxd")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-8.3446406e-07, -1.25)
+scale = Vector2(0.99999934, 0.99999934)
+
+[node name="Attack_Cooldown" parent="." index="11"]
+wait_time = 0.2
