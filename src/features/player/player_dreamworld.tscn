@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bgeien6cw7ehi"]
+[gd_scene load_steps=45 format=3 uid="uid://bgeien6cw7ehi"]
 
 [ext_resource type="Script" uid="uid://b6c7kfd4g5jnj" path="res://src/features/player/player_dreamworld.gd" id="1_fd23n"]
 [ext_resource type="Texture2D" uid="uid://dcn32kex2xq3w" path="res://assets/plattformer_character/rotations/south.png" id="2_0ulmu"]
@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://l5jshm6m8b1x" path="res://src/shared/components/hit_flash.gdshader" id="6_tg0uq"]
 [ext_resource type="SpriteFrames" uid="uid://hariq7g2xi0r" path="res://src/features/player/player_dreamworld.tres" id="7_nt51a"]
 [ext_resource type="PackedScene" uid="uid://bvrjjw237u8rk" path="res://src/features/player/heal_ability_charges.tscn" id="21_d4v6j"]
+[ext_resource type="PackedScene" uid="uid://b1ovub4d0gdux" path="res://src/shared/ui/hud_key_fragments.tscn" id="26_qkavg"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="74_3kc26"]
 [ext_resource type="Texture2D" uid="uid://d1atpo45f7fum" path="res://assets/plattformer_character/animations/melee_slash/NPT100.png" id="75_w18fs"]
 [ext_resource type="Texture2D" uid="uid://cqantmmujyskg" path="res://assets/plattformer_character/animations/melee_slash/NPT101.png" id="76_ekknv"]
@@ -394,6 +395,13 @@ offset_left = 16.0
 offset_top = 19.0
 offset_right = 111.0
 offset_bottom = 72.0
+
+[node name="hud_key_fragments" parent="HUD" instance=ExtResource("26_qkavg")]
+offset_left = 940.0
+offset_top = 59.0
+offset_right = 940.0
+offset_bottom = 59.0
+scale = Vector2(0.074, 0.055)
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
 [connection signal="area_entered" from="HitBoxDown" to="." method="_on_hit_box_down_body_entered"]
