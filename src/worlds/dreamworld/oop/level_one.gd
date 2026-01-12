@@ -38,10 +38,12 @@ func _on_dialog_trigger_entered_timeline2(body: Node) -> void:
 	if keys == 0:
 		print("Keine Schlüssel vorhanden")
 		start_cutscene_with(body, timeline_2_no_key)
+		find_child("hud_key_fragments").get_child(0).visible = true
 
 	elif keys < 4:
 		print("Ein oder mehrere Schlüssel vorhanden")
 		start_cutscene_with(body, timeline_2)
+		find_child("hud_key_fragments").get_child(0).visible = true
 
 	else:
 		print("Alle Schlüssel gesammelt")

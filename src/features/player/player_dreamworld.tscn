@@ -397,10 +397,10 @@ offset_right = 111.0
 offset_bottom = 72.0
 
 [node name="hud_key_fragments" parent="HUD" instance=ExtResource("26_qkavg")]
-offset_left = 840.0
-offset_top = 9.0
-offset_right = 840.0
-offset_bottom = 9.0
+offset_left = 940.0
+offset_top = 59.0
+offset_right = 940.0
+offset_bottom = 59.0
 scale = Vector2(0.074, 0.055)
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_depleted"]
