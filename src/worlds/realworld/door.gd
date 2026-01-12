@@ -28,9 +28,10 @@ func _on_body_entered(body):
 		return
 	
 	# Locked Absicherung
-	if needs_unlock and not SaveManager.is_door_unlocked(door_id):
-		_show_locked_feedback()
-		return
+	if not GlobalScript.is_prof_mode():
+		if needs_unlock and not SaveManager.is_door_unlocked(door_id):
+			_show_locked_feedback()
+			return
 		
 	is_opening = true
 	GlobalScript.player.can_move = false
