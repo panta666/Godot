@@ -65,7 +65,12 @@ func _update_visibility():
 		visible = false
 		return
 
-	if get_tree().current_scene.name == "MainMenu":
+	var scene := get_tree().current_scene
+	if not scene or not is_instance_valid(scene):
+		visible = false
+		return
+
+	if scene.name == "MainMenu":
 		visible = false
 		return
 
