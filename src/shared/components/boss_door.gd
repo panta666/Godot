@@ -5,6 +5,10 @@ extends StaticBody2D
 var is_open = false
 
 #Öffnet die Tür zum Bossraum
+func _ready():
+	if GlobalScript.is_prof_mode():
+		open_door()
+
 func open_door():
 	is_open = true
 	sprite_2d.visible = false
