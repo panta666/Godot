@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=40 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://src/shared/components/coin.tscn" id="11_14ga8"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="11_h36qc"]
 [ext_resource type="PackedScene" uid="uid://d46ibheny51y" path="res://src/shared/ui/key_visuals.tscn" id="13_ria7j"]
+[ext_resource type="PackedScene" uid="uid://deaxp8exxtquv" path="res://src/features/enemies/Ghost.tscn" id="14_8658m"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="15_vh1ip"]
+[ext_resource type="PackedScene" uid="uid://ownr2hsvn3so" path="res://src/features/enemies/projectile_math.tscn" id="15_wlsv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h36qc"]
 texture = ExtResource("3_grcn0")
@@ -4904,6 +4907,15 @@ show_a = true
 show_s = true
 show_d = true
 animate_s = true
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("14_8658m")]
+position = Vector2(637, 50)
+scale = Vector2(1.2, 1.2)
+collision_layer = 4
+attacks = Array[ExtResource("15_vh1ip")]([])
+SPEED = 75.0
+STUN_TIME = 0.3
+projectile_scene = ExtResource("15_wlsv5")
 
 [connection signal="body_entered" from="Fall_Damage" to="." method="_on_fall_damage_body_entered"]
 [connection signal="body_entered" from="Fall_Damage2" to="." method="_on_fall_damage_2_body_entered"]
