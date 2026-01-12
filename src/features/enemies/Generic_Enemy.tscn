@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://chn72gotg061q"]
+[gd_scene load_steps=17 format=3 uid="uid://chn72gotg061q"]
 
 [ext_resource type="Script" uid="uid://b1d181poax4t4" path="res://src/features/enemies/generic_enemy.gd" id="1_3o17i"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="2_1ivbo"]
 [ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="3_df741"]
+[ext_resource type="Resource" uid="uid://v0w75l7t0s1k" path="res://src/features/enemies/ghost_aoe.tres" id="3_dldu4"]
 [ext_resource type="Script" uid="uid://bjacxmyhs0kwh" path="res://src/features/enemies/enemy_sound_player.gd" id="5_bxjce"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="49_t4mn2"]
 [ext_resource type="Script" uid="uid://cptwt0tu7lhxh" path="res://src/shared/components/health.gd" id="50_5sdct"]
@@ -65,6 +67,7 @@ size = Vector2(16.250011, 5.78125)
 [node name="CharacterBody2D" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_3o17i")
+attacks = Array[ExtResource("2_1ivbo")]([ExtResource("3_dldu4")])
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("50_5sdct")
@@ -144,7 +147,7 @@ shape = SubResource("RectangleShape2D_80wx8")
 disabled = true
 
 [node name="Attack_Cooldown" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 
 [node name="EnemySoundPlayer" type="Node2D" parent="."]

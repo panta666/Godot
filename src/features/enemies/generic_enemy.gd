@@ -21,7 +21,7 @@ class_name Enemy
 # -------------------------------------------------------------------
 # RESOURCES
 # -------------------------------------------------------------------
-var projectile_scene := preload("res://src/features/enemies/Projectile.tscn")
+@export var projectile_scene := preload("res://src/features/enemies/Projectile.tscn")
 var healthbar_scene := preload("res://src/features/enemies/enemy_health_bar.tscn")
 
 # -------------------------------------------------------------------
@@ -167,7 +167,6 @@ func _start_attack() -> void:
 		return
 		
 	if attacks.is_empty() and range_attacks.is_empty():
-		print("Even the confusion is confused")
 		return
 
 	attack_allowed = false
