@@ -53,13 +53,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o17i"]
-size = Vector2(60.937546, 39.062534)
+size = Vector2(21.875008, 21.875008)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p6fs8"]
-size = Vector2(1125.0022, 255.0005)
+size = Vector2(420.00098, 135.93785)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go3w4"]
-size = Vector2(42.500015, 21.250015)
+size = Vector2(17.500008, 17.500008)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80wx8"]
 size = Vector2(16.250011, 5.78125)
