@@ -126,9 +126,12 @@ var is_cutscene_active: bool = false
 # Sound
 @onready var audio_player: PlayerDreamworldSoundPlayer = $AudioPlayer
 
+# Prof mode
+var prof_mode = false
+
 func _ready() -> void:
 	GlobalScript.enemy_damaged.connect(on_enemy_damaged)
-
+	prof_mode = GlobalScript.is_prof_mode()
 	GlobalScript.player_dw = self
 	current_scene = get_tree().current_scene
 	scene_name = current_scene.get_name().to_lower()
@@ -158,36 +161,38 @@ func _ready() -> void:
 	hund_coin.set_scene(current_scene.get_name())
 
 	current_heal_charges = max_heal_charges
+	
+	is_invincible = prof_mode
 
 func activate_player_stats():
 	# Activate Stat according to unlocks.
 
 	# Double Jump
-	if SaveManager.is_player_stat_unlocked("double_jump"):
+	if SaveManager.is_player_stat_unlocked("double_jump") or prof_mode:
 		activate_double_jump()
 
 	# Dash
-	if SaveManager.is_player_stat_unlocked("dash"):
+	if SaveManager.is_player_stat_unlocked("dash") or prof_mode:
 		activate_dash()
 
 	# Range Attack
-	if SaveManager.is_player_stat_unlocked("range_attack"):
+	if SaveManager.is_player_stat_unlocked("range_attack") or prof_mode:
 		activate_range_attack()
 
 	# Range Attack Increase
-	if SaveManager.is_player_stat_unlocked("range_attack_increase"):
+	if SaveManager.is_player_stat_unlocked("range_attack_increase") or prof_mode:
 		increase_range_attack_charges()
 
 	# Crouch
-	if SaveManager.is_player_stat_unlocked("crouching"):
+	if SaveManager.is_player_stat_unlocked("crouching") or prof_mode:
 		activate_crouching()
 
 	#Heal Ability
-	if SaveManager.is_player_stat_unlocked("heal_ability"):
+	if SaveManager.is_player_stat_unlocked("heal_ability") or prof_mode:
 		activate_heal()
 
 	#Heal Ability Increase
-	if SaveManager.is_player_stat_unlocked("heal_ability_increase"):
+	if SaveManager.is_player_stat_unlocked("heal_ability_increase") or prof_mode:
 		increase_heal_charges()
 
 func _physics_process(delta: float) -> void:
@@ -713,6 +718,9 @@ func handle_shake(delta: float):
 #Handle Death
 func _on_health_depleted() -> void:
 	if not is_alive:
+		return
+
+	if prof_mode:
 		return
 
 	is_alive = false
