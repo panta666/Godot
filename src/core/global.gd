@@ -53,7 +53,7 @@ const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 	Cheatmode is currently planed to deactivate upon closing the game.
 """
 
-var prof_mode = true
+var prof_mode = false
 
 func set_prof_mode(on = true):
 	prof_mode = on
