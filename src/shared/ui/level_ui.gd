@@ -95,11 +95,11 @@ func update_level_button():
 
 func _update_oop_buttons():
 	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1)
-	enter_level_button.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1)
+	enter_level_button.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 1) or GlobalScript.is_prof_mode())
 	enter_level_button.text = "OOP Level 1"
 
 	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2)
-	enter_level_button2.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2)
+	enter_level_button2.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2) or GlobalScript.is_prof_mode())
 	enter_level_button2.text = "OOP Level 2"
 
 	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
