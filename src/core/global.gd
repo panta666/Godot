@@ -48,6 +48,19 @@ var game_first_loading: bool = true
 
 const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 
+"""
+	Profmode is the cheatability. You will have a lot of benefits.
+	Cheatmode is currently planed to deactivate upon closing the game.
+"""
+
+var prof_mode = true
+
+func set_prof_mode(on = true):
+	prof_mode = on
+
+func is_prof_mode():
+	return prof_mode
+
 # -------------------------
 # Freigeschaltete Level (global)
 # -------------------------
