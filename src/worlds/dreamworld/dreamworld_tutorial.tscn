@@ -2033,7 +2033,7 @@ collision_mask = 3
 position = Vector2(2206, -80)
 shape = SubResource("RectangleShape2D_y8p36")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("15_iu4jq")]
+[node name="CharacterBody2D" parent="." groups=["enemy"] instance=ExtResource("15_iu4jq")]
 position = Vector2(2305, 128)
 
 [node name="Label3" type="Label" parent="."]

@@ -11,8 +11,9 @@ var first_key = true
 func _ready() -> void:
 	get_child(0).visible = false
 	drop_manager = find_parent("Player_Dreamworld").get_parent().find_child("Drop_Manager")
-	print(drop_manager.keys)
-	drop_manager.key_collected.connect(update_keys)
+	if drop_manager != null:
+		print(drop_manager.keys)
+		drop_manager.key_collected.connect(update_keys)
 
 
 #Aktualisiert das UI zur Anzeige der Keys
