@@ -341,41 +341,65 @@ func _find_animated_sprite(node: Node) -> AnimatedSprite2D:
 func change_scene(new_scene: String) -> void:
 	transition_scene = false
 
+	# Dialogic sauber entfernen, falls vorhanden
 	var dialogic_node = get_tree().root.get_node_or_null("DialogicLayout_VisualNovelStyle")
 	if dialogic_node:
 		dialogic_node.queue_free()
 
+	# Alte Szene entfernen
 	var old_scene = get_tree().current_scene
 	if old_scene:
 		old_scene.queue_free()
 
 	var scene_path := ""
-	if new_scene.begins_with("realworld_") or new_scene == "train_scene":
+
+	# Falls bereits ein kompletter Pfad übergeben wurde → direkt verwenden
+	if new_scene.begins_with("res://"):
+		scene_path = new_scene
+
+	elif new_scene.begins_with("realworld_") or new_scene == "train_scene":
 		scene_path = "res://src/worlds/realworld/%s.tscn" % new_scene
+
 	elif new_scene.begins_with("oop_level_"):
 		scene_path = "res://src/worlds/dreamworld/oop/%s.tscn" % new_scene
+
 	elif new_scene.begins_with("medg_level_"):
 		scene_path = "res://src/worlds/dreamworld/medg/%s.tscn" % new_scene
+
 	elif new_scene == "dreamworld_tutorial":
 		scene_path = "res://src/worlds/dreamworld/%s.tscn" % new_scene
-	else:
-		# Fallback or generic search
-		scene_path = "res://src/worlds/realworld/%s.tscn" % new_scene
-	
-	if not FileAccess.file_exists(scene_path):
-		# Try other locations if fallback failed
-		if FileAccess.file_exists("res://src/worlds/dreamworld/%s.tscn" % new_scene):
-			scene_path = "res://src/worlds/dreamworld/%s.tscn" % new_scene
 
-	var new_scene_instance = load(scene_path).instantiate()
+	else:
+		# Fallback: zuerst Realworld versuchen
+		scene_path = "res://src/worlds/realworld/%s.tscn" % new_scene
+
+	# Fallback-Check, falls Realworld nicht existiert
+	if not FileAccess.file_exists(scene_path):
+		var dreamworld_fallback = "res://src/worlds/dreamworld/%s.tscn" % new_scene
+		if FileAccess.file_exists(dreamworld_fallback):
+			scene_path = dreamworld_fallback
+
+	# ------------------------------------------
+	# Szene laden + instanziieren
+	# ------------------------------------------
+	var scene_res = load(scene_path)
+	if scene_res == null:
+		push_error("change_scene(): Szene konnte nicht geladen werden → %s" % scene_path)
+		return
+
+	var new_scene_instance = scene_res.instantiate()
 	get_tree().root.add_child(new_scene_instance)
 	get_tree().current_scene = new_scene_instance
 
 	previous_scene = current_scene
 	current_scene = new_scene
 
+	# Player in neue Szene verschieben
 	move_player_to_current_scene()
-	
+
+	# ------------------------------------------
+	# Gespeicherte Szeneffekte anwenden
+	# ------------------------------------------
 	var scene_name = new_scene_instance.name
 	var effects = SaveManager.get_scene_effects(scene_name)
 
