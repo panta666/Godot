@@ -42,5 +42,5 @@ func _return_to_classroom() -> void:
 	get_tree().root.add_child(blink_overlay)
 	
 	var overlay = blink_overlay.get_node("Blink_Overlay")
-	await overlay.play_wake_up()
-	GlobalScript.change_scene("realworld_classroom_one")
+	# Transition zurück in die echte Welt
+	await overlay.play_sleep_wake_nosound("realworld_classroom_one")

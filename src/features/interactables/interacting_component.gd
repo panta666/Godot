@@ -11,8 +11,7 @@ var can_interact := true
 
 func _input(event: InputEvent) -> void:
 	# ESC-Menü offen - keine Interaktion erlauben
-	var esc_menu = GlobalScript.esc_menu_instance
-	if esc_menu and (esc_menu.menu_container.visible or esc_menu.options_container.visible):
+	if EscMenu.is_open:
 		# Menü offen - Interaktion blockieren
 		return
 		
@@ -28,9 +27,8 @@ func _input(event: InputEvent) -> void:
 			can_interact = true
 
 func _process(_delta: float) -> void:
-	var esc_menu = GlobalScript.esc_menu_instance
-	# Menü offen → keine Anzeige
-	if esc_menu and (esc_menu.menu_container.visible or esc_menu.options_container.visible):
+	# Menü offen →-keine Anzeige
+	if EscMenu.is_open:
 		interact_ui.hide()
 		return
 
