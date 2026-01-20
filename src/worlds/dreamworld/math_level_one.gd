@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var miniboss = $Miniboss
+@onready var enemy_gate = $Enemy_Defeat_Gate
+
 @onready var question_label = $math_question
 @onready var answer_labels = [
 	$answer1,
@@ -31,6 +34,10 @@ func _ready():
 	randomize()
 	setup_question()
 	MusicManager.playMusic(MusicManager.MusicType.MATHE)
+	
+	# --- WICHTIG: Hier beobachten wir, wann der Boss verschwindet ---
+	if miniboss:
+		miniboss.tree_exited.connect(_on_miniboss_defeated)
 	
 	for i in range(3):
 		answer_areas[i].body_entered.connect(
@@ -113,3 +120,18 @@ func _on_fall_damage_2_body_entered(body: Node2D) -> void:
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
 	body.call_deferred("set_global_position", Vector2(2830, 127))
+
+func _on_miniboss_defeated():
+	print("Miniboss ist tot - Gate öffnet sich!")
+
+	if enemy_gate:
+		enemy_gate.visible = false
+
+		# Falls dein Gate eine CollisionShape2D hat:
+		if enemy_gate.has_node("CollisionShape2D"):
+			enemy_gate.get_node("CollisionShape2D").disabled = true
+
+		# Falls dein Gate eine Area2D ist:
+		elif enemy_gate.has_method("set_deferred"):
+			enemy_gate.set_deferred("monitoring", false)
+			enemy_gate.set_deferred("monitorable", false)

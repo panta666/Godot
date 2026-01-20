@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_cus88")
-damage = 10
+damage = 2
 pre_attack_duration = 0.75
 post_attack_duration = 0.75
 animation_name = "dash"
