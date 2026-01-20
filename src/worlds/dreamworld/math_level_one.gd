@@ -8,6 +8,10 @@ extends Node2D
 @onready var key_visuals_defeat: Node2D = $KeyVisuals_defeat
 @onready var key_visuals_2: Node2D = $KeyVisuals2
 
+#Muss noch hinzugefügt werden, TileMap soll wie bei enemy_gate verschwinden, 
+# wenn nicht alle Keys erhalten
+@onready var not_all_keys: TileMapLayer = $Not_all_keys
+
 @onready var question_label = $math_question
 @onready var answer_labels = [
 	$answer1,
@@ -128,7 +132,7 @@ func _on_fall_damage_2_body_entered(body: Node2D) -> void:
 
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
-	body.call_deferred("set_global_position", Vector2(2830, 127))
+	body.call_deferred("set_global_position", Vector2(3619, 241))
 
 func _on_miniboss_defeated():
 	print("Miniboss ist tot - Gate öffnet sich!")
@@ -157,3 +161,12 @@ func _on_ghost_enemy_1_defeated():
 
 	# Kollision des TileMapLayer aktivieren
 	enemy_platform.collision_enabled = true
+
+
+func _on_fall_damage_3_body_entered(body: Node2D) -> void:
+	if not body.has_method("player"):
+		return
+
+	# Spieler sofort teleportieren zu festen Koordinaten
+	# Deferred, damit Physics-Signal nicht blockiert wird
+	body.call_deferred("set_global_position", Vector2(531, -170))
