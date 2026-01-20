@@ -630,6 +630,7 @@ position = Vector2(1, 141)
 shape = SubResource("RectangleShape2D_di37k")
 
 [node name="EnterLevelButton2" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 21.0
 offset_top = 85.0
@@ -642,6 +643,7 @@ theme_override_colors/font_hover_color = Color(0.95686275, 0.91764706, 0.972549,
 text = "Level betreten"
 
 [node name="EnterLevelButton" type="Button" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 21.0
 offset_top = 38.0

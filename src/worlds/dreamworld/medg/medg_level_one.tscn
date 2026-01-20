@@ -4804,6 +4804,8 @@ vertical_alignment = 1
 position = Vector2(2376, 413)
 collision_layer = 7
 collision_mask = 7
+script = ExtResource("11_h36qc")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Answer1"]
 position = Vector2(79, 236.6875)
@@ -4812,6 +4814,8 @@ shape = SubResource("RectangleShape2D_k3sex")
 [node name="Area2D_Answer2" type="Area2D" parent="."]
 collision_layer = 7
 collision_mask = 7
+script = ExtResource("11_h36qc")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Answer2"]
 position = Vector2(2571.5, 652)
@@ -4821,6 +4825,8 @@ shape = SubResource("RectangleShape2D_14ga8")
 position = Vector2(2571.5, 652)
 collision_layer = 7
 collision_mask = 7
+script = ExtResource("11_h36qc")
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_Answer3"]
 position = Vector2(183.5, -37)
@@ -4910,7 +4916,7 @@ show_d = true
 animate_s = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("14_8658m")]
-position = Vector2(637, 50)
+position = Vector2(647, 56)
 scale = Vector2(1.2, 1.2)
 collision_layer = 4
 attacks = Array[ExtResource("15_vh1ip")]([])

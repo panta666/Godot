@@ -21,7 +21,7 @@ var save_data = {
 		"unlocked_doors": {},
 		"shop_unlocked": false,
 		"chair_unlocked": false,
-		"unlocked_levels": {0:1},
+		"unlocked_levels": {0:1, 1:1},
 		"scene_effects": {}   # speichert die Änderungen pro Szene
 	},
 	"audio_settings": {
@@ -55,7 +55,7 @@ const default_values = {
 		"unlocked_doors": {},
 		"shop_unlocked": false,
 		"chair_unlocked": false,
-		"unlocked_levels": {0:1},
+		"unlocked_levels": {0:1, 1:1},
 		"scene_effects": {}
 	},
 	"audio_settings": {
