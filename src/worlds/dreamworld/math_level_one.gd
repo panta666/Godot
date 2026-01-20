@@ -3,6 +3,11 @@ extends Node2D
 @onready var miniboss = $Miniboss
 @onready var enemy_gate = $Enemy_Defeat_Gate
 
+@onready var ghost_enemy_1: Ghost = $Ghost_Enemy_1
+@onready var enemy_platform: TileMapLayer = $Enemy_Defeat_Platform
+@onready var key_visuals_defeat: Node2D = $KeyVisuals_defeat
+@onready var key_visuals_2: Node2D = $KeyVisuals2
+
 @onready var question_label = $math_question
 @onready var answer_labels = [
 	$answer1,
@@ -35,9 +40,13 @@ func _ready():
 	setup_question()
 	MusicManager.playMusic(MusicManager.MusicType.MATHE)
 	
-	# --- WICHTIG: Hier beobachten wir, wann der Boss verschwindet ---
+	# --- WICHTIG: Hier beobachten wir, wann der Miniboss verschwindet ---
 	if miniboss:
 		miniboss.tree_exited.connect(_on_miniboss_defeated)
+	
+	enemy_platform.collision_enabled = false
+	if ghost_enemy_1:
+		ghost_enemy_1.tree_exited.connect(_on_ghost_enemy_1_defeated)	
 	
 	for i in range(3):
 		answer_areas[i].body_entered.connect(
@@ -124,14 +133,27 @@ func _on_fall_damage_2_body_entered(body: Node2D) -> void:
 func _on_miniboss_defeated():
 	print("Miniboss ist tot - Gate öffnet sich!")
 
-	if enemy_gate:
-		enemy_gate.visible = false
+	if not enemy_gate:
+		return
 
-		# Falls dein Gate eine CollisionShape2D hat:
-		if enemy_gate.has_node("CollisionShape2D"):
-			enemy_gate.get_node("CollisionShape2D").disabled = true
+	#GATE OPEN Sound?! plz
 
-		# Falls dein Gate eine Area2D ist:
-		elif enemy_gate.has_method("set_deferred"):
-			enemy_gate.set_deferred("monitoring", false)
-			enemy_gate.set_deferred("monitorable", false)
+	# Visuell ausblenden
+	enemy_gate.visible = false
+
+	# Kollision des TileMapLayer komplett deaktivieren
+	enemy_gate.collision_enabled = false
+	
+func _on_ghost_enemy_1_defeated():
+	print("Geist ist tot - Plattform erscheint!")
+
+	if not enemy_platform:
+		return
+
+	# Visuell einblenden
+	enemy_platform.visible = true
+	key_visuals_defeat.visible = true
+	key_visuals_2.visible = true
+
+	# Kollision des TileMapLayer aktivieren
+	enemy_platform.collision_enabled = true
