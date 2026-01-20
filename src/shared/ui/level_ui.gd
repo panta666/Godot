@@ -7,7 +7,6 @@ extends CanvasLayer
 
 @onready var enter_level_button: Button = $Control/EnterLevelButton
 @onready var enter_level_button2: Button = $Control/EnterLevelButton2
-@onready var enter_level_button3: Button = $Control/EnterLevelButton3
 
 @onready var phone: Sprite2D = $Control/Phone
 @onready var background: AnimatedSprite2D = $Control/PhoneScreenContainer/Background
@@ -56,7 +55,6 @@ func _ready():
 	# Buttons verbinden
 	enter_level_button.connect("pressed", Callable(self, "_on_enter_level1_pressed"))
 	enter_level_button2.connect("pressed", Callable(self, "_on_enter_level2_pressed"))
-	enter_level_button3.connect("pressed", Callable(self, "_on_enter_level3_pressed"))
 
 	# Power Buttons
 	if power_area_off:
@@ -104,10 +102,6 @@ func _update_oop_buttons():
 	enter_level_button2.disabled = not (GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2) or prof_mode)
 	enter_level_button2.text = "OOP Level 2"
 
-	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
-	enter_level_button3.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 3)
-	enter_level_button3.text = "OOP Level 3"
-
 
 func _update_medg_buttons():
 	enter_level_button.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1)
@@ -117,10 +111,6 @@ func _update_medg_buttons():
 	enter_level_button2.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
 	enter_level_button2.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 2)
 	enter_level_button2.text = "MATH Level 2"
-
-	enter_level_button3.visible = GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
-	enter_level_button3.disabled = not GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 3)
-	enter_level_button3.text = "MATH Level 3"
 
 
 # ======================================================
@@ -199,23 +189,17 @@ func _on_enter_level2_pressed():
 	_load_level_scene(_get_scene_path(1))
 
 
-func _on_enter_level3_pressed():
-	_load_level_scene(_get_scene_path(2))
-
-
 func _get_scene_path(level_index: int) -> String:
 	if current_room == "OOP": 
 		return [
 			"res://src/worlds/dreamworld/oop/oop_level_one.tscn",
-			"res://src/worlds/dreamworld/oop/oop_level_two.tscn",
-			"res://src/worlds/dreamworld/oop/oop_level_three.tscn"
+			"res://src/worlds/dreamworld/oop/oop_level_two.tscn"
 		][level_index]
 
 	if current_room == "MEDG":
 		return [
 			"res://src/worlds/dreamworld/medg/medg_level_one.tscn",
-			"res://src/worlds/dreamworld/medg/medg_level_two.tscn",
-			"res://src/worlds/dreamworld/medg/medg_level_three.tscn"
+			"res://src/worlds/dreamworld/medg/medg_level_two.tscn"
 		][level_index]
 
 	return ""
@@ -242,16 +226,14 @@ func hide_phone():
 func hide_enter_button():
 	enter_level_button.visible = false
 	enter_level_button2.visible = false
-	enter_level_button3.visible = false
 	
 func show_enter_button():
 	enter_level_button.visible = true
 	enter_level_button2.visible = true
-	enter_level_button3.visible = true
 	
 	enter_level_button.modulate.a = 1.0
 	enter_level_button2.modulate.a = 1.0
-	enter_level_button3.modulate.a = 1.0
+
 
 # Gemeinsames Laden mit Blink-Effekt
 func _load_level_scene(target_scene: String):
@@ -262,7 +244,6 @@ func _load_level_scene(target_scene: String):
 
 	enter_level_button.disabled = true
 	enter_level_button2.disabled = true
-	enter_level_button3.disabled = true
 
 	var fade_tween = create_tween()
 	fade_tween.tween_property(control, "modulate:a", 0.0, 0.5)
