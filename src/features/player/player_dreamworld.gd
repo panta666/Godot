@@ -898,18 +898,14 @@ func cutscene_end() -> void:
 
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	if _body is TileMapLayer and _body.name == "Ladder":
-		print(_body.name)
 		on_ladder = true
 	if _body is TileMapLayer and _body.name == "Water":
-		print(_body.name)
 		in_water = true
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	if _body is TileMapLayer and _body.name == "Ladder":
-		#print(_body.name)
 		on_ladder = false
 	if _body is TileMapLayer and _body.name == "Water":
-		#print(_body.name)
 		in_water = false
 		
 #Schaden in Wasser

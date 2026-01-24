@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=88 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://src/worlds/dreamworld/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="33_clmav"]
 [ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="33_w5snx"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="34_b6hso"]
+[ext_resource type="PackedScene" uid="uid://cv3nqqtro8ihu" path="res://src/shared/components/key.tscn" id="35_qsjlj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3421,6 +3422,7 @@ collision_mask = 2
 
 [node name="Drop_Manager" type="Node" parent="."]
 script = ExtResource("33_clmav")
+key_scene = ExtResource("35_qsjlj")
 
 [node name="Boss_door" parent="." instance=ExtResource("34_b6hso")]
 position = Vector2(3432, 408)
