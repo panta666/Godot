@@ -175,7 +175,7 @@ func reset_coins():
 # -------------------------
 func start_new_game() -> void:
 	pending_spawn = true
-	current_scene = "realworld_classroom_one"
+	current_scene = "realworld_hall"
 	previous_scene = ""
 	MusicManager.stop_music()
 	
@@ -204,51 +204,27 @@ func spawn_player() -> void:
 		return
 
 	var player_scene = load("res://src/features/player/player_realworld.tscn")
-	if not player_scene:
-		push_error("player_realworld.tscn konnte nicht geladen werden!")
-		return
-
 	player = player_scene.instantiate()
-
 	var current_scene_node = get_tree().current_scene
-	if not current_scene_node:
-		push_error("Kein current_scene beim spawn_player() vorhanden!")
-		return
-
-	current_scene_node.add_child(player)
-	player.z_index = 2
-	player.scale = Vector2(1.5, 1.5)
-	player.visible = true
-
-	# Bewegung aktivieren
-	if player.has_method("set_can_move"):
-		player.call_deferred("set_can_move", true)
-	else:
+	if current_scene_node:
+		current_scene_node.add_child(player)
+		player.z_index = 2
+		player.scale = Vector2(1.5, 1.5)
+		player.visible = true
 		player.can_move = true
-
-	# Position setzen
-	if player_positions.has(current_scene):
-		player.global_position = player_positions[current_scene]
-	else:
-		player.global_position = Vector2(504, 340)
-
-	# Animation deferred starten
-	call_deferred("_deferred_play_default_animation")
-
-
+		call_deferred("_deferred_play_default_animation")
 
 # -------------------------
 # Player in aktuelle Szene verschieben
 # -------------------------
 func move_player_to_current_scene() -> void:
-	if player == null or not is_instance_valid(player):
+	if not player or not is_instance_valid(player):
 		spawn_player()
 	else:
 		if player.get_parent() != get_tree().current_scene:
 			player.get_parent().remove_child(player)
 			get_tree().current_scene.add_child(player)
 			call_deferred("_deferred_setup_player")
-
 
 # -------------------------
 # Deferred Setup Player
@@ -341,32 +317,26 @@ func _find_animated_sprite(node: Node) -> AnimatedSprite2D:
 func change_scene(new_scene: String) -> void:
 	transition_scene = false
 
+	# Dialogic ggf. entfernen
 	var dialogic_node = get_tree().root.get_node_or_null("DialogicLayout_VisualNovelStyle")
 	if dialogic_node:
 		dialogic_node.queue_free()
 
+	# Alte Szene entfernen
 	var old_scene = get_tree().current_scene
 	if old_scene:
 		old_scene.queue_free()
 
-	var scene_path := ""
-	if new_scene.begins_with("realworld_") or new_scene == "train_scene":
-		scene_path = "res://src/worlds/realworld/%s.tscn" % new_scene
-	elif new_scene.begins_with("oop_level_"):
-		scene_path = "res://src/worlds/dreamworld/oop/%s.tscn" % new_scene
-	elif new_scene.begins_with("medg_level_"):
-		scene_path = "res://src/worlds/dreamworld/medg/%s.tscn" % new_scene
-	elif new_scene == "dreamworld_tutorial":
-		scene_path = "res://src/worlds/dreamworld/%s.tscn" % new_scene
-	else:
-		# Fallback or generic search
-		scene_path = "res://src/worlds/realworld/%s.tscn" % new_scene
-	
-	if not FileAccess.file_exists(scene_path):
-		# Try other locations if fallback failed
-		if FileAccess.file_exists("res://src/worlds/dreamworld/%s.tscn" % new_scene):
-			scene_path = "res://src/worlds/dreamworld/%s.tscn" % new_scene
+	# Wenn Traumwelt, Realworld-Player entfernen
+	if new_scene.begins_with("oop_level_") or new_scene.begins_with("medg_level_") or new_scene == "dreamworld_tutorial":
+		if player and is_instance_valid(player):
+			player.queue_free()
+		player = null
 
+	# -----------------------------
+	# Scene instanziieren
+	# -----------------------------
+	var scene_path = get_scene_path_from_name(new_scene)
 	var new_scene_instance = load(scene_path).instantiate()
 	get_tree().root.add_child(new_scene_instance)
 	get_tree().current_scene = new_scene_instance
@@ -374,11 +344,13 @@ func change_scene(new_scene: String) -> void:
 	previous_scene = current_scene
 	current_scene = new_scene
 
-	move_player_to_current_scene()
-	
+	# Spawn Realworld-Player nur für Realworld-Szenen
+	if new_scene.begins_with("realworld_") or new_scene == "train_scene":
+		move_player_to_current_scene()
+
+	# Effekte anwenden
 	var scene_name = new_scene_instance.name
 	var effects = SaveManager.get_scene_effects(scene_name)
-
 	if effects:
 		for node_name in effects.keys():
 			var node = new_scene_instance.get_node_or_null(node_name)
@@ -386,45 +358,22 @@ func change_scene(new_scene: String) -> void:
 				for property in effects[node_name].keys():
 					node.set(property, effects[node_name][property])
 
-# ==========================================================
-#                     ESC-MENÜ SYSTEM
-# ==========================================================
-var esc_menu_scene := preload("res://src/shared/ui/esc_menu.tscn")
-var esc_menu_instance: CanvasLayer = null
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("esc_menu"):
-		var _player = GlobalScript.player
-		var _player_dw = GlobalScript.player_dw
-
-		# Kein Player vorhanden
-		if (not _player or not is_instance_valid(_player)) and (not _player_dw or not is_instance_valid(_player_dw)):
-			print("[ESC_MENU] Kein Player gefunden")
-			return
-
-		# Realworld-Player prüfen
-		if _player and is_instance_valid(_player) and _player.is_busy:
-			return
-
-		# Dreamworld-Player muss nicht auf is_busy geprüft werden
-
-		_toggle_esc_menu()
-
-func _toggle_esc_menu() -> void:
-	if get_tree().current_scene and get_tree().current_scene.name == "MainMenu":
-		return
-
-	if not esc_menu_instance:
-		esc_menu_instance = esc_menu_scene.instantiate()
-		get_tree().root.add_child(esc_menu_instance)
-		esc_menu_instance.open_menu()
-	else:
-		if esc_menu_instance.visible:
-			esc_menu_instance.close_menu()
-		else:
-			esc_menu_instance.open_menu()
-
 # Eine Funktion, um den Wert sicher zu ändern und das Signal zu feuern
 func set_tutorial_enabled(value: bool) -> void:
 	tutorial_on = value
 	tutorial_toggled.emit(tutorial_on)
+
+func get_scene_path_from_name(new_scene: String) -> String:
+	if new_scene.begins_with("res://"):
+		return new_scene
+
+	if new_scene.begins_with("realworld_") or new_scene == "train_scene":
+		return "res://src/worlds/realworld/%s.tscn" % new_scene
+	elif new_scene.begins_with("oop_level_"):
+		return "res://src/worlds/dreamworld/oop/%s.tscn" % new_scene
+	elif new_scene.begins_with("medg_level_"):
+		return "res://src/worlds/dreamworld/medg/%s.tscn" % new_scene
+	elif new_scene == "dreamworld_tutorial":
+		return "res://src/worlds/dreamworld/%s.tscn" % new_scene
+	else:
+		return "res://src/worlds/realworld/%s.tscn" % new_scene

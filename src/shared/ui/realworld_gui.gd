@@ -57,15 +57,22 @@ func _update_visibility():
 		return
 
 	var player := GlobalScript.player
-	if not player or not is_instance_valid(player):
-		visible = false
-		return
-
-	if not (player is PlayerRealworld):
-		visible = false
-		return
 
 	var scene := get_tree().current_scene
+	if not scene or not is_instance_valid(scene):
+		visible = false
+		return
+
+# Wenn aktuelle Szene eine Dreamworld ist - HUD aus
+	if scene.name.begins_with("oop_") or scene.name.begins_with("medg_") or scene.name == "dreamworld_tutorial":
+		visible = false
+		return
+
+# Kein gültiger Realworld-Player - HUD aus
+	if not player or not is_instance_valid(player) or not (player is PlayerRealworld):
+		visible = false
+		return
+
 	if not scene or not is_instance_valid(scene):
 		visible = false
 		return

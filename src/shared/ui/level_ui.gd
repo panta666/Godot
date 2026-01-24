@@ -273,3 +273,8 @@ func _load_level_scene(target_scene: String):
 
 	var blink_rect = blink_overlay.get_node("Blink_Overlay")
 	await blink_rect.play_sleep_wake(target_scene)
+	
+	# Realworld-Player aufräumen, wenn Dreamworld-Scene geladen wird
+	if GlobalScript.player and is_instance_valid(GlobalScript.player):
+		GlobalScript.player.queue_free()
+	GlobalScript.player = null

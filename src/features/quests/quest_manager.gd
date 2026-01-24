@@ -219,6 +219,7 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 				blinking_chair.visible = false
 				SaveManager.add_scene_effect(scene_name, "BlinkingChair", "visible", false)
 		"8":
+			SaveManager.update_current_scene()
 			# --- Sonnenlicht anpassen ---
 			var sunlight = get_tree().current_scene.get_node_or_null("Sunlight")
 			if sunlight and sunlight is PointLight2D:
@@ -317,6 +318,8 @@ func _apply_scene_effects_for_completed_quest(quest: QuestData) -> void:
 			SaveManager.save_data["game_progress"]["chair_unlocked"] = true
 			SaveManager.save_game()
 			SaveManager.emit_signal("chair_unlocked_signal")
+			
+			GlobalScript.unlock_level(GlobalScript.classrooms.mathe, 1)
 
 			var chair_node = get_tree().current_scene.get_node_or_null("Chair")
 			if chair_node:

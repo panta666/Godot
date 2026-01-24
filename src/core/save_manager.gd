@@ -318,7 +318,7 @@ func load_last_scene():
 	
 	# Verhindert den Start im Menü, wenn "Weiter" geklickt wird
 	if scene_path == "MainMenu":
-		scene_path = "realworld_classroom_one" # Passe dies an deine erste Szene nach dem Menü an
+		scene_path = "realworld_hall" # Passe dies an deine erste Szene nach dem Menü an
 	GlobalScript.current_scene = scene_path
 	#if get_tree().change_scene_to_file("res://scenes/%s.tscn" % scene_path) != OK:
 	#	push_error("SaveManager: Gespeicherte Szene ungültig. Lade Fallback-Szene.")

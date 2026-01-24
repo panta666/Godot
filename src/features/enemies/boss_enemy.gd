@@ -86,8 +86,7 @@ func _return_to_classroom() -> void:
 	
 	var overlay = blink_overlay.get_node("Blink_Overlay")
 	# Transition zurück in die echte Welt
-	await overlay.play_wake_up()
-	GlobalScript.change_scene("realworld_classroom_one")
+	await overlay.play_sleep_wake_nosound("realworld_classroom_one")
 
 func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	if bar_instance != null:

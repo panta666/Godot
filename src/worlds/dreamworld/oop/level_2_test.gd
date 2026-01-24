@@ -30,17 +30,13 @@ func _on_body_entered(body: Node) -> void:
 		else:
 			level_ui.update_level_button()
 
-	# Zurück ins Klassenzimmer
 	await _return_to_classroom()
+	get_tree().current_scene.queue_free()
 
 func _return_to_classroom() -> void:
-	# Kurze Wartezeit
 	await get_tree().create_timer(0.2).timeout
-	# Szenenwechsel zurück
-		# Blink Overlay laden
+
 	var blink_overlay = preload("res://src/shared/components/blink_overlay.tscn").instantiate()
 	get_tree().root.add_child(blink_overlay)
-	
 	var overlay = blink_overlay.get_node("Blink_Overlay")
-	await overlay.play_wake_up()
-	GlobalScript.change_scene("realworld_classroom_one")
+	await overlay.play_sleep_wake_nosound("realworld_classroom_one")

@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_qfh6i")
 id = "7"
-title = "Back into the Dreamworld!"
+title = "Back to sleep, lol"
 description = "Go back to your seat and try to stay awake..lol"
 target_scene = "Realworld_Classroom_One"
 target_node_path = "Chair"

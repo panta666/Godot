@@ -38,7 +38,7 @@ func play_sleep_wake(next_scene_path: String) -> void:
 	await get_tree().create_timer(eyes_closed_hold).timeout
 
 	# Szene wechseln
-	get_tree().change_scene_to_file(next_scene_path)
+	GlobalScript.change_scene(next_scene_path)
 
 	# Aufwachen: Augen öffnen + Blur weg
 	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
@@ -59,7 +59,7 @@ func play_sleep_wake_nosound(next_scene_path: String = "") -> void:
 
 	# NUR wenn explizit gewünscht (Legacy / Altcode)
 	if next_scene_path != "":
-		get_tree().change_scene_to_file(next_scene_path)
+		GlobalScript.change_scene(next_scene_path)
 
 	# Aufwachen
 	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
@@ -103,7 +103,7 @@ func play_wake_up(next_scene_path: String = "") -> void:
 
 	# NUR wechseln, wenn explizit gewünscht (z. B. alter Code)
 	if next_scene_path != "":
-		get_tree().change_scene_to_file(next_scene_path)
+		GlobalScript.change_scene(next_scene_path)
 
 	# Aufwachen: Augen öffnen + Blur weg
 	await animate_shader("blink_progress", 1.0, 0.0, second_blink_duration * 2)
