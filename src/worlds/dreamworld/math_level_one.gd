@@ -1,5 +1,17 @@
 extends Node2D
 
+@onready var miniboss = $Miniboss
+@onready var enemy_gate = $Enemy_Defeat_Gate
+
+@onready var ghost_enemy_1: Ghost = $Ghost_Enemy_1
+@onready var enemy_platform: TileMapLayer = $Enemy_Defeat_Platform
+@onready var key_visuals_defeat: Node2D = $KeyVisuals_defeat
+@onready var key_visuals_2: Node2D = $KeyVisuals2
+
+#Muss noch hinzugefügt werden, TileMap soll wie bei enemy_gate verschwinden, 
+# wenn nicht alle Keys erhalten
+@onready var not_all_keys: TileMapLayer = $Not_all_keys
+
 @onready var question_label = $math_question
 @onready var answer_labels = [
 	$answer1,
@@ -31,6 +43,14 @@ func _ready():
 	randomize()
 	setup_question()
 	MusicManager.playMusic(MusicManager.MusicType.MATHE)
+	
+	# --- WICHTIG: Hier beobachten wir, wann der Miniboss verschwindet ---
+	if miniboss:
+		miniboss.tree_exited.connect(_on_miniboss_defeated)
+	
+	enemy_platform.collision_enabled = false
+	if ghost_enemy_1:
+		ghost_enemy_1.tree_exited.connect(_on_ghost_enemy_1_defeated)	
 	
 	for i in range(3):
 		answer_areas[i].body_entered.connect(
@@ -112,4 +132,41 @@ func _on_fall_damage_2_body_entered(body: Node2D) -> void:
 
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
-	body.call_deferred("set_global_position", Vector2(2830, 127))
+	body.call_deferred("set_global_position", Vector2(3619, 241))
+
+func _on_miniboss_defeated():
+	print("Miniboss ist tot - Gate öffnet sich!")
+
+	if not enemy_gate:
+		return
+
+	#GATE OPEN Sound?! plz
+
+	# Visuell ausblenden
+	enemy_gate.visible = false
+
+	# Kollision des TileMapLayer komplett deaktivieren
+	enemy_gate.collision_enabled = false
+	
+func _on_ghost_enemy_1_defeated():
+	print("Geist ist tot - Plattform erscheint!")
+
+	if not enemy_platform:
+		return
+
+	# Visuell einblenden
+	enemy_platform.visible = true
+	key_visuals_defeat.visible = true
+	key_visuals_2.visible = true
+
+	# Kollision des TileMapLayer aktivieren
+	enemy_platform.collision_enabled = true
+
+
+func _on_fall_damage_3_body_entered(body: Node2D) -> void:
+	if not body.has_method("player"):
+		return
+
+	# Spieler sofort teleportieren zu festen Koordinaten
+	# Deferred, damit Physics-Signal nicht blockiert wird
+	body.call_deferred("set_global_position", Vector2(531, -170))

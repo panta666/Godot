@@ -9,6 +9,7 @@ var slime_scale = 1.5
 
 func _on_health_depleted() -> void:
 	healthbar._deplete()
+	call_deferred("drop_item")
 	var slime = slime_scene.instantiate()
 	var slime2 = slime_scene.instantiate()
 	get_tree().root.add_child(slime)
@@ -24,3 +25,11 @@ func _on_health_depleted() -> void:
 	slime2.scale = Vector2(slime_scale, slime_scale)
 	
 	queue_free()
+	
+	
+func drop_item():
+	if carried_item != null:
+		print("drop")
+		var item = carried_item.instantiate()
+		get_parent().add_child(item)
+		item.global_position = global_position

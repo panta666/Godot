@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fjcnm")
-damage = 20
+damage = 10
 pre_attack_duration = 0.8
 post_attack_duration = 1.0
 pre_animation_name = "pre_attack"
