@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0wjd61184qyp"]
+
+[ext_resource type="Script" uid="uid://blmxc5cv85b0c" path="res://src/features/enemies/explosion.gd" id="1_0824o"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="2_6o5hm"]
+[ext_resource type="Texture2D" uid="uid://b6kqysx0vhlf6" path="res://assets/characters/enemies/projectiles/pixel-art-explosion-pixel-d1f866a77beff481838242726d6091c6.png" id="3_ev3xq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhvjn"]
+radius = 57.00877
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udpb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ev3xq")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_0824o")
+duration = 1.0
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 13
+script = ExtResource("2_6o5hm")
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_fhvjn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 2)
+scale = Vector2(0.18532607, 0.15363565)
+sprite_frames = SubResource("SpriteFrames_udpb7")
+animation = &"explosion"
+frame = 4
+frame_progress = 0.55940336
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

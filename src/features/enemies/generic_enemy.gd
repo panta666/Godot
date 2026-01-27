@@ -283,7 +283,7 @@ func _spawn_projectile(attack: Range_Attack) -> void:
 	var projectile = projectile_scene.instantiate()
 	projectile.get_node("HitBox").damage = attack.damage
 	projectile.position = position + attack.projectile_offset * direction
-	projectile.direction = Vector2.RIGHT * direction
+	projectile.set_direction(Vector2.RIGHT * direction)
 	projectile._set_exception(self)
 	get_tree().current_scene.add_child(projectile)
 	

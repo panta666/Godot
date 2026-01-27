@@ -3196,7 +3196,7 @@ tile_set = SubResource("TileSet_x23ky")
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_ocww7")]
 unique_name_in_owner = true
 z_index = 2
-position = Vector2(51, 58)
+position = Vector2(3557, 401)
 
 [node name="Area2D" parent="." instance=ExtResource("9_vu5gk")]
 
@@ -3336,7 +3336,7 @@ scale = Vector2(0.43836156, 0.5626694)
 collision_layer = 4
 
 [node name="Duck2" parent="Enemies" groups=["enemy"] instance=ExtResource("25_s8ccv")]
-position = Vector2(1175.0001, -372)
+position = Vector2(1183.0001, -389)
 scale = Vector2(0.43836156, 0.5626694)
 collision_layer = 4
 
@@ -3408,7 +3408,7 @@ scale = Vector2(1, 1)
 collision_layer = 4
 
 [node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("19_wnclc")]
-position = Vector2(3944, 284)
+position = Vector2(3955.0002, 277)
 scale = Vector2(1.2, 1.2)
 collision_layer = 4
 boss_of_level = "oop_level_one"

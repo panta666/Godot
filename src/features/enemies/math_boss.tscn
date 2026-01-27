@@ -1,0 +1,1631 @@
+[gd_scene load_steps=387 format=3 uid="uid://v81j2yswvp61"]
+
+[ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_ossqf"]
+[ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="2_gnq16"]
+[ext_resource type="Script" uid="uid://ck6yimg6gygue" path="res://src/features/enemies/math_boss.gd" id="2_jegtd"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="3_okltb"]
+[ext_resource type="Resource" uid="uid://c6uhjk15xwxvp" path="res://src/features/enemies/Math_Boss_Melee.tres" id="4_b43pr"]
+[ext_resource type="Script" uid="uid://bhivv0hqxe25t" path="res://src/features/player/range_attack.gd" id="4_tq5mb"]
+[ext_resource type="Texture2D" uid="uid://cv24o4yrbevai" path="res://assets/characters/enemies/Math_Boss/Exhausted/0001.png" id="5_01j08"]
+[ext_resource type="Resource" uid="uid://c2hoy0fyx8yw0" path="res://src/features/enemies/Psych_Attack.tres" id="5_b43pr"]
+[ext_resource type="Resource" uid="uid://cybggtx6cmr63" path="res://src/features/enemies/Symbol_Attack.tres" id="6_4e4nf"]
+[ext_resource type="Texture2D" uid="uid://b6ofikd8pm547" path="res://assets/characters/enemies/Math_Boss/Exhausted/0002.png" id="6_tq5mb"]
+[ext_resource type="Texture2D" uid="uid://gabaxicymo75" path="res://assets/characters/enemies/Math_Boss/Exhausted/0003.png" id="7_b43pr"]
+[ext_resource type="Texture2D" uid="uid://cq3kmtuv0q4a0" path="res://assets/characters/enemies/Math_Boss/Exhausted/0004.png" id="8_4e4nf"]
+[ext_resource type="Texture2D" uid="uid://cmukmyjqhll3e" path="res://assets/characters/enemies/Math_Boss/Exhausted/0005.png" id="9_5e2u0"]
+[ext_resource type="Texture2D" uid="uid://beltm8fy2swuy" path="res://assets/characters/enemies/Math_Boss/Exhausted/0006.png" id="10_yk6sb"]
+[ext_resource type="Texture2D" uid="uid://bk8tfr1l3sj16" path="res://assets/characters/enemies/Math_Boss/Exhausted/0007.png" id="11_yyftl"]
+[ext_resource type="Texture2D" uid="uid://bvi76fntk0215" path="res://assets/characters/enemies/Math_Boss/Exhausted/0008.png" id="12_r5key"]
+[ext_resource type="Texture2D" uid="uid://vm322awysftn" path="res://assets/characters/enemies/Math_Boss/Exhausted/0009.png" id="13_d7d4t"]
+[ext_resource type="Texture2D" uid="uid://7wberd8fg8bl" path="res://assets/characters/enemies/Math_Boss/Exhausted/0010.png" id="14_3di1k"]
+[ext_resource type="Texture2D" uid="uid://dlfxw1j0mxn4r" path="res://assets/characters/enemies/Math_Boss/Exhausted/0011.png" id="15_01rd2"]
+[ext_resource type="Texture2D" uid="uid://bwn8ksr6tkcv1" path="res://assets/characters/enemies/Math_Boss/Exhausted/0012.png" id="16_s67bo"]
+[ext_resource type="Texture2D" uid="uid://bfd2xpshy2jga" path="res://assets/characters/enemies/Math_Boss/Exhausted/0013.png" id="17_uh1qt"]
+[ext_resource type="Texture2D" uid="uid://c0bmf3504rxlt" path="res://assets/characters/enemies/Math_Boss/Exhausted/0014.png" id="18_y8v03"]
+[ext_resource type="Texture2D" uid="uid://dh2y77jr1xfm7" path="res://assets/characters/enemies/Math_Boss/Exhausted/0015.png" id="19_p37su"]
+[ext_resource type="Texture2D" uid="uid://7c3uvwxfjtud" path="res://assets/characters/enemies/Math_Boss/Exhausted/0016.png" id="20_r04j8"]
+[ext_resource type="Texture2D" uid="uid://chfvocuhc3axh" path="res://assets/characters/enemies/Math_Boss/Exhausted/0017.png" id="21_tjsb0"]
+[ext_resource type="Texture2D" uid="uid://cs72ub21xs6ea" path="res://assets/characters/enemies/Math_Boss/Exhausted/0018.png" id="22_guaaq"]
+[ext_resource type="Texture2D" uid="uid://b6ojpce70tfx1" path="res://assets/characters/enemies/Math_Boss/Exhausted/0019.png" id="23_tm331"]
+[ext_resource type="Texture2D" uid="uid://cdp3jr4ak1kw4" path="res://assets/characters/enemies/Math_Boss/Exhausted/0020.png" id="24_jen67"]
+[ext_resource type="Texture2D" uid="uid://rxs1kah67inb" path="res://assets/characters/enemies/Math_Boss/Exhausted/0021.png" id="25_cueip"]
+[ext_resource type="Texture2D" uid="uid://ieoetlny4xqu" path="res://assets/characters/enemies/Math_Boss/Exhausted/0022.png" id="26_nhpoc"]
+[ext_resource type="Texture2D" uid="uid://y4aig7ta33nq" path="res://assets/characters/enemies/Math_Boss/Exhausted/0023.png" id="27_maht8"]
+[ext_resource type="Texture2D" uid="uid://dh5m1cf18i1ou" path="res://assets/characters/enemies/Math_Boss/Fall/0001.png" id="28_sb2o6"]
+[ext_resource type="Texture2D" uid="uid://ctqmey8n4nfgv" path="res://assets/characters/enemies/Math_Boss/Fall/0002.png" id="29_t7ue2"]
+[ext_resource type="Texture2D" uid="uid://cepk25a88uwk1" path="res://assets/characters/enemies/Math_Boss/Fall/0003.png" id="30_k2rww"]
+[ext_resource type="Texture2D" uid="uid://jmka0183qpb2" path="res://assets/characters/enemies/Math_Boss/Fall/0004.png" id="31_0dqov"]
+[ext_resource type="Texture2D" uid="uid://dnmkt03sw1a3n" path="res://assets/characters/enemies/Math_Boss/Fall/0005.png" id="32_veemh"]
+[ext_resource type="Texture2D" uid="uid://x3ht2w0wn33p" path="res://assets/characters/enemies/Math_Boss/Fall/0006.png" id="33_erhr8"]
+[ext_resource type="Texture2D" uid="uid://cxba0w4ldafly" path="res://assets/characters/enemies/Math_Boss/Fall/0007.png" id="34_0kdxs"]
+[ext_resource type="Texture2D" uid="uid://c74r3fnpx4jyg" path="res://assets/characters/enemies/Math_Boss/Fall/0008.png" id="35_7w8f5"]
+[ext_resource type="Texture2D" uid="uid://bweingdovwjc" path="res://assets/characters/enemies/Math_Boss/Fall/0009.png" id="36_xv26h"]
+[ext_resource type="Texture2D" uid="uid://3v0obx4kcko7" path="res://assets/characters/enemies/Math_Boss/Fall/0010.png" id="37_qdqka"]
+[ext_resource type="Texture2D" uid="uid://gap2cx8ukbc6" path="res://assets/characters/enemies/Math_Boss/Fall/0011.png" id="38_eco6g"]
+[ext_resource type="Texture2D" uid="uid://5mkbbd6q8bsa" path="res://assets/characters/enemies/Math_Boss/Fall/0012.png" id="39_7xtm1"]
+[ext_resource type="Texture2D" uid="uid://vlytr4w7ftsu" path="res://assets/characters/enemies/Math_Boss/Fall/0013.png" id="40_tkhtp"]
+[ext_resource type="Texture2D" uid="uid://cjj48n8y26cnk" path="res://assets/characters/enemies/Math_Boss/Fall/0014.png" id="41_hnwo8"]
+[ext_resource type="Texture2D" uid="uid://ck50a3ug8jlap" path="res://assets/characters/enemies/Math_Boss/Fall/0015.png" id="42_klcwu"]
+[ext_resource type="Texture2D" uid="uid://cyruvwmdvgue1" path="res://assets/characters/enemies/Math_Boss/Fall/0016.png" id="43_ux7kd"]
+[ext_resource type="Texture2D" uid="uid://c45tvw7dhnkob" path="res://assets/characters/enemies/Math_Boss/Fall/0017.png" id="44_cp137"]
+[ext_resource type="Texture2D" uid="uid://bp6rnuy6xs0as" path="res://assets/characters/enemies/Math_Boss/Fall/0018.png" id="45_cgqhw"]
+[ext_resource type="Texture2D" uid="uid://bh5xyb2ejqaec" path="res://assets/characters/enemies/Math_Boss/Fall/0019.png" id="46_vul0a"]
+[ext_resource type="Texture2D" uid="uid://cubjq32oqp5sy" path="res://assets/characters/enemies/Math_Boss/Fall/0020.png" id="47_4lu2s"]
+[ext_resource type="Texture2D" uid="uid://dv53bf2a7gys" path="res://assets/characters/enemies/Math_Boss/Fall/0021.png" id="48_y1fn6"]
+[ext_resource type="Texture2D" uid="uid://er4hdi8osfym" path="res://assets/characters/enemies/Math_Boss/Fall/0022.png" id="49_mo1k0"]
+[ext_resource type="Texture2D" uid="uid://dqr8eaouasl0g" path="res://assets/characters/enemies/Math_Boss/Fall/0023.png" id="50_0ito1"]
+[ext_resource type="Texture2D" uid="uid://bsengicmqpi5u" path="res://assets/characters/enemies/Math_Boss/Fall/0024.png" id="51_2rtrk"]
+[ext_resource type="Texture2D" uid="uid://xturfnk4ybhn" path="res://assets/characters/enemies/Math_Boss/Idle/0001.png" id="52_y2sq2"]
+[ext_resource type="Texture2D" uid="uid://bq5fqhscomk7l" path="res://assets/characters/enemies/Math_Boss/Idle/0002.png" id="53_bhwp6"]
+[ext_resource type="Texture2D" uid="uid://cf0s06eunnlv6" path="res://assets/characters/enemies/Math_Boss/Idle/0003.png" id="54_tu0nk"]
+[ext_resource type="Texture2D" uid="uid://dlj20ubstx1co" path="res://assets/characters/enemies/Math_Boss/Idle/0004.png" id="55_68dcg"]
+[ext_resource type="Texture2D" uid="uid://d0r20wqx6kva0" path="res://assets/characters/enemies/Math_Boss/Idle/0005.png" id="56_iup5a"]
+[ext_resource type="Texture2D" uid="uid://d2lqm1fq73r7e" path="res://assets/characters/enemies/Math_Boss/Idle/0006.png" id="57_6mlss"]
+[ext_resource type="Texture2D" uid="uid://bpm7lax8mn46c" path="res://assets/characters/enemies/Math_Boss/Idle/0007.png" id="58_p4if2"]
+[ext_resource type="Texture2D" uid="uid://do0tu55j6v1hd" path="res://assets/characters/enemies/Math_Boss/Idle/0008.png" id="59_tyqmh"]
+[ext_resource type="Texture2D" uid="uid://3t58iky5te64" path="res://assets/characters/enemies/Math_Boss/Idle/0009.png" id="60_ol1jd"]
+[ext_resource type="Texture2D" uid="uid://d14u1edfx3jbd" path="res://assets/characters/enemies/Math_Boss/Idle/0010.png" id="61_fvg8i"]
+[ext_resource type="Texture2D" uid="uid://bk3nv4mwtbj3a" path="res://assets/characters/enemies/Math_Boss/Idle/0011.png" id="62_idgys"]
+[ext_resource type="Texture2D" uid="uid://msdajdtnyyfh" path="res://assets/characters/enemies/Math_Boss/Idle/0012.png" id="63_itwi8"]
+[ext_resource type="Texture2D" uid="uid://02cdouedgavr" path="res://assets/characters/enemies/Math_Boss/Idle/0013.png" id="64_gm3hi"]
+[ext_resource type="Texture2D" uid="uid://co02u8d74tj31" path="res://assets/characters/enemies/Math_Boss/Idle/0014.png" id="65_30rf5"]
+[ext_resource type="Texture2D" uid="uid://dw8bx8dllg1l8" path="res://assets/characters/enemies/Math_Boss/Idle/0015.png" id="66_p35lv"]
+[ext_resource type="Texture2D" uid="uid://dm7pmpbiybwps" path="res://assets/characters/enemies/Math_Boss/Idle/0016.png" id="67_ggrfv"]
+[ext_resource type="Texture2D" uid="uid://m2mxc18y7p7b" path="res://assets/characters/enemies/Math_Boss/Idle/0017.png" id="68_i8trs"]
+[ext_resource type="Texture2D" uid="uid://mx77gbrex8ku" path="res://assets/characters/enemies/Math_Boss/Idle/0018.png" id="69_ghrsb"]
+[ext_resource type="Texture2D" uid="uid://b0n45525s1q84" path="res://assets/characters/enemies/Math_Boss/Idle/0019.png" id="70_uhj7y"]
+[ext_resource type="Texture2D" uid="uid://fi5v6wcexsym" path="res://assets/characters/enemies/Math_Boss/Idle/0020.png" id="71_ues6p"]
+[ext_resource type="Texture2D" uid="uid://bnoai5v2gf73u" path="res://assets/characters/enemies/Math_Boss/Idle/0021.png" id="72_m75rd"]
+[ext_resource type="Texture2D" uid="uid://dr0kml8jkxhg5" path="res://assets/characters/enemies/Math_Boss/Idle/0022.png" id="73_eakot"]
+[ext_resource type="Texture2D" uid="uid://bvw5smsgequ4y" path="res://assets/characters/enemies/Math_Boss/Idle/0023.png" id="74_vh1qm"]
+[ext_resource type="Texture2D" uid="uid://cqt4acrmuqqqm" path="res://assets/characters/enemies/Math_Boss/Idle/0024.png" id="75_llhr3"]
+[ext_resource type="Texture2D" uid="uid://bm2a1ysxf7aa4" path="res://assets/characters/enemies/Math_Boss/Idle/0025.png" id="76_4vifh"]
+[ext_resource type="Texture2D" uid="uid://3ek1qrwwlv2c" path="res://assets/characters/enemies/Math_Boss/Idle/0026.png" id="77_udl26"]
+[ext_resource type="Texture2D" uid="uid://mymeouyxqig2" path="res://assets/characters/enemies/Math_Boss/Idle/0027.png" id="78_hx0oa"]
+[ext_resource type="Texture2D" uid="uid://diay8082qgjqh" path="res://assets/characters/enemies/Math_Boss/Idle/0028.png" id="79_i6ffn"]
+[ext_resource type="Texture2D" uid="uid://d2r8qhmrxx3io" path="res://assets/characters/enemies/Math_Boss/Idle/0029.png" id="80_r2q47"]
+[ext_resource type="Texture2D" uid="uid://gfi1m3mt37st" path="res://assets/characters/enemies/Math_Boss/Idle/0030.png" id="81_3qjba"]
+[ext_resource type="Texture2D" uid="uid://brpnc8e2ov0t6" path="res://assets/characters/enemies/Math_Boss/Idle/0031.png" id="82_u6mjy"]
+[ext_resource type="Texture2D" uid="uid://cf6n7y3uqb8t6" path="res://assets/characters/enemies/Math_Boss/Idle/0032.png" id="83_35mk0"]
+[ext_resource type="Texture2D" uid="uid://2il0wtsimx5w" path="res://assets/characters/enemies/Math_Boss/Idle/0033.png" id="84_3v2pj"]
+[ext_resource type="Texture2D" uid="uid://e1ft7qwwnl14" path="res://assets/characters/enemies/Math_Boss/Idle/0034.png" id="85_6bt61"]
+[ext_resource type="Texture2D" uid="uid://dq2fatwwaq45j" path="res://assets/characters/enemies/Math_Boss/Idle/0035.png" id="86_t6ans"]
+[ext_resource type="Texture2D" uid="uid://q71na8kotc8r" path="res://assets/characters/enemies/Math_Boss/Idle/0036.png" id="87_ud58e"]
+[ext_resource type="Texture2D" uid="uid://be4hapcsf7mcm" path="res://assets/characters/enemies/Math_Boss/Melee/0001.png" id="88_2rk7r"]
+[ext_resource type="Texture2D" uid="uid://c7y2h0nvapj0i" path="res://assets/characters/enemies/Math_Boss/Melee/0002.png" id="89_k5o2p"]
+[ext_resource type="Texture2D" uid="uid://bvew5ma10mk5r" path="res://assets/characters/enemies/Math_Boss/Melee/0003.png" id="90_02jlm"]
+[ext_resource type="Texture2D" uid="uid://tpn8xrxeldm5" path="res://assets/characters/enemies/Math_Boss/Melee/0004.png" id="91_jkwei"]
+[ext_resource type="Texture2D" uid="uid://0bui58en6t3k" path="res://assets/characters/enemies/Math_Boss/Melee/0005.png" id="92_i7mtj"]
+[ext_resource type="Texture2D" uid="uid://bautrbnlosfvj" path="res://assets/characters/enemies/Math_Boss/Melee/0006.png" id="93_4uv7y"]
+[ext_resource type="Texture2D" uid="uid://ibdx3pqkw6ld" path="res://assets/characters/enemies/Math_Boss/Melee/0007.png" id="94_vy0c6"]
+[ext_resource type="Texture2D" uid="uid://dt01xh3yypwvo" path="res://assets/characters/enemies/Math_Boss/Melee/0008.png" id="95_0tdvr"]
+[ext_resource type="Texture2D" uid="uid://dymol8xocxdp2" path="res://assets/characters/enemies/Math_Boss/Melee/0009.png" id="96_fvdts"]
+[ext_resource type="Texture2D" uid="uid://lfxk65rooeqc" path="res://assets/characters/enemies/Math_Boss/Melee/0010.png" id="97_hmo8b"]
+[ext_resource type="Texture2D" uid="uid://dk10dd5v7c8td" path="res://assets/characters/enemies/Math_Boss/Melee/0011.png" id="98_eoof8"]
+[ext_resource type="Texture2D" uid="uid://ccxft0h1438ve" path="res://assets/characters/enemies/Math_Boss/Melee/0012.png" id="99_546nq"]
+[ext_resource type="Texture2D" uid="uid://3g7ur1f1o5m1" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0001.png" id="100_aptkj"]
+[ext_resource type="Texture2D" uid="uid://cgv5xvqilkdbl" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0002.png" id="101_3dhoc"]
+[ext_resource type="Texture2D" uid="uid://d2cxk8xp8ggcc" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0003.png" id="102_8pesd"]
+[ext_resource type="Texture2D" uid="uid://e7xs1cl7ibqq" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0004.png" id="103_vr0r2"]
+[ext_resource type="Texture2D" uid="uid://cd8cnwnoulujm" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0005.png" id="104_ybtgm"]
+[ext_resource type="Texture2D" uid="uid://cl0s3lr54xaa7" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0006.png" id="105_jq170"]
+[ext_resource type="Texture2D" uid="uid://dl5asndvgfyby" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0007.png" id="106_jj7c8"]
+[ext_resource type="Texture2D" uid="uid://dpstpoaurbyyl" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0008.png" id="107_i0vs4"]
+[ext_resource type="Texture2D" uid="uid://b7mtwuxl8amsu" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0009.png" id="108_3ub0h"]
+[ext_resource type="Texture2D" uid="uid://bi5au60xw0h0j" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0010.png" id="109_da57j"]
+[ext_resource type="Texture2D" uid="uid://bhggsyjoi8g2y" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0011.png" id="110_pgd3p"]
+[ext_resource type="Texture2D" uid="uid://ch0idhj2hptm1" path="res://assets/characters/enemies/Math_Boss/Post-Melee/0012.png" id="111_ww6h5"]
+[ext_resource type="Texture2D" uid="uid://dikycb4qjiq76" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0001.png" id="112_c1n0p"]
+[ext_resource type="Texture2D" uid="uid://b0oqy7ra8ekv2" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0002.png" id="113_cl1yo"]
+[ext_resource type="Texture2D" uid="uid://b4fgi812whyv" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0003.png" id="114_shl5m"]
+[ext_resource type="Texture2D" uid="uid://cv3kx6j2yftcf" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0004.png" id="115_2g37y"]
+[ext_resource type="Texture2D" uid="uid://c8vvmy7ncfn7b" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0005.png" id="116_6xn1f"]
+[ext_resource type="Texture2D" uid="uid://byrbsajsccmhl" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0006.png" id="117_hmirm"]
+[ext_resource type="Texture2D" uid="uid://dnf26aelchk82" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0007.png" id="118_77f33"]
+[ext_resource type="Texture2D" uid="uid://cr2o7ma04vyq" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0008.png" id="119_euf5b"]
+[ext_resource type="Texture2D" uid="uid://dh4nm6q4rfs42" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0009.png" id="120_gt61v"]
+[ext_resource type="Texture2D" uid="uid://nhvps5pvac0p" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0010.png" id="121_s4lpv"]
+[ext_resource type="Texture2D" uid="uid://ixljf1gf4qld" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0011.png" id="122_vsrms"]
+[ext_resource type="Texture2D" uid="uid://beykd2ojxa0r1" path="res://assets/characters/enemies/Math_Boss/Post_Psych/0012.png" id="123_dnok0"]
+[ext_resource type="Texture2D" uid="uid://bge6mn4vjgge5" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0001.png" id="124_y02sf"]
+[ext_resource type="Texture2D" uid="uid://bw5sk7o14qhps" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0002.png" id="125_qwj58"]
+[ext_resource type="Texture2D" uid="uid://cbf6hhwuqi6oc" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0003.png" id="126_oitxq"]
+[ext_resource type="Texture2D" uid="uid://dnhynk358ki45" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0004.png" id="127_qvnn6"]
+[ext_resource type="Texture2D" uid="uid://bgvsulnfhmyam" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0005.png" id="128_61eux"]
+[ext_resource type="Texture2D" uid="uid://bbuja5fnmxn5b" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0006.png" id="129_7u3vc"]
+[ext_resource type="Texture2D" uid="uid://4es4lq2y15vf" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0007.png" id="130_6m8ru"]
+[ext_resource type="Texture2D" uid="uid://bi5hmutmx0fiy" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0008.png" id="131_mu286"]
+[ext_resource type="Texture2D" uid="uid://b5dkywbi7u46s" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0009.png" id="132_ces15"]
+[ext_resource type="Texture2D" uid="uid://dgopp8mj3x7gj" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0010.png" id="133_t7me7"]
+[ext_resource type="Texture2D" uid="uid://dhjbhqeousqdk" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0011.png" id="134_r88tx"]
+[ext_resource type="Texture2D" uid="uid://b38u8dkaf3ylf" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0012.png" id="135_813vp"]
+[ext_resource type="Texture2D" uid="uid://dgedeshw8wixp" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0013.png" id="136_dm00u"]
+[ext_resource type="Texture2D" uid="uid://u43cplcesp7c" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0014.png" id="137_tnke1"]
+[ext_resource type="Texture2D" uid="uid://1x06wd58xeb2" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0015.png" id="138_tv6hq"]
+[ext_resource type="Texture2D" uid="uid://p56bl5jqr3sv" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0016.png" id="139_c13q8"]
+[ext_resource type="Texture2D" uid="uid://crkwenc4wffq8" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0017.png" id="140_iqqb8"]
+[ext_resource type="Texture2D" uid="uid://ii25ldvqtf0u" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0018.png" id="141_6acoc"]
+[ext_resource type="Texture2D" uid="uid://bpil8q4u0xqpp" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0019.png" id="142_3pkcr"]
+[ext_resource type="Texture2D" uid="uid://jj0snih1wena" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0020.png" id="143_88qhv"]
+[ext_resource type="Texture2D" uid="uid://c44ojog3wda8b" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0021.png" id="144_6swkc"]
+[ext_resource type="Texture2D" uid="uid://dvthufs1xy5on" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0022.png" id="145_2ejmk"]
+[ext_resource type="Texture2D" uid="uid://k64sol5d7sfy" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0023.png" id="146_0k5cc"]
+[ext_resource type="Texture2D" uid="uid://bk34cxgnlcnfl" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0024.png" id="147_ld2xi"]
+[ext_resource type="Texture2D" uid="uid://gq24fr4eir7v" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0025.png" id="148_aqs8b"]
+[ext_resource type="Texture2D" uid="uid://bgyua2dw63ubn" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0026.png" id="149_ik3cq"]
+[ext_resource type="Texture2D" uid="uid://du4g4o5bhuayv" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0027.png" id="150_7haq2"]
+[ext_resource type="Texture2D" uid="uid://krg2jofub5k1" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0028.png" id="151_dw85r"]
+[ext_resource type="Texture2D" uid="uid://c7xjyjaow2phs" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0029.png" id="152_vciay"]
+[ext_resource type="Texture2D" uid="uid://da0re7kob1dqy" path="res://assets/characters/enemies/Math_Boss/Post_Ulti/0030.png" id="153_aqb54"]
+[ext_resource type="Texture2D" uid="uid://dlohjkif5ufbw" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0001.png" id="154_0ib3j"]
+[ext_resource type="Texture2D" uid="uid://c8db1qtcr5jy4" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0002.png" id="155_atlcc"]
+[ext_resource type="Texture2D" uid="uid://di3nmsnk3uhkn" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0003.png" id="156_5d4ag"]
+[ext_resource type="Texture2D" uid="uid://c02bbjfcopw6y" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0004.png" id="157_g0q8q"]
+[ext_resource type="Texture2D" uid="uid://dveuhtmsq1h68" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0001.png" id="158_0dqov"]
+[ext_resource type="Texture2D" uid="uid://c72l7e24ag7l5" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0005.png" id="158_n6h4x"]
+[ext_resource type="Texture2D" uid="uid://yg0y8ms4w8lg" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0006.png" id="159_7endf"]
+[ext_resource type="Texture2D" uid="uid://6qqace2v27sb" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0002.png" id="159_veemh"]
+[ext_resource type="Texture2D" uid="uid://85h5r1gx431m" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0003.png" id="160_erhr8"]
+[ext_resource type="Texture2D" uid="uid://djh2bfdm4xlob" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0007.png" id="160_ggfpj"]
+[ext_resource type="Texture2D" uid="uid://bfr3gc81kux3o" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0004.png" id="161_0kdxs"]
+[ext_resource type="Texture2D" uid="uid://xo1q0tkc5tmv" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0008.png" id="161_ocss8"]
+[ext_resource type="Texture2D" uid="uid://b3sec1ngtq87b" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0005.png" id="162_7w8f5"]
+[ext_resource type="Texture2D" uid="uid://d2hesd48udxw5" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0009.png" id="162_x3o5g"]
+[ext_resource type="Texture2D" uid="uid://b7bixwgegkfb6" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0010.png" id="163_k41m6"]
+[ext_resource type="Texture2D" uid="uid://uas55uk7vicj" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0006.png" id="163_xv26h"]
+[ext_resource type="Texture2D" uid="uid://c5tpv6t3mwljn" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0011.png" id="164_d0n7m"]
+[ext_resource type="Texture2D" uid="uid://c7vo3ruw8edfw" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0007.png" id="164_qdqka"]
+[ext_resource type="Texture2D" uid="uid://cn45eqe740a2o" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0008.png" id="165_eco6g"]
+[ext_resource type="Texture2D" uid="uid://5gbufsofay5j" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0012.png" id="165_qpx5n"]
+[ext_resource type="Texture2D" uid="uid://cti47m3gvki8e" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0013.png" id="166_4vq5x"]
+[ext_resource type="Texture2D" uid="uid://lfs5jen35rnr" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0009.png" id="166_7xtm1"]
+[ext_resource type="Texture2D" uid="uid://djbwwrmoe88yj" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0014.png" id="167_3mtyr"]
+[ext_resource type="Texture2D" uid="uid://gchhcngv8mb0" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0010.png" id="167_tkhtp"]
+[ext_resource type="Texture2D" uid="uid://cvrd1cfg1rk4i" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0011.png" id="168_hnwo8"]
+[ext_resource type="Texture2D" uid="uid://baj4atnur7xga" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0015.png" id="168_qps5a"]
+[ext_resource type="Texture2D" uid="uid://ok6o0mvp742y" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0012.png" id="169_klcwu"]
+[ext_resource type="Texture2D" uid="uid://d3jh0wl62qboq" path="res://assets/characters/enemies/Math_Boss/Pre_Psych/0016.png" id="169_wrmfi"]
+[ext_resource type="Texture2D" uid="uid://leogv07jjl21" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0013.png" id="170_ux7kd"]
+[ext_resource type="Texture2D" uid="uid://b3g178mvyubh2" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0001.png" id="170_xta88"]
+[ext_resource type="Texture2D" uid="uid://16vila0ptvfn" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0014.png" id="171_cp137"]
+[ext_resource type="Texture2D" uid="uid://bs6j1w26dc1gw" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0002.png" id="171_sr4cf"]
+[ext_resource type="Texture2D" uid="uid://df6mudbc702gs" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0003.png" id="172_12gs4"]
+[ext_resource type="Texture2D" uid="uid://dq4le1n6u02xg" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0015.png" id="172_cgqhw"]
+[ext_resource type="Texture2D" uid="uid://bwe3pr84oxafu" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0004.png" id="173_p4hti"]
+[ext_resource type="Texture2D" uid="uid://c0a6w8rytduhv" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0016.png" id="173_vul0a"]
+[ext_resource type="Texture2D" uid="uid://1ghs5jsbt23q" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0017.png" id="174_4lu2s"]
+[ext_resource type="Texture2D" uid="uid://npmxlv243igf" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0005.png" id="174_ywmnd"]
+[ext_resource type="Texture2D" uid="uid://cllbdjm5irem6" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0006.png" id="175_dr2s1"]
+[ext_resource type="Texture2D" uid="uid://dub6p8n6io483" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0018.png" id="175_y1fn6"]
+[ext_resource type="Texture2D" uid="uid://bm6o2878xtbgn" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0007.png" id="176_hb7fq"]
+[ext_resource type="Texture2D" uid="uid://cha84fdayrm0v" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0019.png" id="176_mo1k0"]
+[ext_resource type="Texture2D" uid="uid://lmw7hrxvpprq" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0020.png" id="177_0ito1"]
+[ext_resource type="Texture2D" uid="uid://bx100cdmskp4m" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0008.png" id="177_qdbsh"]
+[ext_resource type="Texture2D" uid="uid://dafeduxt1q7ng" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0021.png" id="178_2rtrk"]
+[ext_resource type="Texture2D" uid="uid://cah1m6hrl4kkj" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0009.png" id="178_l7ibl"]
+[ext_resource type="Texture2D" uid="uid://bfae0y7qsxlbj" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0010.png" id="179_w6226"]
+[ext_resource type="Texture2D" uid="uid://riccct033mp2" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0022.png" id="179_y2sq2"]
+[ext_resource type="Texture2D" uid="uid://5d4v4f3uoffk" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0023.png" id="180_bhwp6"]
+[ext_resource type="Texture2D" uid="uid://glfle0d5qv45" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0011.png" id="180_cqsm0"]
+[ext_resource type="Texture2D" uid="uid://ba1aqiotn821b" path="res://assets/characters/enemies/Math_Boss/Pre_Melee/0024.png" id="181_tu0nk"]
+[ext_resource type="Texture2D" uid="uid://c0o3gd57jwqej" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0012.png" id="181_ukhc8"]
+[ext_resource type="Texture2D" uid="uid://vm47sohkc1r5" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0013.png" id="182_8l1u7"]
+[ext_resource type="Texture2D" uid="uid://downul78j6s4q" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0014.png" id="183_h7808"]
+[ext_resource type="Texture2D" uid="uid://v5ygjj62f57x" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0015.png" id="184_higwp"]
+[ext_resource type="Texture2D" uid="uid://bwj75fith4y1b" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0016.png" id="185_6svgl"]
+[ext_resource type="Texture2D" uid="uid://baskselqxglqg" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0017.png" id="186_45jv1"]
+[ext_resource type="Texture2D" uid="uid://0c01qlcs8kmt" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0018.png" id="187_rfduo"]
+[ext_resource type="Texture2D" uid="uid://clrwpipx3otgv" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0019.png" id="188_th3t7"]
+[ext_resource type="Texture2D" uid="uid://cj4vt76j6y6un" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0020.png" id="189_4v5o6"]
+[ext_resource type="Texture2D" uid="uid://gkgfq573kl3f" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0021.png" id="190_8pe56"]
+[ext_resource type="Texture2D" uid="uid://bb3o3yk5jsr8n" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0022.png" id="191_1jnbx"]
+[ext_resource type="Texture2D" uid="uid://bcktdmp3sjlu8" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0023.png" id="192_1fpm3"]
+[ext_resource type="Texture2D" uid="uid://bsmmhljqlurs6" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0024.png" id="193_d35sl"]
+[ext_resource type="Texture2D" uid="uid://bwgu01vuhnxrn" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0025.png" id="194_r8rme"]
+[ext_resource type="Texture2D" uid="uid://deecei7b6dibb" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0026.png" id="195_alf5d"]
+[ext_resource type="Texture2D" uid="uid://dwje1824addy5" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0027.png" id="196_igyts"]
+[ext_resource type="Texture2D" uid="uid://c8l0flu4msmst" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0028.png" id="197_g5pkn"]
+[ext_resource type="Texture2D" uid="uid://d3q25t76ewa77" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0029.png" id="198_cfa72"]
+[ext_resource type="Texture2D" uid="uid://chqul45v4wf35" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0030.png" id="199_c5psb"]
+[ext_resource type="Texture2D" uid="uid://dog5iv7675clf" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0031.png" id="200_jefmh"]
+[ext_resource type="Texture2D" uid="uid://vayqlfpa5k20" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0032.png" id="201_x5aor"]
+[ext_resource type="Texture2D" uid="uid://blbrv38oitrtr" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0033.png" id="202_8ygja"]
+[ext_resource type="Texture2D" uid="uid://brtyx4ty3hbgv" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0034.png" id="203_6orow"]
+[ext_resource type="Texture2D" uid="uid://bsi0vc3gg85ja" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0035.png" id="204_q7u7o"]
+[ext_resource type="Texture2D" uid="uid://iah88f063f8s" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0036.png" id="205_kf72c"]
+[ext_resource type="Texture2D" uid="uid://bkol4ah4biv75" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0037.png" id="206_64wwq"]
+[ext_resource type="Texture2D" uid="uid://516ha4vjjso6" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0038.png" id="207_xxwd5"]
+[ext_resource type="Texture2D" uid="uid://b1mslfrxuj4na" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0039.png" id="208_vsyk0"]
+[ext_resource type="Texture2D" uid="uid://cvj4cca0ma3lg" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0040.png" id="209_eswk6"]
+[ext_resource type="Texture2D" uid="uid://mdj2teee4asb" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0041.png" id="210_2iwrv"]
+[ext_resource type="Texture2D" uid="uid://b1hdvp5ybnjsa" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0042.png" id="211_cewnw"]
+[ext_resource type="Texture2D" uid="uid://dqupm00rf55jd" path="res://assets/characters/enemies/Math_Boss/Pre_Ulti/0043.png" id="212_4mgac"]
+[ext_resource type="Texture2D" uid="uid://5yn7xjd04t8" path="res://assets/characters/enemies/Math_Boss/Stun/0001.png" id="213_hljog"]
+[ext_resource type="Texture2D" uid="uid://bisxl3n1nsghi" path="res://assets/characters/enemies/Math_Boss/Stun/0002.png" id="214_suna6"]
+[ext_resource type="Texture2D" uid="uid://bqd3a3mhjcxg5" path="res://assets/characters/enemies/Math_Boss/Stun/0003.png" id="215_of5t4"]
+[ext_resource type="Texture2D" uid="uid://gq0xxvuvslvj" path="res://assets/characters/enemies/Math_Boss/Stun/0004.png" id="216_fltjq"]
+[ext_resource type="Texture2D" uid="uid://blhubqp5oj8eo" path="res://assets/characters/enemies/Math_Boss/Stun/0005.png" id="217_xr0lt"]
+[ext_resource type="Texture2D" uid="uid://cymqd3ewwrctf" path="res://assets/characters/enemies/Math_Boss/Stun/0006.png" id="218_1g7m6"]
+[ext_resource type="Texture2D" uid="uid://cu13sywy8bgxx" path="res://assets/characters/enemies/Math_Boss/Stun/0007.png" id="219_oekfr"]
+[ext_resource type="Texture2D" uid="uid://dd4s687fvp1mg" path="res://assets/characters/enemies/Math_Boss/Stun/0008.png" id="220_odaep"]
+[ext_resource type="Texture2D" uid="uid://mg50i064ei8r" path="res://assets/characters/enemies/Math_Boss/Stun/0009.png" id="221_emmpk"]
+[ext_resource type="Texture2D" uid="uid://bkb4gfogd7sxp" path="res://assets/characters/enemies/Math_Boss/Stun/0010.png" id="222_47pcx"]
+[ext_resource type="Texture2D" uid="uid://c0hp1ebujql4d" path="res://assets/characters/enemies/Math_Boss/Stun/0011.png" id="223_dl6og"]
+[ext_resource type="Texture2D" uid="uid://i4erge4q15ly" path="res://assets/characters/enemies/Math_Boss/Stun/0012.png" id="224_svmcl"]
+[ext_resource type="Texture2D" uid="uid://bfgmck2nkb1s4" path="res://assets/characters/enemies/Math_Boss/Stun/0013.png" id="225_026nl"]
+[ext_resource type="Texture2D" uid="uid://bo143tct00jsb" path="res://assets/characters/enemies/Math_Boss/Stun/0014.png" id="226_fxv17"]
+[ext_resource type="Texture2D" uid="uid://bgxhn1xbybfxq" path="res://assets/characters/enemies/Math_Boss/Stun/0015.png" id="227_5gm4w"]
+[ext_resource type="Texture2D" uid="uid://cis218x7ay2s2" path="res://assets/characters/enemies/Math_Boss/Stun/0016.png" id="228_hou8g"]
+[ext_resource type="Texture2D" uid="uid://d2skflm2l5o31" path="res://assets/characters/enemies/Math_Boss/Stun/0017.png" id="229_o56x1"]
+[ext_resource type="Texture2D" uid="uid://dapuefk4hc7t7" path="res://assets/characters/enemies/Math_Boss/Stun/0018.png" id="230_bxgir"]
+[ext_resource type="Texture2D" uid="uid://dg662ywhne0hv" path="res://assets/characters/enemies/Math_Boss/Stun/0019.png" id="231_ttm2o"]
+[ext_resource type="Texture2D" uid="uid://4taifpj7np5u" path="res://assets/characters/enemies/Math_Boss/Stun/0020.png" id="232_uvms0"]
+[ext_resource type="Texture2D" uid="uid://bn8of6rcsa0lf" path="res://assets/characters/enemies/Math_Boss/Stun/0021.png" id="233_nmepl"]
+[ext_resource type="Texture2D" uid="uid://dvvj07fl0t53o" path="res://assets/characters/enemies/Math_Boss/Stun/0022.png" id="234_h3hy6"]
+[ext_resource type="Texture2D" uid="uid://bv0t3fvk0cg36" path="res://assets/characters/enemies/Math_Boss/Stun/0023.png" id="235_xk032"]
+[ext_resource type="Texture2D" uid="uid://cupsrey04qpo8" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0001.png" id="236_p3v0k"]
+[ext_resource type="Texture2D" uid="uid://d14tmh0n47um8" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0002.png" id="237_ue5hv"]
+[ext_resource type="Texture2D" uid="uid://b44thg81dmwan" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0003.png" id="238_qmels"]
+[ext_resource type="Texture2D" uid="uid://dnredla8ju4vq" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0004.png" id="239_hp8ul"]
+[ext_resource type="Texture2D" uid="uid://cebiyx6ntnfqc" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0005.png" id="240_5cy1d"]
+[ext_resource type="Texture2D" uid="uid://d2cmwkokepkb" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0006.png" id="241_xf1d3"]
+[ext_resource type="Texture2D" uid="uid://dkbkphrxv3gdb" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0007.png" id="242_ymhe2"]
+[ext_resource type="Texture2D" uid="uid://yews0fdu8wbi" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0008.png" id="243_nt222"]
+[ext_resource type="Texture2D" uid="uid://c1wj4ph87p6og" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0009.png" id="244_vbs10"]
+[ext_resource type="Texture2D" uid="uid://bv8fbd75eg2fv" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0010.png" id="245_qt1y8"]
+[ext_resource type="Texture2D" uid="uid://cljtimi48shhn" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0011.png" id="246_73pn4"]
+[ext_resource type="Texture2D" uid="uid://7lgc8dair1oi" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0012.png" id="247_52rbv"]
+[ext_resource type="Texture2D" uid="uid://bray45omdlou8" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0013.png" id="248_ccj6y"]
+[ext_resource type="Texture2D" uid="uid://dpp4tmd84cul1" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0014.png" id="249_lbvyf"]
+[ext_resource type="Texture2D" uid="uid://cql0eytxpr7lx" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0015.png" id="250_joyo6"]
+[ext_resource type="Texture2D" uid="uid://calcl4ek5vtm3" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0016.png" id="251_uqeup"]
+[ext_resource type="Texture2D" uid="uid://bjxobyfxrg2t8" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0017.png" id="252_t86pq"]
+[ext_resource type="Texture2D" uid="uid://bhljvrij7s2hh" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0018.png" id="253_0idu5"]
+[ext_resource type="Texture2D" uid="uid://bae7ffcy4aigs" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0019.png" id="254_uisoq"]
+[ext_resource type="Texture2D" uid="uid://crbg0tc6o1mbb" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0020.png" id="255_mjl78"]
+[ext_resource type="Texture2D" uid="uid://dcb26g1nj0exh" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0021.png" id="256_j8kwa"]
+[ext_resource type="Texture2D" uid="uid://bwi3ucn1vr1xm" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0022.png" id="257_snao1"]
+[ext_resource type="Texture2D" uid="uid://cqy8146485de0" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0023.png" id="258_janfw"]
+[ext_resource type="Texture2D" uid="uid://bg8k02ed0vvsx" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0024.png" id="259_t6m2d"]
+[ext_resource type="Texture2D" uid="uid://m86njwkiq1m7" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0025.png" id="260_q7hd3"]
+[ext_resource type="Texture2D" uid="uid://dnybx30gghjsy" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0026.png" id="261_2wujr"]
+[ext_resource type="Texture2D" uid="uid://huxupmyxoky5" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0027.png" id="262_gpin0"]
+[ext_resource type="Texture2D" uid="uid://dsjarfjsqrflq" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0028.png" id="263_oa1t3"]
+[ext_resource type="Texture2D" uid="uid://cgynrp20xg5ma" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0029.png" id="264_rc680"]
+[ext_resource type="Texture2D" uid="uid://5i75vs3cs046" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0030.png" id="265_ejdhe"]
+[ext_resource type="Texture2D" uid="uid://b7afa277rwin6" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0031.png" id="266_0adpa"]
+[ext_resource type="Texture2D" uid="uid://c5smd6xonldod" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0032.png" id="267_6rc6x"]
+[ext_resource type="Texture2D" uid="uid://b34g2sy8i0eyw" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0033.png" id="268_vyw5i"]
+[ext_resource type="Texture2D" uid="uid://baed5l646l6x0" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0034.png" id="269_dp1dr"]
+[ext_resource type="Texture2D" uid="uid://cudc0xjd73qmx" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0035.png" id="270_yfybb"]
+[ext_resource type="Texture2D" uid="uid://dt88v30qmqhci" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0036.png" id="271_ps5ue"]
+[ext_resource type="Texture2D" uid="uid://hhruajiqqs7m" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0037.png" id="272_ynvh8"]
+[ext_resource type="Texture2D" uid="uid://djncsrj2vntg3" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0038.png" id="273_cdpjr"]
+[ext_resource type="Texture2D" uid="uid://dpcfdj2jigp3b" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0039.png" id="274_83da4"]
+[ext_resource type="Texture2D" uid="uid://3ldvoehotpkv" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0040.png" id="275_i3ab2"]
+[ext_resource type="Texture2D" uid="uid://b8djnh0a4oetq" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0041.png" id="276_75g1t"]
+[ext_resource type="Texture2D" uid="uid://ouiaspxa6hqa" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0042.png" id="277_c14tu"]
+[ext_resource type="Texture2D" uid="uid://b2rwakh8bkuc0" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0043.png" id="278_6w6s4"]
+[ext_resource type="Texture2D" uid="uid://frmna4stk7ef" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0044.png" id="279_bbr4h"]
+[ext_resource type="Texture2D" uid="uid://jguy26q8e51b" path="res://assets/characters/enemies/Math_Boss/Symbol_Attack/0045.png" id="280_xcgbv"]
+[ext_resource type="Texture2D" uid="uid://yeed4nif24wd" path="res://assets/characters/enemies/Math_Boss/Ulti/0001.png" id="281_2xro6"]
+[ext_resource type="Texture2D" uid="uid://dvofdtmhcfw2v" path="res://assets/characters/enemies/Math_Boss/Ulti/0002.png" id="282_ymccb"]
+[ext_resource type="Texture2D" uid="uid://bey7gjndevigu" path="res://assets/characters/enemies/Math_Boss/Ulti/0003.png" id="283_ybmlk"]
+[ext_resource type="Texture2D" uid="uid://bekld6uwm4w0g" path="res://assets/characters/enemies/Math_Boss/Ulti/0004.png" id="284_damsd"]
+[ext_resource type="Texture2D" uid="uid://dfnt4loyqokxa" path="res://assets/characters/enemies/Math_Boss/Ulti/0005.png" id="285_7nyu5"]
+[ext_resource type="Texture2D" uid="uid://cc0qxd26tdjn4" path="res://assets/characters/enemies/Math_Boss/Ulti/0006.png" id="286_8e0gg"]
+[ext_resource type="Texture2D" uid="uid://c2p0gujbe1a6r" path="res://assets/characters/enemies/Math_Boss/Ulti/0007.png" id="287_uk8m2"]
+[ext_resource type="Texture2D" uid="uid://74satq20swap" path="res://assets/characters/enemies/Math_Boss/Ulti/0008.png" id="288_n4xxs"]
+[ext_resource type="Texture2D" uid="uid://bs75a1ulgghqj" path="res://assets/characters/enemies/Math_Boss/Ulti/0009.png" id="289_0hy4e"]
+[ext_resource type="Texture2D" uid="uid://c34riehid0vh4" path="res://assets/characters/enemies/Math_Boss/Ulti/0010.png" id="290_worit"]
+[ext_resource type="Texture2D" uid="uid://d2n8lchx7vxkt" path="res://assets/characters/enemies/Math_Boss/Ulti/0011.png" id="291_ut88h"]
+[ext_resource type="Texture2D" uid="uid://cxbjcdiexxr6e" path="res://assets/characters/enemies/Math_Boss/Ulti/0012.png" id="292_dl5aa"]
+[ext_resource type="Texture2D" uid="uid://1ye3glrtkhm8" path="res://assets/characters/enemies/Math_Boss/Ulti/0013.png" id="293_avc1o"]
+[ext_resource type="Texture2D" uid="uid://cbpb2bhp8ysje" path="res://assets/characters/enemies/Math_Boss/Ulti/0014.png" id="294_fm2r1"]
+[ext_resource type="Texture2D" uid="uid://d0abtg4ni0qhy" path="res://assets/characters/enemies/Math_Boss/Ulti/0015.png" id="295_crqds"]
+[ext_resource type="Texture2D" uid="uid://dqmo4adsa5h13" path="res://assets/characters/enemies/Math_Boss/Ulti/0016.png" id="296_6fwr6"]
+[ext_resource type="Texture2D" uid="uid://c8hxxp83ics5r" path="res://assets/characters/enemies/Math_Boss/Ulti/0017.png" id="297_2br0j"]
+[ext_resource type="Texture2D" uid="uid://1jjacdmw00fj" path="res://assets/characters/enemies/Math_Boss/Ulti/0018.png" id="298_dev5l"]
+[ext_resource type="Texture2D" uid="uid://4l16hel0r1cn" path="res://assets/characters/enemies/Math_Boss/Ulti/0019.png" id="299_ugtvx"]
+[ext_resource type="Texture2D" uid="uid://cqnr62kcvmup5" path="res://assets/characters/enemies/Math_Boss/Ulti/0020.png" id="300_7byt3"]
+[ext_resource type="Texture2D" uid="uid://bg64dcen56gg1" path="res://assets/characters/enemies/Math_Boss/Ulti/0021.png" id="301_frx0d"]
+[ext_resource type="Texture2D" uid="uid://hki7kd67bxot" path="res://assets/characters/enemies/Math_Boss/Ulti/0022.png" id="302_1sdiq"]
+[ext_resource type="Texture2D" uid="uid://bpq8csyuvl2ju" path="res://assets/characters/enemies/Math_Boss/Ulti/0023.png" id="303_8a1x6"]
+[ext_resource type="Texture2D" uid="uid://x3je2ayqlety" path="res://assets/characters/enemies/Math_Boss/Ulti/0024.png" id="304_4656t"]
+[ext_resource type="Texture2D" uid="uid://cbs4uo2gmqk5i" path="res://assets/characters/enemies/Math_Boss/Ulti/0025.png" id="305_y26ec"]
+[ext_resource type="Texture2D" uid="uid://wq8tdyi5fvkx" path="res://assets/characters/enemies/Math_Boss/Ulti/0026.png" id="306_2ty88"]
+[ext_resource type="Texture2D" uid="uid://bj5l83hy4thlu" path="res://assets/characters/enemies/Math_Boss/Ulti/0027.png" id="307_ldur4"]
+[ext_resource type="Texture2D" uid="uid://mvi4mfpxphai" path="res://assets/characters/enemies/Math_Boss/Ulti/0028.png" id="308_iscqb"]
+[ext_resource type="Texture2D" uid="uid://dqrkt601ula7j" path="res://assets/characters/enemies/Math_Boss/Ulti/0029.png" id="309_6j4e6"]
+[ext_resource type="Texture2D" uid="uid://kal4nmqh5wfm" path="res://assets/characters/enemies/Math_Boss/Ulti/0030.png" id="310_wmk6u"]
+[ext_resource type="Texture2D" uid="uid://blscaruse4ovq" path="res://assets/characters/enemies/Math_Boss/Ulti/0031.png" id="311_td6g6"]
+[ext_resource type="Texture2D" uid="uid://duwsc6ly423tg" path="res://assets/characters/enemies/Math_Boss/Ulti/0032.png" id="312_e648f"]
+[ext_resource type="Texture2D" uid="uid://bguqx66bfivix" path="res://assets/characters/enemies/Math_Boss/Ulti/0033.png" id="313_b7qa4"]
+[ext_resource type="Texture2D" uid="uid://sirlwpx8b8ob" path="res://assets/characters/enemies/Math_Boss/Ulti/0034.png" id="314_h3t8c"]
+[ext_resource type="Texture2D" uid="uid://breghw86gdua5" path="res://assets/characters/enemies/Math_Boss/Ulti/0035.png" id="315_msnxq"]
+[ext_resource type="Texture2D" uid="uid://o5uflgbmfuwe" path="res://assets/characters/enemies/Math_Boss/Ulti/0036.png" id="316_oc5yi"]
+[ext_resource type="Texture2D" uid="uid://b8ug1c6cx4amg" path="res://assets/characters/enemies/Math_Boss/Walk/0001.png" id="317_lv2ok"]
+[ext_resource type="Texture2D" uid="uid://bd6gnp0swcnhs" path="res://assets/characters/enemies/Math_Boss/Walk/0002.png" id="318_x4wds"]
+[ext_resource type="Texture2D" uid="uid://dhhqaxcaisu7m" path="res://assets/characters/enemies/Math_Boss/Walk/0003.png" id="319_lorpc"]
+[ext_resource type="Texture2D" uid="uid://dddpgbf4xwfvo" path="res://assets/characters/enemies/Math_Boss/Walk/0004.png" id="320_lk7vy"]
+[ext_resource type="Texture2D" uid="uid://dgh2epw4ryp8b" path="res://assets/characters/enemies/Math_Boss/Walk/0005.png" id="321_4hifh"]
+[ext_resource type="Texture2D" uid="uid://c2u7n65bxsugf" path="res://assets/characters/enemies/Math_Boss/Walk/0006.png" id="322_s4xm7"]
+[ext_resource type="Texture2D" uid="uid://b3u5tay1rd4dc" path="res://assets/characters/enemies/Math_Boss/Walk/0007.png" id="323_nhiwh"]
+[ext_resource type="Texture2D" uid="uid://6twlta64bjqw" path="res://assets/characters/enemies/Math_Boss/Walk/0008.png" id="324_j2ssl"]
+[ext_resource type="Texture2D" uid="uid://dnod7jhlw1emk" path="res://assets/characters/enemies/Math_Boss/Walk/0009.png" id="325_nmlou"]
+[ext_resource type="Texture2D" uid="uid://bx3wf0p342s2k" path="res://assets/characters/enemies/Math_Boss/Walk/0010.png" id="326_hwnq7"]
+[ext_resource type="Texture2D" uid="uid://coj5o21fmhdfe" path="res://assets/characters/enemies/Math_Boss/Walk/0011.png" id="327_sl0km"]
+[ext_resource type="Texture2D" uid="uid://cmsr6tx3uvryv" path="res://assets/characters/enemies/Math_Boss/Walk/0012.png" id="328_jm5e1"]
+[ext_resource type="Texture2D" uid="uid://bd7r1fagvjcqg" path="res://assets/characters/enemies/Math_Boss/Walk/0013.png" id="329_yl844"]
+[ext_resource type="Texture2D" uid="uid://b0qslhpni70im" path="res://assets/characters/enemies/Math_Boss/Walk/0014.png" id="330_5c72t"]
+[ext_resource type="Texture2D" uid="uid://bbayunthapfqk" path="res://assets/characters/enemies/Math_Boss/Walk/0015.png" id="331_fvihp"]
+[ext_resource type="Texture2D" uid="uid://5hdq2e03dpfb" path="res://assets/characters/enemies/Math_Boss/Walk/0016.png" id="332_d44nc"]
+[ext_resource type="Texture2D" uid="uid://65uglriv4s4q" path="res://assets/characters/enemies/Math_Boss/Walk/0017.png" id="333_yhwu6"]
+[ext_resource type="Texture2D" uid="uid://bbbnga4lfxawp" path="res://assets/characters/enemies/Math_Boss/Walk/0018.png" id="334_aa7bx"]
+[ext_resource type="Texture2D" uid="uid://cnrnyq5bnhcsr" path="res://assets/characters/enemies/Math_Boss/Walk/0019.png" id="335_hyopk"]
+[ext_resource type="Texture2D" uid="uid://ckkk4cyspfjki" path="res://assets/characters/enemies/Math_Boss/Walk/0020.png" id="336_42fen"]
+[ext_resource type="Texture2D" uid="uid://dn7j0x08m2cy2" path="res://assets/characters/enemies/Math_Boss/Walk/0021.png" id="337_phrd0"]
+[ext_resource type="Texture2D" uid="uid://b5e3csmiuwdim" path="res://assets/characters/enemies/Math_Boss/Walk/0022.png" id="338_tpep8"]
+[ext_resource type="Texture2D" uid="uid://djvwwwq80yk0o" path="res://assets/characters/enemies/Math_Boss/Walk/0023.png" id="339_nh802"]
+[ext_resource type="Texture2D" uid="uid://bmwkofrvlhbrh" path="res://assets/characters/enemies/Math_Boss/Walk/0024.png" id="340_cjhts"]
+[ext_resource type="Texture2D" uid="uid://c37ulei080k26" path="res://assets/characters/enemies/Math_Boss/Walk/0025.png" id="341_yjo3b"]
+[ext_resource type="Texture2D" uid="uid://bjm6dno08b6m1" path="res://assets/characters/enemies/Math_Boss/Walk/0026.png" id="342_ewamk"]
+[ext_resource type="Texture2D" uid="uid://bk6v75pwt1js5" path="res://assets/characters/enemies/Math_Boss/Walk/0027.png" id="343_ecfpb"]
+[ext_resource type="Texture2D" uid="uid://b7xqu3lv7nerm" path="res://assets/characters/enemies/Math_Boss/Walk/0028.png" id="344_iaud0"]
+[ext_resource type="Texture2D" uid="uid://f5barnx4ep6x" path="res://assets/characters/enemies/Math_Boss/Walk/0029.png" id="345_dh6al"]
+[ext_resource type="Texture2D" uid="uid://dwf8lvqpq5fdp" path="res://assets/characters/enemies/Math_Boss/Walk/0030.png" id="346_0b4c1"]
+[ext_resource type="Texture2D" uid="uid://b6uttxjkx2iws" path="res://assets/characters/enemies/Math_Boss/Walk/0031.png" id="347_85lin"]
+[ext_resource type="Texture2D" uid="uid://dr7h5im23p5ns" path="res://assets/characters/enemies/Math_Boss/Walk/0032.png" id="348_5nuo5"]
+[ext_resource type="Texture2D" uid="uid://cde1il047vb6u" path="res://assets/characters/enemies/Math_Boss/Walk/0033.png" id="349_h0368"]
+[ext_resource type="Texture2D" uid="uid://dy5wqxefl53il" path="res://assets/characters/enemies/Math_Boss/Walk/0034.png" id="350_sg6wy"]
+[ext_resource type="Texture2D" uid="uid://qt8eggw2j27a" path="res://assets/characters/enemies/Math_Boss/Walk/0035.png" id="351_ysiaj"]
+[ext_resource type="Texture2D" uid="uid://dh1aljexnq54s" path="res://assets/characters/enemies/Math_Boss/Walk/0036.png" id="352_itnp4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r385q"]
+resource_local_to_scene = true
+shader = ExtResource("2_gnq16")
+shader_parameter/flash_color = Color(0.78431374, 0, 0, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii5rq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_01j08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tq5mb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_b43pr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4e4nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5e2u0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_yk6sb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yyftl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_r5key")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d7d4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_3di1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_01rd2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_s67bo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uh1qt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_y8v03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_p37su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_r04j8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_tjsb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_guaaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_tm331")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jen67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_cueip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_nhpoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_maht8")
+}],
+"loop": true,
+"name": &"exhausted",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_sb2o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_t7ue2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_k2rww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_0dqov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_veemh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_erhr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_0kdxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_7w8f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_xv26h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_qdqka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_eco6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_7xtm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_tkhtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_hnwo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_klcwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ux7kd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_cp137")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_cgqhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_vul0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_4lu2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_y1fn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_mo1k0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_0ito1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_2rtrk")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("52_y2sq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_bhwp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_tu0nk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_68dcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_iup5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_6mlss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_p4if2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_tyqmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_ol1jd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_fvg8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_idgys")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_itwi8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_gm3hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_30rf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_p35lv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_ggrfv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_i8trs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_ghrsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_uhj7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_ues6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("72_m75rd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("73_eakot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("74_vh1qm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("75_llhr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("76_4vifh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("77_udl26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_hx0oa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_i6ffn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_r2q47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_3qjba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("82_u6mjy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("83_35mk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_3v2pj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_6bt61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_t6ans")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_ud58e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("88_2rk7r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_k5o2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_02jlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("91_jkwei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("92_i7mtj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_4uv7y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_vy0c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_0tdvr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_fvdts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_hmo8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_eoof8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_546nq")
+}],
+"loop": true,
+"name": &"melee",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("100_aptkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_3dhoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_8pesd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_vr0r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ybtgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_jq170")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_jj7c8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_i0vs4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("108_3ub0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("109_da57j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("110_pgd3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("111_ww6h5")
+}],
+"loop": true,
+"name": &"post_melee",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("112_c1n0p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_cl1yo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_shl5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_2g37y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_6xn1f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_hmirm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_77f33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_euf5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_gt61v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_s4lpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("122_vsrms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("123_dnok0")
+}],
+"loop": true,
+"name": &"post_psych",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("124_y02sf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("125_qwj58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("126_oitxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("127_qvnn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("128_61eux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("129_7u3vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("130_6m8ru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("131_mu286")
+}, {
+"duration": 1.0,
+"texture": ExtResource("132_ces15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("133_t7me7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("134_r88tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_813vp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_dm00u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_tnke1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_tv6hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_c13q8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_iqqb8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_6acoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_3pkcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_88qhv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("144_6swkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("145_2ejmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("146_0k5cc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("147_ld2xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("148_aqs8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("149_ik3cq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("150_7haq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("151_dw85r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("152_vciay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_aqb54")
+}],
+"loop": true,
+"name": &"post_ulti",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("158_0dqov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_veemh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_erhr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_0kdxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_7w8f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_xv26h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_qdqka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_eco6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_7xtm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_tkhtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_hnwo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_klcwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_ux7kd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_cp137")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_cgqhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_vul0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_4lu2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_y1fn6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_mo1k0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_0ito1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_2rtrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_y2sq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_bhwp6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_tu0nk")
+}],
+"loop": true,
+"name": &"pre_melee",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("154_0ib3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("155_atlcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("156_5d4ag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("157_g0q8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("158_n6h4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("159_7endf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("160_ggfpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("161_ocss8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("162_x3o5g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_k41m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_d0n7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_qpx5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_4vq5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_3mtyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_qps5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_wrmfi")
+}],
+"loop": true,
+"name": &"pre_psych",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("170_xta88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_sr4cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_12gs4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_p4hti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("174_ywmnd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_dr2s1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_hb7fq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_qdbsh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_l7ibl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_w6226")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_cqsm0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_ukhc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_8l1u7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_h7808")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_higwp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_6svgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_45jv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_rfduo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_th3t7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_4v5o6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_8pe56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_1jnbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_1fpm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_d35sl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_r8rme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_alf5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_igyts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_g5pkn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_cfa72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_c5psb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_jefmh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_x5aor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_8ygja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_6orow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_q7u7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_kf72c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_64wwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_xxwd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_vsyk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_eswk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_2iwrv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_cewnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("212_4mgac")
+}],
+"loop": true,
+"name": &"pre_ulti",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("213_hljog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("214_suna6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("215_of5t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("216_fltjq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("217_xr0lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("218_1g7m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("219_oekfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("220_odaep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("221_emmpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("222_47pcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("223_dl6og")
+}, {
+"duration": 1.0,
+"texture": ExtResource("224_svmcl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("225_026nl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("226_fxv17")
+}, {
+"duration": 1.0,
+"texture": ExtResource("227_5gm4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("228_hou8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("229_o56x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("230_bxgir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("231_ttm2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("232_uvms0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("233_nmepl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("234_h3hy6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("235_xk032")
+}],
+"loop": true,
+"name": &"stun",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("236_p3v0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("237_ue5hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("238_qmels")
+}, {
+"duration": 1.0,
+"texture": ExtResource("239_hp8ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("240_5cy1d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("241_xf1d3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("242_ymhe2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("243_nt222")
+}, {
+"duration": 1.0,
+"texture": ExtResource("244_vbs10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("245_qt1y8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_73pn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_52rbv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_ccj6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_lbvyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_joyo6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_uqeup")
+}, {
+"duration": 1.0,
+"texture": ExtResource("252_t86pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("253_0idu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("254_uisoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("255_mjl78")
+}, {
+"duration": 1.0,
+"texture": ExtResource("256_j8kwa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("257_snao1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("258_janfw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("259_t6m2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("260_q7hd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("261_2wujr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("262_gpin0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("263_oa1t3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("264_rc680")
+}, {
+"duration": 1.0,
+"texture": ExtResource("265_ejdhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("266_0adpa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("267_6rc6x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("268_vyw5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("269_dp1dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("270_yfybb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("271_ps5ue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("272_ynvh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("273_cdpjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("274_83da4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("275_i3ab2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("276_75g1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("277_c14tu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("278_6w6s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("279_bbr4h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("280_xcgbv")
+}],
+"loop": true,
+"name": &"symbol_attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("281_2xro6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("282_ymccb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("283_ybmlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("284_damsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("285_7nyu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("286_8e0gg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("287_uk8m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("288_n4xxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("289_0hy4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("290_worit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("291_ut88h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("292_dl5aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("293_avc1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("294_fm2r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("295_crqds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("296_6fwr6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("297_2br0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("298_dev5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("299_ugtvx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("300_7byt3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("301_frx0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("302_1sdiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("303_8a1x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("304_4656t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("305_y26ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("306_2ty88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("307_ldur4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("308_iscqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("309_6j4e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("310_wmk6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("311_td6g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("312_e648f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("313_b7qa4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("314_h3t8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("315_msnxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("316_oc5yi")
+}],
+"loop": true,
+"name": &"ulti",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("317_lv2ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("318_x4wds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("319_lorpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("320_lk7vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("321_4hifh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("322_s4xm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("323_nhiwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("324_j2ssl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("325_nmlou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("326_hwnq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("327_sl0km")
+}, {
+"duration": 1.0,
+"texture": ExtResource("328_jm5e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("329_yl844")
+}, {
+"duration": 1.0,
+"texture": ExtResource("330_5c72t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("331_fvihp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("332_d44nc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("333_yhwu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("334_aa7bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("335_hyopk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("336_42fen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("337_phrd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("338_tpep8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("339_nh802")
+}, {
+"duration": 1.0,
+"texture": ExtResource("340_cjhts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("341_yjo3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("342_ewamk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("343_ecfpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("344_iaud0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("345_dh6al")
+}, {
+"duration": 1.0,
+"texture": ExtResource("346_0b4c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("347_85lin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("348_5nuo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("349_h0368")
+}, {
+"duration": 1.0,
+"texture": ExtResource("350_sg6wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("351_ysiaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("352_itnp4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b43pr"]
+size = Vector2(53.125015, 81.25003)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e4nf"]
+size = Vector2(420.00098, 135.93785)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5e2u0"]
+size = Vector2(55.00004, 55.00004)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yk6sb"]
+size = Vector2(16.250011, 5.78125)
+
+[node name="CharacterBody2D" instance=ExtResource("1_ossqf")]
+script = ExtResource("2_jegtd")
+attacks = Array[ExtResource("3_okltb")]([ExtResource("4_b43pr")])
+range_attacks = Array[ExtResource("4_tq5mb")]([ExtResource("5_b43pr"), ExtResource("6_4e4nf")])
+ATTACK_RANGE = 300.0
+ATTACK_RANGE_FAR = 60.0
+ATTACK_RANGE_NEAR = 59.9
+
+[node name="Health" parent="." index="0" groups=["health"]]
+max_health = 400
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_r385q")
+position = Vector2(14.999998, -43.749996)
+sprite_frames = SubResource("SpriteFrames_ii5rq")
+animation = &"pre_melee"
+frame = 7
+frame_progress = 0.18055165
+
+[node name="Collision" parent="." index="2"]
+position = Vector2(1.2499957, 3.7499988)
+scale = Vector2(0.79999954, 0.79999954)
+shape = SubResource("RectangleShape2D_b43pr")
+
+[node name="RayCastRight" parent="." index="3"]
+position = Vector2(25, -7.5)
+
+[node name="RaycastDownRight" parent="." index="4"]
+position = Vector2(45, 20)
+
+[node name="CollisionShape2D" parent="Tracking_Box" index="0"]
+position = Vector2(2.3841858e-07, -21.249996)
+shape = SubResource("RectangleShape2D_4e4nf")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(11.249998, 9.999995)
+scale = Vector2(0.9999991, 0.9999991)
+shape = SubResource("RectangleShape2D_5e2u0")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_yk6sb")

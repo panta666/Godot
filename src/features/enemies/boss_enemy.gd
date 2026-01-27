@@ -21,7 +21,7 @@ func _ready() -> void:
 func _spawn_healthbar() -> void:
 	print("spawned healthbar")
 	bar_instance = boss_bar.instantiate()
-	get_tree().root.add_child(bar_instance)
+	get_tree().current_scene.add_child(bar_instance)
 	bar_instance.setup(self)
 
 func _get_visible_player() -> CharacterBody2D:
