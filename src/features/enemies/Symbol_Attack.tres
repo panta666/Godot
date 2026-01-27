@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Range_Attack" load_steps=2 format=3 uid="uid://cybggtx6cmr63"]
+
+[ext_resource type="Script" uid="uid://bhivv0hqxe25t" path="res://src/features/player/range_attack.gd" id="1_x4ya5"]
+
+[resource]
+script = ExtResource("1_x4ya5")
+damage = 20
+pre_attack_duration = 2.0
+pre_animation_name = "symbol_attack"
+post_animation_name = "idle"
+projectile_offset = Vector2(0, -15)
+metadata/_custom_type_script = "uid://bhivv0hqxe25t"

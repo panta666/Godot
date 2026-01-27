@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="17_60r6c"]
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="18_hylnt"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="19_nu2an"]
+[ext_resource type="PackedScene" uid="uid://v81j2yswvp61" path="res://src/features/enemies/math_boss.tscn" id="18_8rmdm"]
+[ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="19_hylnt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h36qc"]
 texture = ExtResource("3_grcn0")
@@ -8281,7 +8283,7 @@ teleport_target = NodePath("Marker2D")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_q4fl0")]
 unique_name_in_owner = true
-position = Vector2(536, -199)
+position = Vector2(77, 122)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -8609,6 +8611,16 @@ script = ExtResource("18_hylnt")
 position = Vector2(-49, -123)
 scale = Vector2(1, 1)
 required_keys = 1
+
+[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
+position = Vector2(2965, 895.00006)
+collision_layer = 4
+boss_trigger = NodePath("../Boss_Trigger")
+
+[node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
+position = Vector2(2702, 895)
+scale = Vector2(2, 4)
+collision_mask = 2
 
 [connection signal="body_entered" from="Fall_Damage" to="." method="_on_fall_damage_body_entered"]
 [connection signal="body_entered" from="Fall_Damage2" to="." method="_on_fall_damage_2_body_entered"]
