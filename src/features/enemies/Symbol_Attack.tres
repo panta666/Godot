@@ -8,5 +8,5 @@ damage = 20
 pre_attack_duration = 2.0
 pre_animation_name = "symbol_attack"
 post_animation_name = "idle"
-projectile_offset = Vector2(0, -15)
+projectile_offset = Vector2(0, -70)
 metadata/_custom_type_script = "uid://bhivv0hqxe25t"

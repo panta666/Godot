@@ -9,5 +9,5 @@ pre_attack_duration = 0.5
 post_attack_duration = 0.5
 pre_animation_name = "pre_psych"
 post_animation_name = "post_psych"
-projectile_offset = Vector2(5, -10)
+projectile_offset = Vector2(0, -50)
 metadata/_custom_type_script = "uid://bhivv0hqxe25t"

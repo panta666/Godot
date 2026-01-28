@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=42 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="11_h36qc"]
 [ext_resource type="PackedScene" uid="uid://d46ibheny51y" path="res://src/shared/ui/key_visuals.tscn" id="13_ria7j"]
 [ext_resource type="PackedScene" uid="uid://deaxp8exxtquv" path="res://src/features/enemies/Ghost.tscn" id="14_8658m"]
-[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="15_vh1ip"]
 [ext_resource type="PackedScene" uid="uid://ownr2hsvn3so" path="res://src/features/enemies/projectile_math.tscn" id="15_wlsv5"]
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="17_60r6c"]
 [ext_resource type="PackedScene" uid="uid://v81j2yswvp61" path="res://src/features/enemies/math_boss.tscn" id="18_8rmdm"]
@@ -4663,7 +4662,7 @@ teleport_target = NodePath("Marker2D")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_q4fl0")]
 unique_name_in_owner = true
-position = Vector2(2769, 865)
+position = Vector2(63, 116)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -4912,10 +4911,9 @@ show_d = true
 animate_s = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("14_8658m")]
-position = Vector2(637, 50)
+position = Vector2(1613, 117)
 scale = Vector2(1.2, 1.2)
 collision_layer = 4
-attacks = Array[ExtResource("15_vh1ip")]([])
 SPEED = 75.0
 STUN_TIME = 0.3
 projectile_scene = ExtResource("15_wlsv5")
@@ -4927,13 +4925,13 @@ collision_layer = 4
 STUN_TIME = 0.25
 
 [node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
-position = Vector2(2965, 895.00006)
+position = Vector2(834.00006, 42.000004)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
 boss_of_level = "mathe_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
-position = Vector2(2710, 889)
+position = Vector2(1071, 52)
 scale = Vector2(2, 4)
 collision_mask = 2
 

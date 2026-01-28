@@ -1,10 +1,15 @@
 extends Area2D
+class_name Projectile
 
 @export var speed: float = 400.0
 @export var apply_gravity := false
+@export var _gravity := gravity
 
 var velocity: Vector2
 var exception: Node2D
+
+func _ready() -> void:
+	gravity = _gravity
 
 func set_direction(dir: Vector2):
 	velocity = dir.normalized() * speed
