@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="11_h36qc"]
 [ext_resource type="PackedScene" uid="uid://d46ibheny51y" path="res://src/shared/ui/key_visuals.tscn" id="13_ria7j"]
 [ext_resource type="PackedScene" uid="uid://deaxp8exxtquv" path="res://src/features/enemies/Ghost.tscn" id="14_8658m"]
-[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="15_vh1ip"]
 [ext_resource type="PackedScene" uid="uid://ownr2hsvn3so" path="res://src/features/enemies/projectile_math.tscn" id="15_wlsv5"]
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="17_60r6c"]
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="18_hylnt"]
@@ -8552,6 +8551,7 @@ scale = Vector2(1.2691922, 1.2691922)
 collision_layer = 4
 attacks = Array[ExtResource("15_vh1ip")]([])
 DASH_SPEED = 150.0
+SPEED = 75.0
 STUN_TIME = 0.3
 projectile_scene = ExtResource("15_wlsv5")
 
@@ -8613,13 +8613,13 @@ scale = Vector2(1, 1)
 required_keys = 1
 
 [node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
-position = Vector2(2965, 895.00006)
+position = Vector2(834.00006, 42.000004)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
 boss_of_level = "mathe_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
-position = Vector2(2710, 889)
+position = Vector2(1071, 52)
 scale = Vector2(2, 4)
 collision_mask = 2
 
