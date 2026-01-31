@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://cs33rhtx4gyqy"]
+[gd_scene load_steps=89 format=4 uid="uid://cs33rhtx4gyqy"]
 
 [ext_resource type="Script" uid="uid://bmdglgvryxndf" path="res://src/worlds/dreamworld/oop/level_one.gd" id="1_ahlc2"]
 [ext_resource type="Texture2D" uid="uid://btuoxpjbjc1y1" path="res://assets/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="1_d7njt"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="33_w5snx"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="34_b6hso"]
 [ext_resource type="PackedScene" uid="uid://cv3nqqtro8ihu" path="res://src/shared/components/key.tscn" id="35_qsjlj"]
+[ext_resource type="PackedScene" uid="uid://d46ibheny51y" path="res://src/shared/ui/key_visuals.tscn" id="37_25tuj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67yw2"]
 texture = ExtResource("1_d7njt")
@@ -3435,3 +3436,16 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTrigger2"]
 position = Vector2(3374, 384)
 shape = SubResource("RectangleShape2D_0k6i5")
+
+[node name="KeyVisuals" parent="." instance=ExtResource("37_25tuj")]
+position = Vector2(576, 86)
+show_w = true
+show_a = true
+show_s = true
+show_d = true
+animate_s = true
+
+[node name="KeyVisuals2" parent="." instance=ExtResource("37_25tuj")]
+position = Vector2(562, -34)
+show_space = true
+animate_space = true
