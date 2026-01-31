@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://sxc5oblkvejp"]
+[gd_scene load_steps=70 format=3 uid="uid://sxc5oblkvejp"]
 
 [ext_resource type="Script" uid="uid://1f814opdq6o7" path="res://src/features/player/player_realworld.gd" id="1_r46w1"]
 [ext_resource type="Texture2D" uid="uid://w2180mglnytw" path="res://assets/characters/Adam_idle_anim_16x16.png" id="1_w8k1j"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctky543ox2eg" path="res://src/shared/ui/quest_arrow.tscn" id="7_pu3xt"]
 [ext_resource type="PackedScene" uid="uid://uksvo435v8am" path="res://src/shared/ui/quest_hud.tscn" id="8_0t100"]
 [ext_resource type="PackedScene" uid="uid://dfstpqm8b81f5" path="res://src/shared/ui/hud_coin_realworld.tscn" id="9_5t2vc"]
+[ext_resource type="PackedScene" uid="uid://dojvqhwcgadrj" path="res://src/shared/ui/profmode.tscn" id="10_77avq"]
 [ext_resource type="PackedScene" uid="uid://cbf3jotkoxkmx" path="res://src/shared/ui/realworld_gui.tscn" id="10_lfvg1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hu31r"]
@@ -542,6 +543,12 @@ offset_left = 908.0
 offset_top = 2.0
 offset_right = 908.0
 offset_bottom = 2.0
+
+[node name="Profmode" parent="HUD" instance=ExtResource("10_77avq")]
+offset_left = 926.0
+offset_top = 45.0
+offset_right = 926.0
+offset_bottom = 45.0
 
 [node name="Realworld_GUI" parent="." instance=ExtResource("10_lfvg1")]
 
