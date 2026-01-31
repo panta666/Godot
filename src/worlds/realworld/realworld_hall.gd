@@ -11,6 +11,9 @@ const PLAYER_SPAWN_POS_HOME := Vector2(434, 1190)
 
 
 func _ready() -> void:
+	print("[HALL] unlocked_levels:", GlobalScript.unlocked_levels)
+	print("[HALL] mathe lvl1 unlocked?:", GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1))
+	quest_trigger2.set_enabled(false)
 	# Speichert die aktuelle Szene für continue
 	SaveManager.update_current_scene()
 	# --- Player sicher in die aktuelle Szene verschieben oder neu spawnen ---
@@ -33,21 +36,10 @@ func _ready() -> void:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_HOME
 	else:
 		GlobalScript.player.global_position = PLAYER_SPAWN_POS_ONE
-		
-	# --- QuestTrigger2 (Math) standardmäßig deaktivieren ---
-	quest_trigger2.monitoring = false
-	quest_trigger2.monitorable = false
-	quest_trigger2.get_node("CollisionShape2D").disabled = true
 
 	# --- Prüfen, ob Math Level 1 freigeschaltet ist ---
 	if GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1):
-		_activate_math_trigger()
-
-func _activate_math_trigger() -> void:
-	quest_trigger2.monitoring = true
-	quest_trigger2.monitorable = true
-	quest_trigger2.get_node("CollisionShape2D").disabled = false
-	print("QuestTrigger2 in Hall aktiviert (Math Level 1 freigeschaltet)")
+		quest_trigger2.set_enabled(true)
 
 func _on_classroom_three_door_3_body_entered(body: Node2D) -> void:
 	if body == GlobalScript.player:

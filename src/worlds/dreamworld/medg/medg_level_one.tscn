@@ -8285,7 +8285,7 @@ teleport_target = NodePath("Marker2D")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_q4fl0")]
 unique_name_in_owner = true
-position = Vector2(54, -138)
+position = Vector2(61, 123)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
