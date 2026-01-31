@@ -64,7 +64,7 @@ func is_prof_mode():
 # -------------------------
 # Freigeschaltete Level (global)
 # -------------------------
-var unlocked_levels = { classrooms.oop:1, classrooms.mathe:1}
+var unlocked_levels = { classrooms.oop:1}
 
 enum classrooms {
 	oop,
