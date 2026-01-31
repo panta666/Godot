@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dd2trkoy8202p"]
+[gd_scene load_steps=29 format=4 uid="uid://dd2trkoy8202p"]
 
 [ext_resource type="Script" uid="uid://cdnw3m0dgeavi" path="res://src/worlds/dreamworld/math_level_two.gd" id="1_rkl2v"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="2_jcuav"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://src/shared/components/coin.tscn" id="12_8qxit"]
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="13_0ttaw"]
 [ext_resource type="PackedScene" uid="uid://deaxp8exxtquv" path="res://src/features/enemies/Ghost.tscn" id="14_8pxoj"]
-[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="15_58pn4"]
 [ext_resource type="PackedScene" uid="uid://ownr2hsvn3so" path="res://src/features/enemies/projectile_math.tscn" id="16_0qdol"]
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="17_58pn4"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="18_0qdol"]
@@ -1666,6 +1665,21 @@ sources/15 = SubResource("TileSetAtlasSource_p6a2a")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkl2v"]
 size = Vector2(52, 52)
 
+[sub_resource type="Animation" id="Animation_jcuav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(981, -147)]
+}
+
 [sub_resource type="Animation" id="Animation_rkl2v"]
 resource_name = "move"
 length = 2.0
@@ -1681,21 +1695,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(981, -147), Vector2(1270, -147)]
-}
-
-[sub_resource type="Animation" id="Animation_jcuav"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(981, -147)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8qxit"]
@@ -1885,19 +1884,16 @@ STUN_TIME = 0.25
 [node name="Ghost_Enemy_1" parent="." groups=["enemy"] instance=ExtResource("14_8pxoj")]
 position = Vector2(2806, -425)
 collision_layer = 4
-attacks = Array[ExtResource("15_58pn4")]([])
 projectile_scene = ExtResource("16_0qdol")
 
 [node name="Ghost_Enemy_2" parent="." groups=["enemy"] instance=ExtResource("14_8pxoj")]
 position = Vector2(2377, -1109)
 collision_layer = 4
-attacks = Array[ExtResource("15_58pn4")]([])
 projectile_scene = ExtResource("16_0qdol")
 
 [node name="Ghost_Enemy_3" parent="." groups=["enemy"] instance=ExtResource("14_8pxoj")]
 position = Vector2(2231, -1529)
 collision_layer = 4
-attacks = Array[ExtResource("15_58pn4")]([])
 projectile_scene = ExtResource("16_0qdol")
 
 [node name="Drop_Manager" type="Node" parent="."]
