@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=55 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -16,10 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://deaxp8exxtquv" path="res://src/features/enemies/Ghost.tscn" id="14_8658m"]
 [ext_resource type="PackedScene" uid="uid://ownr2hsvn3so" path="res://src/features/enemies/projectile_math.tscn" id="15_wlsv5"]
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="17_60r6c"]
-[ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="18_hylnt"]
-[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="19_nu2an"]
 [ext_resource type="PackedScene" uid="uid://v81j2yswvp61" path="res://src/features/enemies/math_boss.tscn" id="18_8rmdm"]
+[ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="18_hylnt"]
 [ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="19_hylnt"]
+[ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="19_nu2an"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h36qc"]
 texture = ExtResource("3_grcn0")
@@ -8549,9 +8549,8 @@ animate_s = true
 position = Vector2(3708, 919.00006)
 scale = Vector2(1.2691922, 1.2691922)
 collision_layer = 4
-attacks = Array[ExtResource("15_vh1ip")]([])
-DASH_SPEED = 150.0
 SPEED = 75.0
+DASH_SPEED = 150.0
 STUN_TIME = 0.3
 projectile_scene = ExtResource("15_wlsv5")
 
@@ -8564,13 +8563,11 @@ STUN_TIME = 0.25
 [node name="Ghost_Enemy_1" parent="." groups=["enemy"] instance=ExtResource("14_8658m")]
 position = Vector2(4440, 285)
 collision_layer = 4
-attacks = Array[ExtResource("15_vh1ip")]([])
 projectile_scene = ExtResource("15_wlsv5")
 
 [node name="Ghost_Enemy_2" parent="." groups=["enemy"] instance=ExtResource("14_8658m")]
 position = Vector2(833, 55)
 collision_layer = 4
-attacks = Array[ExtResource("15_vh1ip")]([])
 projectile_scene = ExtResource("15_wlsv5")
 
 [node name="KeyVisuals_defeat" parent="." instance=ExtResource("13_ria7j")]
@@ -8610,9 +8607,8 @@ script = ExtResource("18_hylnt")
 [node name="Boss_door" parent="." instance=ExtResource("19_nu2an")]
 position = Vector2(-49, -123)
 scale = Vector2(1, 1)
-required_keys = 1
 
-[node name="CharacterBody2D3" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
+[node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
 position = Vector2(834.00006, 42.000004)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
