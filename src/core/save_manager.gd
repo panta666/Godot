@@ -40,7 +40,8 @@ var save_data = {
 		"range_attack_increase": false,
 		"heal_ability": false,
 		"heal_ability_increase": false
-	}
+	},
+	"profmode" : false
 }
 
 const default_values = {
@@ -74,7 +75,8 @@ const default_values = {
 		"range_attack_increase": false,
 		"heal_ability": false,
 		"heal_ability_increase": false
-	}
+	},
+     "profmode" : false
 }
 
 
@@ -215,6 +217,13 @@ func apply_audio_settings():
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("SFX"), settings["SFX_is_muted"])
 	print("SaveManager: Audioeinstellungen angewendet.")
 
+
+func load_profmode() -> bool:
+	return save_data["profmode"]
+
+func save_profmode(profmode: bool):
+	save_data["profmode"] = profmode
+	save_game()
 
 ## ----------------------------------------------------------------
 ## ÖFFENTLICHE FUNKTIONEN: Von anderen Skripten aufrufen

@@ -50,13 +50,14 @@ const AUDIO_BUSES = ['Master', 'Music', 'SFX']
 
 """
 	Profmode is the cheatability. You will have a lot of benefits.
-	Cheatmode is currently planed to deactivate upon closing the game.
+	Cheatmode is toggled on and off.
 """
 
 var prof_mode = false
 
-func set_prof_mode(on = true):
-	prof_mode = on
+func toggle_prof_mode():
+	prof_mode = not is_prof_mode()
+	SaveManager.save_prof_mode(prof_mode)
 
 func is_prof_mode():
 	return prof_mode
@@ -181,6 +182,7 @@ func start_new_game() -> void:
 	
 	get_tree().change_scene_to_file("res://src/worlds/dreamworld/dreamworld_tutorial.tscn")
 
+    prof_mode = false
 	# jetzt Player deferred
 	call_deferred("spawn_player")
 
@@ -192,6 +194,7 @@ func start_from_menu() -> void:
 	SaveManager.load_last_scene()
 	set_level_unlocks()
 	set_realworld_coins()
+	prof_mode = SaveManager.load_prof_mode()
 	
 	# Player deferred instanziieren
 	call_deferred("spawn_player")
