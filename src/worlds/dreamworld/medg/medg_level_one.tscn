@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=56 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -8276,13 +8276,16 @@ size = Vector2(684, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60r6c"]
 size = Vector2(470, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu2an"]
+size = Vector2(96, 61)
+
 [node name="MathLevelOne" type="Node2D" node_paths=PackedStringArray("teleport_target")]
 script = ExtResource("1_k3sex")
 teleport_target = NodePath("Marker2D")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("1_q4fl0")]
 unique_name_in_owner = true
-position = Vector2(77, 122)
+position = Vector2(54, -138)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -8605,20 +8608,29 @@ collision_layer = 4
 script = ExtResource("18_hylnt")
 
 [node name="Boss_door" parent="." instance=ExtResource("19_nu2an")]
-position = Vector2(-49, -123)
+position = Vector2(-107, -121)
 scale = Vector2(1, 1)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
-position = Vector2(834.00006, 42.000004)
+position = Vector2(-391.99988, 918.99994)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
 boss_of_level = "mathe_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
-position = Vector2(1071, 52)
+position = Vector2(-168, -124)
 scale = Vector2(2, 4)
 collision_mask = 2
+
+[node name="NOT_ALL_KEYS_AREA" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NOT_ALL_KEYS_AREA"]
+position = Vector2(-33, -124)
+shape = SubResource("RectangleShape2D_nu2an")
 
 [connection signal="body_entered" from="Fall_Damage" to="." method="_on_fall_damage_body_entered"]
 [connection signal="body_entered" from="Fall_Damage2" to="." method="_on_fall_damage_2_body_entered"]
 [connection signal="body_entered" from="Fall_Damage3" to="." method="_on_fall_damage_3_body_entered"]
+[connection signal="body_entered" from="NOT_ALL_KEYS_AREA" to="." method="_on_not_all_keys_body_entered"]

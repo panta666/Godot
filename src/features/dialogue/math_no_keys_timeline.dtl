@@ -1,0 +1,4 @@
+[style name="platformer_style"]
+player: Mhmm..the Boss door is still locked. I should go back and get more Key Fragments from Monsters.
+[signal arg="cutscene_end"]
+[signal arg="go_home"]
