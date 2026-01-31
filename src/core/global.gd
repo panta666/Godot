@@ -31,6 +31,11 @@ var last_door_for_transition: Node = null
 signal enemy_damaged(amount)
 
 # -------------------------
+# Signal Profmode
+# -------------------------
+signal prof_mode_visible_updated(prof_mode: bool)
+
+# -------------------------
 # Spieler-Infos
 # -------------------------
 var player_positions := {
@@ -58,6 +63,7 @@ var prof_mode = false
 func toggle_prof_mode():
 	prof_mode = not is_prof_mode()
 	SaveManager.save_prof_mode(prof_mode)
+	prof_mode_visible_updated.emit(prof_mode)
 
 func is_prof_mode():
 	return prof_mode
