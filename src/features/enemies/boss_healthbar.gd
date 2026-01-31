@@ -10,6 +10,7 @@ var health_nodes = []
 
 var boss
 
+# Alle Health-Komponenten setzen
 func setup(_boss: Enemy):
 	boss = _boss
 	for node in boss.get_tree().get_nodes_in_group("health"):
@@ -18,7 +19,7 @@ func setup(_boss: Enemy):
 	print(health_nodes)
 	update()
 
-
+# Alle drei Hurtbox-Werte setzen
 func update():
 	for node in health_nodes:
 		if node == null:

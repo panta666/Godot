@@ -1,6 +1,10 @@
 extends "res://src/features/enemies/generic_enemy.gd"
 
 @export var boss_trigger: Boss_Trigger
+
+#------------------------------
+# Projectile Scenes
+#------------------------------
 var projectile_scenes: Array = [
 	preload("res://src/features/enemies/psych_projectile.tscn"),
 	preload("res://src/features/enemies/symbol_one.tscn"),
@@ -9,6 +13,10 @@ var projectile_scenes: Array = [
 	preload("res://src/features/enemies/math_boss_ulti_projectile.tscn")
 ]
 
+
+#------------------------------
+# Config
+#------------------------------
 var bar_instance
 var projectile_to_spawn := 0
 var boss_bar = preload("res://src/features/enemies/math_boss_healthbar.tscn")
@@ -45,6 +53,11 @@ func _detect_player() -> bool:
 		return true
 	return false
 	
+#------------------------------
+# Hurt System Logic
+#------------------------------
+# Fall-Animation wird abgespielt, boss health.immortality wird für 5 sek auf false gesetzt,
+# Boss kann nun verletzt werden.
 func _exhaust() -> void:
 	exhausted = true
 	_play_animation_scaled("fall", 0.5)
@@ -59,6 +72,8 @@ func _exhaust() -> void:
 	await get_tree().create_timer(0.5).timeout
 	exhausted = false
 	
+# Angriff beenden, Anzahle Angriffe inkrementieren, Wenn eine Maximalanzahl an Angriffen erreicht ist, 
+# exhaust() rufen 
 func _end_attack() -> void:
 		is_attacking = false
 		is_walking = true
@@ -70,6 +85,7 @@ func _end_attack() -> void:
 			attack_counter = 0
 	
 	
+# Wenn nicht 'incincible', Schaden-Signal emittieren
 func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	if not invincible:
 		if bar_instance != null:
@@ -103,18 +119,18 @@ func die() -> void:
 
 	queue_free()
 
-
+# RealWorld-Szene laden
 func _return_to_classroom() -> void:
 	GlobalScript.save_coins_for_level(boss_of_level)
 
 	await get_tree().create_timer(0.2).timeout
 
-	# Blink Overlay laden
+	# Blink Overlay
 	var blink_overlay = preload("res://src/shared/components/blink_overlay.tscn").instantiate()
 	get_tree().root.add_child(blink_overlay)
 	
 	var overlay = blink_overlay.get_node("Blink_Overlay")
-	# Transition zurück in die echte Welt
+	# Transition to Real World
 	await overlay.play_wake_up()
 	GlobalScript.change_scene("realworld_classroom_two")
 	
@@ -132,7 +148,12 @@ func _physics_process(delta: float) -> void:
 			_process_movement()
 			move_and_slide()
 			
-		
+	
+#------------------------------
+# Projectile Sequential Spawn Logic
+#------------------------------	
+# Richtung des Projektils kann hier mit angegeben werden (möglciherweise auch in 
+# Generic_Enemy implementieren)
 func _spawn_projectile_in_dir(attack: Range_Attack, _direction: Vector2) -> void:
 	sound_player.play_sound(Enemysound.soundtype.ATTACK)
 	var projectile = projectile_scenes[projectile_to_spawn].instantiate()
@@ -142,7 +163,9 @@ func _spawn_projectile_in_dir(attack: Range_Attack, _direction: Vector2) -> void
 	projectile.rotation = _direction.angle()
 	projectile._set_exception(self)
 	get_tree().current_scene.add_child(projectile)
-	
+
+# Hard-gecodete, Boss-Spezifische Methode für Projektil-Instanziierung und Richtungssetzung
+# bei spezifischen Attacken
 func _coordinate_range_attack(attack: Range_Attack, dir_to_player: Vector2) -> void:
 	match attack.pre_animation_name:
 		"pre_psych":
@@ -166,6 +189,7 @@ func _coordinate_range_attack(attack: Range_Attack, dir_to_player: Vector2) -> v
 			projectile_to_spawn = 0
 			_spawn_projectile_in_dir(attack, Vector2.RIGHT)
 			
+# Range-Attack mit Berechnung von Richtung zwischen Projektil-Spawnpunkt und Spielerposition
 func _range_attack(attack: Range_Attack) -> void:
 	is_attacking = true
 	is_walking = false
@@ -192,7 +216,7 @@ func _range_attack(attack: Range_Attack) -> void:
 	attack_allowed = false
 	attack_cooldown.start()
 	
-# Fest definierte, einzigartige Attacke des Bosses
+# Für den Boss einzigartiger Angriff der mehrere exploding-projectiles instanziiert
 func ultimate(attack: Range_Attack):
 	is_attacking = true
 	is_walking = false
@@ -232,6 +256,8 @@ func ultimate(attack: Range_Attack):
 	attack_allowed = false
 	attack_cooldown.start()
 	
+# Angriff-Start-Methode wie in Generic-Enemy mit berücksichtigung der einzigartigen Angriffs-Methode 
+# dieses bosses. Die Ultimate-Attacke soll nicht mehr als ein mal hinterienander durchgeführt werden können
 func _start_attack() -> void:
 	if not attack_allowed or is_attacking or not player:
 		return
