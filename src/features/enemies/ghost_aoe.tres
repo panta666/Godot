@@ -8,5 +8,7 @@ damage = 5
 animation_name = "idle"
 pre_animation_name = "idle"
 post_animation_name = "idle"
+movement = 1
 hitbox_size = Vector2(40, 40)
+hitbox_duration = 0.5
 metadata/_custom_type_script = "uid://cmwgyb1n1ar8"

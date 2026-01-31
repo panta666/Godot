@@ -1,0 +1,88 @@
+[gd_scene load_steps=17 format=3 uid="uid://c0wjd61184qyp"]
+
+[ext_resource type="Script" uid="uid://blmxc5cv85b0c" path="res://src/features/enemies/explosion.gd" id="1_0824o"]
+[ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="2_6o5hm"]
+[ext_resource type="Texture2D" uid="uid://bjkl5kkijghmk" path="res://assets/characters/enemies/projectiles/explosion/explosion-b1.png" id="3_ow6cj"]
+[ext_resource type="Texture2D" uid="uid://crgjcn8elrnnc" path="res://assets/characters/enemies/projectiles/explosion/explosion-b2.png" id="4_k7jho"]
+[ext_resource type="Texture2D" uid="uid://4qt0ewwqrjbs" path="res://assets/characters/enemies/projectiles/explosion/explosion-b3.png" id="5_5g0un"]
+[ext_resource type="Texture2D" uid="uid://bcl3xh0pec34q" path="res://assets/characters/enemies/projectiles/explosion/explosion-b4.png" id="6_anotn"]
+[ext_resource type="Texture2D" uid="uid://dtmlgqa7o01op" path="res://assets/characters/enemies/projectiles/explosion/explosion-b5.png" id="7_qqvrg"]
+[ext_resource type="Texture2D" uid="uid://cfbgb8jsgrvt3" path="res://assets/characters/enemies/projectiles/explosion/explosion-b6.png" id="8_b1j1k"]
+[ext_resource type="Texture2D" uid="uid://dfywad4l4wngh" path="res://assets/characters/enemies/projectiles/explosion/explosion-b7.png" id="9_ch56e"]
+[ext_resource type="Texture2D" uid="uid://brbasjwcmvfqt" path="res://assets/characters/enemies/projectiles/explosion/explosion-b8.png" id="10_ciudw"]
+[ext_resource type="Texture2D" uid="uid://dtwt5oxfl8303" path="res://assets/characters/enemies/projectiles/explosion/explosion-b9.png" id="11_xa1i4"]
+[ext_resource type="Texture2D" uid="uid://8eclvqv34r8o" path="res://assets/characters/enemies/projectiles/explosion/explosion-b10.png" id="12_2jij3"]
+[ext_resource type="Texture2D" uid="uid://dd5ixybnt52ek" path="res://assets/characters/enemies/projectiles/explosion/explosion-b11.png" id="13_prxve"]
+[ext_resource type="Texture2D" uid="uid://c43vlfhr6ty4w" path="res://assets/characters/enemies/projectiles/explosion/explosion-b12.png" id="14_ujius"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhvjn"]
+radius = 57.00877
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udpb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ow6cj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k7jho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5g0un")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_anotn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qqvrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b1j1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ch56e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ciudw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_xa1i4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2jij3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_prxve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ujius")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_0824o")
+duration = 1.0
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 12
+collision_mask = 13
+script = ExtResource("2_6o5hm")
+metadata/_custom_type_script = "uid://rb433xiwvdb6"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_fhvjn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -12)
+scale = Vector2(2.0530744, 2.1458333)
+sprite_frames = SubResource("SpriteFrames_udpb7")
+animation = &"explosion"
+frame_progress = 0.24739563
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

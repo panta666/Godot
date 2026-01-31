@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://c6uhjk15xwxvp"]
+
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="1_c31x5"]
+
+[resource]
+script = ExtResource("1_c31x5")
+damage = 60
+pre_attack_duration = 1.0
+post_attack_duration = 0.5
+animation_name = "melee"
+pre_animation_name = "pre_melee"
+post_animation_name = "post_melee"
+movement = 1
+hitbox_offset = Vector2(15, -35)
+hitbox_size = Vector2(60, 70)
+hitbox_duration = 0.5
+metadata/_custom_type_script = "uid://cmwgyb1n1ar8"

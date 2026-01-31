@@ -1,10 +1,11 @@
-[gd_scene load_steps=158 format=3 uid="uid://deaxp8exxtquv"]
+[gd_scene load_steps=159 format=3 uid="uid://deaxp8exxtquv"]
 
 [ext_resource type="PackedScene" uid="uid://chn72gotg061q" path="res://src/features/enemies/Generic_Enemy.tscn" id="1_siqu7"]
 [ext_resource type="Script" uid="uid://dy8lx5ms4vp7" path="res://src/features/enemies/ghost_enemy.gd" id="2_70pmd"]
 [ext_resource type="Script" uid="uid://bhivv0hqxe25t" path="res://src/features/player/range_attack.gd" id="2_nry85"]
 [ext_resource type="Shader" uid="uid://dmpd7q5digbi" path="res://src/features/enemies/Generic_Enemy.gdshader" id="2_wcukd"]
 [ext_resource type="Texture2D" uid="uid://dwtqns2wu6gk5" path="res://assets/characters/enemies/Ghost/Idle/0001.png" id="3_70pmd"]
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="3_kv0is"]
 [ext_resource type="Resource" uid="uid://ddusiuenhi65c" path="res://src/features/enemies/ghost_range_attack.tres" id="3_yglmy"]
 [ext_resource type="Texture2D" uid="uid://e8thvv7tarkb" path="res://assets/characters/enemies/Ghost/Idle/0002.png" id="4_nry85"]
 [ext_resource type="Texture2D" uid="uid://fhjpry70y5m3" path="res://assets/characters/enemies/Ghost/Idle/0003.png" id="5_yglmy"]
@@ -639,6 +640,7 @@ size = Vector2(16.250011, 5.78125)
 [node name="CharacterBody2D" instance=ExtResource("1_siqu7")]
 script = ExtResource("2_70pmd")
 number_position = Vector2(-17, -35)
+attacks = Array[ExtResource("3_kv0is")]([])
 range_attacks = Array[ExtResource("2_nry85")]([ExtResource("3_yglmy")])
 
 [node name="AnimatedSprite2D" parent="." index="1"]
