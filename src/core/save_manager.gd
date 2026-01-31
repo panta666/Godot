@@ -218,10 +218,10 @@ func apply_audio_settings():
 	print("SaveManager: Audioeinstellungen angewendet.")
 
 
-func load_profmode() -> bool:
+func load_prof_mode() -> bool:
 	return save_data["profmode"]
 
-func save_profmode(profmode: bool):
+func save_prof_mode(profmode: bool):
 	save_data["profmode"] = profmode
 	save_game()
 
