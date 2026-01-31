@@ -69,6 +69,13 @@ func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 		GlobalScript.enemy_damaged.emit(damage)
 		_stun()
 	else:
-		_attack(aoe)
+		hitbox.disabled = true
+		await get_tree().physics_frame
+		hitbox.disabled = false
+		await get_tree().create_timer(0.5).timeout
+		hitbox.disabled = true
+		
+
+		
 	
 	

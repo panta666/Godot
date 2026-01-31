@@ -8609,14 +8609,15 @@ position = Vector2(-49, -123)
 scale = Vector2(1, 1)
 
 [node name="Boss" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("18_8rmdm")]
-position = Vector2(834.00006, 42.000004)
+position = Vector2(-356, 922)
+scale = Vector2(1, 1)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
 boss_of_level = "mathe_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
-position = Vector2(1071, 52)
-scale = Vector2(2, 4)
+position = Vector2(-295, 682)
+scale = Vector2(4, 4)
 collision_mask = 2
 
 [connection signal="body_entered" from="Fall_Damage" to="." method="_on_fall_damage_body_entered"]
