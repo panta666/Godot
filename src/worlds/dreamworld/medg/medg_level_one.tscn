@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=56 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://gdpyde4j1ls7" path="res://src/features/enemies/Slimes/slime_8.tscn" id="17_60r6c"]
 [ext_resource type="PackedScene" uid="uid://v81j2yswvp61" path="res://src/features/enemies/math_boss.tscn" id="18_8rmdm"]
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="18_hylnt"]
+[ext_resource type="PackedScene" uid="uid://cv3nqqtro8ihu" path="res://src/shared/components/key.tscn" id="18_i8yvx"]
 [ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="19_hylnt"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="19_nu2an"]
 
@@ -8603,6 +8604,7 @@ collision_layer = 4
 
 [node name="Drop_Manager" type="Node" parent="."]
 script = ExtResource("18_hylnt")
+key_scene = ExtResource("18_i8yvx")
 
 [node name="Boss_door" parent="." instance=ExtResource("19_nu2an")]
 position = Vector2(-49, -123)
