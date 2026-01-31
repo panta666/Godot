@@ -182,7 +182,7 @@ func start_new_game() -> void:
 	
 	get_tree().change_scene_to_file("res://src/worlds/dreamworld/dreamworld_tutorial.tscn")
 
-    prof_mode = false
+	prof_mode = false
 	# jetzt Player deferred
 	call_deferred("spawn_player")
 
