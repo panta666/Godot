@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dojvqhwcgadrj"]
+
+[ext_resource type="Texture2D" uid="uid://x707rfhdesl" path="res://assets/hud/brille_32x32.png" id="1_3n0kt"]
+[ext_resource type="Script" uid="uid://cb2xagpraejn4" path="res://src/shared/ui/profmode.gd" id="1_vbpqd"]
+
+[node name="Profmode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbpqd")
+
+[node name="GlassesTR" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 31.0
+texture = ExtResource("1_3n0kt")
