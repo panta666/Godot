@@ -724,16 +724,16 @@ size = Vector2(48.437546, 200.00018)
 size = Vector2(1125.0022, 255.0005)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_audnc"]
-size = Vector2(40.00004, 33.75003)
+size = Vector2(48.750046, 33.75003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_odusm"]
 size = Vector2(16.250011, 5.78125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l87mj"]
-size = Vector2(39.999996, 56.249996)
+size = Vector2(51.25001, 62.499996)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jw0he"]
-size = Vector2(38.750008, 103.74997)
+size = Vector2(43.750008, 98.74997)
 
 [node name="CharacterBody2D" instance=ExtResource("1_x44s7")]
 script = ExtResource("2_nfnda")
@@ -790,8 +790,8 @@ shape = SubResource("RectangleShape2D_lory0")
 [node name="HurtBox" parent="." index="10" groups=["boss"]]
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-9.999996, -64.37499)
-scale = Vector2(0.99999887, 0.99999887)
+position = Vector2(-5.6249967, -64.37499)
+scale = Vector2(0.9999988, 0.9999988)
 shape = SubResource("RectangleShape2D_audnc")
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -808,8 +808,8 @@ health = NodePath("../HealthTorso")
 metadata/_custom_type_script = "uid://doiua0q38uaxe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxTorso" index="0"]
-position = Vector2(-9.999996, -18.124994)
-scale = Vector2(0.99999994, 0.99999994)
+position = Vector2(-6.874996, -14.999986)
+scale = Vector2(0.99999964, 0.99999964)
 shape = SubResource("RectangleShape2D_l87mj")
 
 [node name="HurtBoxLegs" type="Area2D" parent="." index="16" node_paths=PackedStringArray("health")]
@@ -820,8 +820,8 @@ health = NodePath("../HealthLegs")
 metadata/_custom_type_script = "uid://doiua0q38uaxe"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxLegs" index="0"]
-position = Vector2(-10.624998, 63.124966)
-scale = Vector2(0.9999997, 0.9999997)
+position = Vector2(-8.124997, 65.624954)
+scale = Vector2(0.9999995, 0.9999995)
 shape = SubResource("RectangleShape2D_jw0he")
 
 [connection signal="health_depleted" from="HealthTorso" to="." method="_on_health_torso_health_depleted"]
