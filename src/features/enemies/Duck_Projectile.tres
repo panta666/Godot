@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_qpknn")
-damage = 10
-pre_attack_duration = 2.0
-post_attack_duration = 1.5
+damage = 20
+pre_attack_duration = 1.5
+post_attack_duration = 1.25
 pre_animation_name = "pre_attack"
 post_animation_name = "post_attack"
 projectile_offset = Vector2(35, 0)

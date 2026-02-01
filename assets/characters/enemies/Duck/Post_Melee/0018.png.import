@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x0tq1ydnlhnc"
-path="res://.godot/imported/0047.png-42121f7961f96444de6790e3f7680bb0.ctex"
+uid="uid://bjovafxnkpynh"
+path="res://.godot/imported/0018.png-f787f3c4ec1dd1c5d09fe012d69f4424.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/enemies/Duck/Pre_Attack/0047.png"
-dest_files=["res://.godot/imported/0047.png-42121f7961f96444de6790e3f7680bb0.ctex"]
+source_file="res://assets/characters/enemies/Duck/Post_Melee/0018.png"
+dest_files=["res://.godot/imported/0018.png-f787f3c4ec1dd1c5d09fe012d69f4424.ctex"]
 
 [params]
 

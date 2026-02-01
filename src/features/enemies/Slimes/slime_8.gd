@@ -7,6 +7,10 @@ var slime_offset = Vector2(30, -5)
 var slime_offset2 = Vector2(-30, -5)
 var slime_scale = 1.5
 
+# Wenn Leben leer sind, Lebensanzeige löschen
+# Jeweils kleiner Slimes instanziieren und der Szene hinzufügen. Richtige Kollisionseben setzen,
+# um direkte Kollision mit dem Spieler zu verhindern
+# Position der Sliems mit kleinem Offset versehen, damit sie nicht an gleicher Stelle spawnen
 func _on_health_depleted() -> void:
 	healthbar._deplete()
 	call_deferred("drop_item")
