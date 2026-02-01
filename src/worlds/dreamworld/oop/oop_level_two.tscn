@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://be7j4nn2hia0b"]
+[gd_scene load_steps=38 format=4 uid="uid://be7j4nn2hia0b"]
 
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="1_6qlke"]
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="1_ai55v"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="14_0hj1e"]
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://src/shared/components/coin.tscn" id="16_urrlc"]
 [ext_resource type="Texture2D" uid="uid://c7jdom0fv3mir" path="res://assets/oop_level/duck.png" id="17_xflx0"]
+[ext_resource type="PackedScene" uid="uid://b4sxhb7468nlw" path="res://src/worlds/dreamworld/oop/oop_assets/dripping_water.tscn" id="19_v46vs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_und7l"]
 texture = ExtResource("2_lpkye")
@@ -702,5 +703,14 @@ texture = ExtResource("17_xflx0")
 [node name="Duck3" type="Sprite2D" parent="."]
 position = Vector2(242, 1965)
 texture = ExtResource("17_xflx0")
+
+[node name="dripping_water" parent="." instance=ExtResource("19_v46vs")]
+position = Vector2(522, -95)
+
+[node name="dripping_water2" parent="." instance=ExtResource("19_v46vs")]
+position = Vector2(1024, -336)
+
+[node name="dripping_water3" parent="." instance=ExtResource("19_v46vs")]
+position = Vector2(1460, 224)
 
 [connection signal="body_entered" from="Level 3 test" to="Level 3 test" method="_on_body_entered"]
