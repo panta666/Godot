@@ -183,6 +183,7 @@ func _on_fall_damage_3_body_entered(body: Node2D) -> void:
 func _on_not_all_keys_body_entered(body: Node2D) -> void:
 	if not body.has_method("player"):
 		return
+	find_child("hud_key_fragments").get_child(0).visible = true
 
 	# Cutscene nur einmal
 	if cutscene_no_keys_played:

@@ -751,6 +751,13 @@ energy = 0.5
 texture = ExtResource("20_m0m1v")
 texture_scale = 0.05
 
+[node name="PointLight2D7" type="PointLight2D" parent="Lights"]
+position = Vector2(-407, 1848)
+scale = Vector2(1.1296296, 2.8333333)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
 [node name="PointLight2D2" type="PointLight2D" parent="Lights"]
 position = Vector2(1320.5, -224.5)
 scale = Vector2(1.4629629, 2.3229167)
