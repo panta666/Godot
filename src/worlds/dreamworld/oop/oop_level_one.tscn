@@ -3386,9 +3386,13 @@ frame_progress = 0.45119083
 position = Vector2(862, 191)
 
 [node name="BossTrap" parent="Traps" instance=ExtResource("26_wvco0")]
+process_mode = 4
+visible = false
 position = Vector2(4233, 324)
 
 [node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Traps"]
+process_mode = 4
+visible = false
 position = Vector2(4216, 345)
 sprite_frames = SubResource("SpriteFrames_wnclc")
 autoplay = "default"
