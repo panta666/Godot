@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://ch7cyuanfmqbt"]
+[gd_scene load_steps=57 format=4 uid="uid://ch7cyuanfmqbt"]
 
 [ext_resource type="Script" uid="uid://bnmhs5rhbderh" path="res://src/worlds/dreamworld/math_level_one.gd" id="1_k3sex"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="1_q4fl0"]
@@ -8618,7 +8618,7 @@ position = Vector2(-356, 922)
 scale = Vector2(1, 1)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
-boss_of_level = "mathe_level_one"
+boss_of_level = "math_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
 position = Vector2(-295, 682)

@@ -76,7 +76,7 @@ const default_values = {
 		"heal_ability": false,
 		"heal_ability_increase": false
 	},
-     "profmode" : false
+	 "profmode" : false
 }
 
 

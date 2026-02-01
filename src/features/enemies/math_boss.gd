@@ -117,6 +117,20 @@ func _on_health_depleted() -> void:
 func die() -> void:
 	bar_instance._deplete()
 
+	# Level 2 für Mathe freischalten
+	GlobalScript.unlock_level(GlobalScript.classrooms.mathe, 2)
+
+	# LevelUI aktualisieren, falls vorhanden
+	var classroom = get_tree().current_scene
+	if classroom.has_node("LevelUI"):
+		var level_ui = classroom.get_node("LevelUI") as CanvasLayer
+		# level_ui muss die unlock Funktion oder update_level_button nutzen
+		if "unlock_medg_level" in level_ui:
+			level_ui.unlock_medg_level(1)
+		else:
+			level_ui.update_level_button()
+				
+	await _return_to_classroom()
 	queue_free()
 
 # RealWorld-Szene laden
@@ -125,14 +139,13 @@ func _return_to_classroom() -> void:
 
 	await get_tree().create_timer(0.2).timeout
 
-	# Blink Overlay
+	# Blink Overlay laden
 	var blink_overlay = preload("res://src/shared/components/blink_overlay.tscn").instantiate()
 	get_tree().root.add_child(blink_overlay)
 	
 	var overlay = blink_overlay.get_node("Blink_Overlay")
-	# Transition to Real World
-	await overlay.play_wake_up()
-	GlobalScript.change_scene("realworld_classroom_two")
+	# Transition zurück in die echte Welt
+	await overlay.play_sleep_wake_nosound("realworld_classroom_two")
 	
 func _stun() -> void:
 	is_stunned = true
