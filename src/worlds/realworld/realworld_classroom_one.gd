@@ -12,30 +12,14 @@ func _ready() -> void:
 	super._ready()  # Basisklasse _ready aufrufen
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	
-	# QuestTrigger2 standardmäßig deaktivieren
-	var trigger := $QuestTrigger2
-	trigger.monitoring = false
-	trigger.monitorable = false
-	trigger.get_node("CollisionShape2D").disabled = true
-
 	# Prüfen, ob Level OOP Level 2 freigeschaltet ist
 	if GlobalScript.is_level_unlocked(GlobalScript.classrooms.oop, 2):
-		trigger.monitoring = true
-		trigger.monitorable = true
-		trigger.get_node("CollisionShape2D").disabled = false
+		quest_trigger2.set_enabled(true)
 		print("QuestTrigger2 aktiviert, OOP Level 2 freigeschaltet!")
 		
-	# QuestTrigger3 standardmäßig deaktivieren
-	var trigger2 := $QuestTrigger3
-	trigger2.monitoring = false
-	trigger2.monitorable = false
-	trigger2.get_node("CollisionShape2D").disabled = true
-
 	# Prüfen, ob Math Door unlocked ist
 	if GlobalScript.is_level_unlocked(GlobalScript.classrooms.mathe, 1):
-		trigger2.monitoring = true
-		trigger2.monitorable = true
-		trigger2.get_node("CollisionShape2D").disabled = false
+		quest_trigger3.set_enabled(true)
 		print("QuestTrigger3 aktiviert, Math Level freigeschaltet!")
 
 func _on_dialogic_signal(event_name: String) -> void:

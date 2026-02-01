@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var miniboss = $Miniboss
 @onready var enemy_gate = $Enemy_Defeat_Gate
+@onready var drop_manager: Node = $Drop_Manager
 
 @onready var ghost_enemy_1: Ghost = $Ghost_Enemy_1
 @onready var enemy_platform: TileMapLayer = $Enemy_Defeat_Platform
@@ -11,6 +12,10 @@ extends Node2D
 #Muss noch hinzugefügt werden, TileMap soll wie bei enemy_gate verschwinden, 
 # wenn nicht alle Keys erhalten
 @onready var not_all_keys: TileMapLayer = $Not_all_keys
+@export var math_no_key_timeline: String = "math_no_keys_timeline"
+@onready var not_all_keys_area: Area2D = $NOT_ALL_KEYS_AREA
+
+var cutscene_no_keys_played := false
 
 @onready var question_label = $math_question
 @onready var answer_labels = [
@@ -40,9 +45,12 @@ var tasks = [
 ]
 
 func _ready():
+	Dialogic.signal_event.connect(Callable(self, "_on_dialogic_signal"))
 	randomize()
 	setup_question()
 	MusicManager.playMusic(MusicManager.MusicType.MATHE)
+	
+	not_all_keys_area.body_entered.connect(_on_not_all_keys_body_entered)
 	
 	# --- WICHTIG: Hier beobachten wir, wann der Miniboss verschwindet ---
 	if miniboss:
@@ -170,3 +178,49 @@ func _on_fall_damage_3_body_entered(body: Node2D) -> void:
 	# Spieler sofort teleportieren zu festen Koordinaten
 	# Deferred, damit Physics-Signal nicht blockiert wird
 	body.call_deferred("set_global_position", Vector2(531, -170))
+
+
+func _on_not_all_keys_body_entered(body: Node2D) -> void:
+	if not body.has_method("player"):
+		return
+
+	# Cutscene nur einmal
+	if cutscene_no_keys_played:
+		return
+	cutscene_no_keys_played = true
+	_start_cutscene(body, math_no_key_timeline)
+
+func _start_cutscene(body: Node, timeline_name: String) -> void:
+	print("Versuche Cutscene zu starten:", timeline_name, "für", body.name)
+	if not body.has_method("player"):
+		print("Body ist kein Spieler!")
+		return
+	if body.has_method("cutscene_start"):
+		print("cutscene_start() aufgerufen für", body.name)
+		body.cutscene_start()
+		body.is_cutscene_active = true
+	var timeline = Dialogic.start(timeline_name)
+	if not timeline:
+		push_error("Dialogic.start() returned null für timeline: %s" % timeline_name)
+		body.is_cutscene_active = false
+		return
+	print("Cutscene erfolgreich gestartet:", timeline_name)
+
+func _on_dialogic_signal(event_name: String) -> void:
+	if event_name.begins_with("cutscene_end"):
+		var player = get_node_or_null("Player_Dreamworld")
+		if player and player.has_method("cutscene_end"):
+			player.cutscene_end()
+			print("cutscene_end() aufgerufen für", player.name)
+	elif event_name == "go_home":
+		print("Dialogic Event 'go_home' empfangen!")
+
+		# Not_all_keys TileMapLayer deaktivieren (wie Gate)
+		if not_all_keys:
+			not_all_keys.visible = false
+			not_all_keys.collision_enabled = false
+
+		# Optional: Area deaktivieren, damit nichts mehr triggert
+		if not_all_keys_area:
+			not_all_keys_area.monitoring = false
+			not_all_keys_area.monitorable = false

@@ -19446,6 +19446,7 @@ position = Vector2(184, 405)
 scale = Vector2(3.7117355, 2.6773853)
 quest = ExtResource("58_ga1li")
 auto_start_dialog = "enter_math_room_timeline"
+enabled = false
 
 [node name="BlinkingMath" parent="." instance=ExtResource("17_ldiki")]
 visible = false
