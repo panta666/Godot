@@ -51,7 +51,7 @@ func _process(delta):
 #Mit bestimmter Wahrscheinlichkeit zufällige Primzahl oder Nicht-Primzahl aus dem Array setzen
 #Geist Immortality abhängig von Zufalsszahl setzen
 func generate_number() -> void:
-	if randi_range(1, 3) == 2:
+	if randi_range(1, 2) == 2:
 		invincible = false
 		health.immortality = false
 		text.text = str(primes.pick_random())
@@ -60,7 +60,7 @@ func generate_number() -> void:
 		health.immortality = true
 		text.text = str(non_primes.pick_random())
 	
-	await get_tree().create_timer(8).timeout
+	await get_tree().create_timer(4).timeout
 	generate_number()
 		
 # Szene löschen, wenn Leben leer
