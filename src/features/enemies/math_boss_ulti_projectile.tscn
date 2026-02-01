@@ -11,7 +11,7 @@ radius = 7.0
 
 [node name="Projectile" instance=ExtResource("1_yqa6p")]
 duaration = 0.8
-damage = 90.0
+damage = 35.0
 speed = 200.0
 apply_gravity = true
 _gravity = 250.0
