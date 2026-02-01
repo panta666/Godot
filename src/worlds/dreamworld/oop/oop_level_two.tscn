@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://be7j4nn2hia0b"]
+[gd_scene load_steps=39 format=4 uid="uid://be7j4nn2hia0b"]
 
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="1_6qlke"]
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="1_ai55v"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://clatqc8on6hds" path="res://src/shared/components/coin.tscn" id="16_urrlc"]
 [ext_resource type="Texture2D" uid="uid://c7jdom0fv3mir" path="res://assets/oop_level/duck.png" id="17_xflx0"]
 [ext_resource type="PackedScene" uid="uid://b4sxhb7468nlw" path="res://src/worlds/dreamworld/oop/oop_assets/dripping_water.tscn" id="19_v46vs"]
+[ext_resource type="Texture2D" uid="uid://b2mwqw3lhlj62" path="res://assets/oop_level/Lichtkegel.png" id="20_m0m1v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_und7l"]
 texture = ExtResource("2_lpkye")
@@ -704,13 +705,61 @@ texture = ExtResource("17_xflx0")
 position = Vector2(242, 1965)
 texture = ExtResource("17_xflx0")
 
-[node name="dripping_water" parent="." instance=ExtResource("19_v46vs")]
+[node name="dripping_water" type="Node" parent="."]
+
+[node name="dripping_water" parent="dripping_water" instance=ExtResource("19_v46vs")]
 position = Vector2(522, -95)
 
-[node name="dripping_water2" parent="." instance=ExtResource("19_v46vs")]
+[node name="dripping_water2" parent="dripping_water" instance=ExtResource("19_v46vs")]
 position = Vector2(1024, -336)
 
-[node name="dripping_water3" parent="." instance=ExtResource("19_v46vs")]
+[node name="dripping_water3" parent="dripping_water" instance=ExtResource("19_v46vs")]
 position = Vector2(1460, 224)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.7325586, 0.71857256, 0.86300004, 1)
+
+[node name="Lights" type="Node" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
+position = Vector2(488, -32)
+scale = Vector2(1, 1.3333334)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
+position = Vector2(1560, 96)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
+position = Vector2(1416, 296)
+scale = Vector2(1, 1.5)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
+position = Vector2(1563.5, 1120)
+scale = Vector2(1.1296296, 2)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lights"]
+position = Vector2(1372, 1120)
+scale = Vector2(1.1296296, 2)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
+position = Vector2(1320.5, -224.5)
+scale = Vector2(1.4629629, 2.3229167)
+energy = 0.5
+texture = ExtResource("20_m0m1v")
+texture_scale = 0.05
 
 [connection signal="body_entered" from="Level 3 test" to="Level 3 test" method="_on_body_entered"]
