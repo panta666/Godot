@@ -1,14 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0wwclfi0opvd"]
+[gd_scene load_steps=7 format=3 uid="uid://b0wwclfi0opvd"]
 
 [ext_resource type="Script" uid="uid://hhcpreenfont" path="res://src/core/java_trap.gd" id="1_eofq5"]
 [ext_resource type="Texture2D" uid="uid://c51fxukih3ngs" path="res://assets/oop_level/java_trap.png" id="1_sxk85"]
 [ext_resource type="Script" uid="uid://rb433xiwvdb6" path="res://src/shared/components/hitbox.gd" id="3_m5rra"]
+
+[sub_resource type="Curve" id="Curve_plal0"]
+_data = [Vector2(0.029069781, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.37078655), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_1dt8k"]
+offsets = PackedFloat32Array(0.006849315, 0.1780822, 0.41095892, 0.74657536, 0.98630136)
+colors = PackedColorArray(0.6627451, 0, 0, 1, 0.7411765, 0.2627451, 0.14509805, 1, 0.78431374, 0.5058824, 0.13333334, 1, 0.90588236, 0.7882353, 0.627451, 0, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8ri2"]
 size = Vector2(30, 32)
 
 [node name="Java_trap" type="Node2D"]
 script = ExtResource("1_eofq5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 20
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 18.0
+gravity = Vector2(0, -600)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_plal0")
+color_ramp = SubResource("Gradient_1dt8k")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sxk85")
