@@ -8618,7 +8618,7 @@ position = Vector2(-356, 922)
 scale = Vector2(1, 1)
 collision_layer = 4
 boss_trigger = NodePath("../Boss_Trigger")
-boss_of_level = "mathe_level_one"
+boss_of_level = "math_level_one"
 
 [node name="Boss_Trigger" parent="." instance=ExtResource("19_hylnt")]
 position = Vector2(-295, 682)
