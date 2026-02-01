@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dd2trkoy8202p"]
+[gd_scene load_steps=31 format=4 uid="uid://dd2trkoy8202p"]
 
 [ext_resource type="Script" uid="uid://cdnw3m0dgeavi" path="res://src/worlds/dreamworld/math_level_two.gd" id="1_rkl2v"]
 [ext_resource type="PackedScene" uid="uid://bgeien6cw7ehi" path="res://src/features/player/player_dreamworld.tscn" id="2_jcuav"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="17_58pn4"]
 [ext_resource type="PackedScene" uid="uid://d4e2wyc2agx6v" path="res://src/shared/components/boss_door.tscn" id="18_0qdol"]
 [ext_resource type="PackedScene" uid="uid://cv3nqqtro8ihu" path="res://src/shared/components/key.tscn" id="18_6isa3"]
+[ext_resource type="PackedScene" uid="uid://v81j2yswvp61" path="res://src/features/enemies/math_boss.tscn" id="19_nhu48"]
+[ext_resource type="PackedScene" uid="uid://b7vhfj6dh631y" path="res://src/features/enemies/boss_trigger.tscn" id="20_6846o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nhu48"]
 texture = ExtResource("7_8pxoj")
@@ -1711,7 +1713,7 @@ script = ExtResource("1_rkl2v")
 
 [node name="Player_Dreamworld" parent="." instance=ExtResource("2_jcuav")]
 unique_name_in_owner = true
-position = Vector2(536, -199)
+position = Vector2(320, -171)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1876,18 +1878,18 @@ collision_layer = 4
 STUN_TIME = 0.25
 
 [node name="Slime_Enemy_4" parent="." groups=["enemy"] instance=ExtResource("13_0ttaw")]
-position = Vector2(1396.0004, -669)
+position = Vector2(1424, -670.00006)
 scale = Vector2(1.6555305, 1.6555305)
 collision_layer = 4
 STUN_TIME = 0.25
 
 [node name="Ghost_Enemy_1" parent="." groups=["enemy"] instance=ExtResource("14_8pxoj")]
-position = Vector2(2806, -425)
+position = Vector2(2792, -423)
 collision_layer = 4
 projectile_scene = ExtResource("16_0qdol")
 
 [node name="Ghost_Enemy_2" parent="." groups=["enemy"] instance=ExtResource("14_8pxoj")]
-position = Vector2(2377, -1109)
+position = Vector2(2350, -1117)
 collision_layer = 4
 projectile_scene = ExtResource("16_0qdol")
 
@@ -1903,6 +1905,18 @@ key_scene = ExtResource("18_6isa3")
 [node name="Boss_door" parent="." instance=ExtResource("18_0qdol")]
 position = Vector2(1314, -1796)
 scale = Vector2(1, 1)
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("boss_trigger") instance=ExtResource("19_nhu48")]
+position = Vector2(924, -1830)
+scale = Vector2(1, 1)
+collision_layer = 4
+boss_trigger = NodePath("../Boss_Trigger")
+boss_of_level = "math_two"
+
+[node name="Boss_Trigger" parent="." instance=ExtResource("20_6846o")]
+position = Vector2(1300, -1803)
+scale = Vector2(1, 3)
+collision_mask = 2
 
 [connection signal="body_entered" from="Fall_Damage3" to="." method="_on_fall_damage_3_body_entered"]
 [connection signal="body_entered" from="Fall_Damage4" to="." method="_on_fall_damage_4_body_entered"]

@@ -310,6 +310,158 @@ animations = [{
 "texture": ExtResource("51_b6xxy")
 }],
 "loop": true,
+"name": &"aoe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_70pmd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nry85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yglmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kv0is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wexbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r3ap8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_05nj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dg6fn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u05rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tekcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ln0vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tc2fj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sihjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0f3ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_8vx8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tv4uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_bjucc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_s0hxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_5kloe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_j7hal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_mtl4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_3vb5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_15wkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_j13to")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ot844")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_2cmgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_yky11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_gkkpx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_h7olt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_6updi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ot72y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_74ex8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_unm5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_04uwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ej3pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_w6a2e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_o21n2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_qlsbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_3qpxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_5rair")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_lp8cx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_6g6uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_6psio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_jjh5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_flrt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_yxs22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_0d3oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_b7osd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_b6xxy")
+}],
+"loop": true,
 "name": &"idle",
 "speed": 10.0
 }, {
@@ -634,8 +786,8 @@ size = Vector2(731.2518, 175.00037)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wauy4"]
 size = Vector2(15.000011, 21.250023)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0grcb"]
-size = Vector2(16.250011, 5.78125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yglmy"]
+size = Vector2(42.500046, 35.00003)
 
 [node name="CharacterBody2D" instance=ExtResource("1_siqu7")]
 script = ExtResource("2_70pmd")
@@ -648,7 +800,7 @@ material = SubResource("ShaderMaterial_7qm63")
 position = Vector2(0, 0)
 scale = Vector2(0.3020833, 0.3020833)
 sprite_frames = SubResource("SpriteFrames_6ykke")
-animation = &"post_attack"
+animation = &"aoe"
 flip_h = true
 
 [node name="Collision" parent="." index="2"]
@@ -681,6 +833,10 @@ position = Vector2(1.907346e-06, 1.8749998)
 scale = Vector2(0.99999887, 0.99999887)
 shape = SubResource("RectangleShape2D_wauy4")
 
+[node name="HitBox" parent="." index="10"]
+damage = 5
+
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(22.5, 0)
-shape = SubResource("RectangleShape2D_0grcb")
+position = Vector2(5.9604633e-07, -1.2500023)
+scale = Vector2(0.99999887, 0.99999887)
+shape = SubResource("RectangleShape2D_yglmy")

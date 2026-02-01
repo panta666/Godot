@@ -67,9 +67,11 @@ signal damaged(amount)
 # -------------------------------------------------------------------
 # LIFECYCLE
 # -------------------------------------------------------------------
+# Lebensanzeige spawnen
 func _ready() -> void:
 	call_deferred("_spawn_healthbar")
 
+# Bewegungsmethoden rufen
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
 	_process_movement()
@@ -78,10 +80,12 @@ func _physics_process(delta: float) -> void:
 # -------------------------------------------------------------------
 # MOVEMENT
 # -------------------------------------------------------------------
+# Gravitation zur velocity addieren, wenn icht auf dem Boden
 func _apply_gravity(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+# angreifen, wenn noch kein Angriff gestartet wurde. 
 func _process_movement() -> void:
 	if not is_on_floor() or is_stunned:
 		return
@@ -92,15 +96,18 @@ func _process_movement() -> void:
 
 	velocity.x = _get_horizontal_speed()
 
+# Geschwindigkeit in x-Richtung zurückgeben
 func _get_horizontal_speed() -> float:
 	if not is_walking:
 		return 0.0
 	return direction * (DASH_SPEED if is_dashing else SPEED)
 
+# Wenn Ray kollidiert (Wand) oder nach unten gerichteter Ray nicht kollidiert (Kante), Szene ganz umdrehen
 func _handle_navigation() -> void:
 	if not ray_down.is_colliding() or ray_forward.is_colliding():
 		_flip_direction()
 
+# Richtung drehen, x-Rechutng der Szene in entgegengesetzte Richtung transformieren
 func _flip_direction() -> void:
 	direction *= -1
 	transform.x = Vector2(direction * abs(scale.x), 0)
@@ -108,6 +115,10 @@ func _flip_direction() -> void:
 # -------------------------------------------------------------------
 # PLAYER LOGIC
 # -------------------------------------------------------------------
+# Wenn Spieler erkannt wird, Angriff starten und Spieler tracken
+# Wenn Spieler nicht direkt im Sichtbereich ist, prüfen ob er in der TrackingBox ist
+# Ist der Spieler in der TrackingBox, nicht mehr laufen und auf Spieler "warten"
+# Ist Spieler nicht mehr in TrackingBox, Player-Variable auf null und wieder laufen
 func _handle_player_logic() -> void:
 	if _detect_player():
 		is_walking = true
@@ -127,6 +138,7 @@ func _handle_player_logic() -> void:
 			sprite.play("walk")
 			sound_player.play_sound(Enemysound.soundtype.WALK)
 
+# Spieler ermitteln
 func _detect_player() -> bool:
 	var collider := _get_visible_player()
 	if collider:
@@ -134,6 +146,7 @@ func _detect_player() -> bool:
 		return true
 	return false
 
+# Prüfen, ob Spieler mit Vision Rays kollidiert
 func _get_visible_player() -> CharacterBody2D:
 	for ray in [vision_front, vision_back]:
 		if ray.is_colliding():
@@ -146,9 +159,11 @@ func _get_visible_player() -> CharacterBody2D:
 				return collider
 	return null
 
+# Prüfen, ob Spieler in TrackingBox ist
 func _is_player_in_tracking_box() -> bool:
 	return player and player in tracking_box.get_overlapping_bodies()
 
+# Ist Spieler hinter dem Gegner, Gegner drehen
 func _track_player() -> void:
 	if not player:
 		return
@@ -162,6 +177,9 @@ func _track_player() -> void:
 # -------------------------------------------------------------------
 # COMBAT
 # -------------------------------------------------------------------
+# Sind Angriffarrays leer, nicht angreifen
+# Sonst wähle zufällig eine Attacke aus einem der Attack-Arrays (Range, Nahkampf)
+# Wenn beide voll, prüfe Abstand des Spielers und vergleiche mit Angriffsentfernung
 func _start_attack() -> void:
 	if not attack_allowed or is_attacking or not player:
 		return
@@ -185,15 +203,20 @@ func _start_attack() -> void:
 			_attack(_random_melee_attack())
 			
 
+# Zufällige Nahkampfattacke wählen
 func _random_melee_attack() -> Attack:
 	return attacks.pick_random()
 
+# Zufällige Fernkampfattacke wählen
 func _random_range_attack() -> Range_Attack:
 	return range_attacks.pick_random()
 
 # -------------------------------------------------------------------
 # MELEE ATTACK
 # -------------------------------------------------------------------
+# Angriffsphasen durchführen: Pre_Attack --> Attack --> Post_Attack
+# Animationen skaliert abspielen, HJitbox und Shcaden setzen, Hotbox während Hauptangriffphase aktivieren
+# Attack Token, um eine Angriff bei einem Stun zurücksetzen zu können
 func _attack(attack: Attack) -> void:
 	is_attacking = true
 	is_walking = false
@@ -227,18 +250,21 @@ func _attack(attack: Attack) -> void:
 	attack_allowed = false
 	attack_cooldown.start()
 
+# HitBox Shcaden, Position und Größe setzen
 func _prepare_hitbox(attack: Attack) -> void:
 	hitbox.position = attack.hitbox_offset
 	(hitbox.shape as RectangleShape2D).extents = attack.hitbox_size
 	$HitBox.damage = attack.damage
 
+# Hitbox aktivieren
 func _disable_hitbox() -> void:
 	hitbox.disabled = true
 	
+# Hitbox deaktivieren
 func _enable_hitbox() -> void:
 	hitbox.disabled = false
 
-
+# Angriffs-Bewegunsmuster umsetzen
 func _execute_attack_movement(attack: Attack) -> void:
 	match attack.movement:
 		attack.movement_type.DASH:
@@ -247,12 +273,14 @@ func _execute_attack_movement(attack: Attack) -> void:
 		attack.movement_type.NONE:
 			return
 
+# ngriffslänge aus der Ressource auslesen
 func _get_attack_duration(attack: Attack) -> float:
 	return dashing_timer.wait_time if is_dashing else attack.hitbox_duration
 
 # -------------------------------------------------------------------
 # RANGE ATTACK
 # -------------------------------------------------------------------
+# Projektil instanziieren, Animationen abspielen
 func _range_attack(attack: Range_Attack) -> void:
 	is_attacking = true
 	is_walking = false
@@ -278,6 +306,7 @@ func _range_attack(attack: Range_Attack) -> void:
 	attack_allowed = false
 	attack_cooldown.start()
 
+# Projektil Werte setzen (Gravitation, Schaden, Position)
 func _spawn_projectile(attack: Range_Attack) -> void:
 	sound_player.play_sound(Enemysound.soundtype.ATTACK)
 	var projectile = projectile_scene.instantiate()
@@ -287,6 +316,7 @@ func _spawn_projectile(attack: Range_Attack) -> void:
 	projectile._set_exception(self)
 	get_tree().current_scene.add_child(projectile)
 	
+# Angriff beenden, weitere Angriffe freigeben
 func _end_attack() -> void:
 		is_attacking = false
 		is_walking = true
@@ -296,18 +326,21 @@ func _end_attack() -> void:
 # -------------------------------------------------------------------
 # UTILS
 # -------------------------------------------------------------------
+# Animation skaliert mit der Zeit abspielen
 func _play_animation_scaled(name: String, duration: float) -> void:
 	var frames := sprite.sprite_frames
 	var speed := (frames.get_frame_count(name)-1) / duration
 	frames.set_animation_speed(name, speed)
 	sprite.play(name)
 
+# is_dashing auf true setzen, bis Tmer ausläuft
 func _start_dash() -> void:
 	if is_dashing:
 		return
 	is_dashing = true
 	dashing_timer.start()
 
+# Gegner unterbrechen und kurz pausieren, wenn angegriffen
 func _stun() -> void:
 	is_stunned = true
 	attack_token += 1
@@ -318,11 +351,13 @@ func _stun() -> void:
 # -------------------------------------------------------------------
 # HEALTH / DAMAGE
 # -------------------------------------------------------------------
+# Lebensanzeige spawnen und die Gegner-Szene (self) übergeben
 func _spawn_healthbar() -> void:
 	healthbar = healthbar_scene.instantiate()
-	get_tree().root.add_child(healthbar)
+	get_tree().current_scene.add_child(healthbar)
 	healthbar.setup(self)
 
+# Bei Schaden der Hurtbox Lebensanzeige aktualisieren, rote Flash-Animation abspielen, stun
 func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 	flash_anim.play("flash")
 	_apply_knockback(attacker_pos)
@@ -331,15 +366,18 @@ func _on_hurt_box_received_damage(damage: int, attacker_pos: Vector2) -> void:
 	GlobalScript.enemy_damaged.emit(damage)
 	_stun()
 
+# Knockback in Schlagrichtung anwenden
 func _apply_knockback(attacker_pos: Vector2) -> void:
 	var dir = sign(global_position.x - attacker_pos.x)
 	velocity = Vector2(dir * 200.0, -80.0)
 	knockback_timer = knockback_duration
 
+# Wenn Leben leer, Lebensanzeige löschen, potenziell Item droppen, Gegner-Szene löschen
 func _on_health_depleted() -> void:
 	healthbar._deplete()
 	call_deferred("drop_item")
 	queue_free()
+
 
 func _on_dashing_timer_timeout() -> void:
 	is_dashing = false
@@ -350,6 +388,7 @@ func _on_attack_cooldown_timeout() -> void:
 func give_item(item_scene):
 	carried_item = item_scene
 	
+# Wenn Item getragen wird (carried_tiem != null), Item instanziieren
 func drop_item():
 	if carried_item != null:
 		print("drop")

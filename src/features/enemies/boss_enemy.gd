@@ -18,15 +18,18 @@ var boss_bar = preload("res://src/features/enemies/boss_healthbar.tscn")
 func _ready() -> void:
 	pass
 	
+# Boss Lebensanzeige spawnen
 func _spawn_healthbar() -> void:
 	print("spawned healthbar")
 	bar_instance = boss_bar.instantiate()
 	get_tree().current_scene.add_child(bar_instance)
 	bar_instance.setup(self)
 
+# Boss rigger für Spielererkennung statt Vision-Rays
 func _get_visible_player() -> CharacterBody2D:
 	return boss_trigger._get_player()
 	
+#Spieler in Boss-Trigger erkennen, Lebensanzeige spawnen
 func _detect_player() -> bool:
 	var collider := _get_visible_player()
 	if collider:
@@ -36,6 +39,7 @@ func _detect_player() -> bool:
 		return true
 	return false
 	
+# Tracking und Lebensanzeige beenden, wenn Spieler nochmal mit dem Boss-Trigger kollidiert
 func _handle_player_logic() -> void:
 	if _detect_player():
 		is_walking = true
@@ -52,7 +56,7 @@ func _handle_player_logic() -> void:
 		sprite.play("walk")
 		sound_player.play_sound(Enemysound.soundtype.WALK)
 		
-
+# Bei Boss-Tod neue Level freischalten, RealWorld-Szene laden und Boss löschen
 func die() -> void:
 	if head_broken and torso_broken and legs_broken:
 		bar_instance._deplete()
@@ -74,7 +78,7 @@ func die() -> void:
 		await _return_to_classroom()
 		queue_free()
 
-
+# Klassenzimmer-Szene laden
 func _return_to_classroom() -> void:
 	GlobalScript.save_coins_for_level(boss_of_level)
 
@@ -88,6 +92,7 @@ func _return_to_classroom() -> void:
 	# Transition zurück in die echte Welt
 	await overlay.play_sleep_wake_nosound("realworld_classroom_one")
 
+# Bei Schaden Lebensanzeige aktualisieren
 func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 	if bar_instance != null:
 		bar_instance.update()
@@ -97,6 +102,7 @@ func _on_hurt_box_received_damage(damage: int, _attacker_pos: Vector2) -> void:
 		GlobalScript.enemy_damaged.emit(damage)
 		flash_anim.play("flash")
 
+# Lebensanzeigen für alle HurtBoxen aktualisieren
 
 func _on_hurt_box_torso_received_damage(damage: int, attacker_position: Vector2) -> void:
 	if bar_instance != null:
@@ -109,6 +115,9 @@ func _on_hurt_box_legs_received_damage(damage: int, attacker_position: Vector2) 
 		bar_instance.update()
 	if not legs_broken:
 		flash_anim.play("flash")
+
+# Wenn individuelle Hurtbox-Leben leer sind, die Variable setzen und die() versuchen, die prüft,
+# ob alle Variablen true sind, also ob alle HurtBoxen leer sind
 
 func _on_health_depleted() -> void:
 	head_broken = true

@@ -5,9 +5,11 @@
 [resource]
 script = ExtResource("1_40l4f")
 damage = 5
-animation_name = "idle"
-pre_animation_name = "idle"
-post_animation_name = "idle"
+pre_attack_duration = 0.1
+post_attack_duration = 0.1
+animation_name = "aoe"
+pre_animation_name = "aoeidle"
+post_animation_name = "aoeidle"
 movement = 1
 hitbox_size = Vector2(40, 40)
 hitbox_duration = 0.5
