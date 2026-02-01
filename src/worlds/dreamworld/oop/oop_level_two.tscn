@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://be7j4nn2hia0b"]
+[gd_scene load_steps=40 format=4 uid="uid://be7j4nn2hia0b"]
 
 [ext_resource type="Script" uid="uid://j6bsvgewe2vv" path="res://src/core/drop_manager.gd" id="1_6qlke"]
 [ext_resource type="Texture2D" uid="uid://bqgk28jf54o61" path="res://assets/oop_level/background_HSDbuilding.png" id="1_ai55v"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c7jdom0fv3mir" path="res://assets/oop_level/duck.png" id="17_xflx0"]
 [ext_resource type="PackedScene" uid="uid://b4sxhb7468nlw" path="res://src/worlds/dreamworld/oop/oop_assets/dripping_water.tscn" id="19_v46vs"]
 [ext_resource type="Texture2D" uid="uid://b2mwqw3lhlj62" path="res://assets/oop_level/Lichtkegel.png" id="20_m0m1v"]
+[ext_resource type="PackedScene" uid="uid://dttdsxr6qrhe0" path="res://src/features/enemies/Duck.tscn" id="21_16vq8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_und7l"]
 texture = ExtResource("2_lpkye")
@@ -664,11 +665,6 @@ position = Vector2(1659, 1452)
 scale = Vector2(0.43219286, 0.47272727)
 collision_layer = 2
 
-[node name="Bug8" parent="Enemies" groups=["enemy"] instance=ExtResource("12_vqyb8")]
-position = Vector2(2358.0002, 545.99994)
-scale = Vector2(0.43219286, 0.47272727)
-collision_layer = 2
-
 [node name="Boss_door" parent="." instance=ExtResource("14_0hj1e")]
 position = Vector2(2096, 1416)
 scale = Vector2(1, 1)
@@ -761,5 +757,15 @@ scale = Vector2(1.4629629, 2.3229167)
 energy = 0.5
 texture = ExtResource("20_m0m1v")
 texture_scale = 0.05
+
+[node name="Duck1" parent="." groups=["enemy"] instance=ExtResource("21_16vq8")]
+position = Vector2(1122.0001, 1805)
+scale = Vector2(0.43836156, 0.5626694)
+collision_layer = 4
+
+[node name="Duck4" parent="." groups=["enemy"] instance=ExtResource("21_16vq8")]
+position = Vector2(2315.0002, 540)
+scale = Vector2(0.43836156, 0.5626694)
+collision_layer = 4
 
 [connection signal="body_entered" from="Level 3 test" to="Level 3 test" method="_on_body_entered"]
