@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b4sxhb7468nlw"]
+
+[node name="dripping_water" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 3
+lifetime = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+gravity = Vector2(0, 400)
+color = Color(0.26024744, 5.852699e-05, 0.94885904, 1)
