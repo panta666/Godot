@@ -1,0 +1,3 @@
+[style name="platformer_style"]
+player: I should speak with Prof. Dahm first.
+[signal arg="cutscene_end"]

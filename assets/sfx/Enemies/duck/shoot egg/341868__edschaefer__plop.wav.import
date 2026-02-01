@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ckmxqfg07nakr"
+path="res://.godot/imported/341868__edschaefer__plop.wav-30ab8011f23b7dc7dc5b577a24042b8a.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Enemies/duck/shoot egg/341868__edschaefer__plop.wav"
+dest_files=["res://.godot/imported/341868__edschaefer__plop.wav-30ab8011f23b7dc7dc5b577a24042b8a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfstpqm8b81f5"]
+
+[ext_resource type="Script" uid="uid://cvir5ud67f3nr" path="res://src/shared/ui/hud_coin.gd" id="1_4qver"]
+
+[node name="HudCoin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4qver")
+
+[node name="NumberOfCoinsLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 109.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 26
+text = "Coins: 0"
+horizontal_alignment = 2

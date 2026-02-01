@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://be0ehycyqholx"]
+
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="1_bu83l"]
+
+[resource]
+script = ExtResource("1_bu83l")
+damage = 2
+pre_attack_duration = 0.75
+post_attack_duration = 0.75
+animation_name = "dash"
+pre_animation_name = "pre_attack"
+post_animation_name = "idle"
+hitbox_offset = Vector2(20, 0)
+hitbox_size = Vector2(5, 10)
+hitbox_duration = 1.0
+metadata/_custom_type_script = "uid://cmwgyb1n1ar8"

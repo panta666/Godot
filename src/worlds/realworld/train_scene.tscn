@@ -1,0 +1,227 @@
+[gd_scene load_steps=15 format=3 uid="uid://xnykv3jipun8"]
+
+[ext_resource type="Texture2D" uid="uid://cecii67wnthxn" path="res://assets/tilemap/32x32/train.png" id="1_7prj5"]
+[ext_resource type="Script" uid="uid://bsi33qfph8bct" path="res://src/worlds/realworld/train_scene.gd" id="1_mlpd5"]
+[ext_resource type="Texture2D" uid="uid://dptq0w7h8goho" path="res://assets/Parallax_BG/1.png" id="2_13m65"]
+[ext_resource type="Texture2D" uid="uid://ixdgku1cm3f3" path="res://assets/tilemap/32x32/traintracks.png" id="2_ohkuq"]
+[ext_resource type="Texture2D" uid="uid://londnksu0ohw" path="res://assets/Parallax_BG/2.png" id="3_4l6ny"]
+[ext_resource type="Texture2D" uid="uid://b6opbo4nkvgs8" path="res://assets/Parallax_BG/3.png" id="4_kjlvu"]
+[ext_resource type="Texture2D" uid="uid://7pflni7yxeg3" path="res://assets/Parallax_BG/5.png" id="5_ocwmx"]
+[ext_resource type="PackedScene" uid="uid://dvbwb53kbyq0y" path="res://src/shared/components/skip_scene.tscn" id="5_uaq5e"]
+[ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="8_4l6ny"]
+[ext_resource type="AudioStream" uid="uid://cas2sakr7wi3x" path="res://assets/sfx/372873__jordir__train.mp3" id="10_p3jdk"]
+
+[sub_resource type="Animation" id="Animation_uaq5e"]
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-301.00003, -135)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Train:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1293, -62)]
+}
+
+[sub_resource type="Animation" id="Animation_mlpd5"]
+resource_name = "drive"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.9666667, 8),
+"transitions": PackedFloat32Array(1, 4.924576, 1.0000007),
+"update": 0,
+"values": [Vector2(-301.00003, -135), Vector2(6327.0005, -127.00003), Vector2(7259.0005, -1029)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Train:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1293, -62), Vector2(8479, -53)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2ydy"]
+_data = {
+&"RESET": SubResource("Animation_uaq5e"),
+&"drive": SubResource("Animation_mlpd5")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_4l6ny"]
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.972549)
+shadow_offset = Vector2(2, 2)
+
+[node name="TrainScene" type="Node2D"]
+z_as_relative = false
+script = ExtResource("1_mlpd5")
+
+[node name="Train" type="Node2D" parent="."]
+z_as_relative = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Train"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Train/ParallaxBackground"]
+z_as_relative = false
+position = Vector2(-349, -172)
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer"]
+z_as_relative = false
+texture = ExtResource("2_13m65")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer"]
+z_as_relative = false
+position = Vector2(576, 0)
+texture = ExtResource("2_13m65")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Train/ParallaxBackground"]
+z_as_relative = false
+position = Vector2(-349, -172)
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer2"]
+z_as_relative = false
+texture = ExtResource("3_4l6ny")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer2"]
+z_as_relative = false
+position = Vector2(576, 0)
+texture = ExtResource("3_4l6ny")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="Train/ParallaxBackground"]
+z_as_relative = false
+position = Vector2(-349, -172)
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer3"]
+z_as_relative = false
+texture = ExtResource("4_kjlvu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer3"]
+z_as_relative = false
+position = Vector2(576, 0)
+texture = ExtResource("4_kjlvu")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="Train/ParallaxBackground"]
+z_as_relative = false
+position = Vector2(-349, -172)
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(1148, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer4"]
+z_as_relative = false
+position = Vector2(-215, 158)
+texture = ExtResource("2_ohkuq")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train/ParallaxBackground/ParallaxLayer4"]
+z_as_relative = false
+position = Vector2(359, 158)
+texture = ExtResource("2_ohkuq")
+
+[node name="Train" type="Sprite2D" parent="Train"]
+show_behind_parent = true
+z_index = 1
+z_as_relative = false
+position = Vector2(-1293, -62)
+texture = ExtResource("1_7prj5")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="Train"]
+layer = 1
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Train/ParallaxBackground2"]
+z_index = 2
+z_as_relative = false
+position = Vector2(-349, -172)
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(1152, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Train/ParallaxBackground2/ParallaxLayer5"]
+z_index = 3
+z_as_relative = false
+position = Vector2(0, 60)
+texture = ExtResource("5_ocwmx")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Train/ParallaxBackground2/ParallaxLayer5"]
+z_index = 3
+z_as_relative = false
+position = Vector2(576, 60)
+texture = ExtResource("5_ocwmx")
+
+[node name="Camera2D" type="Camera2D" parent="Train"]
+position = Vector2(-301.00003, -135)
+scale = Vector2(35.424637, -1.5755392)
+zoom = Vector2(1.5, 1.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Train"]
+libraries = {
+&"": SubResource("AnimationLibrary_l2ydy")
+}
+
+[node name="Label" type="Label" parent="Train"]
+z_index = 6
+offset_left = 7041.0
+offset_top = -1087.0
+offset_right = 7314.0
+offset_bottom = -1045.125
+text = "Battle for Bachelor"
+label_settings = SubResource("LabelSettings_4l6ny")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train"]
+z_index = 6
+position = Vector2(7415, -1054)
+texture = ExtResource("8_4l6ny")
+
+[node name="ColorRect" type="ColorRect" parent="Train"]
+z_index = -2
+offset_left = -2342.0
+offset_top = -2831.0
+offset_right = 12488.0
+offset_bottom = -331.0
+color = Color(0.36078432, 0.34901962, 0.36078432, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Train"]
+z_index = -2
+offset_left = -2038.0
+offset_top = 46.0
+offset_right = 12485.0
+offset_bottom = 1783.0
+color = Color(0.16078432, 0.13725491, 0.1882353, 1)
+
+[node name="Skip_Scene" parent="." instance=ExtResource("5_uaq5e")]
+layer = 6
+next_scene = "uid://dqloihqvrxpgp"
+
+[node name="Trainsound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p3jdk")
+volume_db = -12.5
+autoplay = true
+bus = &"SFX"

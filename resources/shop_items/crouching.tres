@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=3 format=3 uid="uid://d36jdnhyi1ohy"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://src/features/shop/shop_data.gd" id="1_tlvwg"]
+[ext_resource type="Texture2D" uid="uid://cmirvxmi277b8" path="res://assets/shop_icons/shop_crouching.png" id="2_4n6ri"]
+
+[resource]
+script = ExtResource("1_tlvwg")
+item_name = "Crouching"
+texture = ExtResource("2_4n6ri")
+price = 1
+description = "You can press or hold 'S' or Arrow Key Down to crouch."
+powerup_name = "crouching"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

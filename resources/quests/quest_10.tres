@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://dgk7xu70ogt1b"]
+
+[ext_resource type="Script" uid="uid://dmq1os3w0lmng" path="res://src/features/quests/quest_data.gd" id="1_gq3l7"]
+
+[resource]
+script = ExtResource("1_gq3l7")
+id = "10"
+title = "Small talk, again!"
+description = "Quick, talk to Mr. Sokalski before the Lecture starts"
+target_scene = "Realworld_Classroom_Two"
+target_node_path = "NPC"
+metadata/_custom_type_script = "uid://dmq1os3w0lmng"

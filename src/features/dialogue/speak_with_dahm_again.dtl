@@ -1,0 +1,5 @@
+[style name="platformer_style"]
+player: *Yawn* Holy..what the..did I dream?!
+player: Looks like were having a short break now.
+player: I should speak with Prof. Dahm again to see what I've missed so far..
+[signal arg="cutscene_end"]

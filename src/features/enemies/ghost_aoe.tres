@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://v0w75l7t0s1k"]
+
+[ext_resource type="Script" uid="uid://cmwgyb1n1ar8" path="res://src/features/enemies/attack.gd" id="1_40l4f"]
+
+[resource]
+script = ExtResource("1_40l4f")
+damage = 5
+pre_attack_duration = 0.1
+post_attack_duration = 0.1
+animation_name = "aoe"
+pre_animation_name = "aoeidle"
+post_animation_name = "aoeidle"
+movement = 1
+hitbox_size = Vector2(40, 40)
+hitbox_duration = 0.5
+metadata/_custom_type_script = "uid://cmwgyb1n1ar8"

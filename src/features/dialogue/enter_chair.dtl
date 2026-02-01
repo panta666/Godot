@@ -1,0 +1,5 @@
+[style name="platformer_style"]
+player: Okay, Prof. Dahm said i could go to the last Row and take a Seat there..
+player: Lets see..
+player: Ah..that one looks good!
+[signal arg="cutscene_end"]

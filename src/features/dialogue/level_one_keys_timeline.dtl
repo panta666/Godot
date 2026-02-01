@@ -1,0 +1,5 @@
+[style name="platformer_style"]
+player: Mhm..that Room seems to be locked and the Key Fragment i got from one of those Monsters can't seem to fit in there.
+player: Maybe i need to find and combine '4' of those Key Fragments in order to open that door.
+player: I should defeat more of those Bugs and Ducks then..
+[signal arg="cutscene_end"]

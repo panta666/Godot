@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Range_Attack" load_steps=2 format=3 uid="uid://ddusiuenhi65c"]
+
+[ext_resource type="Script" uid="uid://bhivv0hqxe25t" path="res://src/features/player/range_attack.gd" id="1_fjcnm"]
+
+[resource]
+script = ExtResource("1_fjcnm")
+damage = 10
+pre_attack_duration = 0.8
+post_attack_duration = 1.0
+pre_animation_name = "pre_attack"
+post_animation_name = "post_attack"
+projectile_offset = Vector2(-15, 0)
+metadata/_custom_type_script = "uid://bhivv0hqxe25t"

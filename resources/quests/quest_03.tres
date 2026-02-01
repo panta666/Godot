@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="QuestData" load_steps=2 format=3 uid="uid://mb66mg8wjduu"]
+
+[ext_resource type="Script" uid="uid://dmq1os3w0lmng" path="res://src/features/quests/quest_data.gd" id="1_t2mx2"]
+
+[resource]
+script = ExtResource("1_t2mx2")
+id = "3"
+title = "Quick Smalltalk!"
+description = "Speak to Prof. Dahm."
+target_scene = "Realworld_Classroom_One"
+target_node_path = "NPC2"

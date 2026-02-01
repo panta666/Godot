@@ -1,0 +1,21 @@
+shader_type canvas_item;
+
+uniform float blink_speed = 1.0;
+uniform bool blink_toggle = false;
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	
+	if(blink_toggle) {
+		float blink = sin(TIME * blink_speed);
+		color.a *= abs(blink);
+	} else {
+		color.a = 0.0;
+	}
+	COLOR = color;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}

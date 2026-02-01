@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopData" load_steps=3 format=3 uid="uid://bjnqu6m3cedcl"]
+
+[ext_resource type="Script" uid="uid://4a4lax7mb4ux" path="res://src/features/shop/shop_data.gd" id="1_wqph8"]
+[ext_resource type="Texture2D" uid="uid://cc8eukyvcqy2u" path="res://assets/shop_icons/shop_heal_plus.png" id="2_fvphc"]
+
+[resource]
+script = ExtResource("1_wqph8")
+item_name = "Heal Ability Charge"
+texture = ExtResource("2_fvphc")
+price = 1
+description = "You can Increase the Heal Ability Charge by One."
+powerup_name = "heal_ability_increase"
+metadata/_custom_type_script = "uid://4a4lax7mb4ux"

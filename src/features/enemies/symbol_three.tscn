@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbr7d8l0dlb4k"]
+
+[ext_resource type="PackedScene" uid="uid://c4gmwtpwtbdcr" path="res://src/features/enemies/Projectile.tscn" id="1_nk8se"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hn2ua"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nk8se"]
+radius = 7.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o4n3t"]
+load_path = "res://.godot/imported/Symbol_Three.png-cf4e007857c912e2301c0710097ea33d.ctex"
+
+[node name="Projectile" instance=ExtResource("1_nk8se")]
+speed = 250.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_hn2ua")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_nk8se")
+
+[node name="Sprite2D" parent="." index="2"]
+position = Vector2(-0.99999845, 1.0430813e-07)
+rotation = 0.0
+scale = Vector2(0.22000001, 0.19999999)
+texture = SubResource("CompressedTexture2D_o4n3t")

@@ -1,8 +1,0 @@
-dahm: Hello Student, how are you?
-- Feeling good.
-	dahm: Thats very good. Take a seat at the back row please.
-	dahm: The lecture is about to start.
-- Not so good.
-	dahm: Okay..mhh..you can go home if you aren't feeling well.
-	dahm: Get well soon, Bye!
-	[signal arg="go_home"]

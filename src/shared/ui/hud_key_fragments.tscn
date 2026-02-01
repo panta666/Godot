@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ovub4d0gdux"]
+
+[ext_resource type="Script" uid="uid://bkm6tl4ebhi0f" path="res://src/shared/ui/hud_key_fragments.gd" id="1_7ad20"]
+
+[node name="hud_key_fragments" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ad20")
+
+[node name="KeyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.000061
+offset_right = 80.00006
+offset_bottom = 23.0
+scale = Vector2(13.351408, 25.668163)
+text = "Keys: 0/4"

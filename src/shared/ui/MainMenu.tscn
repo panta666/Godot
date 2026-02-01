@@ -1,0 +1,189 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpkw6p6jwdxlw"]
+
+[ext_resource type="Script" uid="uid://bsw6yr7hlsmg0" path="res://src/shared/ui/main_menu.gd" id="1_2ue1o"]
+[ext_resource type="Texture2D" uid="uid://dustf0vp37ifx" path="res://assets/main menu/pixellab-Main-Menu-title-screen-for-a-2-1760908731626.png" id="1_fnwlw"]
+[ext_resource type="Texture2D" uid="uid://c8xfhs2goquw5" path="res://assets/Phone/Tablet/tablet_off.png" id="2_ow34m"]
+[ext_resource type="PackedScene" uid="uid://dl7gwr16p3b6j" path="res://src/features/player/video_options_container.tscn" id="4_826wr"]
+[ext_resource type="PackedScene" uid="uid://bvnebqurtlbh4" path="res://src/features/player/sound_options_container.tscn" id="4_ow34m"]
+[ext_resource type="PackedScene" uid="uid://bp3m0hlvk2sv7" path="res://src/shared/components/blinking.tscn" id="5_l72w3"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 69.0
+offset_right = -4.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ue1o")
+
+[node name="Tablet_on" type="Sprite2D" parent="."]
+position = Vector2(519, 241)
+scale = Vector2(1.4232084, 1.3040751)
+texture = ExtResource("2_ow34m")
+
+[node name="TitleScreen" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_right = 980.0
+offset_bottom = 460.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="TitleScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Battle for Bachelor"
+
+[node name="MenuOptions" type="VBoxContainer" parent="TitleScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Continue" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Continue"
+flat = true
+
+[node name="NewGame" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "New Game"
+flat = true
+
+[node name="Options" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Options"
+flat = true
+
+[node name="Credits" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Credits"
+flat = true
+
+[node name="Quit" type="Button" parent="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0.9647059, 0.5137255, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+flat = true
+
+[node name="Version" type="Label" parent="TitleScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(0.963345, 0.51539916, 5.7756904e-07, 1)
+theme_override_font_sizes/font_size = 11
+text = "ver 1.0"
+
+[node name="CenterContainer" type="CenterContainer" parent="TitleScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Illustration" type="TextureRect" parent="TitleScreen/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("1_fnwlw")
+
+[node name="Options" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VideoOptions" type="Control" parent="Options"]
+anchors_preset = 0
+offset_left = 620.0
+offset_top = -39.0
+offset_right = 660.0
+offset_bottom = 1.0
+
+[node name="VideoOptionsLabel" type="Label" parent="Options/VideoOptions"]
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "Video"
+
+[node name="VideoOptionsContainer" parent="Options/VideoOptions" instance=ExtResource("4_826wr")]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 128.0
+offset_right = 156.0
+offset_bottom = 185.0
+
+[node name="SoundOptions" type="Control" parent="Options"]
+anchors_preset = 0
+offset_left = 620.0
+offset_top = -39.0
+offset_right = 660.0
+offset_bottom = 1.0
+
+[node name="SoundOptionsLabel" type="Label" parent="Options/SoundOptions"]
+layout_mode = 0
+offset_left = -333.0
+offset_top = 1.0
+offset_right = -180.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 50
+text = "Sound"
+
+[node name="SoundOptionsContainer" parent="Options/SoundOptions" instance=ExtResource("4_ow34m")]
+layout_mode = 0
+offset_left = -330.0
+offset_top = 123.0
+offset_right = -211.0
+offset_bottom = 419.0
+scale = Vector2(1, 1)
+
+[node name="Backbutton" type="Control" parent="Options"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Blinking" parent="Options/Backbutton" instance=ExtResource("5_l72w3")]
+position = Vector2(944.00006, 244)
+scale = Vector2(0.08907979, 0.096242495)
+
+[node name="EinstellungenSpeichern" type="Button" parent="Options/Backbutton"]
+layout_mode = 0
+offset_left = 917.00006
+offset_top = 214.0
+offset_right = 1282.0
+offset_bottom = 262.0
+scale = Vector2(0.15857884, 1.28)
+flat = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(517, 230)
+
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="TitleScreen/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Options/Backbutton/EinstellungenSpeichern" to="." method="_on_einstellungen_speichern_pressed"]
