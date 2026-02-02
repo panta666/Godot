@@ -383,7 +383,7 @@ func validate_data(target: Dictionary, defaults: Dictionary) -> void:
 		if target_val is Dictionary and default_val is Dictionary:
 			validate_data(target_val, default_val)
 
-		# 3. TYP-KORREKTUR (Das ist der neue Teil für dein Problem)
+		# 3. TYP-KORREKTUR
 		# Wenn Default ein INT ist, aber JSON uns einen FLOAT gegeben hat -> Umwandeln!
 		elif typeof(default_val) == TYPE_INT and typeof(target_val) == TYPE_FLOAT:
 			target[key] = int(target_val)
