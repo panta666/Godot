@@ -1,7 +1,8 @@
 # Battle for Bachelor
 
 ### *Vom Hörsaal direkt in den Endboss-Kampf.*
-![BfB-ezgif com-resize](https://github.com/user-attachments/assets/28c7a4a8-56f7-4dd8-960d-014cc7f15854)
+![BfB-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/78402bce-5b22-40d0-b22e-1fd1408594c2)
+
 
 ---
 
